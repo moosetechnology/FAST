@@ -1,19 +1,18 @@
 definition
 defineNewClasses
-	entity := builder newClassNamed: #Entity.
-	expression := builder newClassNamed: #Expression.
-	literal := builder newClassNamed: #Literal.
-	booleanLiteral := builder newClassNamed: #BooleanLiteral.
-	characterLiteral := builder newClassNamed: #CharacterLiteral.
-	nullPointerLiteral := builder newClassNamed: #NullPointerLiteral.
-	stringLiteral := builder newClassNamed: #StringLiteral.
-	variableExpression := builder newClassNamed: #VariableExpression.
-	scopableEntity := builder newClassNamed: #ScopableEntity.
-	behaviouralEntity := builder newClassNamed: #BehaviouralEntity.
-	namedBehaviouralEntity := builder newClassNamed: #NamedBehaviouralEntity.
-	statement := builder newClassNamed: #Statement.
-	expressionStatement := builder newClassNamed: #ExpressionStatement.
-	returnStatement := builder newClassNamed: #ReturnStatement.
-	statementBlock := builder newClassNamed: #StatementBlock.
-	variableEntity := builder newClassNamed: #VariableEntity.
-	namedEntity := builder newClassNamed: #NamedEntity
+	entity := builder newClassNamed: #Entity comment: self commentForEntity.
+	expression := builder newClassNamed: #Expression comment: self commentForExpression.
+	literal := builder newClassNamed: #Literal comment: self commentForLiteral.
+	booleanLiteral := builder newClassNamed: #BooleanLiteral comment: self commentForBooleanLiteral.
+	characterLiteral := builder newClassNamed: #CharacterLiteral comment: self commentForCharacterLiteral.
+	nullPointerLiteral := builder newClassNamed: #NullPointerLiteral comment: self commentForNullPointerLiteral.
+	stringLiteral := builder newClassNamed: #StringLiteral comment: self commentForStringLiteral.
+	variableExpression := builder newClassNamed: #VariableExpression comment: self commentForVariableExpression.
+	scopableEntity := builder newClassNamed: #ScopableEntity comment: self commentForScopableEntity.
+	behaviouralEntity := builder newClassNamed: #BehaviouralEntity comment: self commentForBehaviouralEntity.
+	namedBehaviouralEntity := builder newClassNamed: #NamedBehaviouralEntity comment: self commentForNamedBehaviouralEntity.
+	statement := builder newClassNamed: #Statement comment: self commentForStatement.
+	expressionStatement := builder newClassNamed: #ExpressionStatement comment: self commentForExpressionStatement.
+	returnStatement := builder newClassNamed: #ReturnStatement comment: self commentForReturnStatement.
+	statementBlock := builder newClassNamed: #StatementBlock comment: self commentForStatementBlock.
+	variableEntity := builder newClassNamed: #VariableEntity comment: self commentForVariableEntity

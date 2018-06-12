@@ -21,8 +21,7 @@
 		"returnStatement",
 		"statementBlock",
 		"variableEntity",
-		"namedBehaviouralEntity",
-		"namedEntity"
+		"namedBehaviouralEntity"
 	],
 	"name" : "FASTMetamodelGenerator",
 	"type" : "normal"

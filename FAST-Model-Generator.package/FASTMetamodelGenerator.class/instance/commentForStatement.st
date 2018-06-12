@@ -1,0 +1,3 @@
+definition
+commentForStatement
+	^ 'An abstract subclass which represents a source code statemnet '

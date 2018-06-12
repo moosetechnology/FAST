@@ -15,7 +15,6 @@ defineNewClassesHierarchy
 	returnStatement --|> statement.
 	statementBlock --|> statement.
 	variableEntity --|> entity.
-	namedEntity --|> entity.
 	entity --|> #TEntityMetaLevelDependency.
 	entity --|> #TDependencyQueries.
 	entity --|> #TWithSourceAnchor
