@@ -1,5 +1,5 @@
 *FAST-Core-Model-Extension
 famixNamedEntity
-	<MSEProperty: #fastBehaviouralEntity type: #FASTNamedBehaviouralEntity opposite: #famixNamedEntity>
+	<MSEProperty: #famixNamedEntity type: #FAMIXBehaviouralEntity opposite: #fastBehaviouralEntity>
 	<MSEComment: 'Corresponding FASTMethodDefinition node'>
-	^ self privateState attributeAt: #fastBehaviouralEntity ifAbsent: nil
+	^ self privateState attributeAt: #famixNamedEntity ifAbsent: nil

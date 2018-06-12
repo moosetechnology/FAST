@@ -1,8 +1,8 @@
 *FAST-Core-Model-Extension
-famixNamedEntity: aNamedBehaviouralEntity
-	self privateState attributeAt: #fastBehaviouralEntity put: aNamedBehaviouralEntity.	
+famixNamedEntity: aFamixBehaviouralEntity
+	self privateState attributeAt: #famixNamedEntity put: aFamixBehaviouralEntity.	
 		
 	"Statement below added to ensure consistency
 	of this one-to-one relationship"
-	aNamedBehaviouralEntity famixNamedEntity = self
-		ifFalse: [ aNamedBehaviouralEntity famixNamedEntity: self ]
+	aFamixBehaviouralEntity fastBehaviouralEntity = self
+		ifFalse: [ aFamixBehaviouralEntity fastBehaviouralEntity: self ]

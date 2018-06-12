@@ -11,6 +11,4 @@ defineRelations
 		comment: 'A behavioual entity where this variable is defined as a parameter').
 	((behaviouralEntity property: #statementBlock) comment: 'Statements block of the behavioural entity')
 		- ((statementBlock property: #fastBehaviouralParent) comment: 'Behavioural entity containing the statement block.').
-	self flag: 'Missing FASTNamedBehaviouralEntity>>#famixNamedEntity linked'.
 	((statement property: #statementContainer) comment: 'Block containing this statement.') *- ((statementBlock property: #statements) comment: 'Statements enclosed in this block').
-	self flag: 'Missing FASTVariableEntity>>#famixNamedEntity linked'
