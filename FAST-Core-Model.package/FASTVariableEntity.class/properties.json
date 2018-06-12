@@ -1,5 +1,5 @@
 {
-	"commentStamp" : "",
+	"commentStamp" : "<historical>",
 	"super" : "FASTEntity",
 	"category" : "FAST-Core-Model-Entities",
 	"classinstvars" : [ ],

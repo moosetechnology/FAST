@@ -1,0 +1,1 @@
+An undefined object literal

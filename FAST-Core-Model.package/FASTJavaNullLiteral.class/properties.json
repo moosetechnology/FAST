@@ -1,5 +1,5 @@
 {
-	"commentStamp" : "",
+	"commentStamp" : "<historical>",
 	"super" : "FASTNullPointerLiteral",
 	"category" : "FAST-Core-Model-Entities",
 	"classinstvars" : [ ],

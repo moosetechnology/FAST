@@ -5,7 +5,7 @@
 		"#parentScopableEntity => FMOne type: #FASTScopableEntity opposite: #localEntities"
 	],
 	"name" : "FASTEntity",
-	"commentStamp" : "",
+	"commentStamp" : "<historical>",
 	"super" : "MooseEntity",
 	"traitcomposition" : "FASTTDependencyQueries + FASTTEntityMetaLevelDependency + FmxNGTWithSourceAnchor",
 	"type" : "normal",

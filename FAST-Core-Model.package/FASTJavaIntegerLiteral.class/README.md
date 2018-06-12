@@ -1,0 +1,1 @@
+Java integer literal node
