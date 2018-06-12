@@ -1,0 +1,15 @@
+{
+	"commentStamp" : "",
+	"super" : "FASTEntity",
+	"category" : "FAST-Core-Model-Entities",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [ ],
+	"instvars" : [
+		"#expression",
+		"#parentNode => FMOne type: #FASTJavaVarDeclStatement opposite: #declarators",
+		"#variable"
+	],
+	"name" : "FASTJavaVariableDeclarator",
+	"type" : "normal"
+}

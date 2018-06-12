@@ -1,0 +1,9 @@
+{
+	"commentStamp" : "",
+	"classinstvars" : [ ],
+	"category" : "FAST-Core-Model-Traits",
+	"instvars" : [
+		"#expressions => FMMany type: #FASTTExpression opposite: #expressionOwner"
+	],
+	"name" : "FASTTWithExpressions"
+}

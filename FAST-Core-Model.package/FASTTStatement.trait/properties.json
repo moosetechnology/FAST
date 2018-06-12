@@ -1,0 +1,9 @@
+{
+	"commentStamp" : "",
+	"classinstvars" : [ ],
+	"category" : "FAST-Core-Model-Traits",
+	"instvars" : [
+		"#statementOwner => FMOne type: #FASTTWithStatements opposite: #statements"
+	],
+	"name" : "FASTTStatement"
+}

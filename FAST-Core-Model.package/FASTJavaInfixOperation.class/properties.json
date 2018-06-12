@@ -1,0 +1,15 @@
+{
+	"commentStamp" : "",
+	"super" : "FASTExpression",
+	"category" : "FAST-Core-Model-Entities",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [ ],
+	"instvars" : [
+		"#leftOperand => FMOne type: #FASTExpression opposite: #parentNode",
+		"#operator",
+		"#rightOperand => FMOne type: #FASTExpression opposite: #parentNode"
+	],
+	"name" : "FASTJavaInfixOperation",
+	"type" : "normal"
+}

@@ -1,0 +1,13 @@
+{
+	"commentStamp" : "",
+	"super" : "FASTBehaviouralEntity",
+	"category" : "FAST-Core-Model-Entities",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [ ],
+	"instvars" : [
+		"behaviouralName"
+	],
+	"name" : "FASTNamedBehaviouralEntity",
+	"type" : "normal"
+}

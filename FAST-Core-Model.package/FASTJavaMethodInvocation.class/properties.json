@@ -1,0 +1,15 @@
+{
+	"commentStamp" : "",
+	"super" : "FASTExpression",
+	"category" : "FAST-Core-Model-Entities",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [ ],
+	"instvars" : [
+		"#arguments => FMMany type: #FASTExpression opposite: #parentNode",
+		"#name",
+		"#receiver => FMOne type: #FASTExpression opposite: #parentNode"
+	],
+	"name" : "FASTJavaMethodInvocation",
+	"type" : "normal"
+}

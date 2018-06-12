@@ -1,0 +1,13 @@
+{
+	"commentStamp" : "",
+	"super" : "FASTVariableExpression",
+	"category" : "FAST-Core-Model-Entities",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [ ],
+	"instvars" : [
+		"separator"
+	],
+	"name" : "FASTJavaSeparator",
+	"type" : "normal"
+}

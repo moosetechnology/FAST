@@ -1,0 +1,14 @@
+{
+	"commentStamp" : "",
+	"super" : "FASTExpression",
+	"category" : "FAST-Core-Model-Entities",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [ ],
+	"instvars" : [
+		"#expression => FMOne type: #FASTExpression opposite: #parentNode",
+		"#fieldName"
+	],
+	"name" : "FASTJavaFieldAccess",
+	"type" : "normal"
+}

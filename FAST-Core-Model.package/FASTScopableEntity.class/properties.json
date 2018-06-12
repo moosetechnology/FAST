@@ -1,0 +1,13 @@
+{
+	"commentStamp" : "",
+	"super" : "FASTEntity",
+	"category" : "FAST-Core-Model-Entities",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [ ],
+	"instvars" : [
+		"#localEntities => FMMany type: #FASTEntity opposite: #parentScopableEntity"
+	],
+	"name" : "FASTScopableEntity",
+	"type" : "normal"
+}

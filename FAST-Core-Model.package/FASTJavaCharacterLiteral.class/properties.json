@@ -1,0 +1,11 @@
+{
+	"commentStamp" : "",
+	"super" : "FASTCharacterLiteral",
+	"category" : "FAST-Core-Model-Entities",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [ ],
+	"instvars" : [ ],
+	"name" : "FASTJavaCharacterLiteral",
+	"type" : "normal"
+}

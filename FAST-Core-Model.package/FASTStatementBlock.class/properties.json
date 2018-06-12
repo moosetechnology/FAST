@@ -1,0 +1,14 @@
+{
+	"commentStamp" : "",
+	"super" : "FASTStatement",
+	"category" : "FAST-Core-Model-Entities",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [ ],
+	"instvars" : [
+		"#fastBehaviouralParent => FMOne type: #FASTBehaviouralEntity opposite: #statementBlock",
+		"#statements => FMMany type: #FASTStatement opposite: #statementContainer"
+	],
+	"name" : "FASTStatementBlock",
+	"type" : "normal"
+}

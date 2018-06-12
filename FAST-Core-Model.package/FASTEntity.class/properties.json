@@ -1,0 +1,15 @@
+{
+	"classtraitcomposition" : "FASTTDependencyQueries classTrait + FASTTEntityMetaLevelDependency classTrait + FmxNGTWithSourceAnchor classTrait",
+	"classvars" : [ ],
+	"instvars" : [
+		"#parentScopableEntity => FMOne type: #FASTScopableEntity opposite: #localEntities"
+	],
+	"name" : "FASTEntity",
+	"commentStamp" : "",
+	"super" : "MooseEntity",
+	"traitcomposition" : "FASTTDependencyQueries + FASTTEntityMetaLevelDependency + FmxNGTWithSourceAnchor",
+	"type" : "normal",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"category" : "FAST-Core-Model-Entities"
+}

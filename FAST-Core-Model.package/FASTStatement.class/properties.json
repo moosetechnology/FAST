@@ -1,0 +1,15 @@
+{
+	"commentStamp" : "",
+	"super" : "FASTScopableEntity",
+	"category" : "FAST-Core-Model-Entities",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [ ],
+	"instvars" : [
+		"#childExpression => FMOne type: #FASTExpression opposite: #parentStatement",
+		"#parentNode => FMOne type: #FASTJavaDoStatement opposite: #body",
+		"#statementContainer => FMOne type: #FASTStatementBlock opposite: #statements"
+	],
+	"name" : "FASTStatement",
+	"type" : "normal"
+}

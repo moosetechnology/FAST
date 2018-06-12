@@ -1,0 +1,13 @@
+{
+	"commentStamp" : "",
+	"super" : "FASTExpression",
+	"category" : "FAST-Core-Model-Entities",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [ ],
+	"instvars" : [
+		"variableName"
+	],
+	"name" : "FASTVariableExpression",
+	"type" : "normal"
+}

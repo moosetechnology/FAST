@@ -1,0 +1,16 @@
+{
+	"commentStamp" : "",
+	"super" : "FASTEntity",
+	"category" : "FAST-Core-Model-Entities",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [ ],
+	"instvars" : [
+		"#childrenExpressions => FMOne type: #FASTExpression opposite: #parentExpression",
+		"#parentExpression => FMMany type: #FASTExpression opposite: #childrenExpressions",
+		"#parentNode => FMOne type: #FASTJavaAssignementExpression opposite: #expression",
+		"#parentStatement => FMOne type: #FASTStatement opposite: #childExpression"
+	],
+	"name" : "FASTExpression",
+	"type" : "normal"
+}
