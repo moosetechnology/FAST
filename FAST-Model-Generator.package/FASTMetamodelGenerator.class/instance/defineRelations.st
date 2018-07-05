@@ -2,6 +2,10 @@ definition
 defineRelations
 	"in comment the old relation from the old FAST metamodel"
 
+	self flag: 'remplacer tout ca par 
+	  (entity property: #parentnode) -* (entity property: #childrenNode)
+	  + definition de computed properties pour chaque cas specifique ici'.
+
 	((expression property: #parentExpression) comment: 'Parent expression within which this expression appears (e.g. self="a+b" and parent="2*(a+b)") ')
 		-* ((expression property: #childrenExpressions) comment: 'Sub-expressions within this expression (e.g. self="2*(a+b)" and child="a+b") ').
 	((expression property: #parentStatement) comment: 'Parent statement containing this expression') - ((statement property: #childExpression) comment: 'Expression contained in this statement').

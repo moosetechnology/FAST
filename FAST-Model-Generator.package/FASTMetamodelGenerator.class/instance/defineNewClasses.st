@@ -1,5 +1,7 @@
 definition
 defineNewClasses
+	self flag: 'pourquoi mettre les commentaires dans des methodes separees? Ca serait bien de les voir ici non?'.
+	
 	entity := builder newClassNamed: #Entity comment: self commentForEntity.
 	expression := builder newClassNamed: #Expression comment: self commentForExpression.
 	literal := builder newClassNamed: #Literal comment: self commentForLiteral.
