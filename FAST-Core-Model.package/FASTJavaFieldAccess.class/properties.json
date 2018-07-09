@@ -6,8 +6,7 @@
 	"pools" : [ ],
 	"classvars" : [ ],
 	"instvars" : [
-		"#expression => FMOne type: #FASTExpression opposite: #parentNode",
-		"#fieldName"
+		"fieldName"
 	],
 	"name" : "FASTJavaFieldAccess",
 	"type" : "normal"

@@ -1,4 +1,5 @@
 generator
 generatedSlotNames
 	<generated>
-	^ #(body initializers incrementors condition)
+	'FASTJavaForStatement class>>#generatedSlotNames'.
+	^ #()

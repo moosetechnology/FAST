@@ -5,11 +5,7 @@
 	"classinstvars" : [ ],
 	"pools" : [ ],
 	"classvars" : [ ],
-	"instvars" : [
-		"#condition => FMOne type: #FASTExpression opposite: #parentNode",
-		"#elseBody => FMOne type: #FASTStatement opposite: #parentNode",
-		"#thenBody => FMOne type: #FASTStatement opposite: #parentNode"
-	],
+	"instvars" : [ ],
 	"name" : "FASTJavaIfStatement",
 	"type" : "normal"
 }

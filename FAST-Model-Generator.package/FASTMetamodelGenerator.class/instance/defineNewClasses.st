@@ -1,6 +1,7 @@
 definition
 defineNewClasses
 	self flag: 'pourquoi mettre les commentaires dans des methodes separees? Ca serait bien de les voir ici non?'.
+	self flag: 'Edit Benoit 09/07/2018 : C est ce format qui est utilise dans FamixNG. Si les commentaires sont long on perd de la comprehension je trouve... Pour des commentaires je vois l interet'.
 	
 	entity := builder newClassNamed: #Entity comment: self commentForEntity.
 	expression := builder newClassNamed: #Expression comment: self commentForExpression.

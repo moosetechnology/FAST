@@ -1,13 +1,13 @@
 {
+	"classtraitcomposition" : "FmxNGTNamed classTrait",
+	"classvars" : [ ],
+	"instvars" : [ ],
+	"name" : "FASTNamedBehaviouralEntity",
 	"commentStamp" : "<historical>",
 	"super" : "FASTBehaviouralEntity",
-	"category" : "FAST-Core-Model-Entities",
+	"traitcomposition" : "FmxNGTNamed",
+	"type" : "normal",
 	"classinstvars" : [ ],
 	"pools" : [ ],
-	"classvars" : [ ],
-	"instvars" : [
-		"behaviouralName"
-	],
-	"name" : "FASTNamedBehaviouralEntity",
-	"type" : "normal"
+	"category" : "FAST-Core-Model-Entities"
 }

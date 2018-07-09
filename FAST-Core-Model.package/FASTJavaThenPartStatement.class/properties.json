@@ -1,0 +1,11 @@
+{
+	"commentStamp" : "",
+	"super" : "MooseEntity",
+	"category" : "FAST-Core-Model-Entities",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [ ],
+	"instvars" : [ ],
+	"name" : "FASTJavaThenPartStatement",
+	"type" : "normal"
+}

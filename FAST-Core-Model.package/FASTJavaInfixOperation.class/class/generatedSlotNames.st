@@ -1,4 +1,5 @@
 generator
 generatedSlotNames
 	<generated>
-	^ #(operator rightOperand leftOperand)
+	'FASTJavaInfixOperation class>>#generatedSlotNames'.
+	^ #(operator)

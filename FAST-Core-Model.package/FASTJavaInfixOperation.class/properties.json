@@ -6,9 +6,7 @@
 	"pools" : [ ],
 	"classvars" : [ ],
 	"instvars" : [
-		"#leftOperand => FMOne type: #FASTExpression opposite: #parentNode",
-		"#operator",
-		"#rightOperand => FMOne type: #FASTExpression opposite: #parentNode"
+		"operator"
 	],
 	"name" : "FASTJavaInfixOperation",
 	"type" : "normal"

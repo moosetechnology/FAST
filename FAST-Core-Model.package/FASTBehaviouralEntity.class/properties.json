@@ -1,16 +1,14 @@
 {
-	"classtraitcomposition" : "FmxNGTNamed classTrait",
+	"commentStamp" : "<historical>",
+	"super" : "FASTScopableEntity",
+	"category" : "FAST-Core-Model-Entities",
+	"classinstvars" : [ ],
+	"pools" : [ ],
 	"classvars" : [ ],
 	"instvars" : [
 		"#parameters => FMMany type: #FASTVariableEntity opposite: #parentBehaviouralEntity",
 		"#statementBlock => FMOne type: #FASTStatementBlock opposite: #fastBehaviouralParent"
 	],
 	"name" : "FASTBehaviouralEntity",
-	"commentStamp" : "<historical>",
-	"super" : "FASTScopableEntity",
-	"traitcomposition" : "FmxNGTNamed",
-	"type" : "normal",
-	"classinstvars" : [ ],
-	"pools" : [ ],
-	"category" : "FAST-Core-Model-Entities"
+	"type" : "normal"
 }

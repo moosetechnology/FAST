@@ -23,4 +23,12 @@ defineNewClasses
 	javaThis := builder newClassNamed: #JavaThis comment: self commentForJavaThis.
 	javaVarDeclStatement := builder newClassNamed: #JavaVarDeclStatement comment: self commentForJavaVarDeclStatement.
 	javaVariableDeclarator := builder newClassNamed: #JavaVariableDeclarator comment: self commentForJavaVariableDeclarator.
-	javaWhileStatement := builder newClassNamed: #JavaWhileStatement comment: self commentForJavaWhileStatement
+	javaWhileStatement := builder newClassNamed: #JavaWhileStatement comment: self commentForJavaWhileStatement.
+	
+	"factice"
+	javaElsePartStatement :=  builder newClassNamed: #JavaElsePartStatement. 
+	javaThenPartStatement := builder newClassNamed: #JavaThenPartStatement.
+	javaConditionStatement := builder newClassNamed: #JavaConditionStatement.
+	javaIncrementorsStatement := builder newClassNamed: #JavaIncrementorsStatement comment: 'ExpressionStatements evaluated at the end of each loop'.
+	javaBodyStatement := builder newClassNamed: #JavaBodyStatement comment: 'A statement to be evaluated in the loop'.
+	javaInitializersStatement := builder newClassNamed: #JavaInitializersStatement comment: 'ExpressionStatements used at initialization phase of a for loop'.

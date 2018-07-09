@@ -23,4 +23,6 @@ defineNewClassesHierarchy
 	javaThis --|> variableExpression.
 	javaVarDeclStatement --|> statement.
 	javaVariableDeclarator --|> entity.
-	javaWhileStatement --|> statement
+	javaWhileStatement --|> statement.
+	
+	javaMethodInvocation --|> #TNamed

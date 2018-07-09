@@ -5,6 +5,7 @@ defineRelations
 	self flag: 'remplacer tout ca par 
 	  (entity property: #parentnode) -* (entity property: #childrenNode)
 	  + definition de computed properties pour chaque cas specifique ici'.
+	self flag: 'Edit Benoit 09/07/2018 : Pour le moment je regarde si c est possible de ne faire ca que du cote JAVA'.
 
 	((expression property: #parentExpression) comment: 'Parent expression within which this expression appears (e.g. self="a+b" and parent="2*(a+b)") ')
 		-* ((expression property: #childrenExpressions) comment: 'Sub-expressions within this expression (e.g. self="2*(a+b)" and child="a+b") ').

@@ -1,4 +1,5 @@
 generator
 generatedSlotNames
 	<generated>
-	^ #(parentScopableEntity)
+	'FASTEntity class>>#generatedSlotNames'.
+	^ #(parentNode parentScopableEntity childrenNode)

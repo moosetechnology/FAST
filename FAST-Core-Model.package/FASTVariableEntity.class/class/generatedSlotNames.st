@@ -1,4 +1,5 @@
 generator
 generatedSlotNames
 	<generated>
-	^ #(variableName parentBehaviouralEntity)
+	'FASTVariableEntity class>>#generatedSlotNames'.
+	^ #(parentBehaviouralEntity)

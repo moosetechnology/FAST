@@ -1,4 +1,5 @@
 generator
 generatedSlotNames
 	<generated>
-	^ #(body condition)
+	'FASTJavaDoStatement class>>#generatedSlotNames'.
+	^ #()

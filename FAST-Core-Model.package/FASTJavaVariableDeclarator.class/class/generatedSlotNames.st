@@ -1,4 +1,5 @@
 generator
 generatedSlotNames
 	<generated>
-	^ #(expression variable parentNode)
+	'FASTJavaVariableDeclarator class>>#generatedSlotNames'.
+	^ #(expression variable)

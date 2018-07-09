@@ -5,10 +5,7 @@
 	"classinstvars" : [ ],
 	"pools" : [ ],
 	"classvars" : [ ],
-	"instvars" : [
-		"#expression => FMOne type: #FASTExpression opposite: #parentNode",
-		"#statements => FMMany type: #FASTStatement opposite: #parentNode"
-	],
+	"instvars" : [ ],
 	"name" : "FASTJavaSwitchStatement",
 	"type" : "normal"
 }

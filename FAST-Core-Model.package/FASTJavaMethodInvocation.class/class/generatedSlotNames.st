@@ -1,4 +1,5 @@
 generator
 generatedSlotNames
 	<generated>
-	^ #(receiver name arguments)
+	'FASTJavaMethodInvocation class>>#generatedSlotNames'.
+	^ #()

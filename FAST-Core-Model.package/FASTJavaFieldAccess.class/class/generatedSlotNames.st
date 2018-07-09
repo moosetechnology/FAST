@@ -1,4 +1,5 @@
 generator
 generatedSlotNames
 	<generated>
-	^ #(expression fieldName)
+	'FASTJavaFieldAccess class>>#generatedSlotNames'.
+	^ #(fieldName)

@@ -1,4 +1,5 @@
 generator
 generatedSlotNames
 	<generated>
-	^ #(type declarators)
+	'FASTJavaVarDeclStatement class>>#generatedSlotNames'.
+	^ #(type)

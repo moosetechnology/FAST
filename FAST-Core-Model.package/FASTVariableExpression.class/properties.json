@@ -1,13 +1,13 @@
 {
+	"classtraitcomposition" : "FmxNGTNamed classTrait",
+	"classvars" : [ ],
+	"instvars" : [ ],
+	"name" : "FASTVariableExpression",
 	"commentStamp" : "<historical>",
 	"super" : "FASTExpression",
-	"category" : "FAST-Core-Model-Entities",
+	"traitcomposition" : "FmxNGTNamed",
+	"type" : "normal",
 	"classinstvars" : [ ],
 	"pools" : [ ],
-	"classvars" : [ ],
-	"instvars" : [
-		"variableName"
-	],
-	"name" : "FASTVariableExpression",
-	"type" : "normal"
+	"category" : "FAST-Core-Model-Entities"
 }

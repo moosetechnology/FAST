@@ -1,14 +1,15 @@
 {
-	"commentStamp" : "<historical>",
-	"super" : "FASTEntity",
-	"category" : "FAST-Core-Model-Entities",
-	"classinstvars" : [ ],
-	"pools" : [ ],
+	"classtraitcomposition" : "FmxNGTNamed classTrait",
 	"classvars" : [ ],
 	"instvars" : [
-		"#parentBehaviouralEntity => FMOne type: #FASTBehaviouralEntity opposite: #parameters",
-		"#variableName"
+		"#parentBehaviouralEntity => FMOne type: #FASTBehaviouralEntity opposite: #parameters"
 	],
 	"name" : "FASTVariableEntity",
-	"type" : "normal"
+	"commentStamp" : "<historical>",
+	"super" : "FASTEntity",
+	"traitcomposition" : "FmxNGTNamed",
+	"type" : "normal",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"category" : "FAST-Core-Model-Entities"
 }

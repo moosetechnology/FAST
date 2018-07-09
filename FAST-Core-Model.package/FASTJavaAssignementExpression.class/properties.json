@@ -5,9 +5,7 @@
 	"classinstvars" : [ ],
 	"pools" : [ ],
 	"classvars" : [ ],
-	"instvars" : [
-		"#expression => FMOne type: #FASTExpression opposite: #parentNode"
-	],
+	"instvars" : [ ],
 	"name" : "FASTJavaAssignementExpression",
 	"type" : "normal"
 }

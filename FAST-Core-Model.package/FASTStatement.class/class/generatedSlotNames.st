@@ -1,4 +1,5 @@
 generator
 generatedSlotNames
 	<generated>
-	^ #(childExpression statementContainer parentNode)
+	'FASTStatement class>>#generatedSlotNames'.
+	^ #(childExpression statementContainer)

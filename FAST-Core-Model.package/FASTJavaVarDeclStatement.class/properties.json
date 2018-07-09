@@ -6,8 +6,7 @@
 	"pools" : [ ],
 	"classvars" : [ ],
 	"instvars" : [
-		"#declarators => FMMany type: #FASTJavaVariableDeclarator opposite: #parentNode",
-		"#type"
+		"type"
 	],
 	"name" : "FASTJavaVarDeclStatement",
 	"type" : "normal"

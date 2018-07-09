@@ -14,13 +14,11 @@ defineNewClassesHierarchy
 	expressionStatement --|> statement.
 	returnStatement --|> statement.
 	statementBlock --|> statement.
-	
-	self flag: 'pourquoi ce n''est pas un #TNamed ?'.
 	variableEntity --|> entity.
 	
-	self flag: 'Non, puisqu''on a namedBehaviouralEntity'.
-	behaviouralEntity --|> #TNamed.
-
+	variableEntity --|> #TNamed.
+	variableExpression --|> #TNamed.
+	namedBehaviouralEntity --|> #TNamed.
 	entity --|> #TEntityMetaLevelDependency.
 	entity --|> #TDependencyQueries.
 	entity --|> #TWithSourceAnchor

@@ -1,4 +1,5 @@
 generator
 generatedSlotNames
 	<generated>
-	^ #(variableName)
+	'FASTVariableExpression class>>#generatedSlotNames'.
+	^ #()

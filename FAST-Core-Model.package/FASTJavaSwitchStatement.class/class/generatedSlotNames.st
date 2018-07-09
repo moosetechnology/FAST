@@ -1,4 +1,5 @@
 generator
 generatedSlotNames
 	<generated>
-	^ #(expression statements)
+	'FASTJavaSwitchStatement class>>#generatedSlotNames'.
+	^ #()

@@ -28,7 +28,13 @@
 		"javaThis",
 		"javaVarDeclStatement",
 		"javaVariableDeclarator",
-		"javaWhileStatement"
+		"javaWhileStatement",
+		"javaElsePartStatement",
+		"javaThenPartStatement",
+		"javaConditionStatement",
+		"javaIncrementorsStatement",
+		"javaBodyStatement",
+		"javaInitializersStatement"
 	],
 	"name" : "FASTJavaMetamodelGenerator",
 	"type" : "normal"

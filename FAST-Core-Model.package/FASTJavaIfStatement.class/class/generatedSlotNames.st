@@ -1,4 +1,5 @@
 generator
 generatedSlotNames
 	<generated>
-	^ #(elseBody thenBody condition)
+	'FASTJavaIfStatement class>>#generatedSlotNames'.
+	^ #()

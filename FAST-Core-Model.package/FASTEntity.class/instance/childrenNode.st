@@ -1,0 +1,5 @@
+accessing
+childrenNode
+
+	<generated>
+	^ childrenNode
