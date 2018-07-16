@@ -1,9 +1,0 @@
-{
-	"commentStamp" : "",
-	"classinstvars" : [ ],
-	"category" : "FAST-Core-Model-Traits",
-	"instvars" : [
-		"#javaVariableDeclaratorOwner => FMOne type: #FASTTWithJavaVariableDeclarators opposite: #javaVariableDeclarators"
-	],
-	"name" : "FASTTJavaVariableDeclarator"
-}

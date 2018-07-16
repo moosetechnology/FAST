@@ -1,4 +1,5 @@
 *FAST-Core-Model-Extension
 conditionStatement
 	<computed>
-	(self childrenNode select: [ :childNode | childNode class = FASTJavaConditionStatement ]) at: 1
+	<navigation: 'condition'>
+	^ (self childrenNode select: [ :childNode | childNode class = FASTJavaConditionStatement ]) at: 1

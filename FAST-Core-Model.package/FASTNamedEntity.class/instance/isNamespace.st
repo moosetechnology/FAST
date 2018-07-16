@@ -1,0 +1,5 @@
+testing
+isNamespace
+
+	<generated>
+	^ false

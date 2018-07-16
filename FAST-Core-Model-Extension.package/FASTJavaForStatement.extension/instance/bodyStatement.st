@@ -1,4 +1,5 @@
 *FAST-Core-Model-Extension
 bodyStatement
 	<computed>
-	(self childrenNode select: [ :childNode | childNode class = FASTJavaBodyStatement ]) at: 1
+	<navigation: 'body'>
+	^ (self childrenNode select: [ :childNode | childNode class isKindOf: FASTJavaBodyStatement class ]) at: 1

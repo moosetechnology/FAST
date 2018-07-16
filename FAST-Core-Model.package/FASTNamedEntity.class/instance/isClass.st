@@ -1,0 +1,5 @@
+testing
+isClass
+
+	<generated>
+	^ false

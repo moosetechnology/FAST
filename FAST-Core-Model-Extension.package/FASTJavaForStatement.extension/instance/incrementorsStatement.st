@@ -1,4 +1,5 @@
 *FAST-Core-Model-Extension
 incrementorsStatement
 	<computed>
-	(self childrenNode select: [ :childNode | childNode class = FASTJavaIncrementorsStatement ]) at: 1
+	<navigation: 'incrementors'>
+	^ (self childrenNode select: [ :childNode | childNode class isKindOf: FASTJavaIncrementorsStatement class ])

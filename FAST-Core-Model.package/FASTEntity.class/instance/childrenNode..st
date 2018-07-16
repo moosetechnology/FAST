@@ -2,4 +2,4 @@ accessing
 childrenNode: anObject
 
 	<generated>
-	childrenNode := anObject
+	childrenNode value: anObject

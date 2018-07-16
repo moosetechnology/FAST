@@ -1,0 +1,5 @@
+testing
+isAssociation
+
+	<generated>
+	^ false

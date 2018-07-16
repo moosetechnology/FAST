@@ -2,8 +2,8 @@
 	"classtraitcomposition" : "FASTTDependencyQueries classTrait + FASTTEntityMetaLevelDependency classTrait + FmxNGTWithSourceAnchor classTrait",
 	"classvars" : [ ],
 	"instvars" : [
-		"#childrenNode => FMOne type: #FASTEntity opposite: #parentNode",
-		"#parentNode => FMMany type: #FASTEntity opposite: #childrenNode"
+		"#childrenNode => FMMany type: #FASTEntity opposite: #parentNode",
+		"#parentNode => FMOne type: #FASTEntity opposite: #childrenNode"
 	],
 	"name" : "FASTEntity",
 	"commentStamp" : "<historical>",

@@ -1,11 +1,13 @@
 {
-	"commentStamp" : "",
-	"super" : "FASTEntity",
-	"category" : "FAST-Core-Model-Entities",
-	"classinstvars" : [ ],
-	"pools" : [ ],
+	"classtraitcomposition" : "FmxNGTNamed classTrait",
 	"classvars" : [ ],
 	"instvars" : [ ],
 	"name" : "FASTNamedEntity",
-	"type" : "normal"
+	"commentStamp" : "",
+	"super" : "MooseEntity",
+	"traitcomposition" : "FmxNGTNamed",
+	"type" : "normal",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"category" : "FAST-Core-Model-Entities"
 }

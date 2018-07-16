@@ -19,6 +19,7 @@ defineNewClassesHierarchy
 	variableEntity --|> #TNamed.
 	variableExpression --|> #TNamed.
 	namedBehaviouralEntity --|> #TNamed.
+	namedEntity --|> #TNamed.
 	entity --|> #TEntityMetaLevelDependency.
 	entity --|> #TDependencyQueries.
 	entity --|> #TWithSourceAnchor

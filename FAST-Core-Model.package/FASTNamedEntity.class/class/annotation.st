@@ -2,7 +2,7 @@ meta
 annotation
 
 	<generated>
-	<MSEClass: #NamedEntity super: #FASTEntity>
+	<MSEClass: #NamedEntity super: #MooseEntity>
 	<package: #'FAST-Core-Model'>
 	<generated>
 	^self

@@ -18,4 +18,5 @@ defineNewClasses
 	expressionStatement := builder newClassNamed: #ExpressionStatement comment: self commentForExpressionStatement.
 	returnStatement := builder newClassNamed: #ReturnStatement comment: self commentForReturnStatement.
 	statementBlock := builder newClassNamed: #StatementBlock comment: self commentForStatementBlock.
-	variableEntity := builder newClassNamed: #VariableEntity comment: self commentForVariableEntity
+	variableEntity := builder newClassNamed: #VariableEntity comment: self commentForVariableEntity.
+	namedEntity := builder newClassNamed: #NamedEntity

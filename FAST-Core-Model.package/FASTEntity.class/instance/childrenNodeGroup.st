@@ -4,4 +4,4 @@ childrenNodeGroup
 	<generated>
 	<navigation: 'ChildrenNode'>
 	^ MooseGroup
-			with: (self childrenNode)
+			withAll: (self childrenNode asSet)

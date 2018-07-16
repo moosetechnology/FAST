@@ -1,9 +1,0 @@
-{
-	"commentStamp" : "",
-	"classinstvars" : [ ],
-	"category" : "FAST-Core-Model-Traits",
-	"instvars" : [
-		"#variableEntitys => FMMany type: #FASTTVariableEntity opposite: #variableEntityOwner"
-	],
-	"name" : "FASTTWithVariableEntitys"
-}

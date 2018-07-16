@@ -1,4 +1,5 @@
 generator
 generatedSlotNames
 	<generated>
-	^ #(parentNode)
+	'FASTNamedEntity class>>#generatedSlotNames'.
+	^ #()

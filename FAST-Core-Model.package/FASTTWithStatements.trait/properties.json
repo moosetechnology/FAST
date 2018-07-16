@@ -1,9 +1,0 @@
-{
-	"commentStamp" : "",
-	"classinstvars" : [ ],
-	"category" : "FAST-Core-Model-Traits",
-	"instvars" : [
-		"#statements => FMMany type: #FASTTStatement opposite: #statementOwner"
-	],
-	"name" : "FASTTWithStatements"
-}
