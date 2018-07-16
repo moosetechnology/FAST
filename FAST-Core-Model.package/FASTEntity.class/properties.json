@@ -3,8 +3,7 @@
 	"classvars" : [ ],
 	"instvars" : [
 		"#childrenNode => FMOne type: #FASTEntity opposite: #parentNode",
-		"#parentNode => FMMany type: #FASTEntity opposite: #childrenNode",
-		"#parentScopableEntity => FMOne type: #FASTScopableEntity opposite: #localEntities"
+		"#parentNode => FMMany type: #FASTEntity opposite: #childrenNode"
 	],
 	"name" : "FASTEntity",
 	"commentStamp" : "<historical>",

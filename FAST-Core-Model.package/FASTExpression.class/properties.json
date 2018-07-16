@@ -5,11 +5,7 @@
 	"classinstvars" : [ ],
 	"pools" : [ ],
 	"classvars" : [ ],
-	"instvars" : [
-		"#childrenExpressions => FMOne type: #FASTExpression opposite: #parentExpression",
-		"#parentExpression => FMMany type: #FASTExpression opposite: #childrenExpressions",
-		"#parentStatement => FMOne type: #FASTStatement opposite: #childExpression"
-	],
+	"instvars" : [ ],
 	"name" : "FASTExpression",
 	"type" : "normal"
 }

@@ -1,9 +1,7 @@
 {
 	"classtraitcomposition" : "FmxNGTNamed classTrait",
 	"classvars" : [ ],
-	"instvars" : [
-		"#parentBehaviouralEntity => FMOne type: #FASTBehaviouralEntity opposite: #parameters"
-	],
+	"instvars" : [ ],
 	"name" : "FASTVariableEntity",
 	"commentStamp" : "<historical>",
 	"super" : "FASTEntity",

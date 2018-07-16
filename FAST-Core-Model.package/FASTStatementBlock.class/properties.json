@@ -5,10 +5,7 @@
 	"classinstvars" : [ ],
 	"pools" : [ ],
 	"classvars" : [ ],
-	"instvars" : [
-		"#fastBehaviouralParent => FMOne type: #FASTBehaviouralEntity opposite: #statementBlock",
-		"#statements => FMMany type: #FASTStatement opposite: #statementContainer"
-	],
+	"instvars" : [ ],
 	"name" : "FASTStatementBlock",
 	"type" : "normal"
 }

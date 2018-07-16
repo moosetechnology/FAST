@@ -1,0 +1,5 @@
+testing
+isAccess
+
+	<generated>
+	^ false

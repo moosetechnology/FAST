@@ -1,0 +1,5 @@
+testing
+isAttribute
+
+	<generated>
+	^ false

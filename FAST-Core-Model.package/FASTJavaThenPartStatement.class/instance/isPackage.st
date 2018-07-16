@@ -1,0 +1,5 @@
+testing
+isPackage
+
+	<generated>
+	^ false

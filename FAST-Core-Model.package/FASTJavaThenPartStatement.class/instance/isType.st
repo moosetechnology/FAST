@@ -1,0 +1,5 @@
+testing
+isType
+
+	<generated>
+	^ false

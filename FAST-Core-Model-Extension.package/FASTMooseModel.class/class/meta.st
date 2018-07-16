@@ -1,0 +1,4 @@
+accessing
+meta
+	
+	^ FASTJavaMetamodelGenerator metamodel

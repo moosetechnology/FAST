@@ -5,9 +5,7 @@
 	"classinstvars" : [ ],
 	"pools" : [ ],
 	"classvars" : [ ],
-	"instvars" : [
-		"#localEntities => FMMany type: #FASTEntity opposite: #parentScopableEntity"
-	],
+	"instvars" : [ ],
 	"name" : "FASTScopableEntity",
 	"type" : "normal"
 }

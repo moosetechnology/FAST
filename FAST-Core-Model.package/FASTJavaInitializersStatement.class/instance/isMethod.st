@@ -1,0 +1,5 @@
+testing
+isMethod
+
+	<generated>
+	^ false

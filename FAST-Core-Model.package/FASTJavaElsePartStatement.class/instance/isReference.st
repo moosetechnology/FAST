@@ -1,0 +1,5 @@
+testing
+isReference
+
+	<generated>
+	^ false

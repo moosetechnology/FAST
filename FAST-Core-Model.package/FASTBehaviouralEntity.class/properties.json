@@ -5,10 +5,7 @@
 	"classinstvars" : [ ],
 	"pools" : [ ],
 	"classvars" : [ ],
-	"instvars" : [
-		"#parameters => FMMany type: #FASTVariableEntity opposite: #parentBehaviouralEntity",
-		"#statementBlock => FMOne type: #FASTStatementBlock opposite: #fastBehaviouralParent"
-	],
+	"instvars" : [ ],
 	"name" : "FASTBehaviouralEntity",
 	"type" : "normal"
 }

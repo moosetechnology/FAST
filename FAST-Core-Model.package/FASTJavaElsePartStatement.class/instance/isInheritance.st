@@ -1,0 +1,5 @@
+testing
+isInheritance
+
+	<generated>
+	^ false
