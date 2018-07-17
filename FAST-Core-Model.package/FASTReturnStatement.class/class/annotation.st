@@ -3,6 +3,6 @@ annotation
 
 	<generated>
 	<MSEClass: #ReturnStatement super: #FASTStatement>
-	<package: #'FAST-Core-Model'>
+	<package: #FAST>
 	<generated>
 	^self

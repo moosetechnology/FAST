@@ -3,6 +3,6 @@ annotation
 
 	<generated>
 	<MSEClass: #JavaMethodEntity super: #FASTNamedBehaviouralEntity>
-	<package: #'FAST-Core-Model'>
+	<package: #FAST>
 	<generated>
 	^self

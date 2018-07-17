@@ -3,6 +3,6 @@ annotation
 
 	<generated>
 	<MSEClass: #JavaMethodInvocation super: #FASTExpression>
-	<package: #'FAST-Core-Model'>
+	<package: #FAST>
 	<generated>
 	^self

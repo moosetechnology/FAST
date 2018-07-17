@@ -3,6 +3,6 @@ annotation
 
 	<generated>
 	<MSEClass: #NamedBehaviouralEntity super: #FASTBehaviouralEntity>
-	<package: #'FAST-Core-Model'>
+	<package: #FAST>
 	<generated>
 	^self

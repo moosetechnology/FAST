@@ -3,6 +3,6 @@ annotation
 
 	<generated>
 	<MSEClass: #JavaInfixOperation super: #FASTExpression>
-	<package: #'FAST-Core-Model'>
+	<package: #FAST>
 	<generated>
 	^self

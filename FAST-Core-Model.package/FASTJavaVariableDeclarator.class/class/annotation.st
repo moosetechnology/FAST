@@ -3,6 +3,6 @@ annotation
 
 	<generated>
 	<MSEClass: #JavaVariableDeclarator super: #FASTEntity>
-	<package: #'FAST-Core-Model'>
+	<package: #FAST>
 	<generated>
 	^self

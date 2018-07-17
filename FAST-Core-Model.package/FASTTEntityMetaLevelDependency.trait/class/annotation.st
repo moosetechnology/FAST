@@ -5,5 +5,5 @@ annotation
 	<ignoreInTraitUsers>
 	<MSEClass: #TEntityMetaLevelDependency super: #Trait>
 	<generated>
-	<package: #'FAST-Core-Model'>
+	<package: #FAST>
 	^self

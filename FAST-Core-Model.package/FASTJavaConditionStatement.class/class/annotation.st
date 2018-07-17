@@ -3,6 +3,6 @@ annotation
 
 	<generated>
 	<MSEClass: #JavaConditionStatement super: #MooseEntity>
-	<package: #'FAST-Core-Model'>
+	<package: #FAST>
 	<generated>
 	^self

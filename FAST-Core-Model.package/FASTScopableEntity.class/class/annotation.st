@@ -3,6 +3,6 @@ annotation
 
 	<generated>
 	<MSEClass: #ScopableEntity super: #FASTEntity>
-	<package: #'FAST-Core-Model'>
+	<package: #FAST>
 	<generated>
 	^self

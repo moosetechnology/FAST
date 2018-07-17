@@ -3,6 +3,6 @@ annotation
 
 	<generated>
 	<MSEClass: #JavaFloatLiteral super: #FASTLiteral>
-	<package: #'FAST-Core-Model'>
+	<package: #FAST>
 	<generated>
 	^self

@@ -3,6 +3,6 @@ annotation
 
 	<generated>
 	<MSEClass: #NamedEntity super: #MooseEntity>
-	<package: #'FAST-Core-Model'>
+	<package: #FAST>
 	<generated>
 	^self

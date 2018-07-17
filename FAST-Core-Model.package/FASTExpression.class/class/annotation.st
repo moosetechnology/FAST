@@ -3,6 +3,6 @@ annotation
 
 	<generated>
 	<MSEClass: #Expression super: #FASTEntity>
-	<package: #'FAST-Core-Model'>
+	<package: #FAST>
 	<generated>
 	^self

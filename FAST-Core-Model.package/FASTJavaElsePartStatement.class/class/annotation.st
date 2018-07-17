@@ -3,6 +3,6 @@ annotation
 
 	<generated>
 	<MSEClass: #JavaElsePartStatement super: #MooseEntity>
-	<package: #'FAST-Core-Model'>
+	<package: #FAST>
 	<generated>
 	^self

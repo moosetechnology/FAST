@@ -5,5 +5,5 @@ annotation
 	<ignoreInTraitUsers>
 	<MSEClass: #TDependencyQueries super: #Trait>
 	<generated>
-	<package: #'FAST-Core-Model'>
+	<package: #FAST>
 	^self
