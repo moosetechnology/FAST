@@ -12,7 +12,7 @@ resetMetamodel
 	classes addAll: (self packageName asPackage definedClasses select: #isTrait).
 	classes addAll: #'Famix-Traits' asPackage definedClasses.
 	"Add old famix to do an extension"
-	classes addAll: ('FamixCompatibility-Entities' asPackage definedClasses select: [ :each | each inheritsFrom: MooseEntity ]).
+	classes addAll: ('Famix-Compatibility-Entities' asPackage definedClasses select: [ :each | each inheritsFrom: MooseEntity ]).
 	
 	{ Trait. 	Class. ClassDescription. Behavior. MooseModel. MooseAbstractGroup. MooseEntity. MooseGroup} 
 		do: [ :each | classes add: each ].
