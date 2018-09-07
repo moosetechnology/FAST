@@ -1,4 +1,4 @@
 generator
 generatedTraitNames
 	<generated>
-	^ #(FASTTDependencyQueries FASTTEntityMetaLevelDependency FmxNGTWithSourceAnchor)
+	^ #(FASTTDependencyQueries FASTTEntityMetaLevelDependency FamixTWithSourceAnchor)
