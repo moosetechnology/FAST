@@ -1,11 +1,11 @@
 {
-	"classtraitcomposition" : "FmxNGTNamed classTrait",
+	"classtraitcomposition" : "FamixTNamed classTrait",
 	"classvars" : [ ],
 	"instvars" : [ ],
 	"name" : "FASTJavaMethodInvocation",
 	"commentStamp" : "<historical>",
 	"super" : "FASTExpression",
-	"traitcomposition" : "FmxNGTNamed",
+	"traitcomposition" : "FamixTNamed",
 	"type" : "normal",
 	"classinstvars" : [ ],
 	"pools" : [ ],

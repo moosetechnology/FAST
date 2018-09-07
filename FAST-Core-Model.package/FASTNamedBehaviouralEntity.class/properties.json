@@ -1,11 +1,11 @@
 {
-	"classtraitcomposition" : "FmxNGTNamed classTrait",
+	"classtraitcomposition" : "FamixTNamed classTrait",
 	"classvars" : [ ],
 	"instvars" : [ ],
 	"name" : "FASTNamedBehaviouralEntity",
 	"commentStamp" : "<historical>",
 	"super" : "FASTBehaviouralEntity",
-	"traitcomposition" : "FmxNGTNamed",
+	"traitcomposition" : "FamixTNamed",
 	"type" : "normal",
 	"classinstvars" : [ ],
 	"pools" : [ ],
