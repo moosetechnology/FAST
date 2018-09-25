@@ -1,5 +1,0 @@
-testing
-isAssociation
-
-	<generated>
-	^ false

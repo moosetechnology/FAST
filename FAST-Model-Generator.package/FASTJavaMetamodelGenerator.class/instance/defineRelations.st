@@ -1,3 +1,0 @@
-definition
-defineRelations
-	super defineRelations.

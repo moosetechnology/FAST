@@ -1,5 +1,0 @@
-testing
-isClass
-
-	<generated>
-	^ false

@@ -1,1 +1,0 @@
-Represents a method in FastJava

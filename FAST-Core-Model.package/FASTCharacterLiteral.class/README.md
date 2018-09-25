@@ -1,1 +1,0 @@
-A character literal

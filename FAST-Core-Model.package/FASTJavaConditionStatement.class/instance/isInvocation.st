@@ -1,5 +1,0 @@
-testing
-isInvocation
-
-	<generated>
-	^ false

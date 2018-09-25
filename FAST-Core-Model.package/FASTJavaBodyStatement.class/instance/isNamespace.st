@@ -1,5 +1,0 @@
-testing
-isNamespace
-
-	<generated>
-	^ false

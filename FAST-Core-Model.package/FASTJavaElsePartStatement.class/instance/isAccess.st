@@ -1,5 +1,0 @@
-testing
-isAccess
-
-	<generated>
-	^ false

@@ -1,5 +1,0 @@
-testing
-isAttribute
-
-	<generated>
-	^ false

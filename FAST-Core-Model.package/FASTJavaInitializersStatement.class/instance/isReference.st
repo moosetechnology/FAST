@@ -1,5 +1,0 @@
-testing
-isReference
-
-	<generated>
-	^ false

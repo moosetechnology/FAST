@@ -1,5 +1,0 @@
-accessing
-parentNode
-
-	<generated>
-	^ parentNode

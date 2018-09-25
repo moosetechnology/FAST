@@ -1,1 +1,0 @@
-A character in Java code

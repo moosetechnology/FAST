@@ -1,5 +1,0 @@
-testing
-isFunction
-
-	<generated>
-	^ false

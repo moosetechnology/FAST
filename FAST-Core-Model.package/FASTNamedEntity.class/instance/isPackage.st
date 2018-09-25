@@ -1,5 +1,0 @@
-testing
-isPackage
-
-	<generated>
-	^ false
