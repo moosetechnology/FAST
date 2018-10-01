@@ -25,7 +25,7 @@ Class {
 		'namedBehaviouralEntity',
 		'namedEntity'
 	],
-	#category : 'FAST-Model-Generator'
+	#category : #'FAST-Model-Generator'
 }
 
 { #category : #accessing }
@@ -64,7 +64,7 @@ FASTMetamodelGenerator class >> resetMetamodel [
 	tower := MooseModel metaBuilder: classes.
 	self metamodel: tower metamodel.
 	
-	
+	^ metamodel
 ]
 
 { #category : #definition }

@@ -132,7 +132,7 @@ JavaImporterTestCase >> methodWhileWhile [
 { #category : #running }
 JavaImporterTestCase >> setUp [
 	
-	model := MooseModel new.	
+	model := FASTMooseModel new.	
 	model importFromMSEStream: self wholeMSE readStream.
 	
 	self setUpMethods.
