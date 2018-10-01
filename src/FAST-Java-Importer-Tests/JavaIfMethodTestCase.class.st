@@ -21,17 +21,17 @@ JavaIfMethodTestCase >> testFirstIfConditionType [
 
 { #category : #tests }
 JavaIfMethodTestCase >> testFirstIfElseAbsence [
-	self assert: ifMethod statements first elseBody isNil 
+	self assert: ifMethod statements first elsePart isNil 
 ]
 
 { #category : #tests }
 JavaIfMethodTestCase >> testFirstIfThenParent [
-	self assert: ifMethod statements first thenBody parentNode equals: ifMethod statements first
+	self assert: ifMethod statements first thenPart parentNode equals: ifMethod statements first
 ]
 
 { #category : #tests }
 JavaIfMethodTestCase >> testFirstIfThenType [
-	self assert: ifMethod statements first thenBody class equals: FASTExpressionStatement 
+	self assert: ifMethod statements first thenPart class equals: FASTExpressionStatement 
 ]
 
 { #category : #tests }
@@ -46,22 +46,22 @@ JavaIfMethodTestCase >> testFirstSecondConditionType [
 
 { #category : #tests }
 JavaIfMethodTestCase >> testSecondIfElseParent [
-	self assert: ifMethod statements last elseBody parentNode equals: ifMethod statements last
+	self assert: ifMethod statements last elsePart parentNode equals: ifMethod statements last
 ]
 
 { #category : #tests }
 JavaIfMethodTestCase >> testSecondIfElseType [
-	self assert: ifMethod statements last elseBody class equals: FASTExpressionStatement
+	self assert: ifMethod statements last elsePart class equals: FASTExpressionStatement
 ]
 
 { #category : #tests }
 JavaIfMethodTestCase >> testSecondIfThenParent [
-	self assert: ifMethod statements last thenBody parentNode equals: ifMethod statements last 
+	self assert: ifMethod statements last thenPart parentNode equals: ifMethod statements last 
 ]
 
 { #category : #tests }
 JavaIfMethodTestCase >> testSecondIfThenType [
-	self assert: ifMethod statements last thenBody class equals: FASTStatementBlock 
+	self assert: ifMethod statements last thenPart class equals: FASTStatementBlock 
 ]
 
 { #category : #tests }

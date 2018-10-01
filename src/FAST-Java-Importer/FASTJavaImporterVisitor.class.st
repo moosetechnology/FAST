@@ -216,9 +216,9 @@ FASTJavaImporterVisitor >> visitIfStatementNode:  anIfStatementNode [
 	currentFASTEntity parentNode: self parentFASTEntity.
 
 	currentFASTEntity condition: (self clone visitNode: anIfStatementNode condition).
-	currentFASTEntity thenBody: (self clone visitNode: anIfStatementNode thenPart).
+	currentFASTEntity thenPart: (self clone visitNode: anIfStatementNode thenPart).
 	anIfStatementNode elsePart ifNotNil: [ 
-		currentFASTEntity elseBody: (self clone visitNode: anIfStatementNode elsePart) ].
+		currentFASTEntity elsePart: (self clone visitNode: anIfStatementNode elsePart) ].
 	
 	^ currentFASTEntity
 ]
