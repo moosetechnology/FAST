@@ -238,6 +238,7 @@ FASTJavaMetamodelGenerator >> defineNewClasses [
 
 { #category : #definition }
 FASTJavaMetamodelGenerator >> defineNewClassesHierarchy [
+	"define class hierarchy"
 	super defineNewClassesHierarchy.
 	javaAssignementExpression --|> expression.
 	javaBreakStatement --|> statement.
@@ -263,7 +264,15 @@ FASTJavaMetamodelGenerator >> defineNewClassesHierarchy [
 	javaVariableDeclarator --|> entity.
 	javaWhileStatement --|> statement.
 	
-	javaMethodInvocation --|> #TNamed
+	javaMethodInvocation --|> #TNamed.
+	
+	"Factice"
+	javaElsePartStatement --|> statement.
+	javaThenPartStatement --|> statement.
+	javaConditionStatement --|> statement.
+	javaIncrementorsStatement --|> statement.
+	javaBodyStatement --|> statement.
+	javaInitializersStatement --|> statement.
 ]
 
 { #category : #definition }

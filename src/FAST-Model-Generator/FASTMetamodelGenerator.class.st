@@ -201,7 +201,6 @@ FASTMetamodelGenerator >> defineNewClasses [
 	returnStatement := builder newClassNamed: #ReturnStatement comment: self commentForReturnStatement.
 	statementBlock := builder newClassNamed: #StatementBlock comment: self commentForStatementBlock.
 	variableEntity := builder newClassNamed: #VariableEntity comment: self commentForVariableEntity.
-	namedEntity := builder newClassNamed: #NamedEntity
 ]
 
 { #category : #definition }
@@ -225,7 +224,6 @@ FASTMetamodelGenerator >> defineNewClassesHierarchy [
 	variableEntity --|> #TNamed.
 	variableExpression --|> #TNamed.
 	namedBehaviouralEntity --|> #TNamed.
-	namedEntity --|> #TNamed.
 	entity --|> #TEntityMetaLevelDependency.
 	entity --|> #TDependencyQueries.
 	entity --|> #TWithSourceAnchor

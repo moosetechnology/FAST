@@ -9,10 +9,10 @@ Class {
 	#traits : 'FASTTDependencyQueries + FASTTEntityMetaLevelDependency + FamixTWithSourceAnchor',
 	#classTraits : 'FASTTDependencyQueries classTrait + FASTTEntityMetaLevelDependency classTrait + FamixTWithSourceAnchor classTrait',
 	#instVars : [
-		'#childrenNode => FMMany type: #FASTEntity opposite: #parentNode',
-		'#parentNode => FMOne type: #FASTEntity opposite: #childrenNode'
+		'#parentNode => FMOne type: #FASTEntity opposite: #childrenNode',
+		'#childrenNode => FMMany type: #FASTEntity opposite: #parentNode'
 	],
-	#category : 'FAST-Core-Model-Entities'
+	#category : #'FAST-Core-Model-Entities'
 }
 
 { #category : #meta }
