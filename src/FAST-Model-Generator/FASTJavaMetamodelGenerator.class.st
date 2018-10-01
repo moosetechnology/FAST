@@ -30,9 +30,11 @@ Class {
 		'javaConditionStatement',
 		'javaIncrementorsStatement',
 		'javaBodyStatement',
-		'javaInitializersStatement'
+		'javaInitializersStatement',
+		'javaOperationLeftOperand',
+		'javaOperationRightOperand'
 	],
-	#category : 'FAST-Model-Generator'
+	#category : #'FAST-Model-Generator'
 }
 
 { #category : #definition }
@@ -231,6 +233,8 @@ FASTJavaMetamodelGenerator >> defineNewClasses [
 	javaElsePartStatement :=  builder newClassNamed: #JavaElsePartStatement. 
 	javaThenPartStatement := builder newClassNamed: #JavaThenPartStatement.
 	javaConditionStatement := builder newClassNamed: #JavaConditionStatement.
+	javaOperationLeftOperand := builder newClassNamed: #JavaOperationLeftOperand.
+	javaOperationRightOperand := builder newClassNamed: #JavaOperationRightOperand.
 	javaIncrementorsStatement := builder newClassNamed: #JavaIncrementorsStatement comment: 'ExpressionStatements evaluated at the end of each loop'.
 	javaBodyStatement := builder newClassNamed: #JavaBodyStatement comment: 'A statement to be evaluated in the loop'.
 	javaInitializersStatement := builder newClassNamed: #JavaInitializersStatement comment: 'ExpressionStatements used at initialization phase of a for loop'.
@@ -273,6 +277,9 @@ FASTJavaMetamodelGenerator >> defineNewClassesHierarchy [
 	javaIncrementorsStatement --|> statement.
 	javaBodyStatement --|> statement.
 	javaInitializersStatement --|> statement.
+	
+	javaOperationLeftOperand --|> expression.
+	javaOperationRightOperand --|> expression.
 ]
 
 { #category : #definition }
