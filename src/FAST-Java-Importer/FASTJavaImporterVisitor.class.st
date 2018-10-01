@@ -210,16 +210,15 @@ FASTJavaImporterVisitor >> visitIdentifierNode: anIdentifierNode [
 ]
 
 { #category : #'visitor-doubleDispatching' }
-FASTJavaImporterVisitor >> visitIfStatementNode:  anIfStatementNode [
-
+FASTJavaImporterVisitor >> visitIfStatementNode: anIfStatementNode [
 	currentFASTEntity := self addToModel: FASTJavaIfStatement new.
 	currentFASTEntity parentNode: self parentFASTEntity.
-
 	currentFASTEntity condition: (self clone visitNode: anIfStatementNode condition).
-	currentFASTEntity thenPart: (self clone visitNode: anIfStatementNode thenPart).
-	anIfStatementNode elsePart ifNotNil: [ 
-		currentFASTEntity elsePart: (self clone visitNode: anIfStatementNode elsePart) ].
-	
+	currentFASTEntity
+		thenPart:
+			(FASTJavaThenPartStatement new addChild: ((self clone visitNode: anIfStatementNode thenPart)); yourself ).
+	anIfStatementNode elsePart
+		ifNotNil: [ currentFASTEntity elsePart: (FASTJavaElsePartStatement new addChild: ((self clone visitNode: anIfStatementNode thenPart)); yourself ) ].
 	^ currentFASTEntity
 ]
 
@@ -294,6 +293,7 @@ FASTJavaImporterVisitor >> visitReturnStatementNode: aReturnStatementNode [
 FASTJavaImporterVisitor >> visitSeparatorNode: literalNode [
 	| literal |
 	self flag: 'NA -- don''t know what this is ?'.
+	self flag: 'me too... And absent from the tests'.
 	Halt now.
 	literal := self addToModel: FASTJavaSeparator new.
 	^ literal

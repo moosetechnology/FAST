@@ -1,28 +1,28 @@
 Extension { #name : #FASTJavaForStatement }
 
 { #category : #'*FAST-Core-Model-Extension' }
-FASTJavaForStatement >> bodyStatement [
+FASTJavaForStatement >> body [
 	<computed>
 	<navigation: 'body'>
-	^ (self childrenNode select: [ :childNode | childNode class isKindOf: FASTJavaBodyStatement class ]) at: 1
+	^ (self childrenNode select: [ :childNode | childNode class isKindOf: FASTJavaBodyStatement class ]) at: 1ifAbsent: [ ^ nil ]
 ]
 
 { #category : #'*FAST-Core-Model-Extension' }
-FASTJavaForStatement >> conditionStatement [
+FASTJavaForStatement >> condition [
 	<computed>
 	<navigation: 'condition'>
-	^ (self childrenNode select: [ :childNode | childNode class isKindOf: FASTJavaConditionStatement class ]) at: 1
+	^ (self childrenNode select: [ :childNode | childNode class isKindOf: FASTJavaConditionStatement class ]) at: 1ifAbsent: [ ^ nil ]
 ]
 
 { #category : #'*FAST-Core-Model-Extension' }
-FASTJavaForStatement >> incrementorsStatement [
+FASTJavaForStatement >> incrementors [
 	<computed>
 	<navigation: 'incrementors'>
 	^ (self childrenNode select: [ :childNode | childNode class isKindOf: FASTJavaIncrementorsStatement class ])
 ]
 
 { #category : #'*FAST-Core-Model-Extension' }
-FASTJavaForStatement >> initializersStatement [
+FASTJavaForStatement >> initializers [
 	<computed>
 	<navigation: 'initializers'>
 	^ (self childrenNode select: [ :childNode | childNode class isKindOf: FASTJavaInitializersStatement class ]) 

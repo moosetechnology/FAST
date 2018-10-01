@@ -31,7 +31,7 @@ JavaIfMethodTestCase >> testFirstIfThenParent [
 
 { #category : #tests }
 JavaIfMethodTestCase >> testFirstIfThenType [
-	self assert: ifMethod statements first thenPart class equals: FASTExpressionStatement 
+	self assert: ifMethod statements first thenPart class equals: FASTJavaThenPartStatement 
 ]
 
 { #category : #tests }
@@ -51,7 +51,7 @@ JavaIfMethodTestCase >> testSecondIfElseParent [
 
 { #category : #tests }
 JavaIfMethodTestCase >> testSecondIfElseType [
-	self assert: ifMethod statements last elsePart class equals: FASTExpressionStatement
+	self assert: ifMethod statements last elsePart class equals: FASTJavaElsePartStatement
 ]
 
 { #category : #tests }
@@ -61,7 +61,7 @@ JavaIfMethodTestCase >> testSecondIfThenParent [
 
 { #category : #tests }
 JavaIfMethodTestCase >> testSecondIfThenType [
-	self assert: ifMethod statements last thenPart class equals: FASTStatementBlock 
+	self assert: ifMethod statements last thenPart class equals: FASTJavaThenPartStatement
 ]
 
 { #category : #tests }

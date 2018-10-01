@@ -16,7 +16,7 @@ FASTJavaIfStatement >> condition: aFASTJavaConditionStatement [
 FASTJavaIfStatement >> elsePart [
 	<computed>
 	<navigation: 'elsePart'>
-	^ (self childrenNode select: [ :childNode | childNode class = FASTJavaElsePartStatement  ]) at: 1
+	^ (self childrenNode select: [ :childNode | childNode class = FASTJavaElsePartStatement  ]) at: 1 ifAbsent: [ ^ nil ] 
 ]
 
 { #category : #'*FAST-Core-Model-Extension' }
