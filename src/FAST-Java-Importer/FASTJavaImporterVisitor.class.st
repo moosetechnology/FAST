@@ -165,7 +165,7 @@ FASTJavaImporterVisitor >> runWithSource: sourceAsString and: aFamixMethod [
 	| parseTree |
 	currentFASTEntity := FASTJavaMethodEntity new
 									name: aFamixMethod name;
-									parentNode: aFamixMethod ;
+									famixNamedEntity: aFamixMethod ;
 									yourself.
 	aFamixMethod fastBehaviouralEntity: currentFASTEntity.
 
@@ -252,22 +252,10 @@ FASTJavaImporterVisitor >> visitLocalVariableDeclarationStatementNode: aLocalVar
 
 { #category : #'visitor-doubleDispatching' }
 FASTJavaImporterVisitor >> visitMethodDeclarationNode: aMethodDeclarationNode [
-	"scope points to parent class' scope
-	 Note: parentNode of a FASTBehaviouralEntity is its corresponding FAMIXBehaviouralEntity"
-	
-	currentFASTScope := FASTScope newWithOwner: currentFASTEntity andParents: currentFASTEntity parentNode belongsTo fastScope.
-	currentFASTEntity fastScope: currentFASTScope.
-
-	famixPoolOfVariable := OrderedCollection withAll: currentFASTEntity parentNode parameters.
-	aMethodDeclarationNode parameters ifNotNilDo: [:parameters |
-		parameters do: [ :parameter | self clone visitNode: parameter ] ].
-	"Note: famixPoolOfVariable should be empty here"
-	self assert: [ famixPoolOfVariable isEmpty ].
-
-	famixPoolOfVariable := OrderedCollection withAll: currentFASTEntity parentNode localVariables.
+	"famixPoolOfVariable := OrderedCollection withAll: currentFASTEntity famixNamedEntity localVariables."
 	currentFASTEntity statementBlock: (self clone visitNode: aMethodDeclarationNode body).
 		"Note: famixPoolOfVariable should be empty here"
-	self assert: [ famixPoolOfVariable isEmpty ].
+	"self assert: [ famixPoolOfVariable isEmpty ]."
 
 	^ currentFASTEntity
 ]
@@ -318,9 +306,6 @@ FASTJavaImporterVisitor >> visitStatementBlockNode: aBodyNode [
 	currentFASTEntity := (self addToModel: FASTStatementBlock new).
 	currentFASTEntity parentNode: self parentFASTEntity.
 
-	currentFASTScope := (FASTScope newWithOwner: currentFASTEntity andParents: self parentScope).
-	currentFASTEntity fastScope: currentFASTScope.
-
 	aBodyNode statements do: [:each |
 		currentFASTEntity statements add: (self clone visitNode: each)].
 	
@@ -338,8 +323,7 @@ FASTJavaImporterVisitor >> visitVariableDeclaratorNode: aVariableDeclaratorNode 
 
 	currentFASTEntity := self addToModel: FASTJavaVariableDeclarator new.
 	currentFASTEntity	variable: (self createVariable: aVariableDeclaratorNode variable).
-	self parentFASTEntity declarators add: currentFASTEntity.	
-	self putVarInScope: currentFASTEntity variable.
+	self parentFASTEntity addDeclarator: currentFASTEntity.	
 	currentFASTEntity expression: (self clone visitNode: aVariableDeclaratorNode initializer).
 	^ currentFASTEntity
 ]

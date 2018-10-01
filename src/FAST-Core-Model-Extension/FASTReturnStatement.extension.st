@@ -1,11 +1,11 @@
-Extension { #name : #FASTExpressionStatement }
+Extension { #name : #FASTReturnStatement }
 
 { #category : #'*FAST-Core-Model-Extension' }
-FASTExpressionStatement >> expression [
+FASTReturnStatement >> expression [
 	^ self childrenNode first
 ]
 
 { #category : #'*FAST-Core-Model-Extension' }
-FASTExpressionStatement >> expression: aStatement [
+FASTReturnStatement >> expression: aStatement [
 	self childrenNode add: aStatement
 ]
