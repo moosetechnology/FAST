@@ -26,8 +26,7 @@ BaselineOfFAST >> defineDependencies: spec [
 { #category : #baselines }
 BaselineOfFAST >> defineGroups: spec [
 	spec
-		group: 'core' with: #('FAST-Core-Model-Extension' 'FAST-Core-Model');
-		group: 'model' with: #('FAST-Model-Generator' 'core');
+		group: 'core' with: #('FAST-Core-Model-Extension' 'FAST-Core-Model' 'FAST-Model-Generator');
 		group: 'default' with: #('core')
 ]
 
