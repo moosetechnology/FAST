@@ -201,6 +201,7 @@ FASTMetamodelGenerator >> defineNewClasses [
 	returnStatement := builder newClassNamed: #ReturnStatement comment: self commentForReturnStatement.
 	statementBlock := builder newClassNamed: #StatementBlock comment: self commentForStatementBlock.
 	variableEntity := builder newClassNamed: #VariableEntity comment: self commentForVariableEntity.
+	namedEntity := builder newClassNamed: #NamedEntity
 ]
 
 { #category : #definition }
@@ -220,6 +221,10 @@ FASTMetamodelGenerator >> defineNewClassesHierarchy [
 	returnStatement --|> statement.
 	statementBlock --|> statement.
 	variableEntity --|> entity.
+	
+	"used to represent variable"
+	namedEntity --|> entity.
+	namedEntity --|> #TNamed.
 	
 	variableEntity --|> #TNamed.
 	variableExpression --|> #TNamed.
