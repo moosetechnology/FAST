@@ -2,7 +2,7 @@ Extension { #name : #FASTJavaMethodEntity }
 
 { #category : #'*FAST-Core-Model-Extension' }
 FASTJavaMethodEntity >> statementBlock [
-	^ self childrenNode first
+	^ (self childrenNode select: [ :child | child class isKindOf: FASTStatementBlock class ] )first
 ]
 
 { #category : #'*FAST-Core-Model-Extension' }

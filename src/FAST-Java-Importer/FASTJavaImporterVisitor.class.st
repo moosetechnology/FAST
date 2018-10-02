@@ -57,6 +57,7 @@ FASTJavaImporterVisitor >> createVariable: aVariableNode [
 	fastVar := self addToModel: FASTNamedEntity new.
 	fastVar name: aVariableNode name.
 	fastVar parentNode: currentFASTEntity.
+	"self halt. "
 	^ fastVar
 
 ]
@@ -241,21 +242,23 @@ FASTJavaImporterVisitor >> visitIntegerLiteralNode: literalNode [
 
 { #category : #'visitor-doubleDispatching' }
 FASTJavaImporterVisitor >> visitLocalVariableDeclarationStatementNode: aLocalVariableDeclarationStatementNode [
-
 	currentFASTEntity := self addToModel: FASTJavaVarDeclStatement new.
 	currentFASTEntity parentNode: self parentFASTEntity.
-	
-	aLocalVariableDeclarationStatementNode declarators do: [ :each | self clone visitNode: each ].
+	aLocalVariableDeclarationStatementNode declarators
+		do: [ :each | self clone visitNode: each ].
 	^ currentFASTEntity
 ]
 
 { #category : #'visitor-doubleDispatching' }
 FASTJavaImporterVisitor >> visitMethodDeclarationNode: aMethodDeclarationNode [
 	"famixPoolOfVariable := OrderedCollection withAll: currentFASTEntity famixNamedEntity localVariables."
-	currentFASTEntity statementBlock: (self clone visitNode: aMethodDeclarationNode body).
-		"Note: famixPoolOfVariable should be empty here"
-	"self assert: [ famixPoolOfVariable isEmpty ]."
 
+	aMethodDeclarationNode parameters
+		ifNotNil: [ :parameters | parameters do: [ :parameter | self clone visitNode: parameter ] ].
+	currentFASTEntity statementBlock: (self clone visitNode: aMethodDeclarationNode body).
+
+	"Note: famixPoolOfVariable should be empty here"
+	"self assert: [ famixPoolOfVariable isEmpty ]."
 	^ currentFASTEntity
 ]
 
@@ -274,8 +277,8 @@ FASTJavaImporterVisitor >> visitParameterDeclaratorNode: aParameterDeclaratorNod
 
 	| fastVar |
 	fastVar := self createVariable: aParameterDeclaratorNode identifier.
-	self parentFASTEntity parameters add: fastVar.	
-	self putVarInScope: fastVar.
+	self parentFASTEntity addParameter: fastVar.	
+	"self putVarInScope: fastVar."
 
 	^ fastVar
 ]
@@ -320,10 +323,9 @@ FASTJavaImporterVisitor >> visitStringLiteralNode: literalNode [
 
 { #category : #'visitor-doubleDispatching' }
 FASTJavaImporterVisitor >> visitVariableDeclaratorNode: aVariableDeclaratorNode [
-
 	currentFASTEntity := self addToModel: FASTJavaVariableDeclarator new.
-	currentFASTEntity	variable: (self createVariable: aVariableDeclaratorNode variable).
-	self parentFASTEntity addDeclarator: currentFASTEntity.	
+	currentFASTEntity variable: (self createVariable: aVariableDeclaratorNode variable).
+	self parentFASTEntity addDeclarator: currentFASTEntity.
 	currentFASTEntity expression: (self clone visitNode: aVariableDeclaratorNode initializer).
 	^ currentFASTEntity
 ]
