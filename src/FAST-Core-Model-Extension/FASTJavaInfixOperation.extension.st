@@ -14,7 +14,7 @@ FASTJavaInfixOperation >> leftOperand: aFASTJavaOperationLeftOperand [
 { #category : #'*FAST-Core-Model-Extension' }
 FASTJavaInfixOperation >> rightOperand [
 	<navigation: 'rightOperand'>
-	^ (self childrenNode select: [ :childNode | childNode class = FASTJavaOperationRightOperand ]) at: 1
+	^ (self childrenNode select: [ :childNode | childNode class = FASTJavaOperationRightOperand ]) at: 1 ifAbsent: [ ^ nil ]
 ]
 
 { #category : #'*FAST-Core-Model-Extension' }

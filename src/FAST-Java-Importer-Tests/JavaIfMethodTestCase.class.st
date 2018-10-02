@@ -16,7 +16,7 @@ JavaIfMethodTestCase >> testFirstIfConditionParent [
 
 { #category : #tests }
 JavaIfMethodTestCase >> testFirstIfConditionType [
-	self assert: ifMethod statements first condition class equals: FASTBooleanLiteral 
+	self assert: ifMethod statements first condition class equals: FASTJavaConditionStatement 
 ]
 
 { #category : #tests }
@@ -41,7 +41,7 @@ JavaIfMethodTestCase >> testFirstSecondConditionParent [
 
 { #category : #tests }
 JavaIfMethodTestCase >> testFirstSecondConditionType [
-	self assert: ifMethod statements last condition class equals: FASTBooleanLiteral 
+	self assert: ifMethod statements last condition class equals: FASTJavaConditionStatement
 ]
 
 { #category : #tests }

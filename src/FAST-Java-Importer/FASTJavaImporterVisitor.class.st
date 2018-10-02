@@ -213,7 +213,7 @@ FASTJavaImporterVisitor >> visitIdentifierNode: anIdentifierNode [
 FASTJavaImporterVisitor >> visitIfStatementNode: anIfStatementNode [
 	currentFASTEntity := self addToModel: FASTJavaIfStatement new.
 	currentFASTEntity parentNode: self parentFASTEntity.
-	currentFASTEntity condition: (self clone visitNode: anIfStatementNode condition).
+	currentFASTEntity condition: (FASTJavaConditionStatement new addChild: ((self clone visitNode: anIfStatementNode condition)); yourself ).
 	currentFASTEntity
 		thenPart:
 			(FASTJavaThenPartStatement new addChild: ((self clone visitNode: anIfStatementNode thenPart)); yourself ).
@@ -227,8 +227,8 @@ FASTJavaImporterVisitor >> visitInfixOperationNode: anInfixOperationNode [
 
 	self createExpression: FASTJavaInfixOperation new.
 	
-	currentFASTEntity leftOperand:  (self clone visitNode: anInfixOperationNode left).
-	currentFASTEntity rightOperand: (self clone visitNode: anInfixOperationNode right).
+	currentFASTEntity leftOperand: (FASTJavaOperationLeftOperand new addChild: ((self clone visitNode: anInfixOperationNode left)); yourself ) .
+	currentFASTEntity rightOperand: (FASTJavaOperationRightOperand new addChild: ((self clone visitNode: anInfixOperationNode right)); yourself ).
 	currentFASTEntity operator: anInfixOperationNode operator.
 	^ currentFASTEntity
 ]
@@ -329,13 +329,16 @@ FASTJavaImporterVisitor >> visitVariableDeclaratorNode: aVariableDeclaratorNode 
 ]
 
 { #category : #'visitor-doubleDispatching' }
-FASTJavaImporterVisitor >> visitWhileStatementNode:  aWhileStatementNode [
-
+FASTJavaImporterVisitor >> visitWhileStatementNode: aWhileStatementNode [
 	currentFASTEntity := self addToModel: FASTJavaWhileStatement new.
 	currentFASTEntity parentNode: self parentFASTEntity.
-
-	currentFASTEntity condition: (self clone visitNode: aWhileStatementNode expression).	
-	currentFASTEntity body: (self clone visitNode: aWhileStatementNode statement).
-	
+	currentFASTEntity
+		condition:
+			(FASTJavaConditionStatement new
+				addChild: (self clone visitNode: aWhileStatementNode expression);
+				yourself).
+	currentFASTEntity body: (FASTJavaBodyStatement new
+				addChild: (self clone visitNode: aWhileStatementNode statement);
+				yourself).
 	^ currentFASTEntity
 ]
