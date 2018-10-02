@@ -13,7 +13,7 @@ JavaALittleOfVariables2MethodTestCase >> setUpMethods [
 JavaALittleOfVariables2MethodTestCase >> testVariableDeclaratorExpressionParent2 [
 	self
 		assert: aLittleOfVariables2 statements first declarators first expression parentNode
-		equals: aLittleOfVariables2 statements first declarators first
+		equals: aLittleOfVariables2 statements first declarators first.
 ]
 
 { #category : #tests }

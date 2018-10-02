@@ -185,7 +185,9 @@ FASTJavaImporterVisitor >> visitBooleanLiteralNode: literalNode [
 
 { #category : #'visitor-literal doubleDispatching' }
 FASTJavaImporterVisitor >> visitCharacterLiteralNode: literalNode [
-	^ self createLiteral: FASTJavaCharacterLiteral new withValue: literalNode literalValue first
+	^ self
+		createLiteral: FASTJavaCharacterLiteral new
+		withValue: '''' , literalNode literalValue , ''''
 ]
 
 { #category : #'visitor-doubleDispatching' }
@@ -199,8 +201,9 @@ FASTJavaImporterVisitor >> visitExpressionStatementNode: aStatementNode [
 
 { #category : #'visitor-literal doubleDispatching' }
 FASTJavaImporterVisitor >> visitFloatLiteralNode: literalNode [
-	^ self createLiteral: FASTJavaFloatLiteral new withValue: literalNode literalValue
-
+	^ self
+		createLiteral: FASTJavaFloatLiteral new
+		withValue: '' , literalNode literalValue , ''
 ]
 
 { #category : #'visitor-doubleDispatching' }
@@ -306,19 +309,15 @@ FASTJavaImporterVisitor >> visitSeparatorNode: literalNode [
 
 { #category : #'visitor-doubleDispatching' }
 FASTJavaImporterVisitor >> visitStatementBlockNode: aBodyNode [
-	currentFASTEntity := (self addToModel: FASTStatementBlock new).
+	currentFASTEntity := self addToModel: FASTStatementBlock new.
 	currentFASTEntity parentNode: self parentFASTEntity.
-
-	aBodyNode statements do: [:each |
-		currentFASTEntity statements add: (self clone visitNode: each)].
-	
+	aBodyNode statements do: [ :each | currentFASTEntity statements add: (self clone visitNode: each) ].
 	^ currentFASTEntity
 ]
 
 { #category : #'visitor-literal doubleDispatching' }
 FASTJavaImporterVisitor >> visitStringLiteralNode: literalNode [
-	^ self createLiteral: FASTJavaStringLiteral new withValue: literalNode literalValue.
-
+	^ self createLiteral: FASTJavaStringLiteral new withValue: '"', literalNode literalValue ,'"'
 ]
 
 { #category : #'visitor-doubleDispatching' }

@@ -1,10 +1,16 @@
 Extension { #name : #FASTJavaMethodInvocation }
 
 { #category : #'*FAST-Core-Model-Extension' }
+FASTJavaMethodInvocation >> addArgument: anArgument [
+	childrenNode add: anArgument
+]
+
+{ #category : #'*FAST-Core-Model-Extension' }
 FASTJavaMethodInvocation >> arguments [
 	<computed>
 	<navigation: 'arguments'>
-	^ (self childrenNode select: [ :childNode | childNode class isKindOf: FASTVariableExpression class ]) 
+	^ self childrenNode
+		select: [ :childNode | { FASTVariableExpression class. FASTNamedEntity} includes: childNode class ]
 ]
 
 { #category : #'*FAST-Core-Model-Extension' }
