@@ -23,12 +23,12 @@ JavaALittleOfVariablesMethodTestCase >> testBlockScope [
 ]
 
 { #category : #tests }
-JavaALittleOfVariablesMethodTestCase >> testRetunStatementExpressionName [
+JavaALittleOfVariablesMethodTestCase >> testReturnStatementExpressionName [
 	self assert: aLittleOfVariables statements second expression name equals: 'x'
 ]
 
 { #category : #tests }
-JavaALittleOfVariablesMethodTestCase >> testRetunStatementExpressionType [
+JavaALittleOfVariablesMethodTestCase >> testReturnStatementExpressionType [
 	self assert: aLittleOfVariables statements second expression class equals: FASTJavaIdentifier.
 ]
 
@@ -66,7 +66,7 @@ JavaALittleOfVariablesMethodTestCase >> testVariableDeclaratorExpressionType [
 
 { #category : #tests }
 JavaALittleOfVariablesMethodTestCase >> testVariableDeclaratorExpressionValue [
-	self assert: aLittleOfVariables statements  first declarators first expression value equals: '5'
+	self assert: aLittleOfVariables statements first declarators first expression value equals: '5'
 ]
 
 { #category : #tests }

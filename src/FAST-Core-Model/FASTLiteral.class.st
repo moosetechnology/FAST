@@ -45,6 +45,15 @@ FASTLiteral class >> requirements [
 ]
 
 { #category : #accessing }
+FASTLiteral >> value [
+
+	<MSEProperty: #value type: #String>
+	<generated>
+	<MSEComment: 'The literal itself as found in the source code'>
+	^ value
+]
+
+{ #category : #accessing }
 FASTLiteral >> value: anObject [
 
 	<generated>

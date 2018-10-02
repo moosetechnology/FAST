@@ -239,8 +239,7 @@ FASTJavaImporterVisitor >> visitInfixOperationNode: anInfixOperationNode [
 
 { #category : #'visitor-literal doubleDispatching' }
 FASTJavaImporterVisitor >> visitIntegerLiteralNode: literalNode [
-	^ self createLiteral: FASTJavaIntegerLiteral new withValue: literalNode literalValue
-
+	^ self createLiteral: FASTJavaIntegerLiteral new withValue: (literalNode literalValue) asString
 ]
 
 { #category : #'visitor-doubleDispatching' }

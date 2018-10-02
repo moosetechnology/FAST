@@ -89,13 +89,12 @@ JavaSmaCCImporterTestCase >> methodForMethod [
 
 { #category : #resources }
 JavaSmaCCImporterTestCase >> methodIfMethod [
-	
 	^ 'void ifMethod() {
-		if (true)
-			4 + 5;
-		if (false)
-			{ int x = 2; x +3; }
-		else
+	if (true)
+		4 + 5;
+	if (false)
+		{ int x = 2;	x + 3; }
+		else 
 			5 + 4;
 	}'
 ]

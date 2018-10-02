@@ -23,12 +23,12 @@ JavaSmaCCALittleOfVariablesMethodTestCase >> testBlockScope [
 ]
 
 { #category : #tests }
-JavaSmaCCALittleOfVariablesMethodTestCase >> testRetunStatementExpressionName [
+JavaSmaCCALittleOfVariablesMethodTestCase >> testReturnStatementExpressionName [
 	self assert: aLittleOfVariables statements second expression name equals: 'x'
 ]
 
 { #category : #tests }
-JavaSmaCCALittleOfVariablesMethodTestCase >> testRetunStatementExpressionType [
+JavaSmaCCALittleOfVariablesMethodTestCase >> testReturnStatementExpressionType [
 	self assert: aLittleOfVariables statements second expression class equals: FASTJavaIdentifier.
 ]
 

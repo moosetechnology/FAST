@@ -25,8 +25,9 @@ JavaParamsMethodTestCase >> testExpressionParent [
 
 { #category : #tests }
 JavaParamsMethodTestCase >> testExpressionRHSContentType [
-
-	self assert: params statements first expression rightOperand childrenNode first class equals: FASTJavaInfixOperation
+	self
+		assert: params statements first expression rightOperand childrenNode first class
+		equals: FASTJavaInfixOperation.
 ]
 
 { #category : #tests }

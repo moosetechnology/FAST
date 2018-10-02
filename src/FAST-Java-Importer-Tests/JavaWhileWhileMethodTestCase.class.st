@@ -11,7 +11,7 @@ JavaWhileWhileMethodTestCase >> setUpMethods [
 
 { #category : #tests }
 JavaWhileWhileMethodTestCase >> testFirstWhileBodyContentType [
-	self assert: whileWhile statements second body childrenNode first class equals: FASTStatementBlock
+	self assert: whileWhile statements second body childrenNode first class equals: FASTStatementBlock.
 ]
 
 { #category : #tests }

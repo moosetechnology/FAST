@@ -86,6 +86,15 @@ JavaSmaCCProgramNodeImporterVisitor >> parseCodeString: aCodeString [
 ]
 
 { #category : #initialization }
+JavaSmaCCProgramNodeImporterVisitor >> visitAssignment: aVariableDeclaration [
+	currentFASTEntity := self addToModel: FASTJavaAssignementExpression new.
+	currentFASTEntity parentNode: self parentFASTEntity.
+	currentFASTEntity variable: (self clone accept: aVariableDeclaration variable).
+	currentFASTEntity expression: (self clone accept: aVariableDeclaration value).
+	^ currentFASTEntity
+]
+
+{ #category : #initialization }
 JavaSmaCCProgramNodeImporterVisitor >> visitBinaryExpression: aBinaryExpression [
 	currentFASTEntity := self addToModel: FASTJavaInfixOperation new.
 	currentFASTEntity
@@ -109,6 +118,17 @@ JavaSmaCCProgramNodeImporterVisitor >> visitBlock: aBlock [
 
 	aBlock statements do: [ :each | currentFASTEntity addStatement: (self clone accept: each) ].
 
+	^ currentFASTEntity
+]
+
+{ #category : #initialization }
+JavaSmaCCProgramNodeImporterVisitor >> visitBooleanLiteral: aBooleanLiteral [
+	currentFASTEntity := self
+		addToModel:
+			(FASTBooleanLiteral new
+				value: aBooleanLiteral token value;
+				yourself).
+	currentFASTEntity parentNode: self parentFASTEntity.
 	^ currentFASTEntity
 ]
 
@@ -169,11 +189,34 @@ JavaSmaCCProgramNodeImporterVisitor >> visitForStatement: aForStatement [
 ]
 
 { #category : #initialization }
+JavaSmaCCProgramNodeImporterVisitor >> visitIfStatement: anIfStatementNode [
+	currentFASTEntity := self addToModel: FASTJavaIfStatement new.
+	currentFASTEntity parentNode: self parentFASTEntity.
+	currentFASTEntity
+		condition:
+			(FASTJavaConditionStatement new
+				addChild: (self clone visitNode: anIfStatementNode condition);
+				yourself).
+	currentFASTEntity
+		thenPart:
+			(FASTJavaThenPartStatement new
+				addChild: (self clone visitNode: anIfStatementNode thenPart);
+				yourself).
+	anIfStatementNode elsePart
+		ifNotNil: [ currentFASTEntity
+				elsePart:
+					(FASTJavaElsePartStatement new
+						addChild: (self clone visitNode: anIfStatementNode thenPart);
+						yourself) ].
+	^ currentFASTEntity
+]
+
+{ #category : #initialization }
 JavaSmaCCProgramNodeImporterVisitor >> visitIntegerLiteral: anIntegerLiteral [
 	currentFASTEntity := self
 		addToModel:
 			(FASTJavaIntegerLiteral new
-				value: anIntegerLiteral value;
+				value: anIntegerLiteral token value;
 				yourself).
 	currentFASTEntity parentNode: self parentFASTEntity.
 	^ currentFASTEntity
@@ -202,6 +245,8 @@ JavaSmaCCProgramNodeImporterVisitor >> visitMethodDeclaration: aMethodDeclaratio
 	currentFASTEntity := FASTJavaMethodEntity new
 		name: aMethodDeclaration declarator name value;
 		yourself.
+	aMethodDeclaration declarator parameters
+		do: [ :parameter | self clone accept: parameter ].
 	currentFASTEntity statementBlock: (self clone accept: aMethodDeclaration body).
 	self addToModel: currentFASTEntity.
 	^ currentFASTEntity
@@ -213,6 +258,25 @@ JavaSmaCCProgramNodeImporterVisitor >> visitName: aName [
 	currentFASTEntity name: aName name value.
 	currentFASTEntity parentNode: self parentFASTEntity.
 	^ currentFASTEntity 
+]
+
+{ #category : #initialization }
+JavaSmaCCProgramNodeImporterVisitor >> visitNull: aNull [
+	currentFASTEntity := self
+		addToModel:
+			(FASTJavaNullLiteral new
+				value: aNull token value;
+				yourself).
+	currentFASTEntity parentNode: self parentFASTEntity.
+	^ currentFASTEntity
+]
+
+{ #category : #initialization }
+JavaSmaCCProgramNodeImporterVisitor >> visitParameter: aParameter [
+	| param |
+	param := self visitName: aParameter variable.
+	self parentFASTEntity addParameter: param.
+	^ param
 ]
 
 { #category : #initialization }
@@ -276,4 +340,21 @@ JavaSmaCCProgramNodeImporterVisitor >> visitVariableDeclaration: aVariableDeclar
 { #category : #initialization }
 JavaSmaCCProgramNodeImporterVisitor >> visitVariableName: aVariableName [
 	^ self visitName: aVariableName 
+]
+
+{ #category : #initialization }
+JavaSmaCCProgramNodeImporterVisitor >> visitWhileStatement: aWhileStatementNode [
+	currentFASTEntity := self addToModel: FASTJavaWhileStatement new.
+	currentFASTEntity parentNode: self parentFASTEntity.
+	currentFASTEntity
+		condition:
+			(FASTJavaConditionStatement new
+				addChild: (self clone accept: aWhileStatementNode expression);
+				yourself).
+	currentFASTEntity
+		body:
+			(FASTJavaBodyStatement new
+				addChild: (self clone accept: aWhileStatementNode statement);
+				yourself).
+	^ currentFASTEntity
 ]
