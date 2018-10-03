@@ -91,11 +91,11 @@ JavaSmaCCImporterTestCase >> methodForMethod [
 JavaSmaCCImporterTestCase >> methodIfMethod [
 	^ 'void ifMethod() {
 	if (true)
-		4 + 5;
+		return 4 + 5;
 	if (false)
-		{ int x = 2;	x + 3; }
+		{ int x = 2;	x = x + 3; }
 		else 
-			5 + 4;
+			return 5 + 4;
 	}'
 ]
 

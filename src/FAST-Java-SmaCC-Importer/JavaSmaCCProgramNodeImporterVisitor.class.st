@@ -189,25 +189,42 @@ JavaSmaCCProgramNodeImporterVisitor >> visitForStatement: aForStatement [
 ]
 
 { #category : #initialization }
+JavaSmaCCProgramNodeImporterVisitor >> visitIfElseStatement: anIfStatementNode [
+	currentFASTEntity := self addToModel: FASTJavaIfStatement new.
+	currentFASTEntity parentNode: self parentFASTEntity.
+	currentFASTEntity
+		condition:
+			(FASTJavaConditionStatement new
+				addChild: (self clone accept: anIfStatementNode expression);
+				yourself).
+	currentFASTEntity
+		thenPart:
+			(FASTJavaThenPartStatement new
+				addChild: (self clone accept: anIfStatementNode trueStatement);
+				yourself).
+	anIfStatementNode falseStatement
+		ifNotNil: [ currentFASTEntity
+				elsePart:
+					(FASTJavaElsePartStatement new
+						addChild: (self clone accept: anIfStatementNode falseStatement);
+						yourself) ].
+	^ currentFASTEntity
+]
+
+{ #category : #initialization }
 JavaSmaCCProgramNodeImporterVisitor >> visitIfStatement: anIfStatementNode [
 	currentFASTEntity := self addToModel: FASTJavaIfStatement new.
 	currentFASTEntity parentNode: self parentFASTEntity.
 	currentFASTEntity
 		condition:
 			(FASTJavaConditionStatement new
-				addChild: (self clone visitNode: anIfStatementNode condition);
+				addChild: (self clone accept: anIfStatementNode expression);
 				yourself).
 	currentFASTEntity
 		thenPart:
 			(FASTJavaThenPartStatement new
-				addChild: (self clone visitNode: anIfStatementNode thenPart);
+				addChild: (self clone accept: anIfStatementNode trueStatement);
 				yourself).
-	anIfStatementNode elsePart
-		ifNotNil: [ currentFASTEntity
-				elsePart:
-					(FASTJavaElsePartStatement new
-						addChild: (self clone visitNode: anIfStatementNode thenPart);
-						yourself) ].
 	^ currentFASTEntity
 ]
 
