@@ -25,24 +25,24 @@ JavaSmaCCParamsMethodTestCase >> testExpressionParent [
 
 { #category : #tests }
 JavaSmaCCParamsMethodTestCase >> testExpressionRHSContentType [
-	self assert: params statements first expression expression first class equals: FASTJavaInfixOperation
+	self assert: params statements first expression expression class equals: FASTJavaInfixOperation
 ]
 
 { #category : #tests }
 JavaSmaCCParamsMethodTestCase >> testExpressionRHSParent [
-	self assert: params statements first expression rightOperand parentNode equals: params statements first expression
+	self
+		assert: params statements first expression expression rightOperand parentNode
+		equals: params statements first expression expression
 ]
 
 { #category : #tests }
 JavaSmaCCParamsMethodTestCase >> testExpressionRHSType [
-
-	self assert: params statements first expression rightOperand class equals: FASTJavaOperationRightOperand 
+	self assert: params statements first expression expression rightOperand class equals: FASTJavaOperationRightOperand
 ]
 
 { #category : #tests }
 JavaSmaCCParamsMethodTestCase >> testExpressionType [
-
-	self assert: params statements first expression class equals: FASTJavaInfixOperation  
+	self assert: params statements first expression class equals: FASTJavaAssignementExpression
 ]
 
 { #category : #tests }
