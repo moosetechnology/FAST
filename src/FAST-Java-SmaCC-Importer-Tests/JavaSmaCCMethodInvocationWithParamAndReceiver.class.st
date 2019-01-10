@@ -14,6 +14,12 @@ JavaSmaCCMethodInvocationWithParamAndReceiver >> setUpMethods [
 ]
 
 { #category : #tests }
+JavaSmaCCMethodInvocationWithParamAndReceiver >> testNumberOfArguments [
+	self assert: methodMethodInvocationWithParamAndReceiver childrenNode second childrenNode first childrenNode first expression arguments size equals: 2.
+	self assert: methodMethodInvocationWithParamAndReceiver childrenNode second childrenNode first childrenNode first expression receiver arguments size equals: 2
+]
+
+{ #category : #tests }
 JavaSmaCCMethodInvocationWithParamAndReceiver >> testNumberOfMethodInvocations [
 	self
 		assert: methodMethodInvocationWithParamAndReceiver childrenNode second childrenNode first childrenNode first expression class
@@ -24,4 +30,14 @@ JavaSmaCCMethodInvocationWithParamAndReceiver >> testNumberOfMethodInvocations [
 	self
 		assert: methodMethodInvocationWithParamAndReceiver childrenNode second childrenNode first childrenNode first expression receiver receiver
 		equals: nil
+]
+
+{ #category : #tests }
+JavaSmaCCMethodInvocationWithParamAndReceiver >> testTypeOfArguments [
+	self
+		assert: methodMethodInvocationWithParamAndReceiver childrenNode second childrenNode first childrenNode first expression arguments first class
+		equals: FASTJavaIntegerLiteral.
+	self
+		assert: methodMethodInvocationWithParamAndReceiver childrenNode second childrenNode first childrenNode first expression arguments second class
+		equals: FASTJavaIntegerLiteral
 ]
