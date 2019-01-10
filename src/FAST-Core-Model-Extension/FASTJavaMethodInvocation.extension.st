@@ -17,6 +17,10 @@ FASTJavaMethodInvocation >> arguments [
 FASTJavaMethodInvocation >> receiver [
 	<computed>
 	<navigation: 'receiver'>
-	self flag: 'Bug same element with arguments'.
-	^ (self childrenNode select: [ :childNode | childNode class isKindOf: FASTVariableExpression class ]) at: 1 
+	^ (self childrenNode select: [ :childNode | (childNode class isKindOf: FASTVariableExpression class) or: [ childNode class isKindOf: FASTJavaMethodInvocation class ] ] ) ifEmpty: [ nil ] ifNotEmpty: [:collection | collection first ] 
+]
+
+{ #category : #'*FAST-Core-Model-Extension' }
+FASTJavaMethodInvocation >> receiver: aReceiver [
+	^ self childrenNode add: aReceiver
 ]

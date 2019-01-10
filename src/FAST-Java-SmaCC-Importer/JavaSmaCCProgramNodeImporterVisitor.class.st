@@ -72,7 +72,7 @@ JavaSmaCCProgramNodeImporterVisitor >> parentFASTVisitor: anObject [
 { #category : #initialization }
 JavaSmaCCProgramNodeImporterVisitor >> parseCodeMethodString: aCodeString [
 	| ast |
-	ast := JavaParser parse: 'class Foo { ' ,aCodeString ,'}'.
+	ast := JavaParser parse: 'class Foo { ' , aCodeString , '}'.
 	self visitSmaCCParseNode: ast.
 	^ self model
 ]
@@ -266,6 +266,16 @@ JavaSmaCCProgramNodeImporterVisitor >> visitMethodDeclaration: aMethodDeclaratio
 		do: [ :parameter | self clone accept: parameter ].
 	currentFASTEntity statementBlock: (self clone accept: aMethodDeclaration body).
 	self addToModel: currentFASTEntity.
+	^ currentFASTEntity
+]
+
+{ #category : #initialization }
+JavaSmaCCProgramNodeImporterVisitor >> visitMethodInvocation: aMethodInvocation [
+	currentFASTEntity := self addToModel: FASTJavaMethodInvocation new.
+	currentFASTEntity parentNode: self parentFASTEntity.
+	aMethodInvocation expressions do: [ :expression | currentFASTEntity addArgument: (self clone accept: expression)].
+	aMethodInvocation receiver ifNotNil: [ :receiver |
+		currentFASTEntity receiver: (self clone accept: receiver) ].
 	^ currentFASTEntity
 ]
 

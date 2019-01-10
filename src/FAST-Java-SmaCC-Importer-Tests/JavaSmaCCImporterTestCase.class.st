@@ -100,6 +100,13 @@ JavaSmaCCImporterTestCase >> methodIfMethod [
 ]
 
 { #category : #resources }
+JavaSmaCCImporterTestCase >> methodMethodInvocationWithParamAndReceiver [
+	^ 'public void onClick(ClickEvent arg0) {
+		x = hello(a,b).hello2(1,2);
+	}'
+]
+
+{ #category : #resources }
 JavaSmaCCImporterTestCase >> methodParams [
 	
 	^ 'void params(int a, float b, double c) {
