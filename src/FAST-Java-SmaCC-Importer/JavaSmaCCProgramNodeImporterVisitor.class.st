@@ -273,9 +273,11 @@ JavaSmaCCProgramNodeImporterVisitor >> visitMethodDeclaration: aMethodDeclaratio
 JavaSmaCCProgramNodeImporterVisitor >> visitMethodInvocation: aMethodInvocation [
 	currentFASTEntity := self addToModel: FASTJavaMethodInvocation new.
 	currentFASTEntity parentNode: self parentFASTEntity.
-	aMethodInvocation expressions do: [ :expression | currentFASTEntity addArgument: (self clone accept: expression)].
-	aMethodInvocation receiver ifNotNil: [ :receiver |
-		currentFASTEntity receiver: (self clone accept: receiver) ].
+	aMethodInvocation expressions
+		do: [ :expression | currentFASTEntity addArgument: (self clone accept: expression) ].
+	aMethodInvocation receiver
+		ifNotNil: [ :receiver | currentFASTEntity receiver: (self clone accept: receiver) ].
+	currentFASTEntity name: aMethodInvocation name value. 
 	^ currentFASTEntity
 ]
 
@@ -285,6 +287,18 @@ JavaSmaCCProgramNodeImporterVisitor >> visitName: aName [
 	currentFASTEntity name: aName name value.
 	currentFASTEntity parentNode: self parentFASTEntity.
 	^ currentFASTEntity 
+]
+
+{ #category : #initialization }
+JavaSmaCCProgramNodeImporterVisitor >> visitNew: aNewNode [
+	"By doing this, we handle the 'new' token.
+	But we lost the 100% confidence we have that this is instanticiation of a class"
+	currentFASTEntity := self addToModel: FASTJavaMethodInvocation new.
+	currentFASTEntity parentNode: self parentFASTEntity.
+	aNewNode expressions
+		do: [ :expression | currentFASTEntity addArgument: (self clone accept: expression) ].
+	currentFASTEntity name: aNewNode type name name value.
+	^ currentFASTEntity
 ]
 
 { #category : #initialization }
