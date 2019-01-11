@@ -38,9 +38,20 @@ FASTJavaForStatement >> incrementors: aIncrementorStatement [
 
 { #category : #'*FAST-Core-Model-Extension' }
 FASTJavaForStatement >> initializers [
-	<computed>
-	<navigation: 'initializers'>
-	^ (self childrenNode select: [ :childNode | childNode class isKindOf: FASTJavaInitializersStatement class ]) 
+	<
+	computed>
+	<
+	navigation:
+		'initializers'>
+	^ self
+		childrenNode
+		select:
+			[ :childNode | 
+			childNode
+				
+				isKindOf:
+					FASTJavaInitializersStatement
+						 ]
 ]
 
 { #category : #'*FAST-Core-Model-Extension' }

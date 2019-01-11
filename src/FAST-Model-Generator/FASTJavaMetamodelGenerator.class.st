@@ -34,7 +34,10 @@ Class {
 		'javaOperationLeftOperand',
 		'javaOperationRightOperand',
 		'javaCastExpression',
-		'javaClassProperty'
+		'javaClassProperty',
+		'javaTryCatch',
+		'javaTryPartStatement',
+		'javaCatchPartStatement'
 	],
 	#category : #'FAST-Model-Generator'
 }
@@ -206,6 +209,24 @@ FASTJavaMetamodelGenerator >> commentForJavaThis [
 ]
 
 { #category : #definition }
+FASTJavaMetamodelGenerator >> commentForJavaTryCatch [
+	^ 'I represent the java try catch statement. I must have two parts: the ''Try'' part and the ''catch'' part. 
+	
+ex.
+
+void tryCatch() {
+	int x;
+	try {
+		x = 1;
+   } catch (Exception e) {
+		Patate.displayError(e.getMessage());
+	};
+}
+
+'
+]
+
+{ #category : #definition }
 FASTJavaMetamodelGenerator >> commentForJavaVarDeclStatement [
 	^ 'A statement of variable declaration
 
@@ -242,7 +263,9 @@ while(...) {
 { #category : #definition }
 FASTJavaMetamodelGenerator >> defineNewClasses [
 	super defineNewClasses.
-	javaAssignementExpression := builder newClassNamed: #JavaAssignementExpression comment: self commentForJavaAssignementExpression.
+	javaAssignementExpression := builder
+		newClassNamed: #JavaAssignementExpression
+		comment: self commentForJavaAssignementExpression.
 	javaBreakStatement := builder newClassNamed: #JavaBreakStatement comment: self commentForJavaBreakStatement.
 	javaCaseStatement := builder newClassNamed: #JavaCaseStatement comment: self commentForJavaCaseStatement.
 	javaCharacterLiteral := builder newClassNamed: #JavaCharacterLiteral comment: self commentForJavaCharacterLiteral.
@@ -265,10 +288,12 @@ FASTJavaMetamodelGenerator >> defineNewClasses [
 	javaVarDeclStatement := builder newClassNamed: #JavaVarDeclStatement comment: self commentForJavaVarDeclStatement.
 	javaVariableDeclarator := builder newClassNamed: #JavaVariableDeclarator comment: self commentForJavaVariableDeclarator.
 	javaWhileStatement := builder newClassNamed: #JavaWhileStatement comment: self commentForJavaWhileStatement.
-	
+
 	"new concept"
 	javaCastExpression := builder newClassNamed: #JavaCastExpression comment: 'todo'.
-	javaClassProperty := builder newClassNamed: #JavaClassProperty comment: self commentForJavaClassProperty.	
+	javaClassProperty := builder newClassNamed: #JavaClassProperty comment: self commentForJavaClassProperty.
+	javaTryCatch := builder newClassNamed: #JavaTryCatchStatement comment: self commentForJavaTryCatch.
+
 
 	"factice"
 	javaElsePartStatement := builder newClassNamed: #JavaElsePartStatement.
@@ -282,7 +307,15 @@ FASTJavaMetamodelGenerator >> defineNewClasses [
 	javaBodyStatement := builder newClassNamed: #JavaBodyStatement comment: 'A statement to be evaluated in the loop'.
 	javaInitializersStatement := builder
 		newClassNamed: #JavaInitializersStatement
-		comment: 'ExpressionStatements used at initialization phase of a for loop'
+		comment: 'ExpressionStatements used at initialization phase of a for loop'.
+
+	"new factice"
+	javaTryPartStatement := builder
+		newClassNamed: #JavaTryPartStatement
+		comment: 'I represent the ''try'' part of the TryCatch Statement'.
+	javaCatchPartStatement := builder
+		newClassNamed: #JavaCatchPartStatement
+		comment: 'I represent the ''catch'' part of the TryCatch Statement'
 ]
 
 { #category : #definition }
@@ -297,7 +330,7 @@ FASTJavaMetamodelGenerator >> defineNewClassesHierarchy [
 	javaCaseStatement --|> statement.
 	javaCharacterLiteral --|> characterLiteral.
 	javaContinueStatement --|> statement.
-	javaDoStatement --|> statement.	
+	javaDoStatement --|> statement.
 	javaFloatLiteral --|> literal.
 	javaForStatement --|> statement.
 	javaIdentifier --|> variableExpression.
@@ -314,10 +347,11 @@ FASTJavaMetamodelGenerator >> defineNewClassesHierarchy [
 	javaVariableDeclarator --|> entity.
 	javaWhileStatement --|> statement.
 	javaMethodInvocation --|> #TNamed.
-	
+
 	"New"
 	javaCastExpression --|> expression.
 	javaClassProperty --|> expression.
+	javaTryCatch --|> statement.
 
 	"Factice"
 	javaElsePartStatement --|> statement.
@@ -327,7 +361,11 @@ FASTJavaMetamodelGenerator >> defineNewClassesHierarchy [
 	javaBodyStatement --|> statement.
 	javaInitializersStatement --|> statement.
 	javaOperationLeftOperand --|> expression.
-	javaOperationRightOperand --|> expression
+	javaOperationRightOperand --|> expression.
+
+	"new factice"
+	javaTryPartStatement --|> statement.
+	javaCatchPartStatement --|> statement
 ]
 
 { #category : #definition }

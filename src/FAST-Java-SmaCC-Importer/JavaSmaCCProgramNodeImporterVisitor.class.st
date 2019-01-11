@@ -142,6 +142,15 @@ JavaSmaCCProgramNodeImporterVisitor >> visitCastExpression: aCastExpression [
 ]
 
 { #category : #initialization }
+JavaSmaCCProgramNodeImporterVisitor >> visitCatchClause: aCatchClause [
+	currentFASTEntity := self addToModel: FASTJavaCatchPartStatement new.
+	currentFASTEntity parentNode: self parentFASTEntity.
+	self clone accept: aCatchClause parameter.
+	currentFASTEntity addChild: (self clone accept: aCatchClause block).
+	^ currentFASTEntity
+]
+
+{ #category : #initialization }
 JavaSmaCCProgramNodeImporterVisitor >> visitCharacterLiteral: aCharacterLiteral [
 	currentFASTEntity := self
 		addToModel:
@@ -170,10 +179,25 @@ JavaSmaCCProgramNodeImporterVisitor >> visitClassType: aClassType [
 ]
 
 { #category : #initialization }
+JavaSmaCCProgramNodeImporterVisitor >> visitEmptyStatement: anEmptyStatement [
+	currentFASTEntity := self addToModel: FASTStatement new.
+	currentFASTEntity parentNode: self parentFASTEntity.
+	^ currentFASTEntity
+]
+
+{ #category : #initialization }
 JavaSmaCCProgramNodeImporterVisitor >> visitExpressionStatement: anExpressionStatement [
 	currentFASTEntity := self addToModel: FASTExpressionStatement new.
 	currentFASTEntity parentNode: self parentFASTEntity.
 	currentFASTEntity addExpression: (self clone accept: anExpressionStatement expression).
+	^ currentFASTEntity
+]
+
+{ #category : #initialization }
+JavaSmaCCProgramNodeImporterVisitor >> visitFieldAccess: aFieldAccess [ 
+	currentFASTEntity := self addToModel: FASTJavaFieldAccess new.
+	currentFASTEntity parentNode: self parentFASTEntity.
+	currentFASTEntity fieldName: aFieldAccess name value.
 	^ currentFASTEntity
 ]
 
@@ -415,6 +439,19 @@ JavaSmaCCProgramNodeImporterVisitor >> visitStringLiteral: aStringLiteral [
 				value: aStringLiteral token value;
 				yourself).
 	currentFASTEntity parentNode: self parentFASTEntity.
+	^ currentFASTEntity
+]
+
+{ #category : #initialization }
+JavaSmaCCProgramNodeImporterVisitor >> visitTryStatement: aTryStatement [
+	currentFASTEntity := self addToModel: FASTJavaTryCatchStatement new.
+	currentFASTEntity parentNode: self parentFASTEntity.
+	currentFASTEntity
+		try:
+			(FASTJavaTryPartStatement new
+				addChild: (self clone accept: aTryStatement block);
+				yourself).
+	aTryStatement catches do: [ :aCatchBlock | currentFASTEntity addCatch: (self clone accept: aCatchBlock) ].
 	^ currentFASTEntity
 ]
 

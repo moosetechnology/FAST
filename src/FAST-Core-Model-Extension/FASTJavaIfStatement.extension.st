@@ -4,7 +4,7 @@ Extension { #name : #FASTJavaIfStatement }
 FASTJavaIfStatement >> condition [
 	<computed>
 	<navigation: 'condition'>
-	^ (self childrenNode select: [ :childNode | childNode class = FASTJavaConditionStatement ]) at: 1 ifAbsent: [ nil ]
+	^ (self childrenNode select: [ :childNode | childNode class =  FASTJavaConditionStatement ]) at: 1 ifAbsent: [ nil ]
 ]
 
 { #category : #'*FAST-Core-Model-Extension' }
