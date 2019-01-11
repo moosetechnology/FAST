@@ -7,6 +7,7 @@ FASTExpressionStatement >> addExpression: aStatement [
 
 { #category : #'*FAST-Core-Model-Extension' }
 FASTExpressionStatement >> expression [
+	<navigation: 'expression'>
 	^ self childrenNode first
 ]
 
