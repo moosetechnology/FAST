@@ -1,16 +1,16 @@
 Class {
-	#name : #JavaSmaCCALittleOfVariablesMethodTestCase,
-	#superclass : #JavaSmaCCImporterTestCase,
+	#name : #JavaSmaCCALittleOfVariablesMethodTest,
+	#superclass : #JavaSmaCCImporterTest,
 	#category : #'FAST-Java-SmaCC-Importer-Tests'
 }
 
 { #category : #running }
-JavaSmaCCALittleOfVariablesMethodTestCase >> setUpMethods [
+JavaSmaCCALittleOfVariablesMethodTest >> setUpMethods [
 	aLittleOfVariables := (self parseMethod: 'aLittleOfVariables') allFASTJavaMethodEntity first
 ]
 
 { #category : #tests }
-JavaSmaCCALittleOfVariablesMethodTestCase >> testBlockScope [
+JavaSmaCCALittleOfVariablesMethodTest >> testBlockScope [
 	| symbols |
 	self flag: 'Should we keep the fastScope ? '.
 	
@@ -23,17 +23,17 @@ JavaSmaCCALittleOfVariablesMethodTestCase >> testBlockScope [
 ]
 
 { #category : #tests }
-JavaSmaCCALittleOfVariablesMethodTestCase >> testReturnStatementExpressionName [
+JavaSmaCCALittleOfVariablesMethodTest >> testReturnStatementExpressionName [
 	self assert: aLittleOfVariables statements second expression name equals: 'x'
 ]
 
 { #category : #tests }
-JavaSmaCCALittleOfVariablesMethodTestCase >> testReturnStatementExpressionType [
+JavaSmaCCALittleOfVariablesMethodTest >> testReturnStatementExpressionType [
 	self assert: aLittleOfVariables statements second expression class equals: FASTJavaIdentifier.
 ]
 
 { #category : #tests }
-JavaSmaCCALittleOfVariablesMethodTestCase >> testScope [
+JavaSmaCCALittleOfVariablesMethodTest >> testScope [
 	| symbols |
 	self flag: 'Should we keep the fastScope ? '.
 	"symbols := OrderedCollection new.
@@ -43,53 +43,53 @@ JavaSmaCCALittleOfVariablesMethodTestCase >> testScope [
 ]
 
 { #category : #tests }
-JavaSmaCCALittleOfVariablesMethodTestCase >> testStatementsCount [
+JavaSmaCCALittleOfVariablesMethodTest >> testStatementsCount [
 	self assert: aLittleOfVariables statements size equals: 2
 ]
 
 { #category : #tests }
-JavaSmaCCALittleOfVariablesMethodTestCase >> testStatementsType [
+JavaSmaCCALittleOfVariablesMethodTest >> testStatementsType [
 	self
 		assert: aLittleOfVariables statements first class equals: FASTJavaVarDeclStatement;
 		assert: aLittleOfVariables statements last class equals: FASTReturnStatement
 ]
 
 { #category : #tests }
-JavaSmaCCALittleOfVariablesMethodTestCase >> testVariableDeclaratorExpressionParent [
+JavaSmaCCALittleOfVariablesMethodTest >> testVariableDeclaratorExpressionParent [
 	self assert: aLittleOfVariables statements first declarators first expression parentNode equals: aLittleOfVariables statements first declarators first
 ]
 
 { #category : #tests }
-JavaSmaCCALittleOfVariablesMethodTestCase >> testVariableDeclaratorExpressionType [
+JavaSmaCCALittleOfVariablesMethodTest >> testVariableDeclaratorExpressionType [
 	self assert: aLittleOfVariables statements first declarators first expression class equals: FASTJavaIntegerLiteral
 ]
 
 { #category : #tests }
-JavaSmaCCALittleOfVariablesMethodTestCase >> testVariableDeclaratorExpressionValue [
+JavaSmaCCALittleOfVariablesMethodTest >> testVariableDeclaratorExpressionValue [
 	self assert: aLittleOfVariables statements  first declarators first expression value equals: '5'
 ]
 
 { #category : #tests }
-JavaSmaCCALittleOfVariablesMethodTestCase >> testVariableDeclaratorType [
+JavaSmaCCALittleOfVariablesMethodTest >> testVariableDeclaratorType [
 	self assert: aLittleOfVariables statements first declarators first class equals: FASTJavaVariableDeclarator
 ]
 
 { #category : #tests }
-JavaSmaCCALittleOfVariablesMethodTestCase >> testVariableDeclaratorVariableName [
+JavaSmaCCALittleOfVariablesMethodTest >> testVariableDeclaratorVariableName [
 	self assert: aLittleOfVariables statements first declarators first variable name equals: 'x'
 ]
 
 { #category : #tests }
-JavaSmaCCALittleOfVariablesMethodTestCase >> testVariableDeclaratorVariableParent [
+JavaSmaCCALittleOfVariablesMethodTest >> testVariableDeclaratorVariableParent [
 	self assert: aLittleOfVariables statements first declarators first variable parentNode equals: aLittleOfVariables statements first declarators first
 ]
 
 { #category : #tests }
-JavaSmaCCALittleOfVariablesMethodTestCase >> testVariableDeclaratorVariableType [
+JavaSmaCCALittleOfVariablesMethodTest >> testVariableDeclaratorVariableType [
 	self assert: aLittleOfVariables statements first declarators first variable class equals: FASTNamedEntity
 ]
 
 { #category : #tests }
-JavaSmaCCALittleOfVariablesMethodTestCase >> testVariableDeclaratorsCount [
+JavaSmaCCALittleOfVariablesMethodTest >> testVariableDeclaratorsCount [
 	self assert: aLittleOfVariables statements first declarators size equals: 1
 ]

@@ -1,30 +1,30 @@
 Class {
-	#name : #JavaSmaCCSuperSimpleMethodTestCase,
-	#superclass : #JavaSmaCCImporterTestCase,
+	#name : #JavaSmaCCSuperSimpleMethodTest,
+	#superclass : #JavaSmaCCImporterTest,
 	#category : #'FAST-Java-SmaCC-Importer-Tests'
 }
 
 { #category : #running }
-JavaSmaCCSuperSimpleMethodTestCase >> setUpMethods [
+JavaSmaCCSuperSimpleMethodTest >> setUpMethods [
 	supersimple := (self parseMethod: 'supersimple') allFASTJavaMethodEntity first
 ]
 
 { #category : #tests }
-JavaSmaCCSuperSimpleMethodTestCase >> testExpressionParent [
+JavaSmaCCSuperSimpleMethodTest >> testExpressionParent [
 	self assert: supersimple statements last expression parentNode equals: supersimple statements last
 ]
 
 { #category : #tests }
-JavaSmaCCSuperSimpleMethodTestCase >> testExpressionType [
+JavaSmaCCSuperSimpleMethodTest >> testExpressionType [
 	self assert: supersimple statements last expression class equals: FASTBooleanLiteral 
 ]
 
 { #category : #tests }
-JavaSmaCCSuperSimpleMethodTestCase >> testStatementsCount [
+JavaSmaCCSuperSimpleMethodTest >> testStatementsCount [
 	self assert: supersimple statements size equals: 1
 ]
 
 { #category : #tests }
-JavaSmaCCSuperSimpleMethodTestCase >> testStatementsType [
+JavaSmaCCSuperSimpleMethodTest >> testStatementsType [
 	self assert: supersimple statements last class equals: FASTReturnStatement  
 ]

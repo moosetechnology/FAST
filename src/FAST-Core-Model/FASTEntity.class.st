@@ -28,7 +28,7 @@ FASTEntity class >> annotation [
 FASTEntity class >> generatedSlotNames [
 	<generated>
 	'FASTEntity class>>#generatedSlotNames'.
-	^ #(parentNode childrenNode)
+	^ #(childrenNode parentNode)
 ]
 
 { #category : #generator }

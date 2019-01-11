@@ -133,12 +133,38 @@ JavaSmaCCProgramNodeImporterVisitor >> visitBooleanLiteral: aBooleanLiteral [
 ]
 
 { #category : #initialization }
+JavaSmaCCProgramNodeImporterVisitor >> visitCastExpression: aCastExpression [
+	currentFASTEntity := self addToModel: FASTJavaCastExpression new.
+	currentFASTEntity parentNode: self parentFASTEntity.
+	currentFASTEntity type: (self clone accept: aCastExpression type).
+	currentFASTEntity expression: (self clone accept: aCastExpression expression).
+	^ currentFASTEntity
+]
+
+{ #category : #initialization }
 JavaSmaCCProgramNodeImporterVisitor >> visitCharacterLiteral: aCharacterLiteral [
 	currentFASTEntity := self
 		addToModel:
 			(FASTJavaCharacterLiteral new
 				value: aCharacterLiteral token value;
 				yourself).
+	currentFASTEntity parentNode: self parentFASTEntity.
+	^ currentFASTEntity
+]
+
+{ #category : #initialization }
+JavaSmaCCProgramNodeImporterVisitor >> visitClassProperty: aClassProperty [
+	currentFASTEntity := self addToModel: FASTJavaClassProperty new.
+	currentFASTEntity parentNode: self parentFASTEntity.
+	currentFASTEntity type: (self clone accept: aClassProperty name).
+	currentFASTEntity fieldName: aClassProperty thisToken value.
+	^ currentFASTEntity
+]
+
+{ #category : #initialization }
+JavaSmaCCProgramNodeImporterVisitor >> visitClassType: aClassType [
+	currentFASTEntity := self addToModel: FASTNamedEntity new.
+	currentFASTEntity name: aClassType name name value.
 	currentFASTEntity parentNode: self parentFASTEntity.
 	^ currentFASTEntity
 ]
@@ -273,11 +299,18 @@ JavaSmaCCProgramNodeImporterVisitor >> visitMethodDeclaration: aMethodDeclaratio
 JavaSmaCCProgramNodeImporterVisitor >> visitMethodInvocation: aMethodInvocation [
 	currentFASTEntity := self addToModel: FASTJavaMethodInvocation new.
 	currentFASTEntity parentNode: self parentFASTEntity.
-	aMethodInvocation expressions
-		do: [ :expression | currentFASTEntity addArgument: (self clone accept: expression) ].
+	aMethodInvocation expressions do: [ :expression | currentFASTEntity addArgument: (self clone accept: expression) ].
 	aMethodInvocation receiver
-		ifNotNil: [ :receiver | currentFASTEntity receiver: (self clone accept: receiver) ].
-	currentFASTEntity name: aMethodInvocation name value. 
+		ifNotNil: [ :receiver | 
+			(receiver isMemberOf: JavaNameNode)
+				ifTrue: [ "If the element is named. It is more than propably an Identifier and not just an named element. So you pass over the normal rules of the importer"
+					currentFASTEntity
+						receiver:
+							(FASTJavaIdentifier new
+								name: receiver name value;
+								yourself) ]
+				ifFalse: [ currentFASTEntity receiver: (self clone accept: receiver) ] ].
+	currentFASTEntity name: aMethodInvocation name value.
 	^ currentFASTEntity
 ]
 
@@ -286,7 +319,7 @@ JavaSmaCCProgramNodeImporterVisitor >> visitName: aName [
 	currentFASTEntity := self addToModel: FASTNamedEntity new.
 	currentFASTEntity name: aName name value.
 	currentFASTEntity parentNode: self parentFASTEntity.
-	^ currentFASTEntity 
+	^ currentFASTEntity
 ]
 
 { #category : #initialization }
@@ -342,11 +375,27 @@ JavaSmaCCProgramNodeImporterVisitor >> visitPreIncrementExpression: aPreIncremen
 ]
 
 { #category : #initialization }
-JavaSmaCCProgramNodeImporterVisitor >> visitReturnStatement: aReturnStatement [
+JavaSmaCCProgramNodeImporterVisitor >> visitQualifiedName: aQualifiedName [
+	currentFASTEntity := self addToModel: FASTJavaClassProperty new.
+	currentFASTEntity parentNode: self parentFASTEntity.
+	currentFASTEntity type: (self clone accept: aQualifiedName nspace).
+	currentFASTEntity fieldName: aQualifiedName name value.
+	^ currentFASTEntity
+]
 
+{ #category : #initialization }
+JavaSmaCCProgramNodeImporterVisitor >> visitReturnStatement: aReturnStatement [
 	currentFASTEntity := self addToModel: FASTReturnStatement new.
-		currentFASTEntity parentNode: self parentFASTEntity.
-	currentFASTEntity expression: (self clone accept: aReturnStatement expression).
+	currentFASTEntity parentNode: self parentFASTEntity.
+	
+			(aReturnStatement expression isKindOf: JavaNameNode)
+				ifTrue: [ "If the element is named. It is more than propably an Identifier and not just an named element. So you pass over the normal rules of the importer"
+					currentFASTEntity
+						expression:
+							(FASTJavaIdentifier new
+								name: aReturnStatement expression name value;
+								yourself) ]
+				ifFalse: [ currentFASTEntity expression: (self clone accept: aReturnStatement expression) ].
 	^ currentFASTEntity
 ]
 

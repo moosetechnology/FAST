@@ -1,76 +1,76 @@
 Class {
-	#name : #JavaSmaCCIfMethodTestCase,
-	#superclass : #JavaSmaCCImporterTestCase,
+	#name : #JavaSmaCCIfMethodTest,
+	#superclass : #JavaSmaCCImporterTest,
 	#category : #'FAST-Java-SmaCC-Importer-Tests'
 }
 
 { #category : #running }
-JavaSmaCCIfMethodTestCase >> setUpMethods [
+JavaSmaCCIfMethodTest >> setUpMethods [
 	ifMethod := (self parseMethod: 'ifMethod') allFASTJavaMethodEntity first
 ]
 
 { #category : #tests }
-JavaSmaCCIfMethodTestCase >> testFirstIfConditionParent [
+JavaSmaCCIfMethodTest >> testFirstIfConditionParent [
 	self assert: ifMethod statements first condition parentNode equals: ifMethod statements first
 ]
 
 { #category : #tests }
-JavaSmaCCIfMethodTestCase >> testFirstIfConditionType [
+JavaSmaCCIfMethodTest >> testFirstIfConditionType [
 	self assert: ifMethod statements first condition class equals: FASTJavaConditionStatement 
 ]
 
 { #category : #tests }
-JavaSmaCCIfMethodTestCase >> testFirstIfElseAbsence [
+JavaSmaCCIfMethodTest >> testFirstIfElseAbsence [
 	self assert: ifMethod statements first elsePart isNil 
 ]
 
 { #category : #tests }
-JavaSmaCCIfMethodTestCase >> testFirstIfThenParent [
+JavaSmaCCIfMethodTest >> testFirstIfThenParent [
 	self assert: ifMethod statements first thenPart parentNode equals: ifMethod statements first
 ]
 
 { #category : #tests }
-JavaSmaCCIfMethodTestCase >> testFirstIfThenType [
+JavaSmaCCIfMethodTest >> testFirstIfThenType [
 	self assert: ifMethod statements first thenPart class equals: FASTJavaThenPartStatement 
 ]
 
 { #category : #tests }
-JavaSmaCCIfMethodTestCase >> testFirstSecondConditionParent [
+JavaSmaCCIfMethodTest >> testFirstSecondConditionParent [
 	self assert: ifMethod statements last condition parentNode equals: ifMethod statements last 
 ]
 
 { #category : #tests }
-JavaSmaCCIfMethodTestCase >> testFirstSecondConditionType [
+JavaSmaCCIfMethodTest >> testFirstSecondConditionType [
 	self assert: ifMethod statements last condition class equals: FASTJavaConditionStatement
 ]
 
 { #category : #tests }
-JavaSmaCCIfMethodTestCase >> testSecondIfElseParent [
+JavaSmaCCIfMethodTest >> testSecondIfElseParent [
 	self assert: ifMethod statements last elsePart parentNode equals: ifMethod statements last
 ]
 
 { #category : #tests }
-JavaSmaCCIfMethodTestCase >> testSecondIfElseType [
+JavaSmaCCIfMethodTest >> testSecondIfElseType [
 	self assert: ifMethod statements last elsePart class equals: FASTJavaElsePartStatement
 ]
 
 { #category : #tests }
-JavaSmaCCIfMethodTestCase >> testSecondIfThenParent [
+JavaSmaCCIfMethodTest >> testSecondIfThenParent [
 	self assert: ifMethod statements last thenPart parentNode equals: ifMethod statements last 
 ]
 
 { #category : #tests }
-JavaSmaCCIfMethodTestCase >> testSecondIfThenType [
+JavaSmaCCIfMethodTest >> testSecondIfThenType [
 	self assert: ifMethod statements last thenPart class equals: FASTJavaThenPartStatement
 ]
 
 { #category : #tests }
-JavaSmaCCIfMethodTestCase >> testStatementsCount [
+JavaSmaCCIfMethodTest >> testStatementsCount [
 	self assert: ifMethod statements size equals: 2
 ]
 
 { #category : #tests }
-JavaSmaCCIfMethodTestCase >> testStatementsParent [
+JavaSmaCCIfMethodTest >> testStatementsParent [
 	self
 		assert: ifMethod statements first parentNode equals: ifMethod statementBlock;
 		assert: ifMethod statements last  parentNode equals: ifMethod statementBlock;
@@ -78,7 +78,7 @@ JavaSmaCCIfMethodTestCase >> testStatementsParent [
 ]
 
 { #category : #tests }
-JavaSmaCCIfMethodTestCase >> testStatementsType [
+JavaSmaCCIfMethodTest >> testStatementsType [
 	self
 		assert: ifMethod statements first class equals: FASTJavaIfStatement;
 		assert: ifMethod statements last class equals: FASTJavaIfStatement

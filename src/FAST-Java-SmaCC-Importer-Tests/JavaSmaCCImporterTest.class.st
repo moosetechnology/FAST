@@ -1,26 +1,23 @@
 Class {
-	#name : #JavaSmaCCImporterTestCase,
+	#name : #JavaSmaCCImporterTest,
 	#superclass : #TestCase,
 	#instVars : [
-		'importer',
 		'model',
 		'aLittleOfVariables',
 		'aLittleOfVariables2',
-		'allMethods',
 		'ifMethod',
 		'params',
 		'supersimple',
 		'whileWhile',
 		'aLittleOfVariables3',
 		'aLittleOfVariables4',
-		'aLittleOfVariables5',
-		'forMethod'
+		'aLittleOfVariables5'
 	],
 	#category : #'FAST-Java-SmaCC-Importer-Tests'
 }
 
 { #category : #running }
-JavaSmaCCImporterTestCase >> assembleFastMethodFromModelByName: methodName [
+JavaSmaCCImporterTest >> assembleFastMethodFromModelByName: methodName [
 	| famixMethod |
 	famixMethod := model allMethods detect: [ :method | method name = methodName ].
 	famixMethod sourceAnchor:
@@ -33,7 +30,7 @@ JavaSmaCCImporterTestCase >> assembleFastMethodFromModelByName: methodName [
 ]
 
 { #category : #resources }
-JavaSmaCCImporterTestCase >> methodALittleOfVariables [
+JavaSmaCCImporterTest >> methodALittleOfVariables [
 	
 	^ 'int aLittleOfVariables() {
 		int x = 5;	
@@ -42,7 +39,7 @@ JavaSmaCCImporterTestCase >> methodALittleOfVariables [
 ]
 
 { #category : #resources }
-JavaSmaCCImporterTestCase >> methodALittleOfVariables2 [
+JavaSmaCCImporterTest >> methodALittleOfVariables2 [
 	
 	^ 'float aLittleOfVariables2() {
 		float x = 5.5;	
@@ -51,7 +48,7 @@ JavaSmaCCImporterTestCase >> methodALittleOfVariables2 [
 ]
 
 { #category : #resources }
-JavaSmaCCImporterTestCase >> methodALittleOfVariables3 [
+JavaSmaCCImporterTest >> methodALittleOfVariables3 [
 	
 	^ 'char aLittleOfVariables3() {
 		char x = ''c'';	
@@ -60,7 +57,7 @@ JavaSmaCCImporterTestCase >> methodALittleOfVariables3 [
 ]
 
 { #category : #resources }
-JavaSmaCCImporterTestCase >> methodALittleOfVariables4 [
+JavaSmaCCImporterTest >> methodALittleOfVariables4 [
 	
 	^ 'String aLittleOfVariables4() {
 		String x = "test";	
@@ -69,7 +66,7 @@ JavaSmaCCImporterTestCase >> methodALittleOfVariables4 [
 ]
 
 { #category : #resources }
-JavaSmaCCImporterTestCase >> methodALittleOfVariables5 [
+JavaSmaCCImporterTest >> methodALittleOfVariables5 [
 	
 	^ 'String aLittleOfVariables5() {
 		String x = null;	
@@ -78,7 +75,17 @@ JavaSmaCCImporterTestCase >> methodALittleOfVariables5 [
 ]
 
 { #category : #resources }
-JavaSmaCCImporterTestCase >> methodForMethod [
+JavaSmaCCImporterTest >> methodCastAndClassProperty [
+	^ 'public void onClick(final ClickEvent event) {
+	List<UnPojoMetierRHGWT> removedRowValues = new ArrayList<UnPojoMetierRHGWT>();
+	removedRowValues.add(rowValue);
+	((IEditableListModel)SampleCustomizableTableDefinitionRH.this.pListModel).deleteObjectModel(rowValue, true);
+	SampleCustomizableTableDefinitionRH.this.editableTablelist.refreshAfterRemovingRow(removedRowValues);
+}'
+]
+
+{ #category : #resources }
+JavaSmaCCImporterTest >> methodForMethod [
 	
 	^ 'void forMethod() {
 	for (int i = 0;i< 3;++i){
@@ -88,7 +95,7 @@ JavaSmaCCImporterTestCase >> methodForMethod [
 ]
 
 { #category : #resources }
-JavaSmaCCImporterTestCase >> methodIfMethod [
+JavaSmaCCImporterTest >> methodIfMethod [
 	^ 'void ifMethod() {
 	if (true)
 		return 4 + 5;
@@ -100,14 +107,28 @@ JavaSmaCCImporterTestCase >> methodIfMethod [
 ]
 
 { #category : #resources }
-JavaSmaCCImporterTestCase >> methodMethodInvocationWithParamAndReceiver [
+JavaSmaCCImporterTest >> methodInvocationWithClassPropertyAsReceiver [
+	^ 'public void onClick(final ClickEvent event) {
+	SampleCustomizableTableDefinitionRH.this.editableTablelist.refreshAfterRemovingRow(removedRowValues);
+}'
+]
+
+{ #category : #resources }
+JavaSmaCCImporterTest >> methodInvocationWithParamAndReceiver [
 	^ 'public void onClick(ClickEvent arg0) {
 		x = hello(a,b).hello2(1,2);
 	}'
 ]
 
 { #category : #resources }
-JavaSmaCCImporterTestCase >> methodParams [
+JavaSmaCCImporterTest >> methodInvocationWithVariableAsReceiver [
+	^ 'public void onClick(final ClickEvent event) {
+	editableTablelist.refreshAfterRemovingRow(removedRowValues);
+}'
+]
+
+{ #category : #resources }
+JavaSmaCCImporterTest >> methodParams [
 	
 	^ 'void params(int a, float b, double c) {
 		x = a + b + c;
@@ -115,7 +136,7 @@ JavaSmaCCImporterTestCase >> methodParams [
 ]
 
 { #category : #resources }
-JavaSmaCCImporterTestCase >> methodSupersimple [
+JavaSmaCCImporterTest >> methodSupersimple [
 	^ 
 'boolean supersimple() {
   return true;
@@ -124,7 +145,7 @@ JavaSmaCCImporterTestCase >> methodSupersimple [
 ]
 
 { #category : #resources }
-JavaSmaCCImporterTestCase >> methodWhileWhile [
+JavaSmaCCImporterTest >> methodWhileWhile [
 	
 	^ 
 'void whileWhile() {
@@ -144,28 +165,26 @@ JavaSmaCCImporterTestCase >> methodWhileWhile [
 ]
 
 { #category : #running }
-JavaSmaCCImporterTestCase >> parseMethod: methodName [
+JavaSmaCCImporterTest >> parseMethod: methodName [
 	^ JavaSmaCCProgramNodeImporterVisitor new parseCodeMethodString: (self perform: (#method, methodName capitalized) asSymbol ) 
 ]
 
 { #category : #running }
-JavaSmaCCImporterTestCase >> setUp [
+JavaSmaCCImporterTest >> setUp [
 	
-	model := FASTMooseModel new.	
-	model importFromMSEStream: self wholeMSE readStream.
 	
 	self setUpMethods.
 
 ]
 
 { #category : #running }
-JavaSmaCCImporterTestCase >> setUpMethods [
+JavaSmaCCImporterTest >> setUpMethods [
 	"Let to subclasses for optimizing the time of exectution of the tests"
 	self subclassResponsibility 
 ]
 
 { #category : #resources }
-JavaSmaCCImporterTestCase >> wholeMSE [	
+JavaSmaCCImporterTest >> wholeMSE [	
 	^ '(
 	(FAMIX.Method (id: 4)
 		(name ''ifMethod'')

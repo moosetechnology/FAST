@@ -1,27 +1,27 @@
 Class {
-	#name : #JavaSmaCCALittleOfVariables2MethodTestCase,
-	#superclass : #JavaSmaCCImporterTestCase,
+	#name : #JavaSmaCCALittleOfVariables2MethodTest,
+	#superclass : #JavaSmaCCImporterTest,
 	#category : #'FAST-Java-SmaCC-Importer-Tests'
 }
 
 { #category : #running }
-JavaSmaCCALittleOfVariables2MethodTestCase >> setUpMethods [
+JavaSmaCCALittleOfVariables2MethodTest >> setUpMethods [
 	aLittleOfVariables2 := (self parseMethod: 'aLittleOfVariables2') allFASTJavaMethodEntity first
 ]
 
 { #category : #tests }
-JavaSmaCCALittleOfVariables2MethodTestCase >> testVariableDeclaratorExpressionParent2 [
+JavaSmaCCALittleOfVariables2MethodTest >> testVariableDeclaratorExpressionParent2 [
 	self
 		assert: aLittleOfVariables2 statements first declarators first expression parentNode
 		equals: aLittleOfVariables2 statements first declarators first
 ]
 
 { #category : #tests }
-JavaSmaCCALittleOfVariables2MethodTestCase >> testVariableDeclaratorExpressionType2 [
+JavaSmaCCALittleOfVariables2MethodTest >> testVariableDeclaratorExpressionType2 [
 	self assert: aLittleOfVariables2 statements first declarators first expression class equals: FASTJavaFloatLiteral
 ]
 
 { #category : #tests }
-JavaSmaCCALittleOfVariables2MethodTestCase >> testVariableDeclaratorExpressionValue2 [
+JavaSmaCCALittleOfVariables2MethodTest >> testVariableDeclaratorExpressionValue2 [
 	self assert: aLittleOfVariables2 statements first declarators first expression value equals: '5.5'
 ]

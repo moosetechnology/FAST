@@ -1,16 +1,16 @@
 Class {
-	#name : #JavaSmaCCParamsMethodTestCase,
-	#superclass : #JavaSmaCCImporterTestCase,
+	#name : #JavaSmaCCParamsMethodTest,
+	#superclass : #JavaSmaCCImporterTest,
 	#category : #'FAST-Java-SmaCC-Importer-Tests'
 }
 
 { #category : #running }
-JavaSmaCCParamsMethodTestCase >> setUpMethods [
+JavaSmaCCParamsMethodTest >> setUpMethods [
 	params := (self parseMethod: 'params') allFASTJavaMethodEntity first
 ]
 
 { #category : #tests }
-JavaSmaCCParamsMethodTestCase >> testBlockScope [
+JavaSmaCCParamsMethodTest >> testBlockScope [
 	| symbols |
 	self flag: 'Should we keep the fastScope ? '.
 	"symbols := OrderedCollection new.
@@ -19,49 +19,49 @@ JavaSmaCCParamsMethodTestCase >> testBlockScope [
 ]
 
 { #category : #tests }
-JavaSmaCCParamsMethodTestCase >> testExpressionParent [
+JavaSmaCCParamsMethodTest >> testExpressionParent [
 	self assert: params statements first expression parentNode equals: params statements first  
 ]
 
 { #category : #tests }
-JavaSmaCCParamsMethodTestCase >> testExpressionRHSContentType [
+JavaSmaCCParamsMethodTest >> testExpressionRHSContentType [
 	self assert: params statements first expression expression class equals: FASTJavaInfixOperation
 ]
 
 { #category : #tests }
-JavaSmaCCParamsMethodTestCase >> testExpressionRHSParent [
+JavaSmaCCParamsMethodTest >> testExpressionRHSParent [
 	self
 		assert: params statements first expression expression rightOperand parentNode
 		equals: params statements first expression expression
 ]
 
 { #category : #tests }
-JavaSmaCCParamsMethodTestCase >> testExpressionRHSType [
+JavaSmaCCParamsMethodTest >> testExpressionRHSType [
 	self assert: params statements first expression expression rightOperand class equals: FASTJavaOperationRightOperand
 ]
 
 { #category : #tests }
-JavaSmaCCParamsMethodTestCase >> testExpressionType [
+JavaSmaCCParamsMethodTest >> testExpressionType [
 	self assert: params statements first expression class equals: FASTJavaAssignementExpression
 ]
 
 { #category : #tests }
-JavaSmaCCParamsMethodTestCase >> testFirstParameterName [
+JavaSmaCCParamsMethodTest >> testFirstParameterName [
 	self assert: params parameters first name equals: 'a'.
 ]
 
 { #category : #tests }
-JavaSmaCCParamsMethodTestCase >> testParametersCount [
+JavaSmaCCParamsMethodTest >> testParametersCount [
 	self assert: params parameters size equals: 3
 ]
 
 { #category : #tests }
-JavaSmaCCParamsMethodTestCase >> testParametersParent [
+JavaSmaCCParamsMethodTest >> testParametersParent [
 	params parameters do: [ :each | self assert: each parentNode equals: params ]
 ]
 
 { #category : #tests }
-JavaSmaCCParamsMethodTestCase >> testScope [
+JavaSmaCCParamsMethodTest >> testScope [
 	| symbols |
 	self flag: 'Should we keep the fastScope ? '.
 	"symbols := OrderedCollection new.
@@ -74,26 +74,26 @@ JavaSmaCCParamsMethodTestCase >> testScope [
 ]
 
 { #category : #tests }
-JavaSmaCCParamsMethodTestCase >> testSecondParameterName [
+JavaSmaCCParamsMethodTest >> testSecondParameterName [
 	self assert: params parameters second name equals: 'b'.
 ]
 
 { #category : #tests }
-JavaSmaCCParamsMethodTestCase >> testStatementsCount [
+JavaSmaCCParamsMethodTest >> testStatementsCount [
 	self assert: params statements size equals: 1
 ]
 
 { #category : #tests }
-JavaSmaCCParamsMethodTestCase >> testStatementsParent [
+JavaSmaCCParamsMethodTest >> testStatementsParent [
 	self assert: params statements last parentNode equals: params statementBlock 
 ]
 
 { #category : #tests }
-JavaSmaCCParamsMethodTestCase >> testStatementsType [
+JavaSmaCCParamsMethodTest >> testStatementsType [
 	self assert: params statements last class equals: FASTExpressionStatement 
 ]
 
 { #category : #tests }
-JavaSmaCCParamsMethodTestCase >> testThirdParameterName [
+JavaSmaCCParamsMethodTest >> testThirdParameterName [
 	self assert: params parameters third name equals: 'c'.
 ]

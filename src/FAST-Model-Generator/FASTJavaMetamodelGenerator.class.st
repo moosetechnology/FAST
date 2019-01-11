@@ -32,7 +32,9 @@ Class {
 		'javaBodyStatement',
 		'javaInitializersStatement',
 		'javaOperationLeftOperand',
-		'javaOperationRightOperand'
+		'javaOperationRightOperand',
+		'javaCastExpression',
+		'javaClassProperty'
 	],
 	#category : #'FAST-Model-Generator'
 }
@@ -57,6 +59,41 @@ FASTJavaMetamodelGenerator >> commentForJavaCaseStatement [
 { #category : #definition }
 FASTJavaMetamodelGenerator >> commentForJavaCharacterLiteral [
 	^ 'A character in Java code'
+]
+
+{ #category : #definition }
+FASTJavaMetamodelGenerator >> commentForJavaClassProperty [
+	^ 'A FASTJavaClassProperty corresponds to the access to a class property
+	
+	It is not the same as the field access because there are some specific usage of class property to access the current object.
+	
+ex.
+
+class Enclosing {
+    void method(Enclosing other) {
+        // ...
+    }
+
+    void otherMethod() {
+        new Runnable() {
+            public void run() {
+                method(this);
+
+
+								--> Does not compile. ''this'' is a Runnable!
+
+
+
+                method(Enclosing.this);
+
+								--> Compiles fine.
+
+
+            }
+        }.run();
+    }
+}
+'
 ]
 
 { #category : #definition }
@@ -219,7 +256,7 @@ FASTJavaMetamodelGenerator >> defineNewClasses [
 	javaInfixOperation := builder newClassNamed: #JavaInfixOperation comment: self commentForJavaInfixOperation.
 	javaIntegerLiteral := builder newClassNamed: #JavaIntegerLiteral comment: self commentForJavaIntegerLiteral.
 	javaMethodEntity := builder newClassNamed: #JavaMethodEntity comment: self commentForJavaMethodEntity.
-	javaMethodInvocation := builder newClassNamed: #JavaMethodInvocation  comment: self commentForJavaMethodInvocation.
+	javaMethodInvocation := builder newClassNamed: #JavaMethodInvocation comment: self commentForJavaMethodInvocation.
 	javaNullLiteral := builder newClassNamed: #JavaNullLiteral comment: self commentForJavaNullLiteral.
 	javaSeparator := builder newClassNamed: #JavaSeparator comment: self commentForJavaSeparator.
 	javaStringLiteral := builder newClassNamed: #JavaStringLiteral comment: self commentForJavaStringLiteral.
@@ -229,33 +266,42 @@ FASTJavaMetamodelGenerator >> defineNewClasses [
 	javaVariableDeclarator := builder newClassNamed: #JavaVariableDeclarator comment: self commentForJavaVariableDeclarator.
 	javaWhileStatement := builder newClassNamed: #JavaWhileStatement comment: self commentForJavaWhileStatement.
 	
+	"new concept"
+	javaCastExpression := builder newClassNamed: #JavaCastExpression comment: 'todo'.
+	javaClassProperty := builder newClassNamed: #JavaClassProperty comment: self commentForJavaClassProperty.	
+
 	"factice"
-	javaElsePartStatement :=  builder newClassNamed: #JavaElsePartStatement. 
+	javaElsePartStatement := builder newClassNamed: #JavaElsePartStatement.
 	javaThenPartStatement := builder newClassNamed: #JavaThenPartStatement.
 	javaConditionStatement := builder newClassNamed: #JavaConditionStatement.
 	javaOperationLeftOperand := builder newClassNamed: #JavaOperationLeftOperand.
 	javaOperationRightOperand := builder newClassNamed: #JavaOperationRightOperand.
-	javaIncrementorsStatement := builder newClassNamed: #JavaIncrementorsStatement comment: 'ExpressionStatements evaluated at the end of each loop'.
+	javaIncrementorsStatement := builder
+		newClassNamed: #JavaIncrementorsStatement
+		comment: 'ExpressionStatements evaluated at the end of each loop'.
 	javaBodyStatement := builder newClassNamed: #JavaBodyStatement comment: 'A statement to be evaluated in the loop'.
-	javaInitializersStatement := builder newClassNamed: #JavaInitializersStatement comment: 'ExpressionStatements used at initialization phase of a for loop'.
+	javaInitializersStatement := builder
+		newClassNamed: #JavaInitializersStatement
+		comment: 'ExpressionStatements used at initialization phase of a for loop'
 ]
 
 { #category : #definition }
 FASTJavaMetamodelGenerator >> defineNewClassesHierarchy [
 	"define class hierarchy"
+
 	super defineNewClassesHierarchy.
 	javaAssignementExpression --|> expression.
+	javaFieldAccess --|> expression.
+	javaInfixOperation --|> expression.
 	javaBreakStatement --|> statement.
 	javaCaseStatement --|> statement.
 	javaCharacterLiteral --|> characterLiteral.
 	javaContinueStatement --|> statement.
-	javaDoStatement --|> statement.
-	javaFieldAccess --|> expression.
+	javaDoStatement --|> statement.	
 	javaFloatLiteral --|> literal.
 	javaForStatement --|> statement.
 	javaIdentifier --|> variableExpression.
 	javaIfStatement --|> statement.
-	javaInfixOperation --|> expression.
 	javaIntegerLiteral --|> literal.
 	javaMethodEntity --|> namedBehaviouralEntity.
 	javaMethodInvocation --|> expression.
@@ -267,9 +313,12 @@ FASTJavaMetamodelGenerator >> defineNewClassesHierarchy [
 	javaVarDeclStatement --|> statement.
 	javaVariableDeclarator --|> entity.
 	javaWhileStatement --|> statement.
-	
 	javaMethodInvocation --|> #TNamed.
 	
+	"New"
+	javaCastExpression --|> expression.
+	javaClassProperty --|> expression.
+
 	"Factice"
 	javaElsePartStatement --|> statement.
 	javaThenPartStatement --|> statement.
@@ -277,9 +326,8 @@ FASTJavaMetamodelGenerator >> defineNewClassesHierarchy [
 	javaIncrementorsStatement --|> statement.
 	javaBodyStatement --|> statement.
 	javaInitializersStatement --|> statement.
-	
 	javaOperationLeftOperand --|> expression.
-	javaOperationRightOperand --|> expression.
+	javaOperationRightOperand --|> expression
 ]
 
 { #category : #definition }
@@ -288,16 +336,20 @@ FASTJavaMetamodelGenerator >> defineProperties [
 	(javaFieldAccess property: #fieldName type: #String) comment: 'Name of accessed field'.
 	(javaInfixOperation property: #operator type: #String) comment: 'operator s symbol'.
 	(javaSeparator property: #separator type: #String) comment: 'separator'.
-	(javaVarDeclStatement property: #type type: #FAMIXType)
-		comment: 'type of declared variables'.
+	(javaVarDeclStatement property: #type type: #FAMIXType) comment: 'type of declared variables'.
 	(javaVariableDeclarator property: #expression type: #FASTExpression)
 		comment: 'Expression that s being assigned upon declaration to the var'.
-	(javaVariableDeclarator property: #variable type: #FASTNamedEntity)
-		comment: 'Variable that s being declared'.
+	(javaVariableDeclarator property: #variable type: #FASTNamedEntity) comment: 'Variable that s being declared'.
 	(javaAssignementExpression property: #expression type: #FASTExpression)
 		comment: 'Expression that s being assigned upon declaration to the var'.
-	(javaAssignementExpression property: #variable type: #FASTNamedEntity)
-		comment: 'Variable that s being assigned'
+	(javaAssignementExpression property: #variable type: #FASTNamedEntity) comment: 'Variable that s being assigned'.
+	
+	"new"
+	(javaCastExpression property: #type type: #FASTNamedEntity) comment: 'The type in witch the expression will be cast'.
+	(javaCastExpression property: #expression type: #FASTExpression) comment: 'The expression to cast'.
+	(javaClassProperty property: #type type: #FASTNamedEntity) comment: 'The owner type'.
+	(javaClassProperty property: #fieldName type: #String) comment: 'Name of accessed field'.
+	(javaMethodInvocation property: #receiver type: #FASTExpression) comment: 'The expression whitch will execute this invocation'
 ]
 
 { #category : #definition }
