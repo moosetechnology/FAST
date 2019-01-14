@@ -1,7 +1,7 @@
 Class {
 	#name : #BaselineOfFAST,
 	#superclass : #BaselineOf,
-	#category : 'BaselineOfFAST'
+	#category : #BaselineOfFAST
 }
 
 { #category : #baselines }
@@ -31,6 +31,8 @@ BaselineOfFAST >> defineGroups: spec [
 			with: #('FAST-Core-Model-Extension' 'FAST-Core-Model' 'FAST-Model-Generator');
 		group: 'smacc'
 			with: #('core' 'FAST-Java-SmaCC-Importer' 'FAST-Java-SmaCC-Importer-Tests');
+		group: 'visitor'
+			with: #('core' 'FAST-Java-Visitor');
 		group: 'default' with: #('core')
 ]
 
@@ -42,5 +44,6 @@ BaselineOfFAST >> definePackages: spec [
 		package: 'FAST-Core-Model-Extension' with: [ spec requires: #('FAST-Core-Model') ];
 		package: 'FAST-Model-Generator';
 		package: 'FAST-Java-SmaCC-Importer' with: [ spec requires: #('SmaCC') ];
-		package: 'FAST-Java-SmaCC-Importer-Tests' with: [ spec requires: #('FAST-Java-SmaCC-Importer') ]
+		package: 'FAST-Java-SmaCC-Importer-Tests' with: [ spec requires: #('FAST-Java-SmaCC-Importer') ];
+		package: 'FAST-Java-Visitor' with: [ spec requires: #('FAST-Core-Model') ]
 ]
