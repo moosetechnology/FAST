@@ -7,10 +7,22 @@ FASTJavaMethodInvocation >> addArgument: anArgument [
 
 { #category : #'*FAST-Core-Model-Extension' }
 FASTJavaMethodInvocation >> arguments [
-	<computed>
-	<navigation: 'arguments'>
-	^ self childrenNode
-		select: [ :childNode | 
+	<
+	computed>
+	<
+	navigation:
+		'arguments'>
+	^ self
+		childrenNode
+		select:
+			[ :childNode | 
 			{FASTVariableExpression.
-			FASTNamedEntity. FASTLiteral} anySatisfy: [ :possibleClass | childNode isKindOf: possibleClass ] ]
+			FASTNamedEntity.
+			FASTLiteral.
+			FASTJavaMethodInvocation }
+				anySatisfy:
+					[ :possibleClass | 
+					childNode
+						isKindOf:
+							possibleClass ] ]
 ]

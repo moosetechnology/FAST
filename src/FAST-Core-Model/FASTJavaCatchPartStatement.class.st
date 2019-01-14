@@ -4,6 +4,9 @@ I represent the 'catch' part of the TryCatch Statement
 Class {
 	#name : #FASTJavaCatchPartStatement,
 	#superclass : #FASTStatement,
+	#instVars : [
+		'body'
+	],
 	#category : #'FAST-Core-Model-Entities'
 }
 
@@ -20,7 +23,7 @@ FASTJavaCatchPartStatement class >> annotation [
 FASTJavaCatchPartStatement class >> generatedSlotNames [
 	<generated>
 	'FASTJavaCatchPartStatement class>>#generatedSlotNames'.
-	^ #()
+	^ #(body)
 ]
 
 { #category : #generator }
@@ -34,4 +37,21 @@ FASTJavaCatchPartStatement class >> requirements [
 
 	<generated>
 	^ {  }
+]
+
+{ #category : #accessing }
+FASTJavaCatchPartStatement >> body [
+
+	<MSEProperty: #body type: #FASTStatement>
+	<generated>
+	<MSEComment: 'The body of the Catch part statement'>
+	^ body
+]
+
+{ #category : #accessing }
+FASTJavaCatchPartStatement >> body: anObject [
+
+	<generated>
+	body := anObject
+
 ]

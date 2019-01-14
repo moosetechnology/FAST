@@ -11,3 +11,37 @@ Class {
 JavaSmaCCTryCatch >> setUpMethods [
 	tryCatchMethod := (self parseMethod: 'tryCatch') allFASTJavaMethodEntity first
 ]
+
+{ #category : #running }
+JavaSmaCCTryCatch >> testTryCatchCatchBodyType [
+	self assert: tryCatchMethod statements second catches first body class equals: FASTStatementBlock
+]
+
+{ #category : #running }
+JavaSmaCCTryCatch >> testTryCatchCatchNumber [
+	self assert: tryCatchMethod statements second catches size equals: 1
+]
+
+{ #category : #running }
+JavaSmaCCTryCatch >> testTryCatchCatchParametersName [
+	self
+		assert: tryCatchMethod statements second catches first parameters first name
+		equals: 'e'
+]
+
+{ #category : #running }
+JavaSmaCCTryCatch >> testTryCatchCatchParametersType [
+	self
+		assert: tryCatchMethod statements second catches first parameters first class
+		equals: FASTNamedEntity
+]
+
+{ #category : #running }
+JavaSmaCCTryCatch >> testTryCatchTryPartType [
+	self assert: tryCatchMethod statements second try class equals: FASTJavaTryPartStatement
+]
+
+{ #category : #running }
+JavaSmaCCTryCatch >> testTryCatchType [
+	self assert: tryCatchMethod statements second class equals: FASTJavaTryCatchStatement
+]

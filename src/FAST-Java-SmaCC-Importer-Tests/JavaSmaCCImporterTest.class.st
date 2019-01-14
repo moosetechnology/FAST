@@ -85,11 +85,19 @@ JavaSmaCCImporterTest >> methodCastAndClassProperty [
 ]
 
 { #category : #resources }
-JavaSmaCCImporterTest >> methodForMethod [
-	
+JavaSmaCCImporterTest >> methodFor [
 	^ 'void forMethod() {
 	for (int i = 0;i< 3;++i){
 		i++;
+	}
+}'
+]
+
+{ #category : #resources }
+JavaSmaCCImporterTest >> methodForEach [
+	^ 'void forEachMethod() {
+	for(HandlerRegistration hr: SamplePageInputsAndLabels.this.hrList) {
+		hr.removeHandler();
 	}
 }'
 ]
@@ -136,6 +144,20 @@ JavaSmaCCImporterTest >> methodParams [
 ]
 
 { #category : #resources }
+JavaSmaCCImporterTest >> methodSimpleVariableDeclaration [
+	^ 'void forMethod() {
+	int x;
+}'
+]
+
+{ #category : #resources }
+JavaSmaCCImporterTest >> methodSimpleVariablesDeclaration [
+	^ 'void forMethod() {
+	int x, y;
+}'
+]
+
+{ #category : #resources }
 JavaSmaCCImporterTest >> methodSupersimple [
 	^ 
 'boolean supersimple() {
@@ -151,7 +173,24 @@ JavaSmaCCImporterTest >> methodTryCatch [
 	try {
 		x = 1;
    } catch (Exception e) {
-   Patate.displayError(e.getMessage());
+		Patate.displayError(e.getMessage());
+	};
+}
+'
+]
+
+{ #category : #resources }
+JavaSmaCCImporterTest >> methodTryCatches [
+	^ 'void tryCatch() {
+	int x;
+	try {
+		x = 1;
+   }
+	catch (PatateException e) {
+		Patate.displayError(e.getMessage());
+	} 
+	catch (Exception e) {
+		Patate.displayError(e.getMessage());
 	};
 }
 '

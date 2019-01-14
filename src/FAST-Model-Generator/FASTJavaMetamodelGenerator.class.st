@@ -1,3 +1,13 @@
+"
+I contains the generator to create the Java FAST Metamodel
+
+
+Use this to re generate the metamodel.
+
+
+FASTJavaMetamodelGenerator new generate.
+FASTJavaMetamodelGenerator resetMetamodel.
+"
 Class {
 	#name : #FASTJavaMetamodelGenerator,
 	#superclass : #FASTMetamodelGenerator,
@@ -37,7 +47,8 @@ Class {
 		'javaClassProperty',
 		'javaTryCatch',
 		'javaTryPartStatement',
-		'javaCatchPartStatement'
+		'javaCatchPartStatement',
+		'javaForEachStatement'
 	],
 	#category : #'FAST-Model-Generator'
 }
@@ -123,6 +134,16 @@ FASTJavaMetamodelGenerator >> commentForJavaFieldAccess [
 FASTJavaMetamodelGenerator >> commentForJavaFloatLiteral [
 	self flag: #todo.
 	^ 'todo'
+]
+
+{ #category : #definition }
+FASTJavaMetamodelGenerator >> commentForJavaForEachStatement [
+	^ 'A node of a for loop statement.
+
+eg.
+for(Patate p : list) {
+...
+}'
 ]
 
 { #category : #definition }
@@ -263,9 +284,7 @@ while(...) {
 { #category : #definition }
 FASTJavaMetamodelGenerator >> defineNewClasses [
 	super defineNewClasses.
-	javaAssignementExpression := builder
-		newClassNamed: #JavaAssignementExpression
-		comment: self commentForJavaAssignementExpression.
+	javaAssignementExpression := builder newClassNamed: #JavaAssignementExpression comment: self commentForJavaAssignementExpression.
 	javaBreakStatement := builder newClassNamed: #JavaBreakStatement comment: self commentForJavaBreakStatement.
 	javaCaseStatement := builder newClassNamed: #JavaCaseStatement comment: self commentForJavaCaseStatement.
 	javaCharacterLiteral := builder newClassNamed: #JavaCharacterLiteral comment: self commentForJavaCharacterLiteral.
@@ -293,7 +312,7 @@ FASTJavaMetamodelGenerator >> defineNewClasses [
 	javaCastExpression := builder newClassNamed: #JavaCastExpression comment: 'todo'.
 	javaClassProperty := builder newClassNamed: #JavaClassProperty comment: self commentForJavaClassProperty.
 	javaTryCatch := builder newClassNamed: #JavaTryCatchStatement comment: self commentForJavaTryCatch.
-
+	javaForEachStatement := builder newClassNamed: #JavaForEachStatement comment: self commentForJavaForEachStatement.
 
 	"factice"
 	javaElsePartStatement := builder newClassNamed: #JavaElsePartStatement.
@@ -310,12 +329,8 @@ FASTJavaMetamodelGenerator >> defineNewClasses [
 		comment: 'ExpressionStatements used at initialization phase of a for loop'.
 
 	"new factice"
-	javaTryPartStatement := builder
-		newClassNamed: #JavaTryPartStatement
-		comment: 'I represent the ''try'' part of the TryCatch Statement'.
-	javaCatchPartStatement := builder
-		newClassNamed: #JavaCatchPartStatement
-		comment: 'I represent the ''catch'' part of the TryCatch Statement'
+	javaTryPartStatement := builder newClassNamed: #JavaTryPartStatement comment: 'I represent the ''try'' part of the TryCatch Statement'.
+	javaCatchPartStatement := builder newClassNamed: #JavaCatchPartStatement comment: 'I represent the ''catch'' part of the TryCatch Statement'
 ]
 
 { #category : #definition }
@@ -352,6 +367,7 @@ FASTJavaMetamodelGenerator >> defineNewClassesHierarchy [
 	javaCastExpression --|> expression.
 	javaClassProperty --|> expression.
 	javaTryCatch --|> statement.
+	javaForEachStatement --|> statement.
 
 	"Factice"
 	javaElsePartStatement --|> statement.
@@ -375,19 +391,25 @@ FASTJavaMetamodelGenerator >> defineProperties [
 	(javaInfixOperation property: #operator type: #String) comment: 'operator s symbol'.
 	(javaSeparator property: #separator type: #String) comment: 'separator'.
 	(javaVarDeclStatement property: #type type: #FAMIXType) comment: 'type of declared variables'.
-	(javaVariableDeclarator property: #expression type: #FASTExpression)
-		comment: 'Expression that s being assigned upon declaration to the var'.
+	(javaVariableDeclarator property: #expression type: #FASTExpression) comment: 'Expression that s being assigned upon declaration to the var'.
 	(javaVariableDeclarator property: #variable type: #FASTNamedEntity) comment: 'Variable that s being declared'.
-	(javaAssignementExpression property: #expression type: #FASTExpression)
-		comment: 'Expression that s being assigned upon declaration to the var'.
+	(javaAssignementExpression property: #expression type: #FASTExpression) comment: 'Expression that s being assigned upon declaration to the var'.
 	(javaAssignementExpression property: #variable type: #FASTNamedEntity) comment: 'Variable that s being assigned'.
-	
+
 	"new"
 	(javaCastExpression property: #type type: #FASTNamedEntity) comment: 'The type in witch the expression will be cast'.
 	(javaCastExpression property: #expression type: #FASTExpression) comment: 'The expression to cast'.
 	(javaClassProperty property: #type type: #FASTNamedEntity) comment: 'The owner type'.
 	(javaClassProperty property: #fieldName type: #String) comment: 'Name of accessed field'.
-	(javaMethodInvocation property: #receiver type: #FASTExpression) comment: 'The expression whitch will execute this invocation'
+	(javaMethodInvocation property: #receiver type: #FASTExpression) comment: 'The expression whitch will execute this invocation'.
+	"Try to remove the maximum of factice entity. So we create a Property for the relation '-'/one-to-one"
+	(javaForEachStatement property: #body type: #FASTStatement) comment: 'The body of the For Each statement'.
+	(javaForEachStatement property: #list type: #FASTExpression) comment: 'The list the for each statement iterate on'.
+	(javaForEachStatement property: #fieldname type: #FASTExpression) comment: 'The name of the created local variable'.
+	(javaForEachStatement property: #type type: #FASTStatement) comment: 'The name of the type of the created local variable'.
+	"try catch"
+(javaCatchPartStatement property: #body type: #FASTStatement) comment: 'The body of the Catch part statement'.		
+
 ]
 
 { #category : #definition }
