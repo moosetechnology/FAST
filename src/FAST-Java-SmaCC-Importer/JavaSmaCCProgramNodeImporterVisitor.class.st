@@ -72,9 +72,16 @@ JavaSmaCCProgramNodeImporterVisitor >> parentFASTVisitor: anObject [
 { #category : #initialization }
 JavaSmaCCProgramNodeImporterVisitor >> parseCodeMethodString: aCodeString [
 	| ast |
-	ast := JavaParser parse: 'class Foo { ' , aCodeString , '}'.
-	self visitSmaCCParseNode: ast.
-	^ self model
+	ast := JavaParser
+		parse:
+			aCodeString
+		startingAt:
+			JavaParser
+				startingStateFormethod_declaration.
+	self
+		accept: ast.
+	^ self
+		model
 ]
 
 { #category : #initialization }
@@ -115,7 +122,6 @@ JavaSmaCCProgramNodeImporterVisitor >> visitBinaryExpression: aBinaryExpression 
 JavaSmaCCProgramNodeImporterVisitor >> visitBlock: aBlock [
 	currentFASTEntity := self addToModel: FASTStatementBlock new.
 	currentFASTEntity parentNode: self parentFASTEntity.
-
 	aBlock statements do: [ :each | currentFASTEntity addStatement: (self clone accept: each) ].
 
 	^ currentFASTEntity
@@ -148,6 +154,14 @@ JavaSmaCCProgramNodeImporterVisitor >> visitCatchClause: aCatchClause [
 	self clone accept: aCatchClause parameter.
 	currentFASTEntity body: (self clone accept: aCatchClause block).
 	^ currentFASTEntity
+]
+
+{ #category : #initialization }
+JavaSmaCCProgramNodeImporterVisitor >> visitCatchParameter: aCatchParameter [
+	| param |
+	param := self visitName: aCatchParameter variable.
+	self parentFASTEntity addParameter: param.
+	^ param
 ]
 
 { #category : #initialization }
