@@ -21,7 +21,7 @@ BaselineOfFAST >> baseline: spec [
 
 { #category : #baselines }
 BaselineOfFAST >> defineDependencies: spec [
-	spec baseline: 'SmaCC' with: [ spec repository: 'github://SmaCCRefactoring/SmaCC' ] 
+	spec baseline: 'SmaCC' with: [ spec repository: 'github://j-brant/SmaCC' ] 
 ]
 
 { #category : #baselines }
