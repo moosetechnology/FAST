@@ -27,7 +27,16 @@ JavaSmaCCUnarySubstractionExpression >> testUnaryExpressionIsPrefixed [
 
 { #category : #running }
 JavaSmaCCUnarySubstractionExpression >> testUnaryExpressionOperator [
-	self deny: unarySubstractionMethod statements first childrenNode first expression operator equals: '+'
+	self
+		assert: unarySubstractionMethod statements first childrenNode first expression operator
+		equals: '-'
+]
+
+{ #category : #running }
+JavaSmaCCUnarySubstractionExpression >> testUnaryExpressionOperatorType [
+	self
+		assert: unarySubstractionMethod statements first childrenNode first expression operator class
+		equals: ByteString
 ]
 
 { #category : #running }

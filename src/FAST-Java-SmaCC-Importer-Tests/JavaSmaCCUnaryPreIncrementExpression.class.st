@@ -26,7 +26,9 @@ JavaSmaCCUnaryPreIncrementExpression >> testUnaryExpressionIsPrefixed [
 
 { #category : #running }
 JavaSmaCCUnaryPreIncrementExpression >> testUnaryExpressionOperator [
-	self deny: unaryPreIncrementMethod statements first childrenNode first operator equals: '++'
+	self
+		assert: unaryPreIncrementMethod statements first childrenNode first operator
+		equals: '++'
 ]
 
 { #category : #running }

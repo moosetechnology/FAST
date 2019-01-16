@@ -26,7 +26,16 @@ JavaSmaCCUnaryPreDecrementExpression >> testUnaryExpressionIsPrefixed [
 
 { #category : #running }
 JavaSmaCCUnaryPreDecrementExpression >> testUnaryExpressionOperator [
-	self deny: unaryPreDecrementMethod statements first childrenNode first operator equals: '--'
+	self
+		assert: unaryPreDecrementMethod statements first childrenNode first operator
+		equals: '--'
+]
+
+{ #category : #running }
+JavaSmaCCUnaryPreDecrementExpression >> testUnaryExpressionOperatorType [
+	self
+		assert: unaryPreDecrementMethod statements first childrenNode first operator class
+		equals: ByteString
 ]
 
 { #category : #running }

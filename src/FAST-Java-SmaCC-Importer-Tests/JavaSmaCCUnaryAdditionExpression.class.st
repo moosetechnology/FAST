@@ -27,7 +27,16 @@ JavaSmaCCUnaryAdditionExpression >> testUnaryExpressionIsPrefixed [
 
 { #category : #running }
 JavaSmaCCUnaryAdditionExpression >> testUnaryExpressionOperator [
-	self deny: unaryAdditionMethod statements first childrenNode first expression operator equals: '+'
+	self
+		assert: unaryAdditionMethod statements first childrenNode first expression operator
+		equals: '+'
+]
+
+{ #category : #running }
+JavaSmaCCUnaryAdditionExpression >> testUnaryExpressionOperatorType [
+	self
+		assert: unaryAdditionMethod statements first childrenNode first expression operator class
+		equals: ByteString
 ]
 
 { #category : #running }

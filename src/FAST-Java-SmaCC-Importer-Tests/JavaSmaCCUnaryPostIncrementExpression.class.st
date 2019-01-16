@@ -26,7 +26,16 @@ JavaSmaCCUnaryPostIncrementExpression >> testUnaryExpressionIsPrefixed [
 
 { #category : #running }
 JavaSmaCCUnaryPostIncrementExpression >> testUnaryExpressionOperator [
-	self deny: unaryPostIncrementMethod statements first childrenNode first operator equals: '++'
+	self
+		assert: unaryPostIncrementMethod statements first childrenNode first operator
+		equals: '++'
+]
+
+{ #category : #running }
+JavaSmaCCUnaryPostIncrementExpression >> testUnaryExpressionOperatorType [
+	self
+		assert: unaryPostIncrementMethod statements first childrenNode first operator class
+		equals: ByteString
 ]
 
 { #category : #running }

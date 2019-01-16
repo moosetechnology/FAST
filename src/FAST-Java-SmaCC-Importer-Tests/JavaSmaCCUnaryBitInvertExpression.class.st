@@ -27,7 +27,16 @@ JavaSmaCCUnaryBitInvertExpression >> testUnaryExpressionIsPrefixed [
 
 { #category : #running }
 JavaSmaCCUnaryBitInvertExpression >> testUnaryExpressionOperator [
-	self deny: unaryBitInvertMethod statements first childrenNode first expression operator equals: '~'
+	self
+		assert: unaryBitInvertMethod statements first childrenNode first expression operator
+		equals: '~'
+]
+
+{ #category : #running }
+JavaSmaCCUnaryBitInvertExpression >> testUnaryExpressionOperatorType [
+	self
+		assert: unaryBitInvertMethod statements first childrenNode first expression operator class
+		equals: ByteString
 ]
 
 { #category : #running }

@@ -26,7 +26,16 @@ JavaSmaCCUnaryNotExpression >> testUnaryExpressionIsPrefixed [
 
 { #category : #running }
 JavaSmaCCUnaryNotExpression >> testUnaryExpressionOperator [
-	self deny: unaryNotMethod statements first childrenNode first expression operator equals: '!'
+	self
+		assert: unaryNotMethod statements first childrenNode first expression operator
+		equals: '!'
+]
+
+{ #category : #running }
+JavaSmaCCUnaryNotExpression >> testUnaryExpressionOperatorType [
+	self
+		assert: unaryNotMethod statements first childrenNode first expression operator class
+		equals: ByteString
 ]
 
 { #category : #running }
