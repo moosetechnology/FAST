@@ -489,7 +489,7 @@ JavaSmaCCProgramNodeImporterVisitor >> visitStringLiteral: aStringLiteral [
 	currentFASTEntity := self
 		addToModel:
 			(FASTJavaStringLiteral new
-				value: aStringLiteral token value;
+				value: (((aStringLiteral token value) removePrefix: '"') removeSuffix: '"') ;
 				yourself).
 	currentFASTEntity parentNode: self parentFASTEntity.
 	^ currentFASTEntity
