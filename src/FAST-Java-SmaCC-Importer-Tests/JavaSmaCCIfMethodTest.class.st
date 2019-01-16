@@ -1,8 +1,23 @@
 Class {
 	#name : #JavaSmaCCIfMethodTest,
 	#superclass : #JavaSmaCCImporterTest,
+	#instVars : [
+		'ifMethod'
+	],
 	#category : #'FAST-Java-SmaCC-Importer-Tests'
 }
+
+{ #category : #resources }
+JavaSmaCCIfMethodTest >> methodIfMethod [
+	^ 'void ifMethod() {
+	if (true)
+		return 4 + 5;
+	if (false)
+		{ int x = 2;	x = x + 3; }
+		else 
+			return 5 + 4;
+	}'
+]
 
 { #category : #running }
 JavaSmaCCIfMethodTest >> setUpMethods [

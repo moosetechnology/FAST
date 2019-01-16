@@ -114,7 +114,7 @@ JavaSmaCCProgramNodeImporterVisitor >> visitBinaryExpression: aBinaryExpression 
 			(FASTJavaOperationRightOperand new
 				addChild: (self clone accept: aBinaryExpression rightExpression);
 				yourself).
-	currentFASTEntity operator: (self clone accept: aBinaryExpression op).
+	currentFASTEntity operator: aBinaryExpression op value.
 	^ currentFASTEntity
 ]
 

@@ -8,6 +8,13 @@ Class {
 	#category : #'FAST-Java-SmaCC-Importer-Tests'
 }
 
+{ #category : #resources }
+JavaSmaCCSimpleVariablesDeclaration >> methodSimpleVariablesDeclaration [
+	^ 'void forMethod() {
+	int x, y;
+}'
+]
+
 { #category : #running }
 JavaSmaCCSimpleVariablesDeclaration >> setUpMethods [
 	methodSimpleVariablesDeclaration := (self parseMethod: 'SimpleVariablesDeclaration')

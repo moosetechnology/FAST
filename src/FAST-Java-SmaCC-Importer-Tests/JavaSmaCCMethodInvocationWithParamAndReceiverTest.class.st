@@ -9,6 +9,27 @@ Class {
 	#category : #'FAST-Java-SmaCC-Importer-Tests'
 }
 
+{ #category : #resources }
+JavaSmaCCMethodInvocationWithParamAndReceiverTest >> methodInvocationWithClassPropertyAsReceiver [
+	^ 'public void onClick(final ClickEvent event) {
+	SampleCustomizableTableDefinitionRH.this.editableTablelist.refreshAfterRemovingRow(removedRowValues);
+}'
+]
+
+{ #category : #resources }
+JavaSmaCCMethodInvocationWithParamAndReceiverTest >> methodInvocationWithParamAndReceiver [
+	^ 'public void onClick(ClickEvent arg0) {
+		x = hello(a,b).hello2(1,2);
+	}'
+]
+
+{ #category : #resources }
+JavaSmaCCMethodInvocationWithParamAndReceiverTest >> methodInvocationWithVariableAsReceiver [
+	^ 'public void onClick(final ClickEvent event) {
+	editableTablelist.refreshAfterRemovingRow(removedRowValues);
+}'
+]
+
 { #category : #running }
 JavaSmaCCMethodInvocationWithParamAndReceiverTest >> setUpMethods [
 	methodInvocationWithParamAndReceiver := (self parseMethod: 'InvocationWithParamAndReceiver')

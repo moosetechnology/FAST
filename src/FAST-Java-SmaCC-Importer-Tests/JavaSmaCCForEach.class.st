@@ -7,6 +7,15 @@ Class {
 	#category : #'FAST-Java-SmaCC-Importer-Tests'
 }
 
+{ #category : #resources }
+JavaSmaCCForEach >> methodForEach [
+	^ 'void forEachMethod() {
+	for(HandlerRegistration hr: SamplePageInputsAndLabels.this.hrList) {
+		hr.removeHandler();
+	}
+}'
+]
+
 { #category : #running }
 JavaSmaCCForEach >> setUpMethods [
 	methodForEach := (self parseMethod: 'forEach') allFASTJavaMethodEntity first

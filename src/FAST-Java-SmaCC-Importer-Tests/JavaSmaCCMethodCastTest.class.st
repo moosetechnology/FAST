@@ -7,6 +7,16 @@ Class {
 	#category : #'FAST-Java-SmaCC-Importer-Tests'
 }
 
+{ #category : #resources }
+JavaSmaCCMethodCastTest >> methodCastAndClassProperty [
+	^ 'public void onClick(final ClickEvent event) {
+	List<UnPojoMetierRHGWT> removedRowValues = new ArrayList<UnPojoMetierRHGWT>();
+	removedRowValues.add(rowValue);
+	((IEditableListModel)SampleCustomizableTableDefinitionRH.this.pListModel).deleteObjectModel(rowValue, true);
+	SampleCustomizableTableDefinitionRH.this.editableTablelist.refreshAfterRemovingRow(removedRowValues);
+}'
+]
+
 { #category : #running }
 JavaSmaCCMethodCastTest >> setUpMethods [
 	methodCastAndClassProperty := (self parseMethod: 'CastAndClassProperty')

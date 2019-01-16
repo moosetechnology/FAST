@@ -1,8 +1,19 @@
 Class {
 	#name : #JavaSmaCCParamsMethodTest,
 	#superclass : #JavaSmaCCImporterTest,
+	#instVars : [
+		'params'
+	],
 	#category : #'FAST-Java-SmaCC-Importer-Tests'
 }
+
+{ #category : #resources }
+JavaSmaCCParamsMethodTest >> methodParams [
+	
+	^ 'void params(int a, float b, double c) {
+		x = a + b + c;
+	}'
+]
 
 { #category : #running }
 JavaSmaCCParamsMethodTest >> setUpMethods [

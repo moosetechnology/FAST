@@ -1,8 +1,20 @@
 Class {
 	#name : #JavaSmaCCALittleOfVariables2MethodTest,
 	#superclass : #JavaSmaCCImporterTest,
+	#instVars : [
+		'aLittleOfVariables2'
+	],
 	#category : #'FAST-Java-SmaCC-Importer-Tests'
 }
+
+{ #category : #resources }
+JavaSmaCCALittleOfVariables2MethodTest >> methodALittleOfVariables2 [
+	
+	^ 'float aLittleOfVariables2() {
+		float x = 5.5;	
+		return x;
+	}'
+]
 
 { #category : #running }
 JavaSmaCCALittleOfVariables2MethodTest >> setUpMethods [

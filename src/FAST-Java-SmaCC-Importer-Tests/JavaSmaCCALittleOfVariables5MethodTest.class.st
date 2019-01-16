@@ -1,8 +1,20 @@
 Class {
 	#name : #JavaSmaCCALittleOfVariables5MethodTest,
 	#superclass : #JavaSmaCCImporterTest,
+	#instVars : [
+		'aLittleOfVariables5'
+	],
 	#category : #'FAST-Java-SmaCC-Importer-Tests'
 }
+
+{ #category : #resources }
+JavaSmaCCALittleOfVariables5MethodTest >> methodALittleOfVariables5 [
+	
+	^ 'String aLittleOfVariables5() {
+		String x = null;	
+		return x;
+	}'
+]
 
 { #category : #running }
 JavaSmaCCALittleOfVariables5MethodTest >> setUpMethods [
@@ -23,5 +35,5 @@ JavaSmaCCALittleOfVariables5MethodTest >> testVariableDeclaratorExpressionType5 
 
 { #category : #tests }
 JavaSmaCCALittleOfVariables5MethodTest >> testVariableDeclaratorExpressionValue5 [
-	self assert: aLittleOfVariables5 statements  first declarators first expression value equals: 'null'
+	self assert: aLittleOfVariables5 statements first declarators first expression value equals: 'null'
 ]

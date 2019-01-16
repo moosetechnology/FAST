@@ -7,6 +7,15 @@ Class {
 	#category : #'FAST-Java-SmaCC-Importer-Tests'
 }
 
+{ #category : #resources }
+JavaSmaCCFor >> methodFor [
+	^ 'void forMethod() {
+	for (int i = 0;i< 3;++i){
+		i++;
+	}
+}'
+]
+
 { #category : #running }
 JavaSmaCCFor >> setUpMethods [
 	methodFor := (self parseMethod: 'for') allFASTJavaMethodEntity first

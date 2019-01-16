@@ -1,8 +1,20 @@
 Class {
 	#name : #JavaSmaCCSuperSimpleMethodTest,
 	#superclass : #JavaSmaCCImporterTest,
+	#instVars : [
+		'supersimple'
+	],
 	#category : #'FAST-Java-SmaCC-Importer-Tests'
 }
+
+{ #category : #resources }
+JavaSmaCCSuperSimpleMethodTest >> methodSupersimple [
+	^ 
+'boolean supersimple() {
+  return true;
+}
+'
+]
 
 { #category : #running }
 JavaSmaCCSuperSimpleMethodTest >> setUpMethods [

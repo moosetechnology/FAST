@@ -8,6 +8,23 @@ Class {
 	#category : #'FAST-Java-SmaCC-Importer-Tests'
 }
 
+{ #category : #resources }
+JavaSmaCCTryCatches >> methodTryCatches [
+	^ 'void tryCatch() {
+	int x;
+	try {
+		x = 1;
+   }
+	catch (PatateException e) {
+		Patate.displayError(e.getMessage());
+	} 
+	catch (Exception e) {
+		Patate.displayError(e.getMessage());
+	};
+}
+'
+]
+
 { #category : #running }
 JavaSmaCCTryCatches >> setUpMethods [
 	tryCatchesMethod := (self parseMethod: 'tryCatches') allFASTJavaMethodEntity first
