@@ -17,7 +17,7 @@ JavaSmaCCFor >> methodFor [
 ]
 
 { #category : #running }
-JavaSmaCCFor >> setUpMethods [
+JavaSmaCCFor >> setUp [
 	methodFor := (self parseMethod: 'for') allFASTJavaMethodEntity first
 ]
 

@@ -412,23 +412,42 @@ JavaSmaCCProgramNodeImporterVisitor >> visitParameter: aParameter [
 ]
 
 { #category : #initialization }
+JavaSmaCCProgramNodeImporterVisitor >> visitPostDecrementExpression: aPostDecrementExpression [
+	currentFASTEntity := self addToModel: FASTJavaUnaryExpression new.
+	currentFASTEntity expression: (self clone accept: aPostDecrementExpression expression).
+	currentFASTEntity operator: aPostDecrementExpression minusMinus.
+	currentFASTEntity isPrefixedUnaryExpression: false.
+	currentFASTEntity parentNode: self parentFASTEntity.
+	^ currentFASTEntity
+]
+
+{ #category : #initialization }
 JavaSmaCCProgramNodeImporterVisitor >> visitPostIncrementExpression: aPostIncrementExpression [
-	currentFASTEntity := self addToModel: FASTExpressionStatement new.
-		currentFASTEntity parentNode: self parentFASTEntity.
-	currentFASTEntity
-		expression:
-			(FASTJavaMethodInvocation new
-				name: aPostIncrementExpression plusPlus value;
-				addArgument: (self clone accept: aPostIncrementExpression expression);
-				yourself).
+	currentFASTEntity := self addToModel: FASTJavaUnaryExpression new.
+	currentFASTEntity expression: (self clone accept: aPostIncrementExpression expression).
+	currentFASTEntity operator: aPostIncrementExpression plusPlus.
+	currentFASTEntity isPrefixedUnaryExpression: false.
+	currentFASTEntity parentNode: self parentFASTEntity.
+	^ currentFASTEntity
+]
+
+{ #category : #initialization }
+JavaSmaCCProgramNodeImporterVisitor >> visitPreDecrementExpression: aPreDecrementExpression [
+	currentFASTEntity := self addToModel: FASTJavaUnaryExpression new.
+	currentFASTEntity expression: (self clone accept: aPreDecrementExpression expression).
+	currentFASTEntity operator: aPreDecrementExpression minusMinus.
+	currentFASTEntity isPrefixedUnaryExpression: true.
+	currentFASTEntity parentNode: self parentFASTEntity.
 	^ currentFASTEntity
 ]
 
 { #category : #initialization }
 JavaSmaCCProgramNodeImporterVisitor >> visitPreIncrementExpression: aPreIncrementExpression [
-	currentFASTEntity := self addToModel: FASTExpressionStatement new.
-	currentFASTEntity expression: (FASTJavaMethodInvocation new name: aPreIncrementExpression plusPlus value; addArgument: (self clone accept: aPreIncrementExpression expression); yourself).
-		currentFASTEntity parentNode: self parentFASTEntity.
+	currentFASTEntity := self addToModel: FASTJavaUnaryExpression new.
+	currentFASTEntity expression: (self clone accept: aPreIncrementExpression expression).
+	currentFASTEntity operator: aPreIncrementExpression plusPlus.
+	currentFASTEntity isPrefixedUnaryExpression: true.
+	currentFASTEntity parentNode: self parentFASTEntity.
 	^ currentFASTEntity
 ]
 
@@ -486,6 +505,46 @@ JavaSmaCCProgramNodeImporterVisitor >> visitTryStatement: aTryStatement [
 				addChild: (self clone accept: aTryStatement block);
 				yourself).
 	aTryStatement catches do: [ :aCatchBlock | currentFASTEntity addCatch: (self clone accept: aCatchBlock) ].
+	^ currentFASTEntity
+]
+
+{ #category : #initialization }
+JavaSmaCCProgramNodeImporterVisitor >> visitUnaryAddition: anUnaryAddition [
+	currentFASTEntity := self addToModel: FASTJavaUnaryExpression new.
+	currentFASTEntity expression: (self clone accept: anUnaryAddition expression).
+	currentFASTEntity operator: anUnaryAddition plus.
+	currentFASTEntity isPrefixedUnaryExpression: true.
+	currentFASTEntity parentNode: self parentFASTEntity.
+	^ currentFASTEntity
+]
+
+{ #category : #initialization }
+JavaSmaCCProgramNodeImporterVisitor >> visitUnaryBitInvert: anUnaryBitInvert [
+	currentFASTEntity := self addToModel: FASTJavaUnaryExpression new.
+	currentFASTEntity expression: (self clone accept: anUnaryBitInvert expression).
+	currentFASTEntity operator: anUnaryBitInvert tilde.
+	currentFASTEntity isPrefixedUnaryExpression: true.
+	currentFASTEntity parentNode: self parentFASTEntity.
+	^ currentFASTEntity
+]
+
+{ #category : #initialization }
+JavaSmaCCProgramNodeImporterVisitor >> visitUnaryNot: aUnaryNotExpression [
+	currentFASTEntity := self addToModel: FASTJavaUnaryExpression new.
+	currentFASTEntity expression: (self clone accept: aUnaryNotExpression expression).
+	currentFASTEntity operator: aUnaryNotExpression bang.
+	currentFASTEntity isPrefixedUnaryExpression: true.
+	currentFASTEntity parentNode: self parentFASTEntity.
+	^ currentFASTEntity
+]
+
+{ #category : #initialization }
+JavaSmaCCProgramNodeImporterVisitor >> visitUnarySubtraction: anUnarySubtraction [
+	currentFASTEntity := self addToModel: FASTJavaUnaryExpression new.
+	currentFASTEntity expression: (self clone accept: anUnarySubtraction expression).
+	currentFASTEntity operator: anUnarySubtraction minus.
+	currentFASTEntity isPrefixedUnaryExpression: true.
+	currentFASTEntity parentNode: self parentFASTEntity.
 	^ currentFASTEntity
 ]
 

@@ -20,7 +20,7 @@ JavaSmaCCIfMethodTest >> methodIfMethod [
 ]
 
 { #category : #running }
-JavaSmaCCIfMethodTest >> setUpMethods [
+JavaSmaCCIfMethodTest >> setUp [
 	ifMethod := (self parseMethod: 'ifMethod') allFASTJavaMethodEntity first
 ]
 

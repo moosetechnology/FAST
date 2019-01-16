@@ -17,8 +17,9 @@ JavaSmaCCALittleOfVariables5MethodTest >> methodALittleOfVariables5 [
 ]
 
 { #category : #running }
-JavaSmaCCALittleOfVariables5MethodTest >> setUpMethods [
-	aLittleOfVariables5 := (self parseMethod: 'aLittleOfVariables5') allFASTJavaMethodEntity first
+JavaSmaCCALittleOfVariables5MethodTest >> setUp [
+	aLittleOfVariables5 := (self parseMethod: 'aLittleOfVariables5') allFASTJavaMethodEntity
+		first
 ]
 
 { #category : #tests }

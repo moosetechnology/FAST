@@ -26,7 +26,7 @@ JavaSmaCCTryCatches >> methodTryCatches [
 ]
 
 { #category : #running }
-JavaSmaCCTryCatches >> setUpMethods [
+JavaSmaCCTryCatches >> setUp [
 	tryCatchesMethod := (self parseMethod: 'tryCatches') allFASTJavaMethodEntity first
 ]
 

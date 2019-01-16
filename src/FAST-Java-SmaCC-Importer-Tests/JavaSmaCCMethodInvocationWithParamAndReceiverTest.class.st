@@ -31,13 +31,13 @@ JavaSmaCCMethodInvocationWithParamAndReceiverTest >> methodInvocationWithVariabl
 ]
 
 { #category : #running }
-JavaSmaCCMethodInvocationWithParamAndReceiverTest >> setUpMethods [
-	methodInvocationWithParamAndReceiver := (self parseMethod: 'InvocationWithParamAndReceiver')
-		allFASTJavaMethodEntity first.
-	methodInvocationWithVariableAsReceiver := (self parseMethod: 'InvocationWithVariableAsReceiver')
-		allFASTJavaMethodEntity first.
-		methodInvocationWithClassPropertyAsReceiver:= (self parseMethod: 'InvocationWithClassPropertyAsReceiver')
-		allFASTJavaMethodEntity first.
+JavaSmaCCMethodInvocationWithParamAndReceiverTest >> setUp [
+	methodInvocationWithParamAndReceiver := (self
+		parseMethod: 'InvocationWithParamAndReceiver') allFASTJavaMethodEntity first.
+	methodInvocationWithVariableAsReceiver := (self
+		parseMethod: 'InvocationWithVariableAsReceiver') allFASTJavaMethodEntity first.
+	methodInvocationWithClassPropertyAsReceiver := (self
+		parseMethod: 'InvocationWithClassPropertyAsReceiver') allFASTJavaMethodEntity first
 ]
 
 { #category : #tests }

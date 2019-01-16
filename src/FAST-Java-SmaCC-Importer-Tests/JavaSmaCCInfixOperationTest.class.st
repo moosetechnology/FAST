@@ -16,8 +16,9 @@ JavaSmaCCInfixOperationTest >> methodInfixOperation [
 ]
 
 { #category : #running }
-JavaSmaCCInfixOperationTest >> setUpMethods [
-	infixOperationMethod := (self parseMethod: 'InfixOperation') allFASTJavaMethodEntity first
+JavaSmaCCInfixOperationTest >> setUp [
+	infixOperationMethod := (self parseMethod: 'InfixOperation') allFASTJavaMethodEntity
+		first
 ]
 
 { #category : #running }

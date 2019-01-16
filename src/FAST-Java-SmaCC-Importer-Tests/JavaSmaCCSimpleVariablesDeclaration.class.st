@@ -16,7 +16,7 @@ JavaSmaCCSimpleVariablesDeclaration >> methodSimpleVariablesDeclaration [
 ]
 
 { #category : #running }
-JavaSmaCCSimpleVariablesDeclaration >> setUpMethods [
+JavaSmaCCSimpleVariablesDeclaration >> setUp [
 	methodSimpleVariablesDeclaration := (self parseMethod: 'SimpleVariablesDeclaration')
 		allFASTJavaMethodEntity first
 ]

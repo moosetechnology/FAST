@@ -16,7 +16,7 @@ JavaSmaCCParamsMethodTest >> methodParams [
 ]
 
 { #category : #running }
-JavaSmaCCParamsMethodTest >> setUpMethods [
+JavaSmaCCParamsMethodTest >> setUp [
 	params := (self parseMethod: 'params') allFASTJavaMethodEntity first
 ]
 

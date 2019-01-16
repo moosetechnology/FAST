@@ -48,7 +48,8 @@ Class {
 		'javaTryCatch',
 		'javaTryPartStatement',
 		'javaCatchPartStatement',
-		'javaForEachStatement'
+		'javaForEachStatement',
+		'javaUnaryExpression'
 	],
 	#category : #'FAST-Model-Generator'
 }
@@ -248,6 +249,23 @@ void tryCatch() {
 ]
 
 { #category : #definition }
+FASTJavaMetamodelGenerator >> commentForJavaUnaryExpression [
+	^ 'I represent a Java Unary Expression
+	
+It can be :
+
+++i
+i++
+--i
+i--
+!b
++i
+-i
+
+see: https://docs.oracle.com/javase/tutorial/java/nutsandbolts/op1.html'
+]
+
+{ #category : #definition }
 FASTJavaMetamodelGenerator >> commentForJavaVarDeclStatement [
 	^ 'A statement of variable declaration
 
@@ -313,6 +331,7 @@ FASTJavaMetamodelGenerator >> defineNewClasses [
 	javaClassProperty := builder newClassNamed: #JavaClassProperty comment: self commentForJavaClassProperty.
 	javaTryCatch := builder newClassNamed: #JavaTryCatchStatement comment: self commentForJavaTryCatch.
 	javaForEachStatement := builder newClassNamed: #JavaForEachStatement comment: self commentForJavaForEachStatement.
+	javaUnaryExpression := builder newClassNamed: #JavaUnaryExpression comment: self commentForJavaUnaryExpression.
 
 	"factice"
 	javaElsePartStatement := builder newClassNamed: #JavaElsePartStatement.
@@ -320,13 +339,9 @@ FASTJavaMetamodelGenerator >> defineNewClasses [
 	javaConditionStatement := builder newClassNamed: #JavaConditionStatement.
 	javaOperationLeftOperand := builder newClassNamed: #JavaOperationLeftOperand.
 	javaOperationRightOperand := builder newClassNamed: #JavaOperationRightOperand.
-	javaIncrementorsStatement := builder
-		newClassNamed: #JavaIncrementorsStatement
-		comment: 'ExpressionStatements evaluated at the end of each loop'.
+	javaIncrementorsStatement := builder newClassNamed: #JavaIncrementorsStatement comment: 'ExpressionStatements evaluated at the end of each loop'.
 	javaBodyStatement := builder newClassNamed: #JavaBodyStatement comment: 'A statement to be evaluated in the loop'.
-	javaInitializersStatement := builder
-		newClassNamed: #JavaInitializersStatement
-		comment: 'ExpressionStatements used at initialization phase of a for loop'.
+	javaInitializersStatement := builder newClassNamed: #JavaInitializersStatement comment: 'ExpressionStatements used at initialization phase of a for loop'.
 
 	"new factice"
 	javaTryPartStatement := builder newClassNamed: #JavaTryPartStatement comment: 'I represent the ''try'' part of the TryCatch Statement'.
@@ -368,6 +383,7 @@ FASTJavaMetamodelGenerator >> defineNewClassesHierarchy [
 	javaClassProperty --|> expression.
 	javaTryCatch --|> statement.
 	javaForEachStatement --|> statement.
+	javaUnaryExpression --|> expression.
 
 	"Factice"
 	javaElsePartStatement --|> statement.
@@ -402,14 +418,17 @@ FASTJavaMetamodelGenerator >> defineProperties [
 	(javaClassProperty property: #type type: #FASTNamedEntity) comment: 'The owner type'.
 	(javaClassProperty property: #fieldName type: #String) comment: 'Name of accessed field'.
 	(javaMethodInvocation property: #receiver type: #FASTExpression) comment: 'The expression whitch will execute this invocation'.
+	(javaUnaryExpression property: #expression type: #FASTExpression) comment: 'The affected expression'.
+	(javaUnaryExpression property: #operator type: #String) comment: 'The operator string to apply to the expression'.
+	(javaUnaryExpression property: #isPrefixedUnaryExpression type: #Boolean) comment: 'true if the expression is prefixed (ex. ++i) else false'.
+
 	"Try to remove the maximum of factice entity. So we create a Property for the relation '-'/one-to-one"
 	(javaForEachStatement property: #body type: #FASTStatement) comment: 'The body of the For Each statement'.
 	(javaForEachStatement property: #list type: #FASTExpression) comment: 'The list the for each statement iterate on'.
 	(javaForEachStatement property: #fieldname type: #FASTExpression) comment: 'The name of the created local variable'.
 	(javaForEachStatement property: #type type: #FASTStatement) comment: 'The name of the type of the created local variable'.
 	"try catch"
-(javaCatchPartStatement property: #body type: #FASTStatement) comment: 'The body of the Catch part statement'.		
-
+	(javaCatchPartStatement property: #body type: #FASTStatement) comment: 'The body of the Catch part statement'
 ]
 
 { #category : #definition }

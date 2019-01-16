@@ -28,7 +28,7 @@ JavaSmaCCWhileWhileMethodTest >> methodWhileWhile [
 ]
 
 { #category : #running }
-JavaSmaCCWhileWhileMethodTest >> setUpMethods [
+JavaSmaCCWhileWhileMethodTest >> setUp [
 	whileWhile := (self parseMethod: 'whileWhile') allFASTJavaMethodEntity first
 ]
 

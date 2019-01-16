@@ -17,7 +17,7 @@ JavaSmaCCForEach >> methodForEach [
 ]
 
 { #category : #running }
-JavaSmaCCForEach >> setUpMethods [
+JavaSmaCCForEach >> setUp [
 	methodForEach := (self parseMethod: 'forEach') allFASTJavaMethodEntity first
 ]
 
