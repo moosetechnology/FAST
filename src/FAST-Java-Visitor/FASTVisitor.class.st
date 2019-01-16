@@ -4,6 +4,11 @@ Class {
 	#category : #'FAST-Java-Visitor'
 }
 
+{ #category : #visitor }
+FASTVisitor >> accept: aFASTEntity [ 
+	^ aFASTEntity accept: self
+]
+
 { #category : #generated }
 FASTVisitor >> visitFASTBehaviouralEntity: aFASTBehaviouralEntity [
 	^ self visitFASTScopableEntity: aFASTBehaviouralEntity
