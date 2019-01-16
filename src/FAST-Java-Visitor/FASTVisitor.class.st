@@ -210,6 +210,11 @@ FASTVisitor >> visitFASTJavaTryPartStatement: aFASTJavaTryPartStatement [
 ]
 
 { #category : #generated }
+FASTVisitor >> visitFASTJavaUnaryExpression: aFASTJavaUnaryExpression [
+	^ self visitFASTExpression: aFASTJavaUnaryExpression
+]
+
+{ #category : #generated }
 FASTVisitor >> visitFASTJavaVarDeclStatement: aFASTJavaVarDeclStatement [
 	^ self visitFASTStatement: aFASTJavaVarDeclStatement
 ]
