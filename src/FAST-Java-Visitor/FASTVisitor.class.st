@@ -156,7 +156,14 @@ FASTVisitor >> visitFASTJavaMethodEntity: aFASTJavaMethodEntity [
 
 { #category : #generated }
 FASTVisitor >> visitFASTJavaMethodInvocation: aFASTJavaMethodInvocation [
-	^ self visitFASTExpression: aFASTJavaMethodInvocation
+	^ self
+		visitFASTExpression:
+			aFASTJavaMethodInvocation
+]
+
+{ #category : #generated }
+FASTVisitor >> visitFASTJavaNewExpression: aFASTJavaNewExpression [
+	^ self visitFASTJavaMethodInvocation: aFASTJavaNewExpression
 ]
 
 { #category : #generated }

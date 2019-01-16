@@ -384,7 +384,7 @@ JavaSmaCCProgramNodeImporterVisitor >> visitName: aName [
 JavaSmaCCProgramNodeImporterVisitor >> visitNew: aNewNode [
 	"By doing this, we handle the 'new' token.
 	But we lost the 100% confidence we have that this is instanticiation of a class"
-	currentFASTEntity := self addToModel: FASTJavaMethodInvocation new.
+	currentFASTEntity := self addToModel: FASTJavaNewExpression new.
 	currentFASTEntity parentNode: self parentFASTEntity.
 	aNewNode expressions
 		do: [ :expression | currentFASTEntity addArgument: (self clone accept: expression) ].

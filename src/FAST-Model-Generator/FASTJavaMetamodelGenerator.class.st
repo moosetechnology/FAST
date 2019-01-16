@@ -49,7 +49,8 @@ Class {
 		'javaTryPartStatement',
 		'javaCatchPartStatement',
 		'javaForEachStatement',
-		'javaUnaryExpression'
+		'javaUnaryExpression',
+		'javaNewExpression'
 	],
 	#category : #'FAST-Model-Generator'
 }
@@ -200,6 +201,15 @@ FASTJavaMetamodelGenerator >> commentForJavaMethodInvocation [
 ]
 
 { #category : #definition }
+FASTJavaMetamodelGenerator >> commentForJavaNewExpression [
+	^ 'I represent the invocation of a Class constructor with the keyword ''new''
+
+ex.
+
+new Patate()'
+]
+
+{ #category : #definition }
 FASTJavaMetamodelGenerator >> commentForJavaNullLiteral [
 	^ '''null'' literal in Java'
 ]
@@ -332,6 +342,7 @@ FASTJavaMetamodelGenerator >> defineNewClasses [
 	javaTryCatch := builder newClassNamed: #JavaTryCatchStatement comment: self commentForJavaTryCatch.
 	javaForEachStatement := builder newClassNamed: #JavaForEachStatement comment: self commentForJavaForEachStatement.
 	javaUnaryExpression := builder newClassNamed: #JavaUnaryExpression comment: self commentForJavaUnaryExpression.
+	javaNewExpression := builder newClassNamed: #JavaNewExpression comment: self commentForJavaNewExpression.
 
 	"factice"
 	javaElsePartStatement := builder newClassNamed: #JavaElsePartStatement.
@@ -384,6 +395,7 @@ FASTJavaMetamodelGenerator >> defineNewClassesHierarchy [
 	javaTryCatch --|> statement.
 	javaForEachStatement --|> statement.
 	javaUnaryExpression --|> expression.
+	javaNewExpression --|> javaMethodInvocation.
 
 	"Factice"
 	javaElsePartStatement --|> statement.
