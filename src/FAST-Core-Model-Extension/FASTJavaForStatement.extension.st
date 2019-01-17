@@ -28,7 +28,7 @@ FASTJavaForStatement >> condition: aConditionStatement [
 FASTJavaForStatement >> incrementors [
 	<computed>
 	<navigation: 'incrementors'>
-	^ (self childrenNode select: [ :childNode | childNode class isKindOf: FASTJavaIncrementorsStatement class ])
+	^ (self childrenNode select: [ :childNode | childNode isKindOf: FASTJavaIncrementorsStatement ])
 ]
 
 { #category : #'*FAST-Core-Model-Extension' }

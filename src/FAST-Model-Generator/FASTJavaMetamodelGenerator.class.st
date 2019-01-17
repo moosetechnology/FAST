@@ -50,7 +50,9 @@ Class {
 		'javaCatchPartStatement',
 		'javaForEachStatement',
 		'javaUnaryExpression',
-		'javaNewExpression'
+		'javaNewExpression',
+		'javaNewClassExpression',
+		'javaNewClassMethodStatment'
 	],
 	#category : #'FAST-Model-Generator'
 }
@@ -201,6 +203,24 @@ FASTJavaMetamodelGenerator >> commentForJavaMethodInvocation [
 ]
 
 { #category : #definition }
+FASTJavaMetamodelGenerator >> commentForJavaNewClassExpression [
+	^ 'I represent a new class expression (which is most of the time a new anonymous class)
+	
+	
+ex. for SecureAsyncCallback
+
+new SecureAsyncCallback<Void>() {
+	@Override
+	public void onSuccess(final Void result) {}
+	
+	@Override
+	public void onFailure(final Throwable caught) {
+		super.onFailure(caught);
+	}
+}'
+]
+
+{ #category : #definition }
 FASTJavaMetamodelGenerator >> commentForJavaNewExpression [
 	^ 'I represent the invocation of a Class constructor with the keyword ''new''
 
@@ -343,6 +363,7 @@ FASTJavaMetamodelGenerator >> defineNewClasses [
 	javaForEachStatement := builder newClassNamed: #JavaForEachStatement comment: self commentForJavaForEachStatement.
 	javaUnaryExpression := builder newClassNamed: #JavaUnaryExpression comment: self commentForJavaUnaryExpression.
 	javaNewExpression := builder newClassNamed: #JavaNewExpression comment: self commentForJavaNewExpression.
+	javaNewClassExpression := builder newClassNamed: #JavaNewClassExpression comment: self commentForJavaNewClassExpression.
 
 	"factice"
 	javaElsePartStatement := builder newClassNamed: #JavaElsePartStatement.
@@ -353,6 +374,7 @@ FASTJavaMetamodelGenerator >> defineNewClasses [
 	javaIncrementorsStatement := builder newClassNamed: #JavaIncrementorsStatement comment: 'ExpressionStatements evaluated at the end of each loop'.
 	javaBodyStatement := builder newClassNamed: #JavaBodyStatement comment: 'A statement to be evaluated in the loop'.
 	javaInitializersStatement := builder newClassNamed: #JavaInitializersStatement comment: 'ExpressionStatements used at initialization phase of a for loop'.
+	javaNewClassMethodStatment := builder newClassNamed: #JavaNewClassMethodStatment comment: 'I''m a factice entity that is used by JavaNewClassExpression to represents the defined method of a class'.
 
 	"new factice"
 	javaTryPartStatement := builder newClassNamed: #JavaTryPartStatement comment: 'I represent the ''try'' part of the TryCatch Statement'.
@@ -396,6 +418,7 @@ FASTJavaMetamodelGenerator >> defineNewClassesHierarchy [
 	javaForEachStatement --|> statement.
 	javaUnaryExpression --|> expression.
 	javaNewExpression --|> javaMethodInvocation.
+	javaNewClassExpression --|> javaNewExpression.
 
 	"Factice"
 	javaElsePartStatement --|> statement.
@@ -406,6 +429,7 @@ FASTJavaMetamodelGenerator >> defineNewClassesHierarchy [
 	javaInitializersStatement --|> statement.
 	javaOperationLeftOperand --|> expression.
 	javaOperationRightOperand --|> expression.
+	javaNewClassMethodStatment --|> statement.
 
 	"new factice"
 	javaTryPartStatement --|> statement.

@@ -6,6 +6,9 @@ Class {
 		'currentFASTEntity',
 		'parentFASTVisitor'
 	],
+	#classInstVars : [
+		'hello'
+	],
 	#category : #'FAST-Java-SmaCC-Importer'
 }
 
@@ -382,13 +385,22 @@ JavaSmaCCProgramNodeImporterVisitor >> visitName: aName [
 
 { #category : #initialization }
 JavaSmaCCProgramNodeImporterVisitor >> visitNew: aNewNode [
-	"By doing this, we handle the 'new' token.
-	But we lost the 100% confidence we have that this is instanticiation of a class"
 	currentFASTEntity := self addToModel: FASTJavaNewExpression new.
 	currentFASTEntity parentNode: self parentFASTEntity.
 	aNewNode expressions
 		do: [ :expression | currentFASTEntity addArgument: (self clone accept: expression) ].
 	currentFASTEntity name: aNewNode type name name value.
+	^ currentFASTEntity
+]
+
+{ #category : #initialization }
+JavaSmaCCProgramNodeImporterVisitor >> visitNewClass: aNewClass [
+	currentFASTEntity := self addToModel: FASTJavaNewClassExpression new.
+	currentFASTEntity parentNode: self parentFASTEntity.
+	aNewClass expressions
+		do: [ :expression | currentFASTEntity addArgument: (self clone accept: expression) ].
+	currentFASTEntity name: aNewClass type name name value.
+	aNewClass declarations do: [:method | currentFASTEntity addMethod: (self clone accept: method) ]. 
 	^ currentFASTEntity
 ]
 
@@ -472,7 +484,7 @@ JavaSmaCCProgramNodeImporterVisitor >> visitReturnStatement: aReturnStatement [
 							(FASTJavaIdentifier new
 								name: aReturnStatement expression name value;
 								yourself) ]
-				ifFalse: [ currentFASTEntity expression: (self clone accept: aReturnStatement expression) ].
+				ifFalse: [ aReturnStatement expression ifNotNil: [ :expression | currentFASTEntity expression: (self clone accept: expression) ] ].
 	^ currentFASTEntity
 ]
 

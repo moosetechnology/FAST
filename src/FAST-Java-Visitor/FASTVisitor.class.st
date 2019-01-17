@@ -162,6 +162,16 @@ FASTVisitor >> visitFASTJavaMethodInvocation: aFASTJavaMethodInvocation [
 ]
 
 { #category : #generated }
+FASTVisitor >> visitFASTJavaNewClassExpression: aFASTJavaNewClassExpression [
+	^ self visitFASTJavaNewExpression: aFASTJavaNewClassExpression
+]
+
+{ #category : #generated }
+FASTVisitor >> visitFASTJavaNewClassMethodStatment: aFASTJavaNewClassMethodStatment [
+	^ self visitFASTStatement: aFASTJavaNewClassMethodStatment
+]
+
+{ #category : #generated }
 FASTVisitor >> visitFASTJavaNewExpression: aFASTJavaNewExpression [
 	^ self visitFASTJavaMethodInvocation: aFASTJavaNewExpression
 ]
