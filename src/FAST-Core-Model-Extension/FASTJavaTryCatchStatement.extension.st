@@ -17,12 +17,15 @@ FASTJavaTryCatchStatement >> catches [
 FASTJavaTryCatchStatement >> try [
 	<computed>
 	<navigation: 'try'>
-	^ (self childrenNode select: [ :childNode | childNode isKindOf: FASTJavaTryPartStatement  ])
+	^ (self childrenNode
+		select: [ :childNode | childNode class =  FASTJavaTryPartStatement ])
 		at: 1
 		ifAbsent: [ ^ nil ]
 ]
 
 { #category : #'*FAST-Core-Model-Extension' }
 FASTJavaTryCatchStatement >> try: aFASTJavaTryPartStatement [
-	self childrenNode add: aFASTJavaTryPartStatement
+	self childrenNode add: (FASTJavaTryPartStatement new
+				addChild: aFASTJavaTryPartStatement;
+				yourself)
 ]

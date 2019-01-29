@@ -9,7 +9,11 @@ FASTJavaIfStatement >> condition [
 
 { #category : #'*FAST-Core-Model-Extension' }
 FASTJavaIfStatement >> condition: aFASTJavaConditionStatement [
-	self childrenNode add: aFASTJavaConditionStatement
+	self childrenNode
+		add:
+			(FASTJavaConditionStatement new
+				addChild: aFASTJavaConditionStatement;
+				yourself)
 ]
 
 { #category : #'*FAST-Core-Model-Extension' }
@@ -21,7 +25,11 @@ FASTJavaIfStatement >> elsePart [
 
 { #category : #'*FAST-Core-Model-Extension' }
 FASTJavaIfStatement >> elsePart: aFASTJavaElsePartStatement [
-	self childrenNode add: aFASTJavaElsePartStatement
+	self childrenNode
+		add:
+			(FASTJavaElsePartStatement new
+				addChild: aFASTJavaElsePartStatement;
+				yourself)
 ]
 
 { #category : #'*FAST-Core-Model-Extension' }
@@ -33,5 +41,7 @@ FASTJavaIfStatement >> thenPart [
 
 { #category : #'*FAST-Core-Model-Extension' }
 FASTJavaIfStatement >> thenPart: aFASTJavaThenPartStatement [
-	self childrenNode add: aFASTJavaThenPartStatement
+	self childrenNode add: (FASTJavaThenPartStatement new
+				addChild: aFASTJavaThenPartStatement;
+				yourself)
 ]

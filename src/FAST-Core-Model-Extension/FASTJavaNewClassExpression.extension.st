@@ -7,7 +7,7 @@ FASTJavaNewClassExpression >> accept: aFASTVisitor [
 
 { #category : #'*FAST-Core-Model-Extension' }
 FASTJavaNewClassExpression >> addMethod: aFASTJavaMethodDeclaration [
-	childrenNode
+	self childrenNode
 		add:
 			(FASTJavaNewClassMethodStatment new
 				addChild: aFASTJavaMethodDeclaration;
@@ -19,6 +19,6 @@ FASTJavaNewClassExpression >> methods [
 	<computed>
 	<navigation: 'methods'>
 	^ (self childrenNode
-		select: [ :childNode | childNode isKindOf: FASTJavaNewClassMethodStatment ])
+		select: [ :childNode | childNode class = FASTJavaNewClassMethodStatment ])
 		flatCollect: #childrenNode
 ]

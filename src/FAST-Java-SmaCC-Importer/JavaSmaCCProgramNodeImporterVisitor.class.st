@@ -107,16 +107,10 @@ JavaSmaCCProgramNodeImporterVisitor >> visitAssignment: aVariableDeclaration [
 { #category : #initialization }
 JavaSmaCCProgramNodeImporterVisitor >> visitBinaryExpression: aBinaryExpression [
 	currentFASTEntity := self addToModel: FASTJavaInfixOperation new.
-	currentFASTEntity
-		leftOperand:
-			(FASTJavaOperationLeftOperand new
-				addChild: (self clone accept: aBinaryExpression leftExpression);
-				yourself).
+	currentFASTEntity leftOperand: (self clone accept: aBinaryExpression leftExpression).
 	currentFASTEntity
 		rightOperand:
-			(FASTJavaOperationRightOperand new
-				addChild: (self clone accept: aBinaryExpression rightExpression);
-				yourself).
+			(self clone accept: aBinaryExpression rightExpression).
 	currentFASTEntity operator: aBinaryExpression op value.
 	^ currentFASTEntity
 ]
@@ -243,26 +237,11 @@ JavaSmaCCProgramNodeImporterVisitor >> visitForEachStatement: aForEachStatement 
 { #category : #initialization }
 JavaSmaCCProgramNodeImporterVisitor >> visitForStatement: aForStatement [
 	currentFASTEntity := self addToModel: FASTJavaForStatement new.
+	currentFASTEntity condition: (self clone accept: aForStatement test).
+	currentFASTEntity incrementors: (self clone accept: aForStatement _update).
 	currentFASTEntity
-		condition:
-			(FASTJavaConditionStatement new
-				addChild: (self clone accept: aForStatement test);
-				yourself).
-	currentFASTEntity
-		incrementors:
-			(FASTJavaIncrementorsStatement new
-				addChild: (self clone accept: aForStatement _update);
-				yourself).
-	currentFASTEntity
-		initializers:
-			(FASTJavaInitializersStatement new
-				addChild: (self clone accept: aForStatement initial);
-				yourself).
-	currentFASTEntity
-		body:
-			(FASTJavaBodyStatement new
-				addChild: (self clone accept: aForStatement statement);
-				yourself).
+		initializers:(self clone accept: aForStatement initial).
+	currentFASTEntity body: (self clone accept: aForStatement statement).
 	^ currentFASTEntity
 ]
 
@@ -270,22 +249,11 @@ JavaSmaCCProgramNodeImporterVisitor >> visitForStatement: aForStatement [
 JavaSmaCCProgramNodeImporterVisitor >> visitIfElseStatement: anIfStatementNode [
 	currentFASTEntity := self addToModel: FASTJavaIfStatement new.
 	currentFASTEntity parentNode: self parentFASTEntity.
-	currentFASTEntity
-		condition:
-			(FASTJavaConditionStatement new
-				addChild: (self clone accept: anIfStatementNode expression);
-				yourself).
-	currentFASTEntity
-		thenPart:
-			(FASTJavaThenPartStatement new
-				addChild: (self clone accept: anIfStatementNode trueStatement);
-				yourself).
+	currentFASTEntity condition: (self clone accept: anIfStatementNode expression).
+	currentFASTEntity thenPart: (self clone accept: anIfStatementNode trueStatement).
 	anIfStatementNode falseStatement
 		ifNotNil: [ currentFASTEntity
-				elsePart:
-					(FASTJavaElsePartStatement new
-						addChild: (self clone accept: anIfStatementNode falseStatement);
-						yourself) ].
+				elsePart: (self clone accept: anIfStatementNode falseStatement) ].
 	^ currentFASTEntity
 ]
 
@@ -293,16 +261,9 @@ JavaSmaCCProgramNodeImporterVisitor >> visitIfElseStatement: anIfStatementNode [
 JavaSmaCCProgramNodeImporterVisitor >> visitIfStatement: anIfStatementNode [
 	currentFASTEntity := self addToModel: FASTJavaIfStatement new.
 	currentFASTEntity parentNode: self parentFASTEntity.
+	currentFASTEntity condition: (self clone accept: anIfStatementNode expression).
 	currentFASTEntity
-		condition:
-			(FASTJavaConditionStatement new
-				addChild: (self clone accept: anIfStatementNode expression);
-				yourself).
-	currentFASTEntity
-		thenPart:
-			(FASTJavaThenPartStatement new
-				addChild: (self clone accept: anIfStatementNode trueStatement);
-				yourself).
+		thenPart: (self clone accept: anIfStatementNode trueStatement).
 	^ currentFASTEntity
 ]
 
@@ -512,10 +473,7 @@ JavaSmaCCProgramNodeImporterVisitor >> visitTryStatement: aTryStatement [
 	currentFASTEntity := self addToModel: FASTJavaTryCatchStatement new.
 	currentFASTEntity parentNode: self parentFASTEntity.
 	currentFASTEntity
-		try:
-			(FASTJavaTryPartStatement new
-				addChild: (self clone accept: aTryStatement block);
-				yourself).
+		try: (self clone accept: aTryStatement block).
 	aTryStatement catches do: [ :aCatchBlock | currentFASTEntity addCatch: (self clone accept: aCatchBlock) ].
 	^ currentFASTEntity
 ]
@@ -577,15 +535,8 @@ JavaSmaCCProgramNodeImporterVisitor >> visitVariableName: aVariableName [
 JavaSmaCCProgramNodeImporterVisitor >> visitWhileStatement: aWhileStatementNode [
 	currentFASTEntity := self addToModel: FASTJavaWhileStatement new.
 	currentFASTEntity parentNode: self parentFASTEntity.
+	currentFASTEntity condition: (self clone accept: aWhileStatementNode expression).
 	currentFASTEntity
-		condition:
-			(FASTJavaConditionStatement new
-				addChild: (self clone accept: aWhileStatementNode expression);
-				yourself).
-	currentFASTEntity
-		body:
-			(FASTJavaBodyStatement new
-				addChild: (self clone accept: aWhileStatementNode statement);
-				yourself).
+		body: (self clone accept: aWhileStatementNode statement).
 	^ currentFASTEntity
 ]
