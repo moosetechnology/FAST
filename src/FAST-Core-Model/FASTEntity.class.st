@@ -6,13 +6,13 @@ Primarily introduced to deal with symbol resolution matters.
 Class {
 	#name : #FASTEntity,
 	#superclass : #MooseEntity,
-	#traits : 'FASTTDependencyQueries + FASTTEntityMetaLevelDependency + FamixTWithSourceAnchor',
-	#classTraits : 'FASTTDependencyQueries classTrait + FASTTEntityMetaLevelDependency classTrait + FamixTWithSourceAnchor classTrait',
+	#traits : 'FamixTWithSourceAnchor + TDependencyQueries + TEntityMetaLevelDependency',
+	#classTraits : 'FamixTWithSourceAnchor classTrait + TDependencyQueries classTrait + TEntityMetaLevelDependency classTrait',
 	#instVars : [
 		'#childrenNode => FMMany type: #FASTEntity opposite: #parentNode',
 		'#parentNode => FMOne type: #FASTEntity opposite: #childrenNode'
 	],
-	#category : 'FAST-Core-Model-Entities'
+	#category : #'FAST-Core-Model-Entities'
 }
 
 { #category : #meta }
@@ -34,7 +34,7 @@ FASTEntity class >> generatedSlotNames [
 { #category : #generator }
 FASTEntity class >> generatedTraitNames [
 	<generated>
-	^ #(FASTTDependencyQueries FASTTEntityMetaLevelDependency FamixTWithSourceAnchor)
+	^ #(FamixTWithSourceAnchor TDependencyQueries TEntityMetaLevelDependency)
 ]
 
 { #category : #meta }
@@ -48,7 +48,23 @@ FASTEntity class >> metamodel [
 FASTEntity class >> requirements [
 
 	<generated>
-	^ {  }
+	^ { FASTEntity }
+]
+
+{ #category : #accessing }
+FASTEntity >> belongsTo [
+
+	<generated>
+	^ self parentNode
+
+]
+
+{ #category : #accessing }
+FASTEntity >> belongsTo: anObject [
+
+	<generated>
+	self parentNode: anObject
+
 ]
 
 { #category : #accessing }
@@ -163,6 +179,8 @@ FASTEntity >> isType [
 FASTEntity >> parentNode [
 
 	<generated>
+	<container>
+
 	^ parentNode
 ]
 
