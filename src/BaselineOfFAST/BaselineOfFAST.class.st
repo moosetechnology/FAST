@@ -21,7 +21,6 @@ BaselineOfFAST >> baseline: spec [
 
 { #category : #baselines }
 BaselineOfFAST >> defineDependencies: spec [
-	spec baseline: 'SmaCC' with: [ spec repository: 'github://j-brant/SmaCC' ] 
 ]
 
 { #category : #baselines }
@@ -43,7 +42,7 @@ BaselineOfFAST >> definePackages: spec [
 		package: 'FAST-Core-Model';
 		package: 'FAST-Core-Model-Extension' with: [ spec requires: #('FAST-Core-Model') ];
 		package: 'FAST-Model-Generator';
-		package: 'FAST-Java-SmaCC-Importer' with: [ spec requires: #('SmaCC') ];
+		package: 'FAST-Java-SmaCC-Importer';
 		package: 'FAST-Java-SmaCC-Importer-Tests' with: [ spec requires: #('FAST-Java-SmaCC-Importer') ];
 		package: 'FAST-Java-Visitor' with: [ spec requires: #('FAST-Core-Model') ]
 ]
