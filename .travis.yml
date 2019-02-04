@@ -1,0 +1,9 @@
+language: smalltalk
+sudo: false
+
+os:
+- linux
+- osx
+
+smalltalk:
+  - Moose-7.0
