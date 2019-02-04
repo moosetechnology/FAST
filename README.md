@@ -1,6 +1,6 @@
 # FAST
 
-Master : ![Build Pass](https://travis-ci.org/moosetechnology/FAST.svg?branch=master)
+Master: ![Build Pass](https://travis-ci.org/moosetechnology/FAST.svg?branch=master)
 
 ## FAST Meta-Model
 
