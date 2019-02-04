@@ -1,0 +1,10 @@
+SmalltalkCISpec {
+  #loading : [
+    SCIMetacelloLoadSpec {
+      #baseline : 'FAST',
+      #directory : 'src',
+      #load : [ 'smacc' ],
+      #platforms : [ #pharo ]
+    }
+  ]
+}
