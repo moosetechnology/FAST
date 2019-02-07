@@ -49,7 +49,7 @@ FASTJavaVarDeclStatement class >> requirements [
 { #category : #accessing }
 FASTJavaVarDeclStatement >> type [
 
-	<MSEProperty: #type type: #FAMIXType>
+	<MSEProperty: #type type: #Object>
 	<generated>
 	<MSEComment: 'type of declared variables'>
 	^ type
