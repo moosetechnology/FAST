@@ -14,7 +14,7 @@ Class {
 FASTJavaSeparator class >> annotation [
 
 	<MSEClass: #JavaSeparator super: #FASTVariableExpression>
-	<package: #FAST>
+	<package: #'FAST-Core-Model'>
 	<generated>
 	^self
 ]

@@ -19,7 +19,7 @@ Class {
 FASTEntity class >> annotation [
 
 	<MSEClass: #Entity super: #MooseEntity>
-	<package: #FAST>
+	<package: #'FAST-Core-Model'>
 	<generated>
 	^self
 ]

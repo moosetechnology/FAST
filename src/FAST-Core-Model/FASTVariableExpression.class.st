@@ -13,7 +13,7 @@ Class {
 FASTVariableExpression class >> annotation [
 
 	<MSEClass: #VariableExpression super: #FASTExpression>
-	<package: #FAST>
+	<package: #'FAST-Core-Model'>
 	<generated>
 	^self
 ]

@@ -11,7 +11,7 @@ Class {
 FASTJavaTryPartStatement class >> annotation [
 
 	<MSEClass: #JavaTryPartStatement super: #FASTStatement>
-	<package: #FAST>
+	<package: #'FAST-Core-Model'>
 	<generated>
 	^self
 ]

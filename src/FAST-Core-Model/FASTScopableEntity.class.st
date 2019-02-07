@@ -13,7 +13,7 @@ Class {
 FASTScopableEntity class >> annotation [
 
 	<MSEClass: #ScopableEntity super: #FASTEntity>
-	<package: #FAST>
+	<package: #'FAST-Core-Model'>
 	<generated>
 	^self
 ]

@@ -14,7 +14,7 @@ Class {
 FASTJavaCatchPartStatement class >> annotation [
 
 	<MSEClass: #JavaCatchPartStatement super: #FASTStatement>
-	<package: #FAST>
+	<package: #'FAST-Core-Model'>
 	<generated>
 	^self
 ]

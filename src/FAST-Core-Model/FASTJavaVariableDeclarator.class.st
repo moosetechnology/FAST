@@ -22,7 +22,7 @@ Class {
 FASTJavaVariableDeclarator class >> annotation [
 
 	<MSEClass: #JavaVariableDeclarator super: #FASTEntity>
-	<package: #FAST>
+	<package: #'FAST-Core-Model'>
 	<generated>
 	^self
 ]

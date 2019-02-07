@@ -10,7 +10,7 @@ Class {
 FASTNamedEntity class >> annotation [
 
 	<MSEClass: #NamedEntity super: #FASTEntity>
-	<package: #FAST>
+	<package: #'FAST-Core-Model'>
 	<generated>
 	^self
 ]

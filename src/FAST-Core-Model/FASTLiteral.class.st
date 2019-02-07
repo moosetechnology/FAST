@@ -19,7 +19,7 @@ Class {
 FASTLiteral class >> annotation [
 
 	<MSEClass: #Literal super: #FASTExpression>
-	<package: #FAST>
+	<package: #'FAST-Core-Model'>
 	<generated>
 	^self
 ]

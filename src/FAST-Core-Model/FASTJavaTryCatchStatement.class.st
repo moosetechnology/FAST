@@ -24,7 +24,7 @@ Class {
 FASTJavaTryCatchStatement class >> annotation [
 
 	<MSEClass: #JavaTryCatchStatement super: #FASTStatement>
-	<package: #FAST>
+	<package: #'FAST-Core-Model'>
 	<generated>
 	^self
 ]

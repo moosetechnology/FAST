@@ -11,7 +11,7 @@ Class {
 FASTJavaBreakStatement class >> annotation [
 
 	<MSEClass: #JavaBreakStatement super: #FASTStatement>
-	<package: #FAST>
+	<package: #'FAST-Core-Model'>
 	<generated>
 	^self
 ]

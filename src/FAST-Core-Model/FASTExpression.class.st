@@ -11,7 +11,7 @@ Class {
 FASTExpression class >> annotation [
 
 	<MSEClass: #Expression super: #FASTEntity>
-	<package: #FAST>
+	<package: #'FAST-Core-Model'>
 	<generated>
 	^self
 ]

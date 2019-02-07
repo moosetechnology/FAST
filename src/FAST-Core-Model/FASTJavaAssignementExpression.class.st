@@ -17,7 +17,7 @@ Class {
 FASTJavaAssignementExpression class >> annotation [
 
 	<MSEClass: #JavaAssignementExpression super: #FASTExpression>
-	<package: #FAST>
+	<package: #'FAST-Core-Model'>
 	<generated>
 	^self
 ]

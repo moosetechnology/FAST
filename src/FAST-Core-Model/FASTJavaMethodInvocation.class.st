@@ -16,7 +16,7 @@ Class {
 FASTJavaMethodInvocation class >> annotation [
 
 	<MSEClass: #JavaMethodInvocation super: #FASTExpression>
-	<package: #FAST>
+	<package: #'FAST-Core-Model'>
 	<generated>
 	^self
 ]

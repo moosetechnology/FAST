@@ -22,7 +22,7 @@ Class {
 FASTJavaForEachStatement class >> annotation [
 
 	<MSEClass: #JavaForEachStatement super: #FASTStatement>
-	<package: #FAST>
+	<package: #'FAST-Core-Model'>
 	<generated>
 	^self
 ]

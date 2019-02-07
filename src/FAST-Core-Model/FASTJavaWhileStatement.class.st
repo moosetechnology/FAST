@@ -16,7 +16,7 @@ Class {
 FASTJavaWhileStatement class >> annotation [
 
 	<MSEClass: #JavaWhileStatement super: #FASTStatement>
-	<package: #FAST>
+	<package: #'FAST-Core-Model'>
 	<generated>
 	^self
 ]

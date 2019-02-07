@@ -11,7 +11,7 @@ Class {
 FASTReturnStatement class >> annotation [
 
 	<MSEClass: #ReturnStatement super: #FASTStatement>
-	<package: #FAST>
+	<package: #'FAST-Core-Model'>
 	<generated>
 	^self
 ]

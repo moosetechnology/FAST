@@ -11,7 +11,7 @@ Class {
 FASTStatement class >> annotation [
 
 	<MSEClass: #Statement super: #FASTScopableEntity>
-	<package: #FAST>
+	<package: #'FAST-Core-Model'>
 	<generated>
 	^self
 ]

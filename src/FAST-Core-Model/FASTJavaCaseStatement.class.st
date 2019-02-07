@@ -11,7 +11,7 @@ Class {
 FASTJavaCaseStatement class >> annotation [
 
 	<MSEClass: #JavaCaseStatement super: #FASTStatement>
-	<package: #FAST>
+	<package: #'FAST-Core-Model'>
 	<generated>
 	^self
 ]

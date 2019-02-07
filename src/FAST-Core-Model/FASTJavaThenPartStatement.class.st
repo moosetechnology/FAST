@@ -8,7 +8,7 @@ Class {
 FASTJavaThenPartStatement class >> annotation [
 
 	<MSEClass: #JavaThenPartStatement super: #FASTStatement>
-	<package: #FAST>
+	<package: #'FAST-Core-Model'>
 	<generated>
 	^self
 ]

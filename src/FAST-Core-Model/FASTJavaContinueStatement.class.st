@@ -11,7 +11,7 @@ Class {
 FASTJavaContinueStatement class >> annotation [
 
 	<MSEClass: #JavaContinueStatement super: #FASTStatement>
-	<package: #FAST>
+	<package: #'FAST-Core-Model'>
 	<generated>
 	^self
 ]

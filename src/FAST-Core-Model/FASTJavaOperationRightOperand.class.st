@@ -8,7 +8,7 @@ Class {
 FASTJavaOperationRightOperand class >> annotation [
 
 	<MSEClass: #JavaOperationRightOperand super: #FASTExpression>
-	<package: #FAST>
+	<package: #'FAST-Core-Model'>
 	<generated>
 	^self
 ]

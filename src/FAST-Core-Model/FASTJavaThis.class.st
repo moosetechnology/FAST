@@ -11,7 +11,7 @@ Class {
 FASTJavaThis class >> annotation [
 
 	<MSEClass: #JavaThis super: #FASTVariableExpression>
-	<package: #FAST>
+	<package: #'FAST-Core-Model'>
 	<generated>
 	^self
 ]

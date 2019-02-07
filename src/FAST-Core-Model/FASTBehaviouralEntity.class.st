@@ -17,7 +17,7 @@ Class {
 FASTBehaviouralEntity class >> annotation [
 
 	<MSEClass: #BehaviouralEntity super: #FASTScopableEntity>
-	<package: #FAST>
+	<package: #'FAST-Core-Model'>
 	<generated>
 	^self
 ]

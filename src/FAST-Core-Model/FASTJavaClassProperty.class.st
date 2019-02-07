@@ -45,7 +45,7 @@ Class {
 FASTJavaClassProperty class >> annotation [
 
 	<MSEClass: #JavaClassProperty super: #FASTExpression>
-	<package: #FAST>
+	<package: #'FAST-Core-Model'>
 	<generated>
 	^self
 ]

@@ -11,7 +11,7 @@ Class {
 FASTJavaMethodEntity class >> annotation [
 
 	<MSEClass: #JavaMethodEntity super: #FASTNamedBehaviouralEntity>
-	<package: #FAST>
+	<package: #'FAST-Core-Model'>
 	<generated>
 	^self
 ]

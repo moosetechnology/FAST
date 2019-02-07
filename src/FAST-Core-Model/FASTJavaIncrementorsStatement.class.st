@@ -11,7 +11,7 @@ Class {
 FASTJavaIncrementorsStatement class >> annotation [
 
 	<MSEClass: #JavaIncrementorsStatement super: #FASTStatement>
-	<package: #FAST>
+	<package: #'FAST-Core-Model'>
 	<generated>
 	^self
 ]

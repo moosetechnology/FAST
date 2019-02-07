@@ -11,7 +11,7 @@ Class {
 FASTJavaBodyStatement class >> annotation [
 
 	<MSEClass: #JavaBodyStatement super: #FASTStatement>
-	<package: #FAST>
+	<package: #'FAST-Core-Model'>
 	<generated>
 	^self
 ]

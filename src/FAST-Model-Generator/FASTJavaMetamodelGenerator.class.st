@@ -330,8 +330,8 @@ while(...) {
 ]
 
 { #category : #definition }
-FASTJavaMetamodelGenerator >> defineNewClasses [
-	super defineNewClasses.
+FASTJavaMetamodelGenerator >> defineClasses [
+	super defineClasses.
 	javaAssignementExpression := builder newClassNamed: #JavaAssignementExpression comment: self commentForJavaAssignementExpression.
 	javaBreakStatement := builder newClassNamed: #JavaBreakStatement comment: self commentForJavaBreakStatement.
 	javaCaseStatement := builder newClassNamed: #JavaCaseStatement comment: self commentForJavaCaseStatement.
@@ -382,10 +382,10 @@ FASTJavaMetamodelGenerator >> defineNewClasses [
 ]
 
 { #category : #definition }
-FASTJavaMetamodelGenerator >> defineNewClassesHierarchy [
+FASTJavaMetamodelGenerator >> defineHierarchy [
 	"define class hierarchy"
 
-	super defineNewClassesHierarchy.
+	super defineHierarchy.
 	javaAssignementExpression --|> expression.
 	javaFieldAccess --|> expression.
 	javaInfixOperation --|> expression.

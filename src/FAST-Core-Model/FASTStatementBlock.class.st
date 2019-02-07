@@ -11,7 +11,7 @@ Class {
 FASTStatementBlock class >> annotation [
 
 	<MSEClass: #StatementBlock super: #FASTStatement>
-	<package: #FAST>
+	<package: #'FAST-Core-Model'>
 	<generated>
 	^self
 ]

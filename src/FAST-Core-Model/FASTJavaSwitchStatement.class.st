@@ -16,7 +16,7 @@ Class {
 FASTJavaSwitchStatement class >> annotation [
 
 	<MSEClass: #JavaSwitchStatement super: #FASTStatement>
-	<package: #FAST>
+	<package: #'FAST-Core-Model'>
 	<generated>
 	^self
 ]

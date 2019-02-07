@@ -11,7 +11,7 @@ Class {
 FASTJavaNullLiteral class >> annotation [
 
 	<MSEClass: #JavaNullLiteral super: #FASTNullPointerLiteral>
-	<package: #FAST>
+	<package: #'FAST-Core-Model'>
 	<generated>
 	^self
 ]

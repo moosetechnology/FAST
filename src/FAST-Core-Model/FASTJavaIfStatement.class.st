@@ -18,7 +18,7 @@ Class {
 FASTJavaIfStatement class >> annotation [
 
 	<MSEClass: #JavaIfStatement super: #FASTStatement>
-	<package: #FAST>
+	<package: #'FAST-Core-Model'>
 	<generated>
 	^self
 ]

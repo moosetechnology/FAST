@@ -15,7 +15,7 @@ Class {
 FASTJavaCastExpression class >> annotation [
 
 	<MSEClass: #JavaCastExpression super: #FASTExpression>
-	<package: #FAST>
+	<package: #'FAST-Core-Model'>
 	<generated>
 	^self
 ]

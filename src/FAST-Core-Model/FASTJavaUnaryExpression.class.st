@@ -28,7 +28,7 @@ Class {
 FASTJavaUnaryExpression class >> annotation [
 
 	<MSEClass: #JavaUnaryExpression super: #FASTExpression>
-	<package: #FAST>
+	<package: #'FAST-Core-Model'>
 	<generated>
 	^self
 ]

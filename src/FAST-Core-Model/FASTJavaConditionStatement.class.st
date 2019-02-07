@@ -8,7 +8,7 @@ Class {
 FASTJavaConditionStatement class >> annotation [
 
 	<MSEClass: #JavaConditionStatement super: #FASTStatement>
-	<package: #FAST>
+	<package: #'FAST-Core-Model'>
 	<generated>
 	^self
 ]

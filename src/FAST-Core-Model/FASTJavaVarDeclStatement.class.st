@@ -21,7 +21,7 @@ Class {
 FASTJavaVarDeclStatement class >> annotation [
 
 	<MSEClass: #JavaVarDeclStatement super: #FASTStatement>
-	<package: #FAST>
+	<package: #'FAST-Core-Model'>
 	<generated>
 	^self
 ]

@@ -5,9 +5,8 @@ NOTE: I generate the Core FAST Model and the Java FAST Model because we can't cu
 "
 Class {
 	#name : #FASTMetamodelGenerator,
-	#superclass : #FamixMetamodelGenerator,
+	#superclass : #FamixBasicInfrastructureGenerator,
 	#instVars : [
-		'entity',
 		'expression',
 		'literal',
 		'booleanLiteral',
@@ -22,8 +21,7 @@ Class {
 		'returnStatement',
 		'statementBlock',
 		'variableEntity',
-		'namedBehaviouralEntity',
-		'namedEntity'
+		'namedBehaviouralEntity'
 	],
 	#category : #'FAST-Model-Generator'
 }
@@ -35,36 +33,8 @@ FASTMetamodelGenerator class >> packageName [
 ]
 
 { #category : #accessing }
-FASTMetamodelGenerator class >> packageNameForAnnotations [
-	 ^ #FAST
-]
-
-{ #category : #accessing }
 FASTMetamodelGenerator class >> prefix [
 	^ #FAST
-]
-
-{ #category : #accessing }
-FASTMetamodelGenerator class >> resetMetamodel [
-
-	" self resetMetamodel"
-
-	| classes tower |
-
-	FMRelationSlot allSubInstancesDo: #resetMooseProperty.
-
-	classes := self packageName asPackage definedClasses
-		select: [ :each | each inheritsFrom: MooseEntity ].
-	classes addAll: (self packageName asPackage definedClasses select: #isTrait).
-	classes addAll: #'Famix-Traits' asPackage definedClasses.
-	classes addAll: ('Famix-Compatibility-Entities' asPackage definedClasses select: [ :each | each inheritsFrom: MooseEntity ]).
-	
-	{ Trait. 	Class. ClassDescription. Behavior. MooseModel. MooseAbstractGroup. MooseEntity. MooseGroup} 
-		do: [ :each | classes add: each ].
-	tower := MooseModel metaBuilder: classes.
-	self metamodel: tower metamodel.
-	
-	^ metamodel
 ]
 
 { #category : #definition }
@@ -175,16 +145,7 @@ FASTMetamodelGenerator >> commentForVariableExpression [
 
 { #category : #definition }
 FASTMetamodelGenerator >> defineClasses [
-	self defineNewClasses.
-	self defineNewClassesHierarchy
-]
-
-{ #category : #definition }
-FASTMetamodelGenerator >> defineNewClasses [
-	self flag: 'pourquoi mettre les commentaires dans des methodes separees? Ca serait bien de les voir ici non?'.
-	self flag: 'Edit Benoit 09/07/2018 : C est ce format qui est utilise dans FamixNG. Si les commentaires sont long on perd de la comprehension je trouve... Pour des commentaires je vois l interet'.
-	
-	entity := builder newClassNamed: #Entity comment: self commentForEntity.
+	super defineClasses..
 	expression := builder newClassNamed: #Expression comment: self commentForExpression.
 	literal := builder newClassNamed: #Literal comment: self commentForLiteral.
 	booleanLiteral := builder newClassNamed: #BooleanLiteral comment: self commentForBooleanLiteral.
@@ -200,11 +161,10 @@ FASTMetamodelGenerator >> defineNewClasses [
 	returnStatement := builder newClassNamed: #ReturnStatement comment: self commentForReturnStatement.
 	statementBlock := builder newClassNamed: #StatementBlock comment: self commentForStatementBlock.
 	variableEntity := builder newClassNamed: #VariableEntity comment: self commentForVariableEntity.
-	namedEntity := builder newClassNamed: #NamedEntity
 ]
 
 { #category : #definition }
-FASTMetamodelGenerator >> defineNewClassesHierarchy [
+FASTMetamodelGenerator >> defineHierarchy [
 	entity --|> #TEntityMetaLevelDependency.
 	expression --|> entity.
 	literal --|> expression.
@@ -263,10 +223,10 @@ FASTMetamodelGenerator >> defineRelations [
 { #category : #definition }
 FASTMetamodelGenerator >> newBuilder [
 	| standardBuilder mooseGenerator |
+	^ self builderWithStandardTraits 
 	
-	standardBuilder := FamixGenerator builderWithDefinitions.
+	"standardBuilder := FamixGenerator builderWithDefinitions.
 
-	"add Moose-Query"
 	mooseGenerator := FamixMooseQueryGenerator new.
 	mooseGenerator builder: standardBuilder.
 	mooseGenerator adoptBuilder: standardBuilder.
@@ -278,5 +238,5 @@ FASTMetamodelGenerator >> newBuilder [
 	^ standardBuilder
 		doNotGenerateCurrent;
 		generator: self;
-		yourself.
+		yourself."
 ]

@@ -11,7 +11,7 @@ Class {
 FASTJavaNewClassMethodStatment class >> annotation [
 
 	<MSEClass: #JavaNewClassMethodStatment super: #FASTStatement>
-	<package: #FAST>
+	<package: #'FAST-Core-Model'>
 	<generated>
 	^self
 ]

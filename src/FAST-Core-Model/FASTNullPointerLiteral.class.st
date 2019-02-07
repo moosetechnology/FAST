@@ -11,7 +11,7 @@ Class {
 FASTNullPointerLiteral class >> annotation [
 
 	<MSEClass: #NullPointerLiteral super: #FASTLiteral>
-	<package: #FAST>
+	<package: #'FAST-Core-Model'>
 	<generated>
 	^self
 ]

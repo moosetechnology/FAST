@@ -11,7 +11,7 @@ Class {
 FASTJavaInitializersStatement class >> annotation [
 
 	<MSEClass: #JavaInitializersStatement super: #FASTStatement>
-	<package: #FAST>
+	<package: #'FAST-Core-Model'>
 	<generated>
 	^self
 ]

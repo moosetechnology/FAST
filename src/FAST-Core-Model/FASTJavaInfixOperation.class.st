@@ -19,7 +19,7 @@ Class {
 FASTJavaInfixOperation class >> annotation [
 
 	<MSEClass: #JavaInfixOperation super: #FASTExpression>
-	<package: #FAST>
+	<package: #'FAST-Core-Model'>
 	<generated>
 	^self
 ]

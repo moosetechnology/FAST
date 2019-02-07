@@ -8,7 +8,7 @@ Class {
 FASTJavaElsePartStatement class >> annotation [
 
 	<MSEClass: #JavaElsePartStatement super: #FASTStatement>
-	<package: #FAST>
+	<package: #'FAST-Core-Model'>
 	<generated>
 	^self
 ]

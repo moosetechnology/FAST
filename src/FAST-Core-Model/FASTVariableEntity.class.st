@@ -13,7 +13,7 @@ Class {
 FASTVariableEntity class >> annotation [
 
 	<MSEClass: #VariableEntity super: #FASTEntity>
-	<package: #FAST>
+	<package: #'FAST-Core-Model'>
 	<generated>
 	^self
 ]

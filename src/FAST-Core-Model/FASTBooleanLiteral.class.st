@@ -11,7 +11,7 @@ Class {
 FASTBooleanLiteral class >> annotation [
 
 	<MSEClass: #BooleanLiteral super: #FASTLiteral>
-	<package: #FAST>
+	<package: #'FAST-Core-Model'>
 	<generated>
 	^self
 ]

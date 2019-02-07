@@ -15,7 +15,7 @@ Class {
 FASTJavaNewExpression class >> annotation [
 
 	<MSEClass: #JavaNewExpression super: #FASTJavaMethodInvocation>
-	<package: #FAST>
+	<package: #'FAST-Core-Model'>
 	<generated>
 	^self
 ]

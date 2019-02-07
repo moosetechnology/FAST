@@ -11,7 +11,7 @@ Class {
 FASTCharacterLiteral class >> annotation [
 
 	<MSEClass: #CharacterLiteral super: #FASTLiteral>
-	<package: #FAST>
+	<package: #'FAST-Core-Model'>
 	<generated>
 	^self
 ]
