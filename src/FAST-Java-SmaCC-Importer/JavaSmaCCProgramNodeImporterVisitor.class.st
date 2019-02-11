@@ -330,7 +330,8 @@ JavaSmaCCProgramNodeImporterVisitor >> visitMethodInvocation: aMethodInvocation 
 						receiver:
 							(FASTJavaIdentifier new
 								name: receiver name value;
-								yourself) ]
+								yourself).
+					self addToModel: currentFASTEntity receiver  ]
 				ifFalse: [ currentFASTEntity receiver: (self clone accept: receiver) ] ].
 	currentFASTEntity name: aMethodInvocation name value.
 	^ currentFASTEntity

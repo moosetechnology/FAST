@@ -67,6 +67,13 @@ JavaSmaCCMethodInvocationWithParamAndReceiverTest >> testNumberOfMethodInvocatio
 ]
 
 { #category : #tests }
+JavaSmaCCMethodInvocationWithParamAndReceiverTest >> testReceiverIsInModel [
+	self
+		assert: methodInvocationWithVariableAsReceiver statements first childrenNode first receiver localMooseModel
+		equals: methodInvocationWithVariableAsReceiver localMooseModel
+]
+
+{ #category : #tests }
 JavaSmaCCMethodInvocationWithParamAndReceiverTest >> testReceiverMethodInvocations [
 	self
 		assert:
