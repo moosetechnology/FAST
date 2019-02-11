@@ -74,6 +74,13 @@ JavaSmaCCMethodInvocationWithParamAndReceiverTest >> testReceiverIsInModel [
 ]
 
 { #category : #tests }
+JavaSmaCCMethodInvocationWithParamAndReceiverTest >> testReceiverKnowTheCallingMethod [
+	self
+		assert: methodInvocationWithVariableAsReceiver statements first childrenNode first receiver parentNode
+		equals: methodInvocationWithVariableAsReceiver statements first childrenNode first
+]
+
+{ #category : #tests }
 JavaSmaCCMethodInvocationWithParamAndReceiverTest >> testReceiverMethodInvocations [
 	self
 		assert:
