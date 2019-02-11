@@ -1,6 +1,13 @@
 Extension { #name : #MooseAbstractGroup }
 
 { #category : #'*FAST-Core-Model-Extension' }
+MooseAbstractGroup >> allFASTExpressionStatement [
+	<navigation: 'All FAST expression statement'>
+	<package: #FAST>
+	^ self allWithType: FASTExpressionStatement 
+]
+
+{ #category : #'*FAST-Core-Model-Extension' }
 MooseAbstractGroup >> allFASTJavaIdentifier [
 	<navigation: 'All FAST java identifier'>
 	<package: #FAST>
