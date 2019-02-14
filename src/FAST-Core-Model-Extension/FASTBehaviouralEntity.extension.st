@@ -18,5 +18,5 @@ FASTBehaviouralEntity >> statements [
 	<multivalued>
 	<derived>
 	<MSEComment: 'Statements of the behavioural entity'>
-	^ (self childrenNode select: [ :child | child class isKindOf: FASTStatement class ] )first statements
+	^ (self childrenNode select: [ :child | child class isKindOf: FASTStatement class ] ) anyOne statements
 ]
