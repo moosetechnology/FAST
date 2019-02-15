@@ -1,6 +1,5 @@
-Class {
+Trait {
 	#name : #FASTVisitor,
-	#superclass : #Object,
 	#category : #'FAST-Java-Visitor'
 }
 
