@@ -202,7 +202,7 @@ FASTMetamodelGenerator >> defineProperties [
 FASTMetamodelGenerator >> defineRelations [
 	"in comment the old relation from the old FAST metamodel"
 
-	((entity property: #parentNode) container *- (entity property: #childrenNode))
+	((entity property: #parentNode) *-<> (entity property: #childrenNode))
 		withNavigation
 
 	"((expression property: #parentExpression) comment: 'Parent expression within which this expression appears (e.g. self=a+b and parent=2*(a+b)) ')
