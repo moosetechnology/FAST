@@ -188,7 +188,6 @@ FASTMetamodelGenerator >> defineHierarchy [
 	variableEntity --|> #TNamed.
 	variableExpression --|> #TNamed.
 	namedBehaviouralEntity --|> #TNamed.
-	entity --|> #TEntityMetaLevelDependency.
 	entity --|> #TDependencyQueries.
 	entity --|> #TWithSourceAnchor
 ]

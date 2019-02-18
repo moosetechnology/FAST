@@ -168,6 +168,15 @@ JavaSmaCCProgramNodeImporterVisitor >> visitCharacterLiteral: aCharacterLiteral 
 ]
 
 { #category : #initialization }
+JavaSmaCCProgramNodeImporterVisitor >> visitClassExpression: aClassExpression [
+	currentFASTEntity := self addToModel: FASTJavaClassProperty new.
+	currentFASTEntity parentNode: self parentFASTEntity.
+	currentFASTEntity type: (self clone accept: aClassExpression type).
+	currentFASTEntity fieldName: aClassExpression classToken value.
+	^ currentFASTEntity
+]
+
+{ #category : #initialization }
 JavaSmaCCProgramNodeImporterVisitor >> visitClassProperty: aClassProperty [
 	currentFASTEntity := self addToModel: FASTJavaClassProperty new.
 	currentFASTEntity parentNode: self parentFASTEntity.
@@ -181,6 +190,19 @@ JavaSmaCCProgramNodeImporterVisitor >> visitClassType: aClassType [
 	currentFASTEntity := self addToModel: FASTNamedEntity new.
 	currentFASTEntity name: aClassType name name value.
 	currentFASTEntity parentNode: self parentFASTEntity.
+	^ currentFASTEntity
+]
+
+{ #category : #initialization }
+JavaSmaCCProgramNodeImporterVisitor >> visitDeclaration: aConstructorDeclaration [
+	currentFASTEntity := FASTJavaMethodEntity new
+		name: aConstructorDeclaration name name value;
+		yourself.
+	aConstructorDeclaration parameters
+		do: [ :parameter | self clone accept: parameter ].
+	currentFASTEntity
+		statementBlock: (self clone accept: aConstructorDeclaration body).
+	self addToModel: currentFASTEntity.
 	^ currentFASTEntity
 ]
 
@@ -462,6 +484,17 @@ JavaSmaCCProgramNodeImporterVisitor >> visitStringLiteral: aStringLiteral [
 				value: (((aStringLiteral token value) removePrefix: '"') removeSuffix: '"') ;
 				yourself).
 	currentFASTEntity parentNode: self parentFASTEntity.
+	^ currentFASTEntity
+]
+
+{ #category : #initialization }
+JavaSmaCCProgramNodeImporterVisitor >> visitSuperConstructorInvocation: aSuperConstructorInvocation [
+	currentFASTEntity := self addToModel: FASTJavaMethodInvocation new.
+	currentFASTEntity parentNode: self parentFASTEntity.
+	aSuperConstructorInvocation expressions
+		do:
+			[ :expression | currentFASTEntity addArgument: (self clone accept: expression) ].
+	currentFASTEntity name: aSuperConstructorInvocation superToken value.
 	^ currentFASTEntity
 ]
 

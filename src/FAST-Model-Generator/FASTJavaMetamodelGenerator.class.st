@@ -52,7 +52,8 @@ Class {
 		'javaUnaryExpression',
 		'javaNewExpression',
 		'javaNewClassExpression',
-		'javaNewClassMethodStatment'
+		'javaNewClassMethodStatment',
+		'javaNewArray'
 	],
 	#category : #'FAST-Model-Generator'
 }
@@ -200,6 +201,14 @@ FASTJavaMetamodelGenerator >> commentForJavaMethodEntity [
 { #category : #definition }
 FASTJavaMetamodelGenerator >> commentForJavaMethodInvocation [
 	^ 'A node representing method imvocation'
+]
+
+{ #category : #definition }
+FASTJavaMetamodelGenerator >> commentForJavaNewArray. [
+	^ 'I represent a java new array node.
+ex.
+
+new String()["10px", "Hello world"]'
 ]
 
 { #category : #definition }
@@ -364,6 +373,7 @@ FASTJavaMetamodelGenerator >> defineClasses [
 	javaUnaryExpression := builder newClassNamed: #JavaUnaryExpression comment: self commentForJavaUnaryExpression.
 	javaNewExpression := builder newClassNamed: #JavaNewExpression comment: self commentForJavaNewExpression.
 	javaNewClassExpression := builder newClassNamed: #JavaNewClassExpression comment: self commentForJavaNewClassExpression.
+	javaNewArray := builder newClassNamed: #JavaNewArray comment: self commentForJavaNewArray.
 
 	"factice"
 	javaElsePartStatement := builder newClassNamed: #JavaElsePartStatement.
@@ -419,6 +429,7 @@ FASTJavaMetamodelGenerator >> defineHierarchy [
 	javaUnaryExpression --|> expression.
 	javaNewExpression --|> javaMethodInvocation.
 	javaNewClassExpression --|> javaNewExpression.
+	javaNewArray --|> javaNewExpression. 
 
 	"Factice"
 	javaElsePartStatement --|> statement.
