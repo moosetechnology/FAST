@@ -1,6 +1,7 @@
-Trait {
+Class {
 	#name : #FASTVisitor,
-	#category : #'FAST-Java-Visitor'
+	#superclass : #Object,
+	#category : #'FAST-Core-Model-Entities'
 }
 
 { #category : #visitor }
