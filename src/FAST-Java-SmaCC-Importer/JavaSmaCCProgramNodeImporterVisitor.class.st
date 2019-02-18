@@ -76,15 +76,10 @@ JavaSmaCCProgramNodeImporterVisitor >> parentFASTVisitor: anObject [
 JavaSmaCCProgramNodeImporterVisitor >> parseCodeMethodString: aCodeString [
 	| ast |
 	ast := JavaParser
-		parse:
-			aCodeString
-		startingAt:
-			JavaParser
-				startingStateFormethod_declaration.
-	self
-		accept: ast.
-	^ self
-		model
+		parse: aCodeString
+		startingAt: JavaParser startingStateForclass_body_declaration.
+	self accept: ast.
+	^ self model
 ]
 
 { #category : #initialization }
