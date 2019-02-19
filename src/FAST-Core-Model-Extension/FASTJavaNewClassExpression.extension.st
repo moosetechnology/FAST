@@ -1,11 +1,6 @@
 Extension { #name : #FASTJavaNewClassExpression }
 
 { #category : #'*FAST-Core-Model-Extension' }
-FASTJavaNewClassExpression >> accept: aFASTVisitor [
-	^ aFASTVisitor visitFASTJavaNewClassExpression: self
-]
-
-{ #category : #'*FAST-Core-Model-Extension' }
 FASTJavaNewClassExpression >> addMethod: aFASTJavaMethodDeclaration [
 	self childrenNode
 		add:

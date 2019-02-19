@@ -1,14 +1,14 @@
-Extension { #name : #FASTJavaIfStatement }
+Extension { #name : #FASTJavaConditionalStatement }
 
 { #category : #'*FAST-Core-Model-Extension' }
-FASTJavaIfStatement >> condition [
+FASTJavaConditionalStatement >> condition [
 	<computed>
 	<navigation: 'condition'>
 	^ (self childrenNode select: [ :childNode | childNode class =  FASTJavaConditionStatement ]) at: 1 ifAbsent: [ nil ]
 ]
 
 { #category : #'*FAST-Core-Model-Extension' }
-FASTJavaIfStatement >> condition: aFASTJavaConditionStatement [
+FASTJavaConditionalStatement >> condition: aFASTJavaConditionStatement [
 	self childrenNode
 		add:
 			(FASTJavaConditionStatement new
@@ -17,14 +17,14 @@ FASTJavaIfStatement >> condition: aFASTJavaConditionStatement [
 ]
 
 { #category : #'*FAST-Core-Model-Extension' }
-FASTJavaIfStatement >> elsePart [
+FASTJavaConditionalStatement >> elsePart [
 	<computed>
 	<navigation: 'elsePart'>
 	^ (self childrenNode select: [ :childNode | childNode class = FASTJavaElsePartStatement  ]) at: 1 ifAbsent: [ ^ nil ] 
 ]
 
 { #category : #'*FAST-Core-Model-Extension' }
-FASTJavaIfStatement >> elsePart: aFASTJavaElsePartStatement [
+FASTJavaConditionalStatement >> elsePart: aFASTJavaElsePartStatement [
 	self childrenNode
 		add:
 			(FASTJavaElsePartStatement new
@@ -33,14 +33,14 @@ FASTJavaIfStatement >> elsePart: aFASTJavaElsePartStatement [
 ]
 
 { #category : #'*FAST-Core-Model-Extension' }
-FASTJavaIfStatement >> thenPart [
+FASTJavaConditionalStatement >> thenPart [
 	<computed>
 	<navigation: 'thenPart'>
 	^ (self childrenNode select: [ :childNode | childNode class = FASTJavaThenPartStatement  ]) anyOne
 ]
 
 { #category : #'*FAST-Core-Model-Extension' }
-FASTJavaIfStatement >> thenPart: aFASTJavaThenPartStatement [
+FASTJavaConditionalStatement >> thenPart: aFASTJavaThenPartStatement [
 	self childrenNode add: (FASTJavaThenPartStatement new
 				addChild: aFASTJavaThenPartStatement;
 				yourself)

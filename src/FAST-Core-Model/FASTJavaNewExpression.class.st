@@ -7,14 +7,17 @@ new Patate()
 "
 Class {
 	#name : #FASTJavaNewExpression,
-	#superclass : #FASTJavaMethodInvocation,
+	#superclass : #FASTExpression,
+	#instVars : [
+		'type'
+	],
 	#category : #'FAST-Core-Model-Entities'
 }
 
 { #category : #meta }
 FASTJavaNewExpression class >> annotation [
 
-	<MSEClass: #JavaNewExpression super: #FASTJavaMethodInvocation>
+	<MSEClass: #JavaNewExpression super: #FASTExpression>
 	<package: #'FAST-Core-Model'>
 	<generated>
 	^self
@@ -24,7 +27,7 @@ FASTJavaNewExpression class >> annotation [
 FASTJavaNewExpression class >> generatedSlotNames [
 	<generated>
 	'FASTJavaNewExpression class>>#generatedSlotNames'.
-	^ #()
+	^ #(type)
 ]
 
 { #category : #generator }
@@ -38,4 +41,21 @@ FASTJavaNewExpression class >> requirements [
 
 	<generated>
 	^ {  }
+]
+
+{ #category : #accessing }
+FASTJavaNewExpression >> type [
+
+	<MSEProperty: #type type: #FASTNamedEntity>
+	<generated>
+	<MSEComment: 'The type of the array'>
+	^ type
+]
+
+{ #category : #accessing }
+FASTJavaNewExpression >> type: anObject [
+
+	<generated>
+	type := anObject
+
 ]

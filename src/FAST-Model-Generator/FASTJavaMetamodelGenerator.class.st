@@ -53,7 +53,8 @@ Class {
 		'javaNewExpression',
 		'javaNewClassExpression',
 		'javaNewClassMethodStatment',
-		'javaNewArray'
+		'javaNewArray',
+		'javaConditionalStatement'
 	],
 	#category : #'FAST-Model-Generator'
 }
@@ -113,6 +114,15 @@ class Enclosing {
     }
 }
 '
+]
+
+{ #category : #definition }
+FASTJavaMetamodelGenerator >> commentForJavaConditionalStatement. [
+	^ 'I represent a Java conditionnal Statement
+
+ex:
+
+(h.get() == 2) ? thenPart : elsePart'
 ]
 
 { #category : #definition }
@@ -374,6 +384,7 @@ FASTJavaMetamodelGenerator >> defineClasses [
 	javaNewExpression := builder newClassNamed: #JavaNewExpression comment: self commentForJavaNewExpression.
 	javaNewClassExpression := builder newClassNamed: #JavaNewClassExpression comment: self commentForJavaNewClassExpression.
 	javaNewArray := builder newClassNamed: #JavaNewArray comment: self commentForJavaNewArray.
+	javaConditionalStatement := builder newClassNamed: #JavaConditionalStatement comment: self commentForJavaConditionalStatement.
 
 	"factice"
 	javaElsePartStatement := builder newClassNamed: #JavaElsePartStatement.
@@ -427,9 +438,10 @@ FASTJavaMetamodelGenerator >> defineHierarchy [
 	javaTryCatch --|> statement.
 	javaForEachStatement --|> statement.
 	javaUnaryExpression --|> expression.
-	javaNewExpression --|> javaMethodInvocation.
+	javaNewExpression --|> expression.
 	javaNewClassExpression --|> javaNewExpression.
-	javaNewArray --|> javaNewExpression. 
+	javaNewArray --|> javaNewExpression.
+	javaConditionalStatement --|> statement.
 
 	"Factice"
 	javaElsePartStatement --|> statement.
@@ -468,6 +480,8 @@ FASTJavaMetamodelGenerator >> defineProperties [
 	(javaUnaryExpression property: #expression type: #FASTExpression) comment: 'The affected expression'.
 	(javaUnaryExpression property: #operator type: #String) comment: 'The operator string to apply to the expression'.
 	(javaUnaryExpression property: #isPrefixedUnaryExpression type: #Boolean) comment: 'true if the expression is prefixed (ex. ++i) else false'.
+	(javaNewExpression property: #type type: #FASTNamedEntity) comment: 'The type of the array'.
+
 
 	"Try to remove the maximum of factice entity. So we create a Property for the relation '-'/one-to-one"
 	(javaForEachStatement property: #body type: #FASTStatement) comment: 'The body of the For Each statement'.

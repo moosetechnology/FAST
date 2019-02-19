@@ -194,6 +194,18 @@ JavaSmaCCProgramNodeImporterVisitor >> visitClassType: aClassType [
 ]
 
 { #category : #initialization }
+JavaSmaCCProgramNodeImporterVisitor >> visitConditionalExpression: aConditionalExpression [
+	currentFASTEntity := self addToModel: FASTJavaConditionalStatement new.
+	currentFASTEntity parentNode: self parentFASTEntity. 
+	currentFASTEntity condition: (self clone accept: aConditionalExpression testExpression).
+	currentFASTEntity thenPart: (self clone accept: aConditionalExpression trueExpression).
+	aConditionalExpression falseExpression
+		ifNotNil: [ currentFASTEntity
+				elsePart: (self clone accept: aConditionalExpression falseExpression) ].
+	^ currentFASTEntity
+]
+
+{ #category : #initialization }
 JavaSmaCCProgramNodeImporterVisitor >> visitDeclaration: aConstructorDeclaration [
 	currentFASTEntity := FASTJavaMethodEntity new
 		name: aConstructorDeclaration name name value;
@@ -369,7 +381,16 @@ JavaSmaCCProgramNodeImporterVisitor >> visitNew: aNewNode [
 	currentFASTEntity parentNode: self parentFASTEntity.
 	aNewNode expressions
 		do: [ :expression | currentFASTEntity addArgument: (self clone accept: expression) ].
-	currentFASTEntity name: aNewNode type name name value.
+	currentFASTEntity type: (self clone accept: aNewNode type).
+	^ currentFASTEntity
+]
+
+{ #category : #initialization }
+JavaSmaCCProgramNodeImporterVisitor >> visitNewArray: aNewArray [
+	currentFASTEntity := self addToModel: FASTJavaNewArray new.
+	currentFASTEntity parentNode: self parentFASTEntity.
+	currentFASTEntity type: (self clone accept: aNewArray type).
+	aNewArray initializer initializers do: [ :initializer | currentFASTEntity addInitializer: (self clone accept: initializer) ].
 	^ currentFASTEntity
 ]
 
@@ -379,7 +400,7 @@ JavaSmaCCProgramNodeImporterVisitor >> visitNewClass: aNewClass [
 	currentFASTEntity parentNode: self parentFASTEntity.
 	aNewClass expressions
 		do: [ :expression | currentFASTEntity addArgument: (self clone accept: expression) ].
-	currentFASTEntity name: aNewClass type name name value.
+	currentFASTEntity type: (self clone accept: aNewClass type).
 	aNewClass declarations do: [:method | currentFASTEntity addMethod: (self clone accept: method) ]. 
 	^ currentFASTEntity
 ]
