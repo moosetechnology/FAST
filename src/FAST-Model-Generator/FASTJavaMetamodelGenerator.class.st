@@ -56,7 +56,8 @@ Class {
 		'javaNewArray',
 		'javaConditionalStatement',
 		'javaArrayAccess',
-		'javaInitializer'
+		'javaInitializer',
+		'javaOuterThis'
 	],
 	#category : #'FAST-Model-Generator'
 }
@@ -279,6 +280,15 @@ FASTJavaMetamodelGenerator >> commentForJavaNullLiteral [
 ]
 
 { #category : #definition }
+FASTJavaMetamodelGenerator >> commentForJavaOuterThis [
+	^ 'I represent a java outer this (only a call to ''this'' to a class
+	
+ex.:
+
+hello(MyClass.this)'
+]
+
+{ #category : #definition }
 FASTJavaMetamodelGenerator >> commentForJavaSeparator [
 	self flag: #todo.
 	^ 'todo'
@@ -412,6 +422,7 @@ FASTJavaMetamodelGenerator >> defineClasses [
 	javaConditionalStatement := builder newClassNamed: #JavaConditionalStatement comment: self commentForJavaConditionalStatement.
 	javaArrayAccess := builder newClassNamed: #JavaArrayAccess comment: self commentForJavaArrayAccess.
 	javaInitializer := builder newClassNamed: #JavaInitializer comment: self commentForJavaInitializer.
+	javaOuterThis := builder newClassNamed: #JavaOuterThis comment: self commentForJavaOuterThis.
 
 	"factice"
 	javaElsePartStatement := builder newClassNamed: #JavaElsePartStatement.
@@ -471,6 +482,7 @@ FASTJavaMetamodelGenerator >> defineHierarchy [
 	javaConditionalStatement --|> statement.
 	javaArrayAccess --|> expression.
 	javaInitializer --|> scopableEntity.
+	javaOuterThis --|> expression.
 
 	"Factice"
 	javaElsePartStatement --|> statement.
@@ -512,6 +524,7 @@ FASTJavaMetamodelGenerator >> defineProperties [
 	(javaNewExpression property: #type type: #FASTNamedEntity) comment: 'The type of the array'.
 	(javaArrayAccess property: #fieldName type: #String) comment: 'Name of accessed field'.
 	(javaArrayAccess property: #expression type: #FASTExpression) comment: 'The accessed index'.
+	(javaOuterThis property: #type type: #FASTNamedEntity) comment: 'The accessed type'.
 
 	"Try to remove the maximum of factice entity. So we create a Property for the relation '-'/one-to-one"
 	(javaForEachStatement property: #body type: #FASTStatement) comment: 'The body of the For Each statement'.

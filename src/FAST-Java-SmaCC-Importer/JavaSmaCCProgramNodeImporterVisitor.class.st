@@ -315,7 +315,8 @@ JavaSmaCCProgramNodeImporterVisitor >> visitInitializedVariableDeclaration: anIn
 { #category : #initialization }
 JavaSmaCCProgramNodeImporterVisitor >> visitInitializer: aInitializer [
 	currentFASTEntity := FASTJavaInitializer new.
-		currentFASTEntity parentNode: self parentFASTEntity.
+	currentFASTEntity parentNode: self parentFASTEntity.
+	currentFASTEntity statementBlock: (self clone accept: aInitializer block).
 	self addToModel: currentFASTEntity.
 	^ currentFASTEntity
 ]
@@ -428,6 +429,15 @@ JavaSmaCCProgramNodeImporterVisitor >> visitNull: aNull [
 				value: aNull token value;
 				yourself).
 	currentFASTEntity parentNode: self parentFASTEntity.
+	^ currentFASTEntity
+]
+
+{ #category : #initialization }
+JavaSmaCCProgramNodeImporterVisitor >> visitOuterThis: aFASTJavaOuterThis [
+	currentFASTEntity := FASTJavaOuterThis new.
+	currentFASTEntity parentNode: self parentFASTEntity.
+	currentFASTEntity type: (self clone accept: aFASTJavaOuterThis name).
+	self addToModel: currentFASTEntity.
 	^ currentFASTEntity
 ]
 
