@@ -117,15 +117,6 @@ class Enclosing {
 ]
 
 { #category : #definition }
-FASTJavaMetamodelGenerator >> commentForJavaConditionalStatement. [
-	^ 'I represent a Java conditionnal Statement
-
-ex:
-
-(h.get() == 2) ? thenPart : elsePart'
-]
-
-{ #category : #definition }
 FASTJavaMetamodelGenerator >> commentForJavaContinueStatement [
 	^ 'A node representing continue statement in java'
 ]
@@ -211,14 +202,6 @@ FASTJavaMetamodelGenerator >> commentForJavaMethodEntity [
 { #category : #definition }
 FASTJavaMetamodelGenerator >> commentForJavaMethodInvocation [
 	^ 'A node representing method imvocation'
-]
-
-{ #category : #definition }
-FASTJavaMetamodelGenerator >> commentForJavaNewArray. [
-	^ 'I represent a java new array node.
-ex.
-
-new String()["10px", "Hello world"]'
 ]
 
 { #category : #definition }
