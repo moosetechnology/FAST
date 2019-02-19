@@ -21,7 +21,7 @@ JavaSmaCCNew >> setUp [
 
 { #category : #resources }
 JavaSmaCCNew >> testNewName [
-	self assert: methodNew statements first childrenNode first name equals: 'Patate'
+	self assert: methodNew statements anyOne childrenNode anyOne type name equals: 'Patate'
 ]
 
 { #category : #resources }

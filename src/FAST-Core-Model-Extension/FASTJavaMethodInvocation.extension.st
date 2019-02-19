@@ -15,7 +15,10 @@ FASTJavaMethodInvocation >> arguments [
 			FASTNamedEntity.
 			FASTLiteral.
 			FASTJavaMethodInvocation.
-			FASTJavaClassProperty }
+			FASTJavaClassProperty.
+			FASTJavaNewExpression.
+			FASTJavaNewClassExpression.
+			FASTJavaNewArray. }
 				anySatisfy: [ :possibleClass | childNode isKindOf: possibleClass ])
 				and: [ childNode ~= self receiver ] ]
 ]

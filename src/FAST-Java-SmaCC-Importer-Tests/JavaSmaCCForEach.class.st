@@ -10,7 +10,7 @@ Class {
 { #category : #resources }
 JavaSmaCCForEach >> methodForEach [
 	^ 'void forEachMethod() {
-	for(HandlerRegistration hr: SamplePageInputsAndLabels.this.hrList) {
+	for(HandlerRegistration hr: SamplePageInputsAndLabels.hrList) {
 		hr.removeHandler();
 	}
 }'

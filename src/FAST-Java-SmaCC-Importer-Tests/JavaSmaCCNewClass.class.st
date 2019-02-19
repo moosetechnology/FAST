@@ -34,7 +34,7 @@ JavaSmaCCNewClass >> testDeclaredMethodSize [
 
 { #category : #resources }
 JavaSmaCCNewClass >> testNewName [
-	self assert: (methodNew allWithType: FASTJavaNewClassExpression) anyOne name equals: 'Patate'
+	self assert: (methodNew allWithType: FASTJavaNewClassExpression) anyOne type name equals: 'Patate'
 ]
 
 { #category : #resources }

@@ -12,8 +12,8 @@ JavaSmaCCCClassPropertyTest >> methodCastAndClassProperty [
 	^ 'public void onClick(final ClickEvent event) {
 	List<UnPojoMetierRHGWT> removedRowValues = new ArrayList<UnPojoMetierRHGWT>();
 	removedRowValues.add(rowValue);
-	((IEditableListModel)SampleCustomizableTableDefinitionRH.this.pListModel).deleteObjectModel(rowValue, true);
-	SampleCustomizableTableDefinitionRH.this.editableTablelist.refreshAfterRemovingRow(removedRowValues);
+	((IEditableListModel)SampleCustomizableTableDefinitionRH.pListModel).deleteObjectModel(rowValue, true);
+	SampleCustomizableTableDefinitionRH.editableTablelist.refreshAfterRemovingRow(removedRowValues);
 }'
 ]
 
