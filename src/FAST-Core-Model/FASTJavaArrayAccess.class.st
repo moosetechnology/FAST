@@ -9,8 +9,8 @@ Class {
 	#name : #FASTJavaArrayAccess,
 	#superclass : #FASTExpression,
 	#instVars : [
-		'expression',
-		'fieldName'
+		'array',
+		'expression'
 	],
 	#category : #'FAST-Core-Model-Entities'
 }
@@ -28,7 +28,7 @@ FASTJavaArrayAccess class >> annotation [
 FASTJavaArrayAccess class >> generatedSlotNames [
 	<generated>
 	'FASTJavaArrayAccess class>>#generatedSlotNames'.
-	^ #(expression fieldName)
+	^ #(array expression)
 ]
 
 { #category : #generator }
@@ -45,6 +45,23 @@ FASTJavaArrayAccess class >> requirements [
 ]
 
 { #category : #accessing }
+FASTJavaArrayAccess >> array [
+
+	<MSEProperty: #array type: #Object>
+	<generated>
+	<MSEComment: 'Name of accessed field'>
+	^ array
+]
+
+{ #category : #accessing }
+FASTJavaArrayAccess >> array: anObject [
+
+	<generated>
+	array := anObject
+
+]
+
+{ #category : #accessing }
 FASTJavaArrayAccess >> expression [
 
 	<MSEProperty: #expression type: #FASTExpression>
@@ -58,22 +75,5 @@ FASTJavaArrayAccess >> expression: anObject [
 
 	<generated>
 	expression := anObject
-
-]
-
-{ #category : #accessing }
-FASTJavaArrayAccess >> fieldName [
-
-	<MSEProperty: #fieldName type: #String>
-	<generated>
-	<MSEComment: 'Name of accessed field'>
-	^ fieldName
-]
-
-{ #category : #accessing }
-FASTJavaArrayAccess >> fieldName: anObject [
-
-	<generated>
-	fieldName := anObject
 
 ]

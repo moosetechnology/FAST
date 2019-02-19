@@ -522,7 +522,7 @@ FASTJavaMetamodelGenerator >> defineProperties [
 	(javaUnaryExpression property: #operator type: #String) comment: 'The operator string to apply to the expression'.
 	(javaUnaryExpression property: #isPrefixedUnaryExpression type: #Boolean) comment: 'true if the expression is prefixed (ex. ++i) else false'.
 	(javaNewExpression property: #type type: #FASTNamedEntity) comment: 'The type of the array'.
-	(javaArrayAccess property: #fieldName type: #String) comment: 'Name of accessed field'.
+	(javaArrayAccess property: #array type: #Object) comment: 'Name of accessed field'.
 	(javaArrayAccess property: #expression type: #FASTExpression) comment: 'The accessed index'.
 	(javaOuterThis property: #type type: #FASTNamedEntity) comment: 'The accessed type'.
 

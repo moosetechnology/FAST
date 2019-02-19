@@ -94,7 +94,7 @@ JavaSmaCCProgramNodeImporterVisitor >> parseCodeString: aCodeString [
 JavaSmaCCProgramNodeImporterVisitor >> visitArrayAccess: anArrayAccess [
 	currentFASTEntity := self addToModel: FASTJavaArrayAccess new.
 	currentFASTEntity parentNode: self parentFASTEntity.
-	currentFASTEntity fieldName: anArrayAccess array name value.
+	currentFASTEntity array: (self clone accept: anArrayAccess array).
 	currentFASTEntity expression: (self clone accept: anArrayAccess expression).
 	^ currentFASTEntity
 ]
