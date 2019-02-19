@@ -54,10 +54,21 @@ Class {
 		'javaNewClassExpression',
 		'javaNewClassMethodStatment',
 		'javaNewArray',
-		'javaConditionalStatement'
+		'javaConditionalStatement',
+		'javaArrayAccess',
+		'javaInitializer'
 	],
 	#category : #'FAST-Model-Generator'
 }
+
+{ #category : #definition }
+FASTJavaMetamodelGenerator >> commentForJavaArrayAccess [
+	^ 'I represent a java array access
+	
+ex:
+
+liste[i]'
+]
 
 { #category : #definition }
 FASTJavaMetamodelGenerator >> commentForJavaAssignementExpression [
@@ -196,6 +207,20 @@ ex:
 	a + b
 	3 == 6
 	a = 6'
+]
+
+{ #category : #definition }
+FASTJavaMetamodelGenerator >> commentForJavaInitializer [
+	^ 'I represent a Java initializer
+	
+ex.:
+
+new Button(){
+
+{ something }
+
+}
+'
 ]
 
 { #category : #definition }
@@ -385,6 +410,8 @@ FASTJavaMetamodelGenerator >> defineClasses [
 	javaNewClassExpression := builder newClassNamed: #JavaNewClassExpression comment: self commentForJavaNewClassExpression.
 	javaNewArray := builder newClassNamed: #JavaNewArray comment: self commentForJavaNewArray.
 	javaConditionalStatement := builder newClassNamed: #JavaConditionalStatement comment: self commentForJavaConditionalStatement.
+	javaArrayAccess := builder newClassNamed: #JavaArrayAccess comment: self commentForJavaArrayAccess.
+	javaInitializer := builder newClassNamed: #JavaInitializer comment: self commentForJavaInitializer.
 
 	"factice"
 	javaElsePartStatement := builder newClassNamed: #JavaElsePartStatement.
@@ -442,6 +469,8 @@ FASTJavaMetamodelGenerator >> defineHierarchy [
 	javaNewClassExpression --|> javaNewExpression.
 	javaNewArray --|> javaNewExpression.
 	javaConditionalStatement --|> statement.
+	javaArrayAccess --|> expression.
+	javaInitializer --|> scopableEntity.
 
 	"Factice"
 	javaElsePartStatement --|> statement.
@@ -481,7 +510,8 @@ FASTJavaMetamodelGenerator >> defineProperties [
 	(javaUnaryExpression property: #operator type: #String) comment: 'The operator string to apply to the expression'.
 	(javaUnaryExpression property: #isPrefixedUnaryExpression type: #Boolean) comment: 'true if the expression is prefixed (ex. ++i) else false'.
 	(javaNewExpression property: #type type: #FASTNamedEntity) comment: 'The type of the array'.
-
+	(javaArrayAccess property: #fieldName type: #String) comment: 'Name of accessed field'.
+	(javaArrayAccess property: #expression type: #FASTExpression) comment: 'The accessed index'.
 
 	"Try to remove the maximum of factice entity. So we create a Property for the relation '-'/one-to-one"
 	(javaForEachStatement property: #body type: #FASTStatement) comment: 'The body of the For Each statement'.

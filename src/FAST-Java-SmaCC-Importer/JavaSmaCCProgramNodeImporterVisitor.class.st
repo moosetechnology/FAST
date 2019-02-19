@@ -91,6 +91,15 @@ JavaSmaCCProgramNodeImporterVisitor >> parseCodeString: aCodeString [
 ]
 
 { #category : #initialization }
+JavaSmaCCProgramNodeImporterVisitor >> visitArrayAccess: anArrayAccess [
+	currentFASTEntity := self addToModel: FASTJavaArrayAccess new.
+	currentFASTEntity parentNode: self parentFASTEntity.
+	currentFASTEntity fieldName: anArrayAccess array name value.
+	currentFASTEntity expression: (self clone accept: anArrayAccess expression).
+	^ currentFASTEntity
+]
+
+{ #category : #initialization }
 JavaSmaCCProgramNodeImporterVisitor >> visitAssignment: aVariableDeclaration [
 	currentFASTEntity := self addToModel: FASTJavaAssignementExpression new.
 	currentFASTEntity parentNode: self parentFASTEntity.
@@ -177,15 +186,6 @@ JavaSmaCCProgramNodeImporterVisitor >> visitClassExpression: aClassExpression [
 ]
 
 { #category : #initialization }
-JavaSmaCCProgramNodeImporterVisitor >> visitClassProperty: aClassProperty [
-	currentFASTEntity := self addToModel: FASTJavaClassProperty new.
-	currentFASTEntity parentNode: self parentFASTEntity.
-	currentFASTEntity type: (self clone accept: aClassProperty name).
-	currentFASTEntity fieldName: aClassProperty thisToken value.
-	^ currentFASTEntity
-]
-
-{ #category : #initialization }
 JavaSmaCCProgramNodeImporterVisitor >> visitClassType: aClassType [
 	currentFASTEntity := self addToModel: FASTNamedEntity new.
 	currentFASTEntity name: aClassType name name value.
@@ -202,6 +202,13 @@ JavaSmaCCProgramNodeImporterVisitor >> visitConditionalExpression: aConditionalE
 	aConditionalExpression falseExpression
 		ifNotNil: [ currentFASTEntity
 				elsePart: (self clone accept: aConditionalExpression falseExpression) ].
+	^ currentFASTEntity
+]
+
+{ #category : #initialization }
+JavaSmaCCProgramNodeImporterVisitor >> visitContinueStatement: aContinueStatement [
+	currentFASTEntity := self addToModel: FASTJavaContinueStatement new.
+	currentFASTEntity parentNode: self parentFASTEntity.
 	^ currentFASTEntity
 ]
 
@@ -302,6 +309,14 @@ JavaSmaCCProgramNodeImporterVisitor >> visitInitializedVariableDeclaration: anIn
 	currentFASTEntity parentNode: self parentFASTEntity.
 	currentFASTEntity variable: (self clone accept: anInitializedVariableDeclaration variable).
 	currentFASTEntity expression: (self clone accept: anInitializedVariableDeclaration initializer).
+	^ currentFASTEntity
+]
+
+{ #category : #initialization }
+JavaSmaCCProgramNodeImporterVisitor >> visitInitializer: aInitializer [
+	currentFASTEntity := FASTJavaInitializer new.
+		currentFASTEntity parentNode: self parentFASTEntity.
+	self addToModel: currentFASTEntity.
 	^ currentFASTEntity
 ]
 

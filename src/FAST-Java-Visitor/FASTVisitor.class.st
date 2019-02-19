@@ -145,6 +145,11 @@ FASTVisitor >> visitFASTJavaInfixOperation: aFASTJavaInfixOperation [
 ]
 
 { #category : #generated }
+FASTVisitor >> visitFASTJavaInitializer: aFASTJavaInitializer [
+	^ self visitFASTScopableEntity: aFASTJavaInitializer
+]
+
+{ #category : #generated }
 FASTVisitor >> visitFASTJavaInitializersStatement: aFASTJavaInitializersStatement [
 	^ self visitFASTStatement: aFASTJavaInitializersStatement
 ]

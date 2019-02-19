@@ -12,7 +12,7 @@ Class {
 { #category : #resources }
 JavaSmaCCMethodInvocationWithParamAndReceiverTest >> methodInvocationWithClassPropertyAsReceiver [
 	^ 'public void onClick(final ClickEvent event) {
-	SampleCustomizableTableDefinitionRH.this.editableTablelist.refreshAfterRemovingRow(removedRowValues);
+	SampleCustomizableTableDefinitionRH.editableTablelist.refreshAfterRemovingRow(removedRowValues);
 }'
 ]
 
