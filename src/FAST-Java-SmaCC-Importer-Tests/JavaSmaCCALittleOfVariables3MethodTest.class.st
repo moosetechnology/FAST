@@ -18,6 +18,7 @@ JavaSmaCCALittleOfVariables3MethodTest >> methodALittleOfVariables3 [
 
 { #category : #running }
 JavaSmaCCALittleOfVariables3MethodTest >> setUp [
+	super setUp.
 	aLittleOfVariables3 := (self parseMethod: 'aLittleOfVariables3') allFASTJavaMethodEntity
 		first
 ]

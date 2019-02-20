@@ -18,6 +18,7 @@ JavaSmaCCSuperSimpleMethodTest >> methodSupersimple [
 
 { #category : #running }
 JavaSmaCCSuperSimpleMethodTest >> setUp [
+	super setUp.
 	supersimple := (self parseMethod: 'supersimple') allFASTJavaMethodEntity first
 ]
 

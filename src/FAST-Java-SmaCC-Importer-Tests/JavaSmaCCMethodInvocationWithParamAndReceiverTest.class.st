@@ -32,6 +32,7 @@ JavaSmaCCMethodInvocationWithParamAndReceiverTest >> methodInvocationWithVariabl
 
 { #category : #running }
 JavaSmaCCMethodInvocationWithParamAndReceiverTest >> setUp [
+	super setUp.
 	methodInvocationWithParamAndReceiver := (self
 		parseMethod: 'InvocationWithParamAndReceiver') allFASTJavaMethodEntity first.
 	methodInvocationWithVariableAsReceiver := (self

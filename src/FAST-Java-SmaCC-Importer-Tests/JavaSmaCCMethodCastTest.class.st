@@ -19,6 +19,7 @@ JavaSmaCCMethodCastTest >> methodCastAndClassProperty [
 
 { #category : #running }
 JavaSmaCCMethodCastTest >> setUp [
+	super setUp.
 	methodCastAndClassProperty := (self parseMethod: 'CastAndClassProperty')
 		allFASTJavaMethodEntity first
 ]

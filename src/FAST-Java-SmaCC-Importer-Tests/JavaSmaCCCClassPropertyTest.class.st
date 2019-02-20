@@ -7,7 +7,7 @@ Class {
 	#category : #'FAST-Java-SmaCC-Importer-Tests'
 }
 
-{ #category : #accessing }
+{ #category : #resources }
 JavaSmaCCCClassPropertyTest >> methodCastAndClassProperty [
 	^ 'public void onClick(final ClickEvent event) {
 	List<UnPojoMetierRHGWT> removedRowValues = new ArrayList<UnPojoMetierRHGWT>();
@@ -19,6 +19,7 @@ JavaSmaCCCClassPropertyTest >> methodCastAndClassProperty [
 
 { #category : #running }
 JavaSmaCCCClassPropertyTest >> setUp [
+	super setUp.
 	methodCastAndClassProperty := (self parseMethod: 'CastAndClassProperty')
 		allFASTJavaMethodEntity first
 ]

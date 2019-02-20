@@ -406,7 +406,8 @@ JavaSmaCCProgramNodeImporterVisitor >> visitNewArray: aNewArray [
 	currentFASTEntity := self addToModel: FASTJavaNewArray new.
 	currentFASTEntity parentNode: self parentFASTEntity.
 	currentFASTEntity type: (self clone accept: aNewArray type).
-	aNewArray initializer initializers do: [ :initializer | currentFASTEntity addInitializer: (self clone accept: initializer) ].
+	aNewArray initializer ifNotNil: [:initialize | initialize initializers do: [ :initializer | currentFASTEntity addInitializer: (self clone accept: initializer) ] ].
+	aNewArray dimExpressions do: [:dimExpression | currentFASTEntity addArgument: (self clone accept: dimExpression expression) ].
 	^ currentFASTEntity
 ]
 

@@ -18,7 +18,8 @@ FASTJavaMethodInvocation >> arguments [
 			FASTJavaClassProperty.
 			FASTJavaNewExpression.
 			FASTJavaNewClassExpression.
-			FASTJavaNewArray. }
+			FASTJavaNewArray.
+			FASTJavaOuterThis }
 				anySatisfy: [ :possibleClass | childNode isKindOf: possibleClass ])
 				and: [ childNode ~= self receiver ] ]
 ]

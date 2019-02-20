@@ -18,6 +18,7 @@ FASTJavaNewExpression >> arguments [
 			FASTJavaClassProperty.
 			FASTJavaNewExpression.
 			FASTJavaNewClassExpression.
-			FASTJavaNewArray.  }
-				anySatisfy: [ :possibleClass | (childNode class = possibleClass) and: [ childNode ~= self type ] ]) ]
+			FASTJavaNewArray.
+			FASTJavaOuterThis }
+				anySatisfy: [ :possibleClass | (childNode isKindOf: possibleClass) and: [ childNode ~= self type ] ]) ]
 ]

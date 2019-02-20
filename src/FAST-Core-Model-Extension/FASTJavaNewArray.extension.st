@@ -9,5 +9,5 @@ FASTJavaNewArray >> addInitializer: anInitializer [
 FASTJavaNewArray >> initializers [
 	<computed>
 	<navigation: 'initializers'>
-	^ self childrenNode
+	^ self childrenNode select: [ :child | child ~= self type ]
 ]

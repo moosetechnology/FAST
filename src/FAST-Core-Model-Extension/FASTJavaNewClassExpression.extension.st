@@ -15,5 +15,4 @@ FASTJavaNewClassExpression >> methods [
 	<navigation: 'methods'>
 	^ (self childrenNode
 		select: [ :childNode | childNode class = FASTJavaNewClassMethodStatment ])
-		flatCollect: #childrenNode
 ]
