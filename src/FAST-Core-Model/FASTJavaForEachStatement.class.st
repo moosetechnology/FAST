@@ -11,8 +11,8 @@ Class {
 	#superclass : #FASTStatement,
 	#instVars : [
 		'body',
-		'fieldname',
 		'list',
+		'fieldname',
 		'type'
 	],
 	#category : #'FAST-Core-Model-Entities'

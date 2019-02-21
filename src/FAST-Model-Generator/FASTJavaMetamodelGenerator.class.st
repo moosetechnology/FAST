@@ -458,7 +458,10 @@ FASTJavaMetamodelGenerator >> defineHierarchy [
 	javaIdentifier --|> variableExpression.
 	javaIfStatement --|> statement.
 	javaIntegerLiteral --|> literal.
+	
 	javaMethodEntity --|> namedBehaviouralEntity.
+	javaMethodEntity --|> #TWithImmediateSource.
+	
 	javaMethodInvocation --|> expression.
 	javaNullLiteral --|> nullPointerLiteral.
 	javaSeparator --|> variableExpression.
@@ -466,7 +469,7 @@ FASTJavaMetamodelGenerator >> defineHierarchy [
 	javaSwitchStatement --|> statement.
 	javaThis --|> variableExpression.
 	javaVarDeclStatement --|> statement.
-	javaVariableDeclarator --|> entity.
+	javaVariableDeclarator --|> entitySourceAnchor.
 	javaWhileStatement --|> statement.
 	javaMethodInvocation --|> #TNamed.
 
@@ -481,7 +484,10 @@ FASTJavaMetamodelGenerator >> defineHierarchy [
 	javaNewArray --|> javaNewExpression.
 	javaConditionalStatement --|> statement.
 	javaArrayAccess --|> expression.
+	
 	javaInitializer --|> scopableEntity.
+	javaInitializer --|> #TWithImmediateSource.
+	
 	javaOuterThis --|> expression.
 
 	"Factice"

@@ -21,7 +21,8 @@ Class {
 		'returnStatement',
 		'statementBlock',
 		'variableEntity',
-		'namedBehaviouralEntity'
+		'namedBehaviouralEntity',
+		'entitySourceAnchor'
 	],
 	#category : #'FAST-Model-Generator'
 }
@@ -145,7 +146,7 @@ FASTMetamodelGenerator >> commentForVariableExpression [
 
 { #category : #definition }
 FASTMetamodelGenerator >> defineClasses [
-	super defineClasses..
+	super defineClasses.
 	expression := builder newClassNamed: #Expression comment: self commentForExpression.
 	literal := builder newClassNamed: #Literal comment: self commentForLiteral.
 	booleanLiteral := builder newClassNamed: #BooleanLiteral comment: self commentForBooleanLiteral.
@@ -161,46 +162,56 @@ FASTMetamodelGenerator >> defineClasses [
 	returnStatement := builder newClassNamed: #ReturnStatement comment: self commentForReturnStatement.
 	statementBlock := builder newClassNamed: #StatementBlock comment: self commentForStatementBlock.
 	variableEntity := builder newClassNamed: #VariableEntity comment: self commentForVariableEntity.
+	
+	entitySourceAnchor := builder newClassNamed: #EntitySourceAnchor.
 ]
 
 { #category : #definition }
 FASTMetamodelGenerator >> defineHierarchy [
+	super defineHierarchy.
 	entity --|> #TEntityMetaLevelDependency.
-	expression --|> entity.
+	expression --|> entitySourceAnchor.
 	literal --|> expression.
 	booleanLiteral --|> literal.
 	characterLiteral --|> literal.
 	nullPointerLiteral --|> literal.
 	stringLiteral --|> literal.
 	variableExpression --|> expression.
-	scopableEntity --|> entity.
+	scopableEntity --|> entitySourceAnchor.
 	behaviouralEntity --|> scopableEntity.
 	namedBehaviouralEntity --|> behaviouralEntity.
 	statement --|> scopableEntity.
 	expressionStatement --|> statement.
 	returnStatement --|> statement.
 	statementBlock --|> statement.
-	variableEntity --|> entity.
+	variableEntity --|> entitySourceAnchor.
+	
+	entitySourceAnchor --|> entity.
+	entitySourceAnchor --|> #TSourceAnchor.
+
 
 	"used to represent variable"
-	namedEntity --|> entity.
+	namedEntity --|> entitySourceAnchor.
 	namedEntity --|> #TNamed.
 	variableEntity --|> #TNamed.
 	variableExpression --|> #TNamed.
 	namedBehaviouralEntity --|> #TNamed.
 	entity --|> #TDependencyQueries.
-	entity --|> #TWithSourceAnchor
 ]
 
 { #category : #definition }
 FASTMetamodelGenerator >> defineProperties [
-	(literal property: #value type: #String) comment: 'The literal itself as found in the source code'
+	super defineProperties.
+	(literal property: #value type: #String) comment: 'The literal itself as found in the source code'.
+	entitySourceAnchor
+        property: #startPos type: #Number;
+        property: #endPos type: #Number.
 ]
 
 { #category : #definition }
 FASTMetamodelGenerator >> defineRelations [
 	"in comment the old relation from the old FAST metamodel"
-
+	super defineRelations.
 	((entity property: #parentNode) *-<> (entity property: #childrenNode))
 		withNavigation
 
@@ -217,25 +228,4 @@ FASTMetamodelGenerator >> defineRelations [
 	"((behaviouralEntity property: #statementBlock) comment: 'Statements block of the behavioural entity')
 		- ((statementBlock property: #fastBehaviouralParent) comment: 'Behavioural entity containing the statement block.').
 	((statement property: #statementContainer) comment: 'Block containing this statement.') *- ((statementBlock property: #statements) comment: 'Statements enclosed in this block')."
-]
-
-{ #category : #definition }
-FASTMetamodelGenerator >> newBuilder [
-	| standardBuilder mooseGenerator |
-	^ self builderWithStandardTraits 
-	
-	"standardBuilder := FamixGenerator builderWithDefinitions.
-
-	mooseGenerator := FamixMooseQueryGenerator new.
-	mooseGenerator builder: standardBuilder.
-	mooseGenerator adoptBuilder: standardBuilder.
-	standardBuilder generator: mooseGenerator.
-	mooseGenerator define.
-	
-	self adoptBuilder: standardBuilder.
-
-	^ standardBuilder
-		doNotGenerateCurrent;
-		generator: self;
-		yourself."
 ]

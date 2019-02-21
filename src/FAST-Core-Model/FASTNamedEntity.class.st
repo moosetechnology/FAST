@@ -1,15 +1,15 @@
 Class {
 	#name : #FASTNamedEntity,
-	#superclass : #FASTEntity,
-	#traits : 'FamixTNamed',
-	#classTraits : 'FamixTNamed classTrait',
+	#superclass : #FASTEntitySourceAnchor,
+	#traits : 'FamixTNamed + TDependencyQueries + TEntityMetaLevelDependency',
+	#classTraits : 'FamixTNamed classTrait + TDependencyQueries classTrait + TEntityMetaLevelDependency classTrait',
 	#category : #'FAST-Core-Model-Entities'
 }
 
 { #category : #meta }
 FASTNamedEntity class >> annotation [
 
-	<MSEClass: #NamedEntity super: #FASTEntity>
+	<MSEClass: #NamedEntity super: #FASTEntitySourceAnchor>
 	<package: #'FAST-Core-Model'>
 	<generated>
 	^self
@@ -25,7 +25,7 @@ FASTNamedEntity class >> generatedSlotNames [
 { #category : #generator }
 FASTNamedEntity class >> generatedTraitNames [
 	<generated>
-	^ #(FamixTNamed)
+	^ #(FamixTNamed TDependencyQueries TEntityMetaLevelDependency)
 ]
 
 { #category : #meta }

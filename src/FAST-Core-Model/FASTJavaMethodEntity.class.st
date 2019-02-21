@@ -4,7 +4,9 @@ Represents a method in FastJava
 Class {
 	#name : #FASTJavaMethodEntity,
 	#superclass : #FASTNamedBehaviouralEntity,
-	#category : 'FAST-Core-Model-Entities'
+	#traits : 'FamixTWithImmediateSource',
+	#classTraits : 'FamixTWithImmediateSource classTrait',
+	#category : #'FAST-Core-Model-Entities'
 }
 
 { #category : #meta }
@@ -26,7 +28,7 @@ FASTJavaMethodEntity class >> generatedSlotNames [
 { #category : #generator }
 FASTJavaMethodEntity class >> generatedTraitNames [
 	<generated>
-	^ #()
+	^ #(FamixTWithImmediateSource)
 ]
 
 { #category : #meta }

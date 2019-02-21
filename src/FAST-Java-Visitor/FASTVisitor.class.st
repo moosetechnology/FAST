@@ -30,6 +30,11 @@ FASTVisitor >> visitFASTEntity: aFASTEntity [
 ]
 
 { #category : #generated }
+FASTVisitor >> visitFASTEntitySourceAnchor: aFASTVisitor [
+	^ self visitFASTEntity: aFASTVisitor
+]
+
+{ #category : #generated }
 FASTVisitor >> visitFASTExpression: aFASTExpression [
 	^ self visitFASTEntity: aFASTExpression
 ]

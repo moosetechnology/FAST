@@ -3,14 +3,14 @@ An abstract superclass representing an expression node of a source code.
 "
 Class {
 	#name : #FASTExpression,
-	#superclass : #FASTEntity,
-	#category : 'FAST-Core-Model-Entities'
+	#superclass : #FASTEntitySourceAnchor,
+	#category : #'FAST-Core-Model-Entities'
 }
 
 { #category : #meta }
 FASTExpression class >> annotation [
 
-	<MSEClass: #Expression super: #FASTEntity>
+	<MSEClass: #Expression super: #FASTEntitySourceAnchor>
 	<package: #'FAST-Core-Model'>
 	<generated>
 	^self

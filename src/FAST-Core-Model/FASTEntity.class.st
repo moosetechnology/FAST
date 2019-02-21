@@ -1,16 +1,11 @@
-"
-A FASTEntity is an abstract class for all FAST classes
-
-Primarily introduced to deal with symbol resolution matters.
-"
 Class {
 	#name : #FASTEntity,
 	#superclass : #MooseEntity,
-	#traits : 'FamixTWithSourceAnchor + TDependencyQueries + TEntityMetaLevelDependency',
-	#classTraits : 'FamixTWithSourceAnchor classTrait + TDependencyQueries classTrait + TEntityMetaLevelDependency classTrait',
+	#traits : 'TDependencyQueries + TEntityMetaLevelDependency',
+	#classTraits : 'TDependencyQueries classTrait + TEntityMetaLevelDependency classTrait',
 	#instVars : [
-		'#childrenNode => FMMany type: #FASTEntity opposite: #parentNode',
-		'#parentNode => FMOne type: #FASTEntity opposite: #childrenNode'
+		'#parentNode => FMOne type: #FASTEntity opposite: #childrenNode',
+		'#childrenNode => FMMany type: #FASTEntity opposite: #parentNode'
 	],
 	#category : #'FAST-Core-Model-Entities'
 }
@@ -34,7 +29,7 @@ FASTEntity class >> generatedSlotNames [
 { #category : #generator }
 FASTEntity class >> generatedTraitNames [
 	<generated>
-	^ #(FamixTWithSourceAnchor TDependencyQueries TEntityMetaLevelDependency)
+	^ #(TDependencyQueries TEntityMetaLevelDependency)
 ]
 
 { #category : #meta }

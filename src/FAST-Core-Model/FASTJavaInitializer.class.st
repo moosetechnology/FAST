@@ -13,6 +13,8 @@ new Button(){
 Class {
 	#name : #FASTJavaInitializer,
 	#superclass : #FASTScopableEntity,
+	#traits : 'FamixTWithImmediateSource',
+	#classTraits : 'FamixTWithImmediateSource classTrait',
 	#category : #'FAST-Core-Model-Entities'
 }
 
@@ -35,7 +37,7 @@ FASTJavaInitializer class >> generatedSlotNames [
 { #category : #generator }
 FASTJavaInitializer class >> generatedTraitNames [
 	<generated>
-	^ #()
+	^ #(FamixTWithImmediateSource)
 ]
 
 { #category : #meta }

@@ -10,18 +10,18 @@ statement has 3 declarators separated by commas. Second declarator has no expres
 "
 Class {
 	#name : #FASTJavaVariableDeclarator,
-	#superclass : #FASTEntity,
+	#superclass : #FASTEntitySourceAnchor,
 	#instVars : [
 		'expression',
 		'variable'
 	],
-	#category : 'FAST-Core-Model-Entities'
+	#category : #'FAST-Core-Model-Entities'
 }
 
 { #category : #meta }
 FASTJavaVariableDeclarator class >> annotation [
 
-	<MSEClass: #JavaVariableDeclarator super: #FASTEntity>
+	<MSEClass: #JavaVariableDeclarator super: #FASTEntitySourceAnchor>
 	<package: #'FAST-Core-Model'>
 	<generated>
 	^self
