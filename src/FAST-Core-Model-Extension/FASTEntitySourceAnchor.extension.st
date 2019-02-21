@@ -10,5 +10,5 @@ FASTEntitySourceAnchor >> sourceCode [
 FASTEntitySourceAnchor >> sourceText [
 
 	"I should be overriden in my users"
-	^ self parentNode ifEmpty: [ nil ] ifNotEmpty: [:parent | parent sourceText ]
+	^ self parentNode ifNil: [ nil ] ifNotNil: [:parent | parent sourceText ]
 ]
