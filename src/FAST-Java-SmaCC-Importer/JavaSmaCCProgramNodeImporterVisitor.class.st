@@ -281,6 +281,15 @@ JavaSmaCCProgramNodeImporterVisitor >> visitFieldAccess: aFieldAccess [
 ]
 
 { #category : #initialization }
+JavaSmaCCProgramNodeImporterVisitor >> visitFieldDeclaration: aFieldDeclaration [
+	currentFASTEntity := self addToModel: FASTJavaVarDeclStatement new.
+	self generalVisitActionForNodeEntity: aFieldDeclaration.
+	aFieldDeclaration variableDeclarations
+		do: [ :each | currentFASTEntity addDeclarator: (self clone accept: each) ].
+	^ currentFASTEntity
+]
+
+{ #category : #initialization }
 JavaSmaCCProgramNodeImporterVisitor >> visitFloatLiteral: aFloatLiteral [
 	currentFASTEntity := self
 		addToModel:
