@@ -153,6 +153,13 @@ JavaSmaCCProgramNodeImporterVisitor >> visitBooleanLiteral: aBooleanLiteral [
 ]
 
 { #category : #initialization }
+JavaSmaCCProgramNodeImporterVisitor >> visitBreakStatement: aBreakStatement [
+	currentFASTEntity := self addToModel: FASTJavaContinueStatement new.
+	self generalVisitActionForNodeEntity: aBreakStatement.
+	^ currentFASTEntity
+]
+
+{ #category : #initialization }
 JavaSmaCCProgramNodeImporterVisitor >> visitCastExpression: aCastExpression [
 	currentFASTEntity := self addToModel: FASTJavaCastExpression new.
 	self generalVisitActionForNodeEntity: aCastExpression.
@@ -595,6 +602,30 @@ JavaSmaCCProgramNodeImporterVisitor >> visitSuperConstructorInvocation: aSuperCo
 		do:
 			[ :expression | currentFASTEntity addArgument: (self clone accept: expression) ].
 	currentFASTEntity name: aSuperConstructorInvocation superToken value.
+	^ currentFASTEntity
+]
+
+{ #category : #initialization }
+JavaSmaCCProgramNodeImporterVisitor >> visitSwitchBlockStatementGroup: aSwitchBlockStatementGroup [
+	currentFASTEntity := self
+		addToModel:
+			(aSwitchBlockStatementGroup labels anyOne class = JavaSwitchLabelNode
+				ifTrue: [ FASTJavaLabeledCaseStatement new
+						label: (self clone accept: aSwitchBlockStatementGroup labels anyOne constant);
+						yourself ]
+				ifFalse: [ FASTJavaDefaultCaseStatement new ]).
+	self generalVisitActionForNodeEntity: aSwitchBlockStatementGroup.
+	aSwitchBlockStatementGroup statements do: [ :statement | currentFASTEntity addStatement: (self clone accept: statement) ].
+	^ currentFASTEntity
+]
+
+{ #category : #initialization }
+JavaSmaCCProgramNodeImporterVisitor >> visitSwitchStatement: aSwitchStatement [
+	currentFASTEntity := self addToModel: FASTJavaSwitchStatement new.
+	self generalVisitActionForNodeEntity: aSwitchStatement.
+	aSwitchStatement block statementGroups do: [ :aStatementGroup |
+		 currentFASTEntity addCase: (self clone accept: aStatementGroup) ].
+	 
 	^ currentFASTEntity
 ]
 

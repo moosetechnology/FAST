@@ -58,7 +58,9 @@ Class {
 		'javaArrayAccess',
 		'javaInitializer',
 		'javaOuterThis',
-		'javaThrowStatement'
+		'javaThrowStatement',
+		'javaLabeledCaseStatement',
+		'javaDefaultCaseStatement'
 	],
 	#category : #'FAST-Model-Generator'
 }
@@ -141,6 +143,15 @@ ex:
 { #category : #definition }
 FASTJavaMetamodelGenerator >> commentForJavaContinueStatement [
 	^ 'A node representing continue statement in java'
+]
+
+{ #category : #definition }
+FASTJavaMetamodelGenerator >> commentForJavaDefaultCaseStatement [
+	^ 'I represent a default case
+	
+ex.:
+
+default:'
 ]
 
 { #category : #definition }
@@ -228,6 +239,15 @@ new Button(){
 { #category : #definition }
 FASTJavaMetamodelGenerator >> commentForJavaIntegerLiteral [
 	^ 'Java integer literal node'
+]
+
+{ #category : #definition }
+FASTJavaMetamodelGenerator >> commentForJavaLabeledCaseStatement [
+	^ 'I represent a Labeled case
+	
+ex.:
+
+case LABEL:'
 ]
 
 { #category : #definition }
@@ -434,7 +454,9 @@ FASTJavaMetamodelGenerator >> defineClasses [
 	javaInitializer := builder newClassNamed: #JavaInitializer comment: self commentForJavaInitializer.
 	javaOuterThis := builder newClassNamed: #JavaOuterThis comment: self commentForJavaOuterThis.
 	javaThrowStatement := builder newClassNamed: #JavaThrowStatement comment: self commentForJavaThrowStatement.
-
+	javaLabeledCaseStatement := builder newClassNamed: #JavaLabeledCaseStatement comment: self commentForJavaLabeledCaseStatement.
+	javaDefaultCaseStatement := builder newClassNamed: #JavaDefaultCaseStatement comment: self commentForJavaDefaultCaseStatement.
+	
 	"factice"
 	javaElsePartStatement := builder newClassNamed: #JavaElsePartStatement.
 	javaThenPartStatement := builder newClassNamed: #JavaThenPartStatement.
@@ -496,6 +518,8 @@ FASTJavaMetamodelGenerator >> defineHierarchy [
 	javaConditionalStatement --|> statement.
 	javaArrayAccess --|> expression.
 	javaThrowStatement --|> statement.
+	javaLabeledCaseStatement --|> javaCaseStatement.
+	javaDefaultCaseStatement --|> javaCaseStatement.
 	
 	javaInitializer --|> scopableEntity.
 	javaInitializer --|> #TWithImmediateSource.
@@ -544,6 +568,7 @@ FASTJavaMetamodelGenerator >> defineProperties [
 	(javaArrayAccess property: #expression type: #FASTExpression) comment: 'The accessed index'.
 	(javaOuterThis property: #type type: #FASTNamedEntity) comment: 'The accessed type'.
 	(javaThrowStatement property: #expression type: #FASTExpression) comment: 'The throwed element'.
+	(javaLabeledCaseStatement property: #label type: #FASTExpression) comment: 'The label of the case statement'.
 
 	"Try to remove the maximum of factice entity. So we create a Property for the relation '-'/one-to-one"
 	(javaForEachStatement property: #body type: #FASTStatement) comment: 'The body of the For Each statement'.
