@@ -250,6 +250,13 @@ JavaSmaCCProgramNodeImporterVisitor >> visitDeclaration: aConstructorDeclaration
 ]
 
 { #category : #initialization }
+JavaSmaCCProgramNodeImporterVisitor >> visitEmptyDeclaration: anEmptyDeclaration [
+	currentFASTEntity := self addToModel: FASTJavaEmptyMethodDeclaration new.
+	self generalVisitActionForNodeEntity: anEmptyDeclaration.
+	^ currentFASTEntity
+]
+
+{ #category : #initialization }
 JavaSmaCCProgramNodeImporterVisitor >> visitEmptyStatement: anEmptyStatement [
 	currentFASTEntity := self addToModel: FASTStatement new.
 	self generalVisitActionForNodeEntity: anEmptyStatement.

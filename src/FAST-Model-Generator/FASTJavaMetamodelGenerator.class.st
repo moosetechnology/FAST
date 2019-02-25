@@ -60,7 +60,8 @@ Class {
 		'javaOuterThis',
 		'javaThrowStatement',
 		'javaLabeledCaseStatement',
-		'javaDefaultCaseStatement'
+		'javaDefaultCaseStatement',
+		'javaEmptyMethodDeclaration'
 	],
 	#category : #'FAST-Model-Generator'
 }
@@ -162,6 +163,20 @@ eg.
 do {
 ...
 } while(...);'
+]
+
+{ #category : #definition }
+FASTJavaMetamodelGenerator >> commentForJavaEmptyMethodDeclaration [
+	^ 'I reprensent an empty method declaration
+	
+ex.:
+void newMethod() {
+	new Patate() {
+		//The empty method declaration is ";" 
+		;
+		
+	};
+}'
 ]
 
 { #category : #definition }
@@ -456,6 +471,7 @@ FASTJavaMetamodelGenerator >> defineClasses [
 	javaThrowStatement := builder newClassNamed: #JavaThrowStatement comment: self commentForJavaThrowStatement.
 	javaLabeledCaseStatement := builder newClassNamed: #JavaLabeledCaseStatement comment: self commentForJavaLabeledCaseStatement.
 	javaDefaultCaseStatement := builder newClassNamed: #JavaDefaultCaseStatement comment: self commentForJavaDefaultCaseStatement.
+	javaEmptyMethodDeclaration := builder newClassNamed: #JavaEmptyMethodDeclaration comment: self commentForJavaEmptyMethodDeclaration.
 	
 	"factice"
 	javaElsePartStatement := builder newClassNamed: #JavaElsePartStatement.
@@ -520,6 +536,7 @@ FASTJavaMetamodelGenerator >> defineHierarchy [
 	javaThrowStatement --|> statement.
 	javaLabeledCaseStatement --|> javaCaseStatement.
 	javaDefaultCaseStatement --|> javaCaseStatement.
+	javaEmptyMethodDeclaration --|> javaMethodEntity.
 	
 	javaInitializer --|> scopableEntity.
 	javaInitializer --|> #TWithImmediateSource.
