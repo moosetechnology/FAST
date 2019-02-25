@@ -5,8 +5,8 @@ Class {
 	#name : #FASTJavaCastExpression,
 	#superclass : #FASTExpression,
 	#instVars : [
-		'type',
-		'expression'
+		'expression',
+		'type'
 	],
 	#category : #'FAST-Core-Model-Entities'
 }

@@ -599,6 +599,14 @@ JavaSmaCCProgramNodeImporterVisitor >> visitSuperConstructorInvocation: aSuperCo
 ]
 
 { #category : #initialization }
+JavaSmaCCProgramNodeImporterVisitor >> visitThrowStatement: aThrowStatement [
+	currentFASTEntity := self addToModel: FASTJavaThrowStatement new.
+	self generalVisitActionForNodeEntity: aThrowStatement.
+	currentFASTEntity expression: (self clone accept: aThrowStatement expression).
+	^ currentFASTEntity
+]
+
+{ #category : #initialization }
 JavaSmaCCProgramNodeImporterVisitor >> visitTryStatement: aTryStatement [
 	currentFASTEntity := self addToModel: FASTJavaTryCatchStatement new.
 	self generalVisitActionForNodeEntity: aTryStatement.

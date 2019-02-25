@@ -57,7 +57,8 @@ Class {
 		'javaConditionalStatement',
 		'javaArrayAccess',
 		'javaInitializer',
-		'javaOuterThis'
+		'javaOuterThis',
+		'javaThrowStatement'
 	],
 	#category : #'FAST-Model-Generator'
 }
@@ -315,6 +316,15 @@ FASTJavaMetamodelGenerator >> commentForJavaThis [
 ]
 
 { #category : #definition }
+FASTJavaMetamodelGenerator >> commentForJavaThrowStatement [
+	^ 'I represent a java throw statement
+	
+ex:
+
+throw new Hello();'
+]
+
+{ #category : #definition }
 FASTJavaMetamodelGenerator >> commentForJavaTryCatch [
 	^ 'I represent the java try catch statement. I must have two parts: the ''Try'' part and the ''catch'' part. 
 	
@@ -423,6 +433,7 @@ FASTJavaMetamodelGenerator >> defineClasses [
 	javaArrayAccess := builder newClassNamed: #JavaArrayAccess comment: self commentForJavaArrayAccess.
 	javaInitializer := builder newClassNamed: #JavaInitializer comment: self commentForJavaInitializer.
 	javaOuterThis := builder newClassNamed: #JavaOuterThis comment: self commentForJavaOuterThis.
+	javaThrowStatement := builder newClassNamed: #JavaThrowStatement comment: self commentForJavaThrowStatement.
 
 	"factice"
 	javaElsePartStatement := builder newClassNamed: #JavaElsePartStatement.
@@ -484,6 +495,7 @@ FASTJavaMetamodelGenerator >> defineHierarchy [
 	javaNewArray --|> javaNewExpression.
 	javaConditionalStatement --|> statement.
 	javaArrayAccess --|> expression.
+	javaThrowStatement --|> statement.
 	
 	javaInitializer --|> scopableEntity.
 	javaInitializer --|> #TWithImmediateSource.
@@ -531,6 +543,7 @@ FASTJavaMetamodelGenerator >> defineProperties [
 	(javaArrayAccess property: #array type: #Object) comment: 'Name of accessed field'.
 	(javaArrayAccess property: #expression type: #FASTExpression) comment: 'The accessed index'.
 	(javaOuterThis property: #type type: #FASTNamedEntity) comment: 'The accessed type'.
+	(javaThrowStatement property: #expression type: #FASTExpression) comment: 'The throwed element'.
 
 	"Try to remove the maximum of factice entity. So we create a Property for the relation '-'/one-to-one"
 	(javaForEachStatement property: #body type: #FASTStatement) comment: 'The body of the For Each statement'.

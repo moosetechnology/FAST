@@ -18,8 +18,8 @@ Class {
 	#superclass : #FASTExpression,
 	#instVars : [
 		'expression',
-		'operator',
-		'isPrefixedUnaryExpression'
+		'isPrefixedUnaryExpression',
+		'operator'
 	],
 	#category : #'FAST-Core-Model-Entities'
 }

@@ -35,8 +35,8 @@ Class {
 	#name : #FASTJavaClassProperty,
 	#superclass : #FASTExpression,
 	#instVars : [
-		'type',
-		'fieldName'
+		'fieldName',
+		'type'
 	],
 	#category : #'FAST-Core-Model-Entities'
 }
