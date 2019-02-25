@@ -646,6 +646,17 @@ JavaSmaCCProgramNodeImporterVisitor >> visitSwitchStatement: aSwitchStatement [
 ]
 
 { #category : #initialization }
+JavaSmaCCProgramNodeImporterVisitor >> visitThisConstructorInvocation: aThisConstructorInvocation [
+	currentFASTEntity := self addToModel: FASTJavaMethodInvocation new.
+	self generalVisitActionForNodeEntity: aThisConstructorInvocation.
+	aThisConstructorInvocation expressions
+		do:
+			[ :expression | currentFASTEntity addArgument: (self clone accept: expression) ].
+	currentFASTEntity name: aThisConstructorInvocation thisToken value.
+	^ currentFASTEntity
+]
+
+{ #category : #initialization }
 JavaSmaCCProgramNodeImporterVisitor >> visitThrowStatement: aThrowStatement [
 	currentFASTEntity := self addToModel: FASTJavaThrowStatement new.
 	self generalVisitActionForNodeEntity: aThrowStatement.
