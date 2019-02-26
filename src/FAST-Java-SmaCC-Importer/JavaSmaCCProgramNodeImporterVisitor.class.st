@@ -40,9 +40,11 @@ JavaSmaCCProgramNodeImporterVisitor >> currentFASTEntity [
 
 { #category : #initialization }
 JavaSmaCCProgramNodeImporterVisitor >> generalVisitActionForNodeEntity: aNodeEntity [
-	currentFASTEntity parentNode: self parentFASTEntity.
-	currentFASTEntity startPos: aNodeEntity startPosition.
-	currentFASTEntity endPos: aNodeEntity stopPosition.
+	self parentFASTVisitor
+		ifNotNil: [ currentFASTEntity parentNode: self parentFASTEntity.
+			currentFASTEntity startPos: aNodeEntity startPosition.
+			currentFASTEntity endPos: aNodeEntity stopPosition ]
+		ifNil: [ currentFASTEntity source: aNodeEntity completeSource asString.  ]
 ]
 
 { #category : #initialization }
@@ -408,11 +410,12 @@ JavaSmaCCProgramNodeImporterVisitor >> visitMethodDeclaration: aMethodDeclaratio
 	currentFASTEntity := FASTJavaMethodEntity new
 		name: aMethodDeclaration declarator name value;
 		yourself.
+	self generalVisitActionForNodeEntity: aMethodDeclaration.
 	aMethodDeclaration declarator parameters
 		do: [ :parameter | self clone accept: parameter ].
-	currentFASTEntity statementBlock: (self clone accept: aMethodDeclaration body).
+	currentFASTEntity
+		statementBlock: (self clone accept: aMethodDeclaration body).
 	self addToModel: currentFASTEntity.
-	currentFASTEntity source: aMethodDeclaration source.
 	^ currentFASTEntity
 ]
 
