@@ -27,11 +27,7 @@ BaselineOfFAST >> defineDependencies: spec [
 BaselineOfFAST >> defineGroups: spec [
 	spec
 		group: 'core'
-			with: #('FAST-Core-Model-Extension' 'FAST-Core-Model' 'FAST-Model-Generator');
-		group: 'smacc'
-			with: #('core' 'FAST-Java-SmaCC-Importer' 'FAST-Java-SmaCC-Importer-Tests');
-		group: 'visitor'
-			with: #('core' 'FAST-Java-Visitor');
+			with: #('FAST-Core-Model-Extension' 'FAST-Core-Model' 'FAST-Model-Generator' 'FAST-Core-Visitor');
 		group: 'default' with: #('core')
 ]
 
@@ -40,6 +36,7 @@ BaselineOfFAST >> definePackages: spec [
 	spec
 		repository: 'https://github.com/moosetechnology/FAST';
 		package: 'FAST-Core-Model';
+		package: 'FAST-Core-Visitor';
 		package: 'FAST-Core-Model-Extension' with: [ spec requires: #('FAST-Core-Model') ];
 		package: 'FAST-Model-Generator'
 ]
