@@ -10,12 +10,6 @@ Class {
 }
 
 { #category : #accessing }
-FASTMooseModel class >> meta [
-	
-	^ FASTJavaMetamodelGenerator metamodel
-]
-
-{ #category : #accessing }
 FASTMooseModel >> metamodel [
 	^ metamodel ifNil: [ self class meta ]
 ]

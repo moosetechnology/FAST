@@ -4,8 +4,8 @@ Class {
 	#traits : 'TDependencyQueries + TEntityMetaLevelDependency',
 	#classTraits : 'TDependencyQueries classTrait + TEntityMetaLevelDependency classTrait',
 	#instVars : [
-		'#childrenNode => FMMany type: #FASTEntity opposite: #parentNode',
-		'#parentNode => FMOne type: #FASTEntity opposite: #childrenNode'
+		'#parentNode => FMOne type: #FASTEntity opposite: #childrenNode',
+		'#childrenNode => FMMany type: #FASTEntity opposite: #parentNode'
 	],
 	#category : #'FAST-Core-Model-Entities'
 }
@@ -36,7 +36,7 @@ FASTEntity class >> generatedTraitNames [
 FASTEntity class >> metamodel [
 
 	<generated>
-	^ (self class environment at: #FASTJavaMetamodelGenerator) metamodel
+	^ (self class environment at: #FASTMetamodelGenerator) metamodel
 ]
 
 { #category : #meta }
