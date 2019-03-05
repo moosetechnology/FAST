@@ -5,6 +5,11 @@ Class {
 }
 
 { #category : #generated }
+FASTCoreVisitor >> accept: aFASTEntity [
+	^ aFASTEntity accept: self
+]
+
+{ #category : #generated }
 FASTCoreVisitor >> visitFASTAssociation: aFASTAssociation [
 	^ self visitFASTSourcedEntity: aFASTAssociation
 ]
