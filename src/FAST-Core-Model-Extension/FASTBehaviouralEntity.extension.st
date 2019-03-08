@@ -18,5 +18,5 @@ FASTBehaviouralEntity >> statements [
 	<multivalued>
 	<derived>
 	<MSEComment: 'Statements of the behavioural entity'>
-	^ (self childrenNode select: [ :child | child isKindOf: FASTStatement ] ) anyOne statements
+	^ (self childrenNode select: [ :child | child isKindOf: FASTStatement ] ) ifEmpty: [ {  } ] ifNotEmpty: [ :statements | statements anyOne statements ]
 ]
