@@ -10,7 +10,11 @@ Local variables are intended to be stored in the local entities of the body
 Class {
 	#name : #FASTBehaviouralEntity,
 	#superclass : #FASTScopableEntity,
-	#category : 'FAST-Core-Model-Entities'
+	#instVars : [
+		'#parameters => FMMany type: #FASTVariableExpression opposite: #parentBehaviouralEntity',
+		'#statementBlock => FMOne type: #FASTStatementBlock opposite: #fastBehaviouralParent'
+	],
+	#category : #'FAST-Core-Model-Entities'
 }
 
 { #category : #meta }
@@ -26,7 +30,7 @@ FASTBehaviouralEntity class >> annotation [
 FASTBehaviouralEntity class >> generatedSlotNames [
 	<generated>
 	'FASTBehaviouralEntity class>>#generatedSlotNames'.
-	^ #()
+	^ #(parameters statementBlock)
 ]
 
 { #category : #generator }
@@ -40,4 +44,54 @@ FASTBehaviouralEntity class >> requirements [
 
 	<generated>
 	^ {  }
+]
+
+{ #category : #accessing }
+FASTBehaviouralEntity >> parameters [
+
+	<generated>
+	<MSEComment: 'Parameters of the method'>
+	^ parameters
+]
+
+{ #category : #accessing }
+FASTBehaviouralEntity >> parameters: anObject [
+
+	<generated>
+	parameters value: anObject
+
+]
+
+{ #category : #navigation }
+FASTBehaviouralEntity >> parametersGroup [
+
+	<generated>
+	<navigation: 'Parameters'>
+	^ MooseGroup
+			withAll: (self parameters asSet)
+]
+
+{ #category : #accessing }
+FASTBehaviouralEntity >> statementBlock [
+
+	<generated>
+	<MSEComment: 'Statements block of the behavioural entity'>
+	^ statementBlock
+]
+
+{ #category : #accessing }
+FASTBehaviouralEntity >> statementBlock: anObject [
+
+	<generated>
+	statementBlock := anObject
+
+]
+
+{ #category : #navigation }
+FASTBehaviouralEntity >> statementBlockGroup [
+
+	<generated>
+	<navigation: 'StatementBlock'>
+	^ MooseGroup
+			with: (self statementBlock)
 ]

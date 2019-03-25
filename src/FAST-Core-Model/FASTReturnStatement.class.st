@@ -4,7 +4,10 @@ A return statement node. Contains a reference to the expression which is returne
 Class {
 	#name : #FASTReturnStatement,
 	#superclass : #FASTStatement,
-	#category : 'FAST-Core-Model-Entities'
+	#instVars : [
+		'#expression => FMOne type: #FASTExpression opposite: #returnOwner'
+	],
+	#category : #'FAST-Core-Model-Entities'
 }
 
 { #category : #meta }
@@ -20,7 +23,7 @@ FASTReturnStatement class >> annotation [
 FASTReturnStatement class >> generatedSlotNames [
 	<generated>
 	'FASTReturnStatement class>>#generatedSlotNames'.
-	^ #()
+	^ #(expression)
 ]
 
 { #category : #generator }
@@ -34,4 +37,29 @@ FASTReturnStatement class >> requirements [
 
 	<generated>
 	^ {  }
+]
+
+{ #category : #accessing }
+FASTReturnStatement >> expression [
+
+	<generated>
+	<MSEComment: 'The expression returned'>
+	^ expression
+]
+
+{ #category : #accessing }
+FASTReturnStatement >> expression: anObject [
+
+	<generated>
+	expression := anObject
+
+]
+
+{ #category : #navigation }
+FASTReturnStatement >> expressionGroup [
+
+	<generated>
+	<navigation: 'Expression'>
+	^ MooseGroup
+			with: (self expression)
 ]

@@ -22,10 +22,20 @@ Class {
 		'statementBlock',
 		'variableEntity',
 		'namedBehaviouralEntity',
-		'entitySourceAnchor'
+		'entitySourceAnchor',
+		'tExpression',
+		'tStatement'
 	],
 	#category : #'FAST-Model-Generator'
 }
+
+{ #category : #accessing }
+FASTMetamodelGenerator class >> modifyMetamodel: aMetamodel [
+
+	super modifyMetamodel: aMetamodel.
+	
+	self fixRemoteMetamodelRelationsIn: aMetamodel.
+]
 
 { #category : #accessing }
 FASTMetamodelGenerator class >> packageName [
@@ -38,13 +48,7 @@ FASTMetamodelGenerator class >> prefix [
 	^ #FAST
 ]
 
-{ #category : #definition }
-FASTMetamodelGenerator >> addTo: aRelation commentOnSide: aComment commentOnOppositeSide: anOtherComment [
-	aRelation side comment: aComment.
-	aRelation oppositeSide comment: anOtherComment
-]
-
-{ #category : #definition }
+{ #category : #comments }
 FASTMetamodelGenerator >> commentForBehaviouralEntity [
 	^ 'Represents a generic behavioural entity which has parameters and local variables, as well as statements. 
 
@@ -55,34 +59,34 @@ Has parameters , and a body (StatementBlock).
 Local variables are intended to be stored in the local entities of the body'
 ]
 
-{ #category : #definition }
+{ #category : #comments }
 FASTMetamodelGenerator >> commentForBooleanLiteral [
 	^ 'A boolean literal'
 ]
 
-{ #category : #definition }
+{ #category : #comments }
 FASTMetamodelGenerator >> commentForCharacterLiteral [
 	^ 'A character literal'
 ]
 
-{ #category : #definition }
+{ #category : #comments }
 FASTMetamodelGenerator >> commentForEntity [
 	^ 'A FASTEntity is an abstract class for all FAST classes
 
 Primarily introduced to deal with symbol resolution matters.'
 ]
 
-{ #category : #definition }
+{ #category : #comments }
 FASTMetamodelGenerator >> commentForExpression [
 	^ 'An abstract superclass representing an expression node of a source code.'
 ]
 
-{ #category : #definition }
+{ #category : #comments }
 FASTMetamodelGenerator >> commentForExpressionStatement [
 	^ 'A node of a statement which is representing a single expression. '
 ]
 
-{ #category : #definition }
+{ #category : #comments }
 FASTMetamodelGenerator >> commentForLiteral [
 	^ 'A literal node.
 
@@ -92,7 +96,7 @@ FLAG: should refactor some literals to core-model
     e.g.: character, int, float, string, boolean '
 ]
 
-{ #category : #definition }
+{ #category : #comments }
 FASTMetamodelGenerator >> commentForNamedBehaviouralEntity [
 	^ '@FLAG: May be could be removed to have a simpler core model.
 Each language would have to implement it correctly then
@@ -102,44 +106,44 @@ A behavioural entity that can be referenced with a name.
 Assumed to correspond to a function or a method'
 ]
 
-{ #category : #definition }
+{ #category : #comments }
 FASTMetamodelGenerator >> commentForNullPointerLiteral [
 	^ 'An undefined object literal'
 ]
 
-{ #category : #definition }
+{ #category : #comments }
 FASTMetamodelGenerator >> commentForReturnStatement [
 	^ 'A return statement node. Contains a reference to the expression which is returned.  '
 ]
 
-{ #category : #definition }
+{ #category : #comments }
 FASTMetamodelGenerator >> commentForScopableEntity [
 	^ 'A Entity with an optional scope
 
 Statements are scopable because many statements allow to introduce local variables (e.g. for statement in Java)'
 ]
 
-{ #category : #definition }
+{ #category : #comments }
 FASTMetamodelGenerator >> commentForStatement [
 	^ 'An abstract subclass which represents a source code statemnet '
 ]
 
-{ #category : #definition }
+{ #category : #comments }
 FASTMetamodelGenerator >> commentForStatementBlock [
 	^ 'A block of statements as ones in C-like langs with {}'
 ]
 
-{ #category : #definition }
+{ #category : #comments }
 FASTMetamodelGenerator >> commentForStringLiteral [
 	^ 'A string literal'
 ]
 
-{ #category : #definition }
+{ #category : #comments }
 FASTMetamodelGenerator >> commentForVariableEntity [
 	^ 'A representation of a variable entity, '
 ]
 
-{ #category : #definition }
+{ #category : #comments }
 FASTMetamodelGenerator >> commentForVariableExpression [
 	^ 'A node that wraps around structural entity'
 ]
@@ -184,7 +188,7 @@ FASTMetamodelGenerator >> defineHierarchy [
 	expressionStatement --|> statement.
 	returnStatement --|> statement.
 	statementBlock --|> statement.
-	variableEntity --|> entitySourceAnchor.
+	variableEntity --|> statement.
 	
 	entitySourceAnchor --|> entity.
 	entitySourceAnchor --|> #TSourceAnchor.
@@ -210,22 +214,29 @@ FASTMetamodelGenerator >> defineProperties [
 
 { #category : #definition }
 FASTMetamodelGenerator >> defineRelations [
-	"in comment the old relation from the old FAST metamodel"
 	super defineRelations.
-	((entity property: #parentNode) *-<> (entity property: #childrenNode))
-		withNavigation
+	(((expressionStatement property: #expression) comment: 'The expression of the statement') <>- ((expression property: #expressionStatementOwner) comment: 'The expression statement that own me (if it''s the case')) withoutPrimaryContainer.
+
+	(((returnStatement property: #expression) comment: 'The expression returned') <>- ((expression property: #returnOwner)
+		comment: 'The return statement that own the expression (if it''s the case)')) withoutPrimaryContainer.
+
+	(((behaviouralEntity property: #parameters) comment: 'Parameters of the method') <>-* ((variableExpression property: #parentBehaviouralEntity)
+		comment: 'A behavioual entity where this variable is defined as a parameter')) withoutPrimaryContainer.
+	(((behaviouralEntity property: #statementBlock) comment: 'Statements block of the behavioural entity')
+		<>- ((statementBlock property: #fastBehaviouralParent) comment: 'Behavioural entity containing the statement block.')) withoutPrimaryContainer.
+	
+	(((statement property: #statementContainer) comment: 'Block containing this statement.') *-<> ((statementBlock property: #statements) comment: 'Statements enclosed in this block')) withoutPrimaryContainer.
+
+
+
+	"Some old relations to check"	
 
 	"((expression property: #parentExpression) comment: 'Parent expression within which this expression appears (e.g. self=a+b and parent=2*(a+b)) ')
-		-* ((expression property: #childrenExpressions) comment: 'Sub-expressions within this expression (e.g. self=2*(a+b) and child=a+b) ').
+		<>-* ((expression property: #childrenExpressions) comment: 'Sub-expressions within this expression (e.g. self=2*(a+b) and child=a+b) ').
+		
 	((expression property: #parentStatement) comment: 'Parent statement containing this expression') - ((statement property: #childExpression) comment: 'Expression contained in this statement').
+	
 	((scopableEntity property: #localEntities) comment: 'Local entities (e.g. local variables) within the scope')
 		-* ((entity property: #parentScopableEntity) comment: 'The parent entity of local entities (e.g. parent of a local variable)')."
-
-	"((behaviouralEntity property: #parameters) comment: 'Parameters of the method') -* ((variableEntity property: #parentBehaviouralEntity)
-		comment: 'A behavioual entity where this variable is defined as a parameter')."
-
-
-	"((behaviouralEntity property: #statementBlock) comment: 'Statements block of the behavioural entity')
-		- ((statementBlock property: #fastBehaviouralParent) comment: 'Behavioural entity containing the statement block.').
-	((statement property: #statementContainer) comment: 'Block containing this statement.') *- ((statementBlock property: #statements) comment: 'Statements enclosed in this block')."
+		
 ]
