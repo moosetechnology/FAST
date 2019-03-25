@@ -3,7 +3,7 @@ A representation of a variable entity,
 "
 Class {
 	#name : #FASTVariableEntity,
-	#superclass : #FASTEntitySourceAnchor,
+	#superclass : #FASTStatement,
 	#traits : 'FamixTNamed',
 	#classTraits : 'FamixTNamed classTrait',
 	#category : #'FAST-Core-Model-Entities'
@@ -12,7 +12,7 @@ Class {
 { #category : #meta }
 FASTVariableEntity class >> annotation [
 
-	<MSEClass: #VariableEntity super: #FASTEntitySourceAnchor>
+	<MSEClass: #VariableEntity super: #FASTStatement>
 	<package: #'FAST-Core-Model'>
 	<generated>
 	^self

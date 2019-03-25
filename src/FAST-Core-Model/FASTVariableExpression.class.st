@@ -6,7 +6,10 @@ Class {
 	#superclass : #FASTExpression,
 	#traits : 'FamixTNamed',
 	#classTraits : 'FamixTNamed classTrait',
-	#category : 'FAST-Core-Model-Entities'
+	#instVars : [
+		'#parentBehaviouralEntity => FMOne type: #FASTBehaviouralEntity opposite: #parameters'
+	],
+	#category : #'FAST-Core-Model-Entities'
 }
 
 { #category : #meta }
@@ -22,7 +25,7 @@ FASTVariableExpression class >> annotation [
 FASTVariableExpression class >> generatedSlotNames [
 	<generated>
 	'FASTVariableExpression class>>#generatedSlotNames'.
-	^ #()
+	^ #(parentBehaviouralEntity)
 ]
 
 { #category : #generator }
@@ -35,5 +38,32 @@ FASTVariableExpression class >> generatedTraitNames [
 FASTVariableExpression class >> requirements [
 
 	<generated>
-	^ {  }
+	^ { FASTBehaviouralEntity }
+]
+
+{ #category : #accessing }
+FASTVariableExpression >> parentBehaviouralEntity [
+
+	<generated>
+	<MSEComment: 'A behavioual entity where this variable is defined as a parameter'>
+	<container>
+
+	^ parentBehaviouralEntity
+]
+
+{ #category : #accessing }
+FASTVariableExpression >> parentBehaviouralEntity: anObject [
+
+	<generated>
+	parentBehaviouralEntity := anObject
+
+]
+
+{ #category : #navigation }
+FASTVariableExpression >> parentBehaviouralEntityGroup [
+
+	<generated>
+	<navigation: 'ParentBehaviouralEntity'>
+	^ MooseGroup
+			with: (self parentBehaviouralEntity)
 ]
