@@ -17,3 +17,8 @@ FASTEntity >> containers [
 FASTEntity >> parentNode [
 	^ self containers at: 1 ifAbsent: [ nil ] 
 ]
+
+{ #category : #'*FAST-Core-Model-Extension' }
+FASTEntity >> removeAllPotentialParentNode [
+	^ self parentSelectors do: [:selector | self perform: selector, ':' withArguments: { nil } ].
+]
