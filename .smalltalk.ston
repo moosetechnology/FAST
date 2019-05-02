@@ -4,7 +4,8 @@ SmalltalkCISpec {
       #baseline : 'FAST',
       #directory : 'src',
       #load : [ 'default' ],
-      #platforms : [ #pharo ]
+      #platforms : [ #pharo ],
+      #failOnZeroTests : false
     }
   ]
 }
