@@ -1,11 +1,11 @@
 SmalltalkCISpec {
+  #failOnZeroTests : false,
   #loading : [
     SCIMetacelloLoadSpec {
       #baseline : 'FAST',
       #directory : 'src',
       #load : [ 'default' ],
-      #platforms : [ #pharo ],
-      #failOnZeroTests : false
+      #platforms : [ #pharo ]
     }
   ]
 }
