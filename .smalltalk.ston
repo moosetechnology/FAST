@@ -1,5 +1,7 @@
 SmalltalkCISpec {
-  #failOnZeroTests : false,
+  #testing : {
+    #failOnZeroTests : false
+  }, 
   #loading : [
     SCIMetacelloLoadSpec {
       #baseline : 'FAST',
