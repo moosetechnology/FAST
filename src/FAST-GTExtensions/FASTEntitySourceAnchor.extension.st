@@ -2,7 +2,7 @@ Extension { #name : #FASTEntitySourceAnchor }
 
 { #category : #'*FAST-GTExtensions' }
 FASTEntitySourceAnchor >> gtNodesIn: composite [
-	<gtInspectorPresentationOrder: 0>
+	<gtInspectorPresentationOrder: 1000>
 	^ composite tree
 		title: 'Tree';
 		display: [ :anObject | anObject ];
@@ -12,7 +12,7 @@ FASTEntitySourceAnchor >> gtNodesIn: composite [
 
 { #category : #'*FAST-GTExtensions' }
 FASTEntitySourceAnchor >> gtSourceCodeIn: composite [
-	<gtInspectorPresentationOrder: 0>
+	<gtInspectorPresentationOrder: 1001>
 	^ composite text
 		title: 'Source code';
 		display: [ self ];
