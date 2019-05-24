@@ -36,7 +36,7 @@ FASTCoreVisitor >> visitFASTComment: aFASTComment [
 
 { #category : #generated }
 FASTCoreVisitor >> visitFASTEntity: aFASTEntity [
-	^ self subclassResponsibility
+	^ aFASTEntity children do: [ :child | aFASTEntity accept: self ]
 ]
 
 { #category : #generated }
