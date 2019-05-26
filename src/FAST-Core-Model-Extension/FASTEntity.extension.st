@@ -22,3 +22,10 @@ FASTEntity >> parentNode [
 FASTEntity >> removeAllPotentialParentNode [
 	^ self parentSelectors do: [:selector | self perform: selector, ':' withArguments: { nil } ].
 ]
+
+{ #category : #'*FAST-Core-Model-Extension' }
+FASTEntity >> rootNode [
+
+	"I should be overriden in my users"
+	^ self parentNode ifNil: [ self ] ifNotNil: [:parent | parent rootNode ]
+]
