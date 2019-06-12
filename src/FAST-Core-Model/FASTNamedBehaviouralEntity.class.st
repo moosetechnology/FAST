@@ -11,7 +11,7 @@ Class {
 	#superclass : #FASTBehaviouralEntity,
 	#traits : 'FamixTNamed',
 	#classTraits : 'FamixTNamed classTrait',
-	#category : 'FAST-Core-Model-Entities'
+	#category : #'FAST-Core-Model-Entities'
 }
 
 { #category : #meta }

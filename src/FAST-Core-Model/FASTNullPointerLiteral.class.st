@@ -4,7 +4,7 @@ An undefined object literal
 Class {
 	#name : #FASTNullPointerLiteral,
 	#superclass : #FASTLiteral,
-	#category : 'FAST-Core-Model-Entities'
+	#category : #'FAST-Core-Model-Entities'
 }
 
 { #category : #meta }

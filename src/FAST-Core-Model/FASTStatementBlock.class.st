@@ -40,6 +40,13 @@ FASTStatementBlock class >> requirements [
 	^ { FASTBehaviouralEntity }
 ]
 
+{ #category : #adding }
+FASTStatementBlock >> addStatements: anObject [
+			
+	<generated>
+	^ self statements add: anObject
+]
+
 { #category : #accessing }
 FASTStatementBlock >> fastBehaviouralParent [
 

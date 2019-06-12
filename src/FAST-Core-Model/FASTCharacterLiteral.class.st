@@ -4,7 +4,7 @@ A character literal
 Class {
 	#name : #FASTCharacterLiteral,
 	#superclass : #FASTLiteral,
-	#category : 'FAST-Core-Model-Entities'
+	#category : #'FAST-Core-Model-Entities'
 }
 
 { #category : #meta }

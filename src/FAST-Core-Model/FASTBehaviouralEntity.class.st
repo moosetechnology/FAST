@@ -46,6 +46,13 @@ FASTBehaviouralEntity class >> requirements [
 	^ {  }
 ]
 
+{ #category : #adding }
+FASTBehaviouralEntity >> addParameters: anObject [
+			
+	<generated>
+	^ self parameters add: anObject
+]
+
 { #category : #accessing }
 FASTBehaviouralEntity >> parameters [
 

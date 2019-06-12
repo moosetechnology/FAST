@@ -4,7 +4,7 @@ A string literal
 Class {
 	#name : #FASTStringLiteral,
 	#superclass : #FASTLiteral,
-	#category : 'FAST-Core-Model-Entities'
+	#category : #'FAST-Core-Model-Entities'
 }
 
 { #category : #meta }

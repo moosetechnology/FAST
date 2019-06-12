@@ -4,7 +4,7 @@ A boolean literal
 Class {
 	#name : #FASTBooleanLiteral,
 	#superclass : #FASTLiteral,
-	#category : 'FAST-Core-Model-Entities'
+	#category : #'FAST-Core-Model-Entities'
 }
 
 { #category : #meta }

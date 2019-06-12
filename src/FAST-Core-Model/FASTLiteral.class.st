@@ -12,7 +12,7 @@ Class {
 	#instVars : [
 		'value'
 	],
-	#category : 'FAST-Core-Model-Entities'
+	#category : #'FAST-Core-Model-Entities'
 }
 
 { #category : #meta }
