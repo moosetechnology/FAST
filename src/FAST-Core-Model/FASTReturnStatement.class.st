@@ -19,26 +19,6 @@ FASTReturnStatement class >> annotation [
 	^self
 ]
 
-{ #category : #generator }
-FASTReturnStatement class >> generatedSlotNames [
-	<generated>
-	'FASTReturnStatement class>>#generatedSlotNames'.
-	^ #(expression)
-]
-
-{ #category : #generator }
-FASTReturnStatement class >> generatedTraitNames [
-	<generated>
-	^ #()
-]
-
-{ #category : #meta }
-FASTReturnStatement class >> requirements [
-
-	<generated>
-	^ {  }
-]
-
 { #category : #accessing }
 FASTReturnStatement >> expression [
 

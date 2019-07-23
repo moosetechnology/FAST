@@ -19,19 +19,6 @@ FASTStatement class >> annotation [
 	^self
 ]
 
-{ #category : #generator }
-FASTStatement class >> generatedSlotNames [
-	<generated>
-	'FASTStatement class>>#generatedSlotNames'.
-	^ #(statementContainer)
-]
-
-{ #category : #generator }
-FASTStatement class >> generatedTraitNames [
-	<generated>
-	^ #()
-]
-
 { #category : #meta }
 FASTStatement class >> requirements [
 

@@ -14,23 +14,3 @@ FASTSourceTextAnchor class >> annotation [
 	<generated>
 	^self
 ]
-
-{ #category : #generator }
-FASTSourceTextAnchor class >> generatedSlotNames [
-	<generated>
-	'FASTSourceTextAnchor class>>#generatedSlotNames'.
-	^ #()
-]
-
-{ #category : #generator }
-FASTSourceTextAnchor class >> generatedTraitNames [
-	<generated>
-	^ #(FamixTWithImmediateSource)
-]
-
-{ #category : #meta }
-FASTSourceTextAnchor class >> requirements [
-
-	<generated>
-	^ {  }
-]

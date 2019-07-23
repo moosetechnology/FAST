@@ -14,23 +14,3 @@ FASTSourcedEntity class >> annotation [
 	<generated>
 	^self
 ]
-
-{ #category : #generator }
-FASTSourcedEntity class >> generatedSlotNames [
-	<generated>
-	'FASTSourcedEntity class>>#generatedSlotNames'.
-	^ #()
-]
-
-{ #category : #generator }
-FASTSourcedEntity class >> generatedTraitNames [
-	<generated>
-	^ #(FamixTWithComments FamixTWithSourceAnchor FamixTWithSourceLanguage)
-]
-
-{ #category : #meta }
-FASTSourcedEntity class >> requirements [
-
-	<generated>
-	^ {  }
-]

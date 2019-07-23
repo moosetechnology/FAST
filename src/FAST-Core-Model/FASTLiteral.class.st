@@ -24,26 +24,6 @@ FASTLiteral class >> annotation [
 	^self
 ]
 
-{ #category : #generator }
-FASTLiteral class >> generatedSlotNames [
-	<generated>
-	'FASTLiteral class>>#generatedSlotNames'.
-	^ #(value)
-]
-
-{ #category : #generator }
-FASTLiteral class >> generatedTraitNames [
-	<generated>
-	^ #()
-]
-
-{ #category : #meta }
-FASTLiteral class >> requirements [
-
-	<generated>
-	^ {  }
-]
-
 { #category : #accessing }
 FASTLiteral >> value [
 

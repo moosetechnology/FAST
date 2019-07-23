@@ -19,26 +19,6 @@ FASTExpressionStatement class >> annotation [
 	^self
 ]
 
-{ #category : #generator }
-FASTExpressionStatement class >> generatedSlotNames [
-	<generated>
-	'FASTExpressionStatement class>>#generatedSlotNames'.
-	^ #(expression)
-]
-
-{ #category : #generator }
-FASTExpressionStatement class >> generatedTraitNames [
-	<generated>
-	^ #()
-]
-
-{ #category : #meta }
-FASTExpressionStatement class >> requirements [
-
-	<generated>
-	^ {  }
-]
-
 { #category : #accessing }
 FASTExpressionStatement >> expression [
 

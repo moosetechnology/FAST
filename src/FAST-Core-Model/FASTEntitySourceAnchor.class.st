@@ -19,26 +19,6 @@ FASTEntitySourceAnchor class >> annotation [
 	^self
 ]
 
-{ #category : #generator }
-FASTEntitySourceAnchor class >> generatedSlotNames [
-	<generated>
-	'FASTEntitySourceAnchor class>>#generatedSlotNames'.
-	^ #(endPos startPos)
-]
-
-{ #category : #generator }
-FASTEntitySourceAnchor class >> generatedTraitNames [
-	<generated>
-	^ #(FamixTSourceAnchor)
-]
-
-{ #category : #meta }
-FASTEntitySourceAnchor class >> requirements [
-
-	<generated>
-	^ {  }
-]
-
 { #category : #accessing }
 FASTEntitySourceAnchor >> endPos [
 

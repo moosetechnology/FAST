@@ -14,23 +14,3 @@ FASTNamedEntity class >> annotation [
 	<generated>
 	^self
 ]
-
-{ #category : #generator }
-FASTNamedEntity class >> generatedSlotNames [
-	<generated>
-	'FASTNamedEntity class>>#generatedSlotNames'.
-	^ #()
-]
-
-{ #category : #generator }
-FASTNamedEntity class >> generatedTraitNames [
-	<generated>
-	^ #(FamixTNamed TDependencyQueries TEntityMetaLevelDependency)
-]
-
-{ #category : #meta }
-FASTNamedEntity class >> requirements [
-
-	<generated>
-	^ {  }
-]

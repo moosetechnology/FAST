@@ -3,7 +3,6 @@ Extension { #name : #FASTEntity }
 { #category : #'*FAST-Core-Model-Extension' }
 FASTEntity >> childrenNode [
 
-	<generated>
 	^ (((self class allDeclaredPropertiesIn: self metamodel) select: #isChildrenProperty thenCollect: [:childrenProperty | self perform: (childrenProperty implementingSelector)]) reject: #isNil) flattened
 
 ]

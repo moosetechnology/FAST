@@ -17,23 +17,3 @@ FASTScopableEntity class >> annotation [
 	<generated>
 	^self
 ]
-
-{ #category : #generator }
-FASTScopableEntity class >> generatedSlotNames [
-	<generated>
-	'FASTScopableEntity class>>#generatedSlotNames'.
-	^ #()
-]
-
-{ #category : #generator }
-FASTScopableEntity class >> generatedTraitNames [
-	<generated>
-	^ #()
-]
-
-{ #category : #meta }
-FASTScopableEntity class >> requirements [
-
-	<generated>
-	^ {  }
-]

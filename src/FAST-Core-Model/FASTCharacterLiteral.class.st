@@ -15,23 +15,3 @@ FASTCharacterLiteral class >> annotation [
 	<generated>
 	^self
 ]
-
-{ #category : #generator }
-FASTCharacterLiteral class >> generatedSlotNames [
-	<generated>
-	'FASTCharacterLiteral class>>#generatedSlotNames'.
-	^ #()
-]
-
-{ #category : #generator }
-FASTCharacterLiteral class >> generatedTraitNames [
-	<generated>
-	^ #()
-]
-
-{ #category : #meta }
-FASTCharacterLiteral class >> requirements [
-
-	<generated>
-	^ {  }
-]

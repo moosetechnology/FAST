@@ -26,26 +26,6 @@ FASTBehaviouralEntity class >> annotation [
 	^self
 ]
 
-{ #category : #generator }
-FASTBehaviouralEntity class >> generatedSlotNames [
-	<generated>
-	'FASTBehaviouralEntity class>>#generatedSlotNames'.
-	^ #(parameters statementBlock)
-]
-
-{ #category : #generator }
-FASTBehaviouralEntity class >> generatedTraitNames [
-	<generated>
-	^ #()
-]
-
-{ #category : #meta }
-FASTBehaviouralEntity class >> requirements [
-
-	<generated>
-	^ {  }
-]
-
 { #category : #adding }
 FASTBehaviouralEntity >> addParameters: anObject [
 			

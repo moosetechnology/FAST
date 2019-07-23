@@ -14,23 +14,3 @@ FASTSourceAnchor class >> annotation [
 	<generated>
 	^self
 ]
-
-{ #category : #generator }
-FASTSourceAnchor class >> generatedSlotNames [
-	<generated>
-	'FASTSourceAnchor class>>#generatedSlotNames'.
-	^ #()
-]
-
-{ #category : #generator }
-FASTSourceAnchor class >> generatedTraitNames [
-	<generated>
-	^ #(FamixTSourceAnchor TDependencyQueries TEntityMetaLevelDependency)
-]
-
-{ #category : #meta }
-FASTSourceAnchor class >> requirements [
-
-	<generated>
-	^ {  }
-]

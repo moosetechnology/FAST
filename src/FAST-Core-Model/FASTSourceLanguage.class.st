@@ -14,23 +14,3 @@ FASTSourceLanguage class >> annotation [
 	<generated>
 	^self
 ]
-
-{ #category : #generator }
-FASTSourceLanguage class >> generatedSlotNames [
-	<generated>
-	'FASTSourceLanguage class>>#generatedSlotNames'.
-	^ #()
-]
-
-{ #category : #generator }
-FASTSourceLanguage class >> generatedTraitNames [
-	<generated>
-	^ #(FamixTSourceLanguage)
-]
-
-{ #category : #meta }
-FASTSourceLanguage class >> requirements [
-
-	<generated>
-	^ {  }
-]

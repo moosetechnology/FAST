@@ -14,23 +14,3 @@ FASTComment class >> annotation [
 	<generated>
 	^self
 ]
-
-{ #category : #generator }
-FASTComment class >> generatedSlotNames [
-	<generated>
-	'FASTComment class>>#generatedSlotNames'.
-	^ #()
-]
-
-{ #category : #generator }
-FASTComment class >> generatedTraitNames [
-	<generated>
-	^ #(FamixTComment)
-]
-
-{ #category : #meta }
-FASTComment class >> requirements [
-
-	<generated>
-	^ {  }
-]

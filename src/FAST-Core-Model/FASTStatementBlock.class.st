@@ -20,19 +20,6 @@ FASTStatementBlock class >> annotation [
 	^self
 ]
 
-{ #category : #generator }
-FASTStatementBlock class >> generatedSlotNames [
-	<generated>
-	'FASTStatementBlock class>>#generatedSlotNames'.
-	^ #(fastBehaviouralParent statements)
-]
-
-{ #category : #generator }
-FASTStatementBlock class >> generatedTraitNames [
-	<generated>
-	^ #()
-]
-
 { #category : #meta }
 FASTStatementBlock class >> requirements [
 

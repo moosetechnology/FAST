@@ -17,23 +17,3 @@ FASTVariableEntity class >> annotation [
 	<generated>
 	^self
 ]
-
-{ #category : #generator }
-FASTVariableEntity class >> generatedSlotNames [
-	<generated>
-	'FASTVariableEntity class>>#generatedSlotNames'.
-	^ #()
-]
-
-{ #category : #generator }
-FASTVariableEntity class >> generatedTraitNames [
-	<generated>
-	^ #(FamixTNamed)
-]
-
-{ #category : #meta }
-FASTVariableEntity class >> requirements [
-
-	<generated>
-	^ {  }
-]

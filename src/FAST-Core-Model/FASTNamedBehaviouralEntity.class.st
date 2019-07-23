@@ -22,23 +22,3 @@ FASTNamedBehaviouralEntity class >> annotation [
 	<generated>
 	^self
 ]
-
-{ #category : #generator }
-FASTNamedBehaviouralEntity class >> generatedSlotNames [
-	<generated>
-	'FASTNamedBehaviouralEntity class>>#generatedSlotNames'.
-	^ #()
-]
-
-{ #category : #generator }
-FASTNamedBehaviouralEntity class >> generatedTraitNames [
-	<generated>
-	^ #(FamixTNamed)
-]
-
-{ #category : #meta }
-FASTNamedBehaviouralEntity class >> requirements [
-
-	<generated>
-	^ {  }
-]

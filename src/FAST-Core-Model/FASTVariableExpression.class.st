@@ -21,19 +21,6 @@ FASTVariableExpression class >> annotation [
 	^self
 ]
 
-{ #category : #generator }
-FASTVariableExpression class >> generatedSlotNames [
-	<generated>
-	'FASTVariableExpression class>>#generatedSlotNames'.
-	^ #(parentBehaviouralEntity)
-]
-
-{ #category : #generator }
-FASTVariableExpression class >> generatedTraitNames [
-	<generated>
-	^ #(FamixTNamed)
-]
-
 { #category : #meta }
 FASTVariableExpression class >> requirements [
 

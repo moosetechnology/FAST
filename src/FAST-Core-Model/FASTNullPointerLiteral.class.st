@@ -15,23 +15,3 @@ FASTNullPointerLiteral class >> annotation [
 	<generated>
 	^self
 ]
-
-{ #category : #generator }
-FASTNullPointerLiteral class >> generatedSlotNames [
-	<generated>
-	'FASTNullPointerLiteral class>>#generatedSlotNames'.
-	^ #()
-]
-
-{ #category : #generator }
-FASTNullPointerLiteral class >> generatedTraitNames [
-	<generated>
-	^ #()
-]
-
-{ #category : #meta }
-FASTNullPointerLiteral class >> requirements [
-
-	<generated>
-	^ {  }
-]
