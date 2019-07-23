@@ -16,7 +16,7 @@ FASTEntitySourceAnchor >> gtSourceCodeIn: composite [
 	^ composite text
 		title: 'Source code';
 		display: [ self ];
-		format: [ :t | self sourceText ifNil: [ 'No source code available' ] ifNotNil: [ self sourceCodeAsText ] ];
+		format: [ :t | self sourceText ifNil: [ 'No source code available' ] ifNotNil: [ self mooseModel fastHighligther new highlight: self rootNode ] ];
 		withLineNumbers: true;
 		initialize: [ :presentation | (self sourceText isNil or: [ self startPos isNil or: [ self endPos isNil ] ]) ifFalse: [ presentation selectionInterval: (self startPos to: self endPos) ] ];
 		yourself
@@ -24,5 +24,5 @@ FASTEntitySourceAnchor >> gtSourceCodeIn: composite [
 
 { #category : #'*FAST-GTExtensions' }
 FASTEntitySourceAnchor >> sourceCodeAsText [
-	^ self sourceText asText
+	^ self rootNode sourceText asText
 ]
