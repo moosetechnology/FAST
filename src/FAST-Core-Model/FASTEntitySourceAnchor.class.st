@@ -4,8 +4,8 @@ Class {
 	#traits : 'FamixTSourceAnchor',
 	#classTraits : 'FamixTSourceAnchor classTrait',
 	#instVars : [
-		'#endPos',
-		'#startPos'
+		'#startPos => FMProperty',
+		'#endPos => FMProperty'
 	],
 	#category : #'FAST-Core-Model-Entities'
 }

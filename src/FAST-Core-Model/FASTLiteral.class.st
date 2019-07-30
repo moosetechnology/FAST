@@ -10,7 +10,7 @@ Class {
 	#name : #FASTLiteral,
 	#superclass : #FASTExpression,
 	#instVars : [
-		'value'
+		'#value => FMProperty'
 	],
 	#category : #'FAST-Core-Model-Entities'
 }

@@ -100,6 +100,13 @@ FASTEntity >> isReference [
 ]
 
 { #category : #testing }
+FASTEntity >> isStructuralEntity [
+
+	<generated>
+	^ false
+]
+
+{ #category : #testing }
 FASTEntity >> isType [
 
 	<generated>
