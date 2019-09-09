@@ -4,11 +4,8 @@ A node that wraps around structural entity
 Class {
 	#name : #FASTVariableExpression,
 	#superclass : #FASTExpression,
-	#traits : 'FamixTNamed',
-	#classTraits : 'FamixTNamed classTrait',
-	#instVars : [
-		'#parentBehaviouralEntity => FMOne type: #FASTBehaviouralEntity opposite: #parameters'
-	],
+	#traits : 'FASTTModifier + FamixTNamed',
+	#classTraits : 'FASTTModifier classTrait + FamixTNamed classTrait',
 	#category : #'FAST-Core-Model-Entities'
 }
 
@@ -26,31 +23,4 @@ FASTVariableExpression class >> requirements [
 
 	<generated>
 	^ { FASTBehaviouralEntity }
-]
-
-{ #category : #accessing }
-FASTVariableExpression >> parentBehaviouralEntity [
-
-	<generated>
-	<MSEComment: 'A behavioual entity where this variable is defined as a parameter'>
-	<container>
-
-	^ parentBehaviouralEntity
-]
-
-{ #category : #accessing }
-FASTVariableExpression >> parentBehaviouralEntity: anObject [
-
-	<generated>
-	parentBehaviouralEntity := anObject
-
-]
-
-{ #category : #navigation }
-FASTVariableExpression >> parentBehaviouralEntityGroup [
-
-	<generated>
-	<navigation: 'ParentBehaviouralEntity'>
-	^ MooseGroup
-			with: (self parentBehaviouralEntity)
 ]

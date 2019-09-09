@@ -21,6 +21,7 @@ FASTExpressionStatement class >> annotation [
 
 { #category : #accessing }
 FASTExpressionStatement >> expression [
+	"Relation named: #expression type: #FASTExpression opposite: #expressionStatementOwner"
 
 	<generated>
 	<MSEComment: 'The expression of the statement'>
@@ -37,9 +38,7 @@ FASTExpressionStatement >> expression: anObject [
 
 { #category : #navigation }
 FASTExpressionStatement >> expressionGroup [
-
 	<generated>
 	<navigation: 'Expression'>
-	^ MooseGroup
-			with: (self expression)
+	^ MooseGroup with: self expression
 ]

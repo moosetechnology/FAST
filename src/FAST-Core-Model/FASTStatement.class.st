@@ -28,11 +28,11 @@ FASTStatement class >> requirements [
 
 { #category : #accessing }
 FASTStatement >> statementContainer [
+	"Relation named: #statementContainer type: #FASTStatementBlock opposite: #statements"
 
 	<generated>
 	<MSEComment: 'Block containing this statement.'>
 	<container>
-
 	^ statementContainer
 ]
 
@@ -46,9 +46,7 @@ FASTStatement >> statementContainer: anObject [
 
 { #category : #navigation }
 FASTStatement >> statementContainerGroup [
-
 	<generated>
 	<navigation: 'StatementContainer'>
-	^ MooseGroup
-			with: (self statementContainer)
+	^ MooseGroup with: self statementContainer
 ]

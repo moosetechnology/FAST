@@ -29,18 +29,17 @@ FASTStatementBlock class >> requirements [
 
 { #category : #adding }
 FASTStatementBlock >> addStatements: anObject [
-			
 	<generated>
 	^ self statements add: anObject
 ]
 
 { #category : #accessing }
 FASTStatementBlock >> fastBehaviouralParent [
+	"Relation named: #fastBehaviouralParent type: #FASTBehaviouralEntity opposite: #statementBlock"
 
 	<generated>
 	<MSEComment: 'Behavioural entity containing the statement block.'>
 	<container>
-
 	^ fastBehaviouralParent
 ]
 
@@ -54,15 +53,14 @@ FASTStatementBlock >> fastBehaviouralParent: anObject [
 
 { #category : #navigation }
 FASTStatementBlock >> fastBehaviouralParentGroup [
-
 	<generated>
 	<navigation: 'FastBehaviouralParent'>
-	^ MooseGroup
-			with: (self fastBehaviouralParent)
+	^ MooseGroup with: self fastBehaviouralParent
 ]
 
 { #category : #accessing }
 FASTStatementBlock >> statements [
+	"Relation named: #statements type: #FASTStatement opposite: #statementContainer"
 
 	<generated>
 	<MSEComment: 'Statements enclosed in this block'>
@@ -79,9 +77,7 @@ FASTStatementBlock >> statements: anObject [
 
 { #category : #navigation }
 FASTStatementBlock >> statementsGroup [
-
 	<generated>
 	<navigation: 'Statements'>
-	^ MooseGroup
-			withAll: (self statements asSet)
+	^ MooseGroup withAll: self statements asSet
 ]

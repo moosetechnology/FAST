@@ -1,8 +1,8 @@
 Class {
 	#name : #FASTSourceAnchor,
 	#superclass : #FASTEntity,
-	#traits : 'FamixTSourceAnchor + TDependencyQueries + TEntityMetaLevelDependency',
-	#classTraits : 'FamixTSourceAnchor classTrait + TDependencyQueries classTrait + TEntityMetaLevelDependency classTrait',
+	#traits : 'FamixTSourceAnchor',
+	#classTraits : 'FamixTSourceAnchor classTrait',
 	#category : #'FAST-Core-Model-Entities'
 }
 

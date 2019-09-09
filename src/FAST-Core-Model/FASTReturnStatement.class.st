@@ -21,6 +21,7 @@ FASTReturnStatement class >> annotation [
 
 { #category : #accessing }
 FASTReturnStatement >> expression [
+	"Relation named: #expression type: #FASTExpression opposite: #returnOwner"
 
 	<generated>
 	<MSEComment: 'The expression returned'>
@@ -37,9 +38,7 @@ FASTReturnStatement >> expression: anObject [
 
 { #category : #navigation }
 FASTReturnStatement >> expressionGroup [
-
 	<generated>
 	<navigation: 'Expression'>
-	^ MooseGroup
-			with: (self expression)
+	^ MooseGroup with: self expression
 ]

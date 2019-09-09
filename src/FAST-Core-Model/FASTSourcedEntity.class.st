@@ -1,8 +1,8 @@
 Class {
 	#name : #FASTSourcedEntity,
 	#superclass : #FASTEntity,
-	#traits : 'FamixTWithComments + FamixTWithSourceAnchor + FamixTWithSourceLanguage',
-	#classTraits : 'FamixTWithComments classTrait + FamixTWithSourceAnchor classTrait + FamixTWithSourceLanguage classTrait',
+	#traits : 'FamixTSourceEntity + FamixTWithComments',
+	#classTraits : 'FamixTSourceEntity classTrait + FamixTWithComments classTrait',
 	#category : #'FAST-Core-Model-Entities'
 }
 

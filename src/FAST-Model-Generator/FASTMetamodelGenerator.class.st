@@ -24,7 +24,11 @@ Class {
 		'namedBehaviouralEntity',
 		'entitySourceAnchor',
 		'tExpression',
-		'tStatement'
+		'tStatement',
+		'tArgument',
+		'tWithArguments',
+		'tParameter',
+		'tWithParameters'
 	],
 	#category : #'FAST-Model-Generator'
 }
@@ -175,14 +179,20 @@ FASTMetamodelGenerator >> defineHierarchy [
 	super defineHierarchy.
 	entity --|> #TEntityMetaLevelDependency.
 	expression --|> entitySourceAnchor.
+	expression --|> tArgument. 
+	
 	literal --|> expression.
+	
 	booleanLiteral --|> literal.
 	characterLiteral --|> literal.
 	nullPointerLiteral --|> literal.
 	stringLiteral --|> literal.
 	variableExpression --|> expression.
 	scopableEntity --|> entitySourceAnchor.
+	
 	behaviouralEntity --|> scopableEntity.
+	behaviouralEntity --|> tWithParameters.
+	
 	namedBehaviouralEntity --|> behaviouralEntity.
 	statement --|> scopableEntity.
 	expressionStatement --|> statement.
@@ -198,7 +208,10 @@ FASTMetamodelGenerator >> defineHierarchy [
 	namedEntity --|> entitySourceAnchor.
 	namedEntity --|> #TNamed.
 	variableEntity --|> #TNamed.
+	
 	variableExpression --|> #TNamed.
+	variableExpression --|> tParameter.
+	
 	namedBehaviouralEntity --|> #TNamed.
 	entity --|> #TDependencyQueries.
 ]
@@ -219,14 +232,15 @@ FASTMetamodelGenerator >> defineRelations [
 
 	(((returnStatement property: #expression) comment: 'The expression returned') <>- ((expression property: #returnOwner)
 		comment: 'The return statement that own the expression (if it''s the case)')) withoutPrimaryContainer.
-
-	(((behaviouralEntity property: #parameters) comment: 'Parameters of the method') <>-* ((variableExpression property: #parentBehaviouralEntity)
-		comment: 'A behavioual entity where this variable is defined as a parameter')) withoutPrimaryContainer.
+		
 	(((behaviouralEntity property: #statementBlock) comment: 'Statements block of the behavioural entity')
 		<>- ((statementBlock property: #fastBehaviouralParent) comment: 'Behavioural entity containing the statement block.')) withoutPrimaryContainer.
 	
 	(((statement property: #statementContainer) comment: 'Block containing this statement.') *-<> ((statementBlock property: #statements) comment: 'Statements enclosed in this block')) withoutPrimaryContainer.
-
+	
+	(((tWithParameters property: #parameters) comment: 'My parameters') <>-* ((tParameter property: #parameterOwner) comment: 'parameterOwner')) withoutPrimaryContainer. 
+	
+	(((tWithArguments property: #arguments) comment: 'My arguments') <>-* ((tArgument property: #argumentOwner) comment: 'my owner')) withoutPrimaryContainer.
 
 
 	"Some old relations to check"	
@@ -239,4 +253,14 @@ FASTMetamodelGenerator >> defineRelations [
 	((scopableEntity property: #localEntities) comment: 'Local entities (e.g. local variables) within the scope')
 		-* ((entity property: #parentScopableEntity) comment: 'The parent entity of local entities (e.g. parent of a local variable)')."
 		
+]
+
+{ #category : #definition }
+FASTMetamodelGenerator >> defineTraits [
+	super defineTraits.
+	tArgument := builder newTraitNamed: #TArgument comment: 'I can be an argument'. 
+	tWithArguments := builder newTraitNamed: #TWithArguments comment: 'I have arguments'.
+	
+	tParameter := builder newTraitNamed: #TModifier comment: 'I can be a parameter'. 
+	tWithParameters := builder newTraitNamed: #TWithModifiers comment: 'I have parameters'
 ]
