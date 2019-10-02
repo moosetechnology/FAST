@@ -12,7 +12,7 @@ Trait {
 { #category : #meta }
 FASTTWithModifiers classSide >> annotation [
 
-	<MSEClass: #TWithModifiers super: #Trait>
+	<MSEClass: #TWithModifiers super: #Object>
 	<package: #'FAST-Core-Model'>
 	<generated>
 	^self
@@ -30,6 +30,7 @@ FASTTWithModifiers >> parameters [
 
 	<generated>
 	<MSEComment: 'My parameters'>
+	<derived>
 	^ parameters
 ]
 

@@ -12,7 +12,7 @@ Trait {
 { #category : #meta }
 FASTTArgument classSide >> annotation [
 
-	<MSEClass: #TArgument super: #Trait>
+	<MSEClass: #TArgument super: #Object>
 	<package: #'FAST-Core-Model'>
 	<generated>
 	^self

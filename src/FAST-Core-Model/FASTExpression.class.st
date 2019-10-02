@@ -36,6 +36,7 @@ FASTExpression >> expressionStatementOwner [
 	<generated>
 	<MSEComment: 'The expression statement that own me (if it''s the case'>
 	<container>
+	<derived>
 	^ expressionStatementOwner
 ]
 
@@ -61,6 +62,7 @@ FASTExpression >> returnOwner [
 	<generated>
 	<MSEComment: 'The return statement that own the expression (if it''s the case)'>
 	<container>
+	<derived>
 	^ returnOwner
 ]
 

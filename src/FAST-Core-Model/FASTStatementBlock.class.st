@@ -40,6 +40,7 @@ FASTStatementBlock >> fastBehaviouralParent [
 	<generated>
 	<MSEComment: 'Behavioural entity containing the statement block.'>
 	<container>
+	<derived>
 	^ fastBehaviouralParent
 ]
 
@@ -64,6 +65,7 @@ FASTStatementBlock >> statements [
 
 	<generated>
 	<MSEComment: 'Statements enclosed in this block'>
+	<derived>
 	^ statements
 ]
 

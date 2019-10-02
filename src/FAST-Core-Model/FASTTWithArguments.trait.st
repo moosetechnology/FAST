@@ -12,7 +12,7 @@ Trait {
 { #category : #meta }
 FASTTWithArguments classSide >> annotation [
 
-	<MSEClass: #TWithArguments super: #Trait>
+	<MSEClass: #TWithArguments super: #Object>
 	<package: #'FAST-Core-Model'>
 	<generated>
 	^self
@@ -30,6 +30,7 @@ FASTTWithArguments >> arguments [
 
 	<generated>
 	<MSEComment: 'My arguments'>
+	<derived>
 	^ arguments
 ]
 

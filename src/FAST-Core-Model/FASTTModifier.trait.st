@@ -12,7 +12,7 @@ Trait {
 { #category : #meta }
 FASTTModifier classSide >> annotation [
 
-	<MSEClass: #TModifier super: #Trait>
+	<MSEClass: #TModifier super: #Object>
 	<package: #'FAST-Core-Model'>
 	<generated>
 	^self
