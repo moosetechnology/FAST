@@ -37,8 +37,6 @@ Class {
 FASTMetamodelGenerator class >> modifyMetamodel: aMetamodel [
 
 	super modifyMetamodel: aMetamodel.
-	
-	self fixRemoteMetamodelRelationsIn: aMetamodel.
 ]
 
 { #category : #accessing }
@@ -50,6 +48,11 @@ FASTMetamodelGenerator class >> packageName [
 { #category : #accessing }
 FASTMetamodelGenerator class >> prefix [
 	^ #FAST
+]
+
+{ #category : #accessing }
+FASTMetamodelGenerator class >> submetamodels [ 
+	^ { FamixGenerator }
 ]
 
 { #category : #comments }
@@ -241,18 +244,6 @@ FASTMetamodelGenerator >> defineRelations [
 	(((tWithParameters property: #parameters) comment: 'My parameters') <>-* ((tParameter property: #parameterOwner) comment: 'parameterOwner')) withoutPrimaryContainer. 
 	
 	(((tWithArguments property: #arguments) comment: 'My arguments') <>-* ((tArgument property: #argumentOwner) comment: 'my owner')) withoutPrimaryContainer.
-
-
-	"Some old relations to check"	
-
-	"((expression property: #parentExpression) comment: 'Parent expression within which this expression appears (e.g. self=a+b and parent=2*(a+b)) ')
-		<>-* ((expression property: #childrenExpressions) comment: 'Sub-expressions within this expression (e.g. self=2*(a+b) and child=a+b) ').
-		
-	((expression property: #parentStatement) comment: 'Parent statement containing this expression') - ((statement property: #childExpression) comment: 'Expression contained in this statement').
-	
-	((scopableEntity property: #localEntities) comment: 'Local entities (e.g. local variables) within the scope')
-		-* ((entity property: #parentScopableEntity) comment: 'The parent entity of local entities (e.g. parent of a local variable)')."
-		
 ]
 
 { #category : #definition }

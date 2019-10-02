@@ -19,7 +19,7 @@ FASTEntity class >> annotation [
 FASTEntity class >> metamodel [
 
 	<generated>
-	^ (self class environment at: #FASTMetamodelGenerator) metamodel
+	^ FASTModel metamodel
 ]
 
 { #category : #testing }

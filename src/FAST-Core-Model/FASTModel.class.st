@@ -4,16 +4,15 @@ Class {
 	#category : #'FAST-Core-Model'
 }
 
+{ #category : #accessing }
+FASTModel class >> allSubmetamodelsPackagesNames [
+	<generated>
+	^ #(#'Moose-Query' #'Famix-Traits')
+]
+
 { #category : #meta }
 FASTModel class >> annotation [
 	<MSEClass: #FASTModel super: #MooseModel>
 	<package: #'FAST-Core-Model'>
 	<generated>
-]
-
-{ #category : #initialization }
-FASTModel >> initialize [
-	<generated>
-	super initialize.
-	self metamodel: (self class environment at: #FASTMetamodelGenerator) metamodel
 ]
