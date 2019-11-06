@@ -17,7 +17,7 @@ Class {
 { #category : #meta }
 FASTNamedBehaviouralEntity class >> annotation [
 
-	<MSEClass: #NamedBehaviouralEntity super: #FASTBehaviouralEntity>
+	<FMClass: #NamedBehaviouralEntity super: #FASTBehaviouralEntity>
 	<package: #'FAST-Core-Model'>
 	<generated>
 	^self

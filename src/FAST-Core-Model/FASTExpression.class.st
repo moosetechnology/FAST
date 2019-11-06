@@ -16,17 +16,10 @@ Class {
 { #category : #meta }
 FASTExpression class >> annotation [
 
-	<MSEClass: #Expression super: #FASTEntitySourceAnchor>
+	<FMClass: #Expression super: #FASTEntitySourceAnchor>
 	<package: #'FAST-Core-Model'>
 	<generated>
 	^self
-]
-
-{ #category : #meta }
-FASTExpression class >> requirements [
-
-	<generated>
-	^ { FASTExpressionStatement. FASTReturnStatement }
 ]
 
 { #category : #accessing }
@@ -34,7 +27,7 @@ FASTExpression >> expressionStatementOwner [
 	"Relation named: #expressionStatementOwner type: #FASTExpressionStatement opposite: #expression"
 
 	<generated>
-	<MSEComment: 'The expression statement that own me (if it''s the case'>
+	<FMComment: 'The expression statement that own me (if it''s the case'>
 	<container>
 	<derived>
 	^ expressionStatementOwner
@@ -45,7 +38,6 @@ FASTExpression >> expressionStatementOwner: anObject [
 
 	<generated>
 	expressionStatementOwner := anObject
-
 ]
 
 { #category : #navigation }
@@ -60,7 +52,7 @@ FASTExpression >> returnOwner [
 	"Relation named: #returnOwner type: #FASTReturnStatement opposite: #expression"
 
 	<generated>
-	<MSEComment: 'The return statement that own the expression (if it''s the case)'>
+	<FMComment: 'The return statement that own the expression (if it''s the case)'>
 	<container>
 	<derived>
 	^ returnOwner
@@ -71,7 +63,6 @@ FASTExpression >> returnOwner: anObject [
 
 	<generated>
 	returnOwner := anObject
-
 ]
 
 { #category : #navigation }

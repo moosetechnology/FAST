@@ -12,7 +12,7 @@ Class {
 { #category : #meta }
 FASTVariableEntity class >> annotation [
 
-	<MSEClass: #VariableEntity super: #FASTStatement>
+	<FMClass: #VariableEntity super: #FASTStatement>
 	<package: #'FAST-Core-Model'>
 	<generated>
 	^self

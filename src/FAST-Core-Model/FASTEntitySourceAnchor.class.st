@@ -13,7 +13,7 @@ Class {
 { #category : #meta }
 FASTEntitySourceAnchor class >> annotation [
 
-	<MSEClass: #EntitySourceAnchor super: #FASTEntity>
+	<FMClass: #EntitySourceAnchor super: #FASTEntity>
 	<package: #'FAST-Core-Model'>
 	<generated>
 	^self
@@ -22,31 +22,27 @@ FASTEntitySourceAnchor class >> annotation [
 { #category : #accessing }
 FASTEntitySourceAnchor >> endPos [
 
-	<MSEProperty: #endPos type: #Number>
+	<FMProperty: #endPos type: #Number>
 	<generated>
 	^ endPos
 ]
 
 { #category : #accessing }
 FASTEntitySourceAnchor >> endPos: anObject [
-
 	<generated>
 	endPos := anObject
-
 ]
 
 { #category : #accessing }
 FASTEntitySourceAnchor >> startPos [
 
-	<MSEProperty: #startPos type: #Number>
+	<FMProperty: #startPos type: #Number>
 	<generated>
 	^ startPos
 ]
 
 { #category : #accessing }
 FASTEntitySourceAnchor >> startPos: anObject [
-
 	<generated>
 	startPos := anObject
-
 ]

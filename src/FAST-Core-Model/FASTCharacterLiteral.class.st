@@ -10,7 +10,7 @@ Class {
 { #category : #meta }
 FASTCharacterLiteral class >> annotation [
 
-	<MSEClass: #CharacterLiteral super: #FASTLiteral>
+	<FMClass: #CharacterLiteral super: #FASTLiteral>
 	<package: #'FAST-Core-Model'>
 	<generated>
 	^self

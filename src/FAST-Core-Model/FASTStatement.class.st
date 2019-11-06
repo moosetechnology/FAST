@@ -13,17 +13,10 @@ Class {
 { #category : #meta }
 FASTStatement class >> annotation [
 
-	<MSEClass: #Statement super: #FASTScopableEntity>
+	<FMClass: #Statement super: #FASTScopableEntity>
 	<package: #'FAST-Core-Model'>
 	<generated>
 	^self
-]
-
-{ #category : #meta }
-FASTStatement class >> requirements [
-
-	<generated>
-	^ { FASTStatementBlock }
 ]
 
 { #category : #accessing }
@@ -31,7 +24,7 @@ FASTStatement >> statementContainer [
 	"Relation named: #statementContainer type: #FASTStatementBlock opposite: #statements"
 
 	<generated>
-	<MSEComment: 'Block containing this statement.'>
+	<FMComment: 'Block containing this statement.'>
 	<container>
 	^ statementContainer
 ]
@@ -41,7 +34,6 @@ FASTStatement >> statementContainer: anObject [
 
 	<generated>
 	statementContainer := anObject
-
 ]
 
 { #category : #navigation }

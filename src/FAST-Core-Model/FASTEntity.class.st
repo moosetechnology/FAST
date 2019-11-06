@@ -9,7 +9,7 @@ Class {
 { #category : #meta }
 FASTEntity class >> annotation [
 
-	<MSEClass: #Entity super: #MooseEntity>
+	<FMClass: #Entity super: #MooseEntity>
 	<package: #'FAST-Core-Model'>
 	<generated>
 	^self

@@ -12,15 +12,8 @@ Class {
 { #category : #meta }
 FASTVariableExpression class >> annotation [
 
-	<MSEClass: #VariableExpression super: #FASTExpression>
+	<FMClass: #VariableExpression super: #FASTExpression>
 	<package: #'FAST-Core-Model'>
 	<generated>
 	^self
-]
-
-{ #category : #meta }
-FASTVariableExpression class >> requirements [
-
-	<generated>
-	^ { FASTBehaviouralEntity }
 ]

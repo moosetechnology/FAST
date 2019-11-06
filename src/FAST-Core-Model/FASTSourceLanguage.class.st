@@ -9,7 +9,7 @@ Class {
 { #category : #meta }
 FASTSourceLanguage class >> annotation [
 
-	<MSEClass: #SourceLanguage super: #FASTEntity>
+	<FMClass: #SourceLanguage super: #FASTEntity>
 	<package: #'FAST-Core-Model'>
 	<generated>
 	^self

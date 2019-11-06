@@ -12,7 +12,7 @@ FASTModel class >> allSubmetamodelsPackagesNames [
 
 { #category : #meta }
 FASTModel class >> annotation [
-	<MSEClass: #FASTModel super: #MooseModel>
+	<FMClass: #FASTModel super: #MooseModel>
 	<package: #'FAST-Core-Model'>
 	<generated>
 ]

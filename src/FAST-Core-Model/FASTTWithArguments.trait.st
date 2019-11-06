@@ -12,14 +12,14 @@ Trait {
 { #category : #meta }
 FASTTWithArguments classSide >> annotation [
 
-	<MSEClass: #TWithArguments super: #Object>
+	<FMClass: #TWithArguments super: #Object>
 	<package: #'FAST-Core-Model'>
 	<generated>
 	^self
 ]
 
 { #category : #adding }
-FASTTWithArguments >> addArguments: anObject [
+FASTTWithArguments >> addArgument: anObject [
 	<generated>
 	^ self arguments add: anObject
 ]
@@ -29,7 +29,7 @@ FASTTWithArguments >> arguments [
 	"Relation named: #arguments type: #FASTTArgument opposite: #argumentOwner"
 
 	<generated>
-	<MSEComment: 'My arguments'>
+	<FMComment: 'My arguments'>
 	<derived>
 	^ arguments
 ]
@@ -39,7 +39,6 @@ FASTTWithArguments >> arguments: anObject [
 
 	<generated>
 	arguments value: anObject
-
 ]
 
 { #category : #navigation }

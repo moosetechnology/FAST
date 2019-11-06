@@ -18,7 +18,7 @@ Class {
 { #category : #meta }
 FASTLiteral class >> annotation [
 
-	<MSEClass: #Literal super: #FASTExpression>
+	<FMClass: #Literal super: #FASTExpression>
 	<package: #'FAST-Core-Model'>
 	<generated>
 	^self
@@ -27,16 +27,14 @@ FASTLiteral class >> annotation [
 { #category : #accessing }
 FASTLiteral >> value [
 
-	<MSEProperty: #value type: #String>
+	<FMProperty: #value type: #String>
 	<generated>
-	<MSEComment: 'The literal itself as found in the source code'>
+	<FMComment: 'The literal itself as found in the source code'>
 	^ value
 ]
 
 { #category : #accessing }
 FASTLiteral >> value: anObject [
-
 	<generated>
 	value := anObject
-
 ]

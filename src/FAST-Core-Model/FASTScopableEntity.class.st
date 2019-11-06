@@ -12,7 +12,7 @@ Class {
 { #category : #meta }
 FASTScopableEntity class >> annotation [
 
-	<MSEClass: #ScopableEntity super: #FASTEntitySourceAnchor>
+	<FMClass: #ScopableEntity super: #FASTEntitySourceAnchor>
 	<package: #'FAST-Core-Model'>
 	<generated>
 	^self

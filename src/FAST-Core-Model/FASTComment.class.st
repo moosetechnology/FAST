@@ -9,7 +9,7 @@ Class {
 { #category : #meta }
 FASTComment class >> annotation [
 
-	<MSEClass: #Comment super: #FASTSourcedEntity>
+	<FMClass: #Comment super: #FASTSourcedEntity>
 	<package: #'FAST-Core-Model'>
 	<generated>
 	^self

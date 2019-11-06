@@ -10,7 +10,7 @@ Class {
 { #category : #meta }
 FASTNullPointerLiteral class >> annotation [
 
-	<MSEClass: #NullPointerLiteral super: #FASTLiteral>
+	<FMClass: #NullPointerLiteral super: #FASTLiteral>
 	<package: #'FAST-Core-Model'>
 	<generated>
 	^self

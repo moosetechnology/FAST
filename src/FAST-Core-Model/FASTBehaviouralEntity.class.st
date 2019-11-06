@@ -21,7 +21,7 @@ Class {
 { #category : #meta }
 FASTBehaviouralEntity class >> annotation [
 
-	<MSEClass: #BehaviouralEntity super: #FASTScopableEntity>
+	<FMClass: #BehaviouralEntity super: #FASTScopableEntity>
 	<package: #'FAST-Core-Model'>
 	<generated>
 	^self
@@ -32,7 +32,7 @@ FASTBehaviouralEntity >> statementBlock [
 	"Relation named: #statementBlock type: #FASTStatementBlock opposite: #fastBehaviouralParent"
 
 	<generated>
-	<MSEComment: 'Statements block of the behavioural entity'>
+	<FMComment: 'Statements block of the behavioural entity'>
 	^ statementBlock
 ]
 
@@ -41,7 +41,6 @@ FASTBehaviouralEntity >> statementBlock: anObject [
 
 	<generated>
 	statementBlock := anObject
-
 ]
 
 { #category : #navigation }

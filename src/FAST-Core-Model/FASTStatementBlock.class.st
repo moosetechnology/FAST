@@ -14,21 +14,14 @@ Class {
 { #category : #meta }
 FASTStatementBlock class >> annotation [
 
-	<MSEClass: #StatementBlock super: #FASTStatement>
+	<FMClass: #StatementBlock super: #FASTStatement>
 	<package: #'FAST-Core-Model'>
 	<generated>
 	^self
 ]
 
-{ #category : #meta }
-FASTStatementBlock class >> requirements [
-
-	<generated>
-	^ { FASTBehaviouralEntity }
-]
-
 { #category : #adding }
-FASTStatementBlock >> addStatements: anObject [
+FASTStatementBlock >> addStatement: anObject [
 	<generated>
 	^ self statements add: anObject
 ]
@@ -38,7 +31,7 @@ FASTStatementBlock >> fastBehaviouralParent [
 	"Relation named: #fastBehaviouralParent type: #FASTBehaviouralEntity opposite: #statementBlock"
 
 	<generated>
-	<MSEComment: 'Behavioural entity containing the statement block.'>
+	<FMComment: 'Behavioural entity containing the statement block.'>
 	<container>
 	<derived>
 	^ fastBehaviouralParent
@@ -49,7 +42,6 @@ FASTStatementBlock >> fastBehaviouralParent: anObject [
 
 	<generated>
 	fastBehaviouralParent := anObject
-
 ]
 
 { #category : #navigation }
@@ -64,7 +56,7 @@ FASTStatementBlock >> statements [
 	"Relation named: #statements type: #FASTStatement opposite: #statementContainer"
 
 	<generated>
-	<MSEComment: 'Statements enclosed in this block'>
+	<FMComment: 'Statements enclosed in this block'>
 	<derived>
 	^ statements
 ]
@@ -74,7 +66,6 @@ FASTStatementBlock >> statements: anObject [
 
 	<generated>
 	statements value: anObject
-
 ]
 
 { #category : #navigation }

@@ -12,7 +12,7 @@ Trait {
 { #category : #meta }
 FASTTModifier classSide >> annotation [
 
-	<MSEClass: #TModifier super: #Object>
+	<FMClass: #TModifier super: #Object>
 	<package: #'FAST-Core-Model'>
 	<generated>
 	^self
@@ -23,7 +23,7 @@ FASTTModifier >> parameterOwner [
 	"Relation named: #parameterOwner type: #FASTTWithModifiers opposite: #parameters"
 
 	<generated>
-	<MSEComment: 'parameterOwner'>
+	<FMComment: 'parameterOwner'>
 	<container>
 	^ parameterOwner
 ]
@@ -33,7 +33,6 @@ FASTTModifier >> parameterOwner: anObject [
 
 	<generated>
 	parameterOwner := anObject
-
 ]
 
 { #category : #navigation }

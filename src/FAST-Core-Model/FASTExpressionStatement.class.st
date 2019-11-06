@@ -13,7 +13,7 @@ Class {
 { #category : #meta }
 FASTExpressionStatement class >> annotation [
 
-	<MSEClass: #ExpressionStatement super: #FASTStatement>
+	<FMClass: #ExpressionStatement super: #FASTStatement>
 	<package: #'FAST-Core-Model'>
 	<generated>
 	^self
@@ -24,7 +24,7 @@ FASTExpressionStatement >> expression [
 	"Relation named: #expression type: #FASTExpression opposite: #expressionStatementOwner"
 
 	<generated>
-	<MSEComment: 'The expression of the statement'>
+	<FMComment: 'The expression of the statement'>
 	^ expression
 ]
 
@@ -33,7 +33,6 @@ FASTExpressionStatement >> expression: anObject [
 
 	<generated>
 	expression := anObject
-
 ]
 
 { #category : #navigation }
