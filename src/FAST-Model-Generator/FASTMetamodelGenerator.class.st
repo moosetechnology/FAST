@@ -5,7 +5,7 @@ NOTE: I generate the Core FAST Model and the Java FAST Model because we can't cu
 "
 Class {
 	#name : #FASTMetamodelGenerator,
-	#superclass : #FamixBasicInfrastructureGenerator,
+	#superclass : #FamixMetamodelGenerator,
 	#instVars : [
 		'expression',
 		'literal',
@@ -28,7 +28,9 @@ Class {
 		'tArgument',
 		'tWithArguments',
 		'tParameter',
-		'tWithParameters'
+		'tWithParameters',
+		'entity',
+		'namedEntity'
 	],
 	#category : #'FAST-Model-Generator'
 }
@@ -158,6 +160,12 @@ FASTMetamodelGenerator >> commentForVariableExpression [
 { #category : #definition }
 FASTMetamodelGenerator >> defineClasses [
 	super defineClasses.
+	entity := builder
+		newClassNamed: #Entity
+		comment: 'any entity'.
+	namedEntity := builder
+		newClassNamed: #NamedEntity
+		comment: 'any named entity'.
 	expression := builder newClassNamed: #Expression comment: self commentForExpression.
 	literal := builder newClassNamed: #Literal comment: self commentForLiteral.
 	booleanLiteral := builder newClassNamed: #BooleanLiteral comment: self commentForBooleanLiteral.

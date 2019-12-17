@@ -1,3 +1,6 @@
+"
+any entity
+"
 Class {
 	#name : #FASTEntity,
 	#superclass : #MooseEntity,
@@ -20,11 +23,4 @@ FASTEntity class >> metamodel [
 
 	<generated>
 	^ FASTModel metamodel
-]
-
-{ #category : #testing }
-FASTEntity >> isAssociation [
-
-	<generated>
-	^ false
 ]

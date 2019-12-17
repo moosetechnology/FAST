@@ -1,8 +1,11 @@
+"
+any named entity
+"
 Class {
 	#name : #FASTNamedEntity,
 	#superclass : #FASTEntitySourceAnchor,
-	#traits : 'FamixTNamed + TDependencyQueries + TEntityMetaLevelDependency',
-	#classTraits : 'FamixTNamed classTrait + TDependencyQueries classTrait + TEntityMetaLevelDependency classTrait',
+	#traits : 'FamixTNamed',
+	#classTraits : 'FamixTNamed classTrait',
 	#category : #'FAST-Core-Model-Entities'
 }
 
