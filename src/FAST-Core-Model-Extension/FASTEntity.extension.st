@@ -13,8 +13,22 @@ FASTEntity >> containers [
 ]
 
 { #category : #'*FAST-Core-Model-Extension' }
+FASTEntity >> currentParentSelector [
+	| res |
+	res := Set new.
+	self parentSelectors do: [ :accessor | 
+		(self perform: accessor) ifNotNil: [ :r | ^ accessor ] ].
+	^ nil
+]
+
+{ #category : #'*FAST-Core-Model-Extension' }
 FASTEntity >> parentNode [
 	^ self containers at: 1 ifAbsent: [ nil ] 
+]
+
+{ #category : #'*FAST-Core-Model-Extension' }
+FASTEntity >> removeAllPotentialChildrenNode [
+	^ self childrenSelectors do: [:selector | self perform: selector, ':' withArguments: { nil } ].
 ]
 
 { #category : #'*FAST-Core-Model-Extension' }
