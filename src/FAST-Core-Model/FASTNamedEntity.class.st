@@ -4,8 +4,8 @@ any named entity
 Class {
 	#name : #FASTNamedEntity,
 	#superclass : #FASTEntitySourceAnchor,
-	#traits : 'FamixTNamed',
-	#classTraits : 'FamixTNamed classTrait',
+	#traits : 'FamixTNamedEntity',
+	#classTraits : 'FamixTNamedEntity classTrait',
 	#category : #'FAST-Core-Model-Entities'
 }
 

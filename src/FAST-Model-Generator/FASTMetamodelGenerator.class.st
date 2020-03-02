@@ -217,13 +217,13 @@ FASTMetamodelGenerator >> defineHierarchy [
 
 	"used to represent variable"
 	namedEntity --|> entitySourceAnchor.
-	namedEntity --|> #TNamed.
-	variableEntity --|> #TNamed.
+	namedEntity --|> #TNamedEntity.
+	variableEntity --|> #TNamedEntity.
 	
-	variableExpression --|> #TNamed.
+	variableExpression --|> #TNamedEntity.
 	variableExpression --|> tParameter.
 	
-	namedBehaviouralEntity --|> #TNamed.
+	namedBehaviouralEntity --|> #TNamedEntity.
 	entity --|> #TDependencyQueries.
 ]
 

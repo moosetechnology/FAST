@@ -4,8 +4,8 @@ A node that wraps around structural entity
 Class {
 	#name : #FASTVariableExpression,
 	#superclass : #FASTExpression,
-	#traits : 'FASTTModifier + FamixTNamed',
-	#classTraits : 'FASTTModifier classTrait + FamixTNamed classTrait',
+	#traits : 'FASTTModifier + FamixTNamedEntity',
+	#classTraits : 'FASTTModifier classTrait + FamixTNamedEntity classTrait',
 	#category : #'FAST-Core-Model-Entities'
 }
 

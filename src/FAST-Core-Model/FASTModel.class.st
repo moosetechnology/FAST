@@ -1,7 +1,7 @@
 Class {
 	#name : #FASTModel,
 	#superclass : #MooseModel,
-	#category : #'FAST-Core-Model'
+	#category : #'FAST-Core-Model-Model'
 }
 
 { #category : #accessing }

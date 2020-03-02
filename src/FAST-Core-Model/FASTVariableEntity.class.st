@@ -4,8 +4,8 @@ A representation of a variable entity,
 Class {
 	#name : #FASTVariableEntity,
 	#superclass : #FASTStatement,
-	#traits : 'FamixTNamed',
-	#classTraits : 'FamixTNamed classTrait',
+	#traits : 'FamixTNamedEntity',
+	#classTraits : 'FamixTNamedEntity classTrait',
 	#category : #'FAST-Core-Model-Entities'
 }
 

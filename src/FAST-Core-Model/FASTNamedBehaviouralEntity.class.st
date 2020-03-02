@@ -9,8 +9,8 @@ Assumed to correspond to a function or a method
 Class {
 	#name : #FASTNamedBehaviouralEntity,
 	#superclass : #FASTBehaviouralEntity,
-	#traits : 'FamixTNamed',
-	#classTraits : 'FamixTNamed classTrait',
+	#traits : 'FamixTNamedEntity',
+	#classTraits : 'FamixTNamedEntity classTrait',
 	#category : #'FAST-Core-Model-Entities'
 }
 
