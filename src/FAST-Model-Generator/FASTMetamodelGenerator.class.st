@@ -36,12 +36,6 @@ Class {
 }
 
 { #category : #accessing }
-FASTMetamodelGenerator class >> modifyMetamodel: aMetamodel [
-
-	super modifyMetamodel: aMetamodel.
-]
-
-{ #category : #accessing }
 FASTMetamodelGenerator class >> packageName [
 
 	^ #'FAST-Core-Model'

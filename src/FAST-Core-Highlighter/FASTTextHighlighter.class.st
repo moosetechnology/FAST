@@ -49,5 +49,6 @@ FASTTextHighlighter >> highlight: anFASTEntity [
 
 { #category : #initialization }
 FASTTextHighlighter >> initialize [
+	super initialize.
 	attributeMapper := Dictionary new
 ]
