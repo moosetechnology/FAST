@@ -1,6 +1,11 @@
 Extension { #name : #FASTEntitySourceAnchor }
 
 { #category : #'*FAST-Core-Model-Extension' }
+FASTEntitySourceAnchor >> orderedChildren [
+	^ self children asOrderedCollection sort: #startPos ascending
+]
+
+{ #category : #'*FAST-Core-Model-Extension' }
 FASTEntitySourceAnchor >> sourceCode [
 
 	^ self sourceText copyFrom: self startPos to: self endPos
