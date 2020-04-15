@@ -46,7 +46,7 @@ FASTCoreVisitor >> visitFASTEntitySourceAnchor: aFASTEntitySourceAnchor [
 
 { #category : #generated }
 FASTCoreVisitor >> visitFASTExpression: aFASTExpression [
-	^ self visitFASTEntitySourceAnchor: aFASTExpression
+	^ self visitFASTEntity: aFASTExpression
 ]
 
 { #category : #generated }
@@ -65,11 +65,6 @@ FASTCoreVisitor >> visitFASTNamedBehaviouralEntity: aFASTNamedBehaviouralEntity 
 ]
 
 { #category : #generated }
-FASTCoreVisitor >> visitFASTNamedEntity: aFASTNamedEntity [
-	^ self visitFASTEntitySourceAnchor: aFASTNamedEntity
-]
-
-{ #category : #generated }
 FASTCoreVisitor >> visitFASTNullPointerLiteral: aFASTNullPointerLiteral [
 	^ self visitFASTLiteral: aFASTNullPointerLiteral
 ]
@@ -81,7 +76,7 @@ FASTCoreVisitor >> visitFASTReturnStatement: aFASTReturnStatement [
 
 { #category : #generated }
 FASTCoreVisitor >> visitFASTScopableEntity: aFASTScopableEntity [
-	^ self visitFASTEntitySourceAnchor: aFASTScopableEntity
+	^ self visitFASTEntity: aFASTScopableEntity
 ]
 
 { #category : #generated }
@@ -121,7 +116,7 @@ FASTCoreVisitor >> visitFASTStringLiteral: aFASTStringLiteral [
 
 { #category : #generated }
 FASTCoreVisitor >> visitFASTVariableEntity: aFASTVariableEntity [
-	^ self visitFASTEntitySourceAnchor: aFASTVariableEntity
+	^ self visitFASTEntity: aFASTVariableEntity
 ]
 
 { #category : #generated }
