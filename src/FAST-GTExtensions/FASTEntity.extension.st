@@ -1,7 +1,7 @@
-Extension { #name : #FASTEntitySourceAnchor }
+Extension { #name : #FASTEntity }
 
 { #category : #'*FAST-GTExtensions' }
-FASTEntitySourceAnchor >> gtNodesIn: composite [
+FASTEntity >> gtNodesIn: composite [
 	<gtInspectorPresentationOrder: 1000>
 	^ composite tree
 		title: 'Tree';
@@ -11,7 +11,7 @@ FASTEntitySourceAnchor >> gtNodesIn: composite [
 ]
 
 { #category : #'*FAST-GTExtensions' }
-FASTEntitySourceAnchor >> gtSourceCodeIn: composite [
+FASTEntity >> gtSourceCodeIn: composite [
 	<gtInspectorPresentationOrder: 1001>
 	^ composite text
 		title: 'Source code';
@@ -23,6 +23,6 @@ FASTEntitySourceAnchor >> gtSourceCodeIn: composite [
 ]
 
 { #category : #'*FAST-GTExtensions' }
-FASTEntitySourceAnchor >> sourceCodeAsText [
+FASTEntity >> sourceCodeAsText [
 	^ self rootNode sourceText asText
 ]
