@@ -39,6 +39,6 @@ BaselineOfFAST >> definePackages: spec [
 		package: 'FAST-Core-Model-Extension' with: [ spec requires: #('FAST-Core-Model') ];
 		package: 'FAST-Model-Generator';
 		package: 'FAST-Core-Highlighter';
-		package: 'FAST-GTExtensions' with: [ spec requires: #('FAST-Core-Model' 'FAST-Core-Highlighter') ];
+		package: 'FAST-GTExtensions' with: [ spec requires: #('FAST-Core-Model' 'FAST-Core-Highlighter' 'FAST-Core-Model-Extension') ];
 		package: 'FAST-Core-Deprecated'
 ]

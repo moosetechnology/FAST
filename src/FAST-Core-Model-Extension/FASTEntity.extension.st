@@ -1,15 +1,6 @@
 Extension { #name : #FASTEntity }
 
 { #category : #'*FAST-Core-Model-Extension' }
-FASTEntity >> childrenNode [
-	"^ (((self class allDeclaredPropertiesIn: self metamodel) select: #isChildrenProperty thenCollect: [:childrenProperty | self perform: (childrenProperty implementingSelector)]) reject: #isNil) flattened
-"
-
-	self deprecated: 'The method #childrenNode was not good. Use children instead.' transformWith: '`@receiver childrenNode' -> '`@receiver children'.
-	^ self children
-]
-
-{ #category : #'*FAST-Core-Model-Extension' }
 FASTEntity >> containers [
 	^ ((self class allDeclaredPropertiesIn: self metamodel) select: #isContainer thenCollect: [:childrenProperty | self perform: (childrenProperty implementingSelector)]) reject: #isNil
 ]
@@ -40,4 +31,11 @@ FASTEntity >> rootNode [
 
 	"I should be overriden in my users"
 	^ self parentNode ifNil: [ self ] ifNotNil: [:parent | parent rootNode ]
+]
+
+{ #category : #'*FAST-Core-Model-Extension' }
+FASTEntity >> sourceText [
+
+	"I should be overriden in my users"
+	^ (self atScope: FamixTHasImmediateSource) anyOne source 
 ]
