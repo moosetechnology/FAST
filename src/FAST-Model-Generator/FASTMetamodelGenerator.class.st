@@ -20,7 +20,6 @@ Class {
 		'expressionStatement',
 		'returnStatement',
 		'statementBlock',
-		'variableEntity',
 		'namedBehaviouralEntity',
 		'tExpression',
 		'tStatement',
@@ -140,11 +139,6 @@ FASTMetamodelGenerator >> commentForStringLiteral [
 ]
 
 { #category : #comments }
-FASTMetamodelGenerator >> commentForVariableEntity [
-	^ 'A representation of a variable entity, '
-]
-
-{ #category : #comments }
 FASTMetamodelGenerator >> commentForVariableExpression [
 	^ 'A node that wraps around structural entity'
 ]
@@ -168,8 +162,7 @@ FASTMetamodelGenerator >> defineClasses [
 	statement := builder newClassNamed: #Statement comment: self commentForStatement.
 	expressionStatement := builder newClassNamed: #ExpressionStatement comment: self commentForExpressionStatement.
 	returnStatement := builder newClassNamed: #ReturnStatement comment: self commentForReturnStatement.
-	statementBlock := builder newClassNamed: #StatementBlock comment: self commentForStatementBlock.
-	variableEntity := builder newClassNamed: #VariableEntity comment: self commentForVariableEntity
+	statementBlock := builder newClassNamed: #StatementBlock comment: self commentForStatementBlock
 ]
 
 { #category : #definition }
@@ -196,9 +189,6 @@ FASTMetamodelGenerator >> defineHierarchy [
 	expressionStatement --|> statement.
 	returnStatement --|> statement.
 	statementBlock --|> statement.
-	
-	variableEntity --|> statement.
-	variableEntity --|> #TNamedEntity.
 	
 	variableExpression --|> #TNamedEntity.
 	variableExpression --|> tParameter.
