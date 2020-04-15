@@ -3,7 +3,7 @@ An abstract superclass representing an expression node of a source code.
 "
 Class {
 	#name : #FASTExpression,
-	#superclass : #FASTEntitySourceAnchor,
+	#superclass : #FASTEntity,
 	#traits : 'FASTTArgument',
 	#classTraits : 'FASTTArgument classTrait',
 	#instVars : [
@@ -16,7 +16,7 @@ Class {
 { #category : #meta }
 FASTExpression class >> annotation [
 
-	<FMClass: #Expression super: #FASTEntitySourceAnchor>
+	<FMClass: #Expression super: #FASTEntity>
 	<package: #'FAST-Core-Model'>
 	<generated>
 	^self

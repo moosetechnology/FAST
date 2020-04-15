@@ -5,14 +5,14 @@ Statements are scopable because many statements allow to introduce local variabl
 "
 Class {
 	#name : #FASTScopableEntity,
-	#superclass : #FASTEntitySourceAnchor,
+	#superclass : #FASTEntity,
 	#category : #'FAST-Core-Model-Entities'
 }
 
 { #category : #meta }
 FASTScopableEntity class >> annotation [
 
-	<FMClass: #ScopableEntity super: #FASTEntitySourceAnchor>
+	<FMClass: #ScopableEntity super: #FASTEntity>
 	<package: #'FAST-Core-Model'>
 	<generated>
 	^self

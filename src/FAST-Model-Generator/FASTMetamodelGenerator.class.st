@@ -22,7 +22,6 @@ Class {
 		'statementBlock',
 		'variableEntity',
 		'namedBehaviouralEntity',
-		'entitySourceAnchor',
 		'tExpression',
 		'tStatement',
 		'tArgument',
@@ -174,16 +173,14 @@ FASTMetamodelGenerator >> defineClasses [
 	expressionStatement := builder newClassNamed: #ExpressionStatement comment: self commentForExpressionStatement.
 	returnStatement := builder newClassNamed: #ReturnStatement comment: self commentForReturnStatement.
 	statementBlock := builder newClassNamed: #StatementBlock comment: self commentForStatementBlock.
-	variableEntity := builder newClassNamed: #VariableEntity comment: self commentForVariableEntity.
-	
-	entitySourceAnchor := builder newClassNamed: #EntitySourceAnchor.
+	variableEntity := builder newClassNamed: #VariableEntity comment: self commentForVariableEntity
 ]
 
 { #category : #definition }
 FASTMetamodelGenerator >> defineHierarchy [
 	super defineHierarchy.
 	entity --|> #TEntityMetaLevelDependency.
-	expression --|> entitySourceAnchor.
+	expression --|> entity.
 	expression --|> tArgument. 
 	
 	literal --|> expression.
@@ -193,7 +190,7 @@ FASTMetamodelGenerator >> defineHierarchy [
 	nullPointerLiteral --|> literal.
 	stringLiteral --|> literal.
 	variableExpression --|> expression.
-	scopableEntity --|> entitySourceAnchor.
+	scopableEntity --|> entity.
 	
 	behaviouralEntity --|> scopableEntity.
 	behaviouralEntity --|> tWithParameters.
@@ -204,13 +201,10 @@ FASTMetamodelGenerator >> defineHierarchy [
 	returnStatement --|> statement.
 	statementBlock --|> statement.
 	variableEntity --|> statement.
-	
-	entitySourceAnchor --|> entity.
-	entitySourceAnchor --|> #TSourceAnchor.
 
 
 	"used to represent variable"
-	namedEntity --|> entitySourceAnchor.
+	namedEntity --|> entity.
 	namedEntity --|> #TNamedEntity.
 	variableEntity --|> #TNamedEntity.
 	
@@ -225,7 +219,7 @@ FASTMetamodelGenerator >> defineHierarchy [
 FASTMetamodelGenerator >> defineProperties [
 	super defineProperties.
 	(literal property: #value type: #String) comment: 'The literal itself as found in the source code'.
-	entitySourceAnchor
+	entity
         property: #startPos type: #Number;
         property: #endPos type: #Number.
 ]

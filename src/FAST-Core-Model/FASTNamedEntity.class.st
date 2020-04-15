@@ -3,7 +3,7 @@ any named entity
 "
 Class {
 	#name : #FASTNamedEntity,
-	#superclass : #FASTEntitySourceAnchor,
+	#superclass : #FASTEntity,
 	#traits : 'FamixTNamedEntity',
 	#classTraits : 'FamixTNamedEntity classTrait',
 	#category : #'FAST-Core-Model-Entities'
@@ -12,7 +12,7 @@ Class {
 { #category : #meta }
 FASTNamedEntity class >> annotation [
 
-	<FMClass: #NamedEntity super: #FASTEntitySourceAnchor>
+	<FMClass: #NamedEntity super: #FASTEntity>
 	<package: #'FAST-Core-Model'>
 	<generated>
 	^self
