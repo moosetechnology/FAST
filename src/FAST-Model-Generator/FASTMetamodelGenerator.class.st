@@ -28,8 +28,7 @@ Class {
 		'tWithArguments',
 		'tParameter',
 		'tWithParameters',
-		'entity',
-		'namedEntity'
+		'entity'
 	],
 	#category : #'FAST-Model-Generator'
 }
@@ -156,9 +155,6 @@ FASTMetamodelGenerator >> defineClasses [
 	entity := builder
 		newClassNamed: #Entity
 		comment: 'any entity'.
-	namedEntity := builder
-		newClassNamed: #NamedEntity
-		comment: 'any named entity'.
 	expression := builder newClassNamed: #Expression comment: self commentForExpression.
 	literal := builder newClassNamed: #Literal comment: self commentForLiteral.
 	booleanLiteral := builder newClassNamed: #BooleanLiteral comment: self commentForBooleanLiteral.
@@ -200,12 +196,8 @@ FASTMetamodelGenerator >> defineHierarchy [
 	expressionStatement --|> statement.
 	returnStatement --|> statement.
 	statementBlock --|> statement.
+	
 	variableEntity --|> statement.
-
-
-	"used to represent variable"
-	namedEntity --|> entity.
-	namedEntity --|> #TNamedEntity.
 	variableEntity --|> #TNamedEntity.
 	
 	variableExpression --|> #TNamedEntity.
