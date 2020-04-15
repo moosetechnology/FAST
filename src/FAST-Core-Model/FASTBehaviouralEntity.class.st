@@ -10,8 +10,8 @@ Local variables are intended to be stored in the local entities of the body
 Class {
 	#name : #FASTBehaviouralEntity,
 	#superclass : #FASTScopableEntity,
-	#traits : 'FASTTWithModifiers',
-	#classTraits : 'FASTTWithModifiers classTrait',
+	#traits : 'FASTTWithParameters',
+	#classTraits : 'FASTTWithParameters classTrait',
 	#instVars : [
 		'#statementBlock => FMOne type: #FASTStatementBlock opposite: #fastBehaviouralParent'
 	],

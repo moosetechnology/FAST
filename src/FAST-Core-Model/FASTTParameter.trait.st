@@ -2,25 +2,25 @@
 I can be a parameter
 "
 Trait {
-	#name : #FASTTModifier,
+	#name : #FASTTParameter,
 	#instVars : [
-		'#parameterOwner => FMOne type: #FASTTWithModifiers opposite: #parameters'
+		'#parameterOwner => FMOne type: #FASTTWithParameters opposite: #parameters'
 	],
 	#category : #'FAST-Core-Model-Traits'
 }
 
 { #category : #meta }
-FASTTModifier classSide >> annotation [
+FASTTParameter classSide >> annotation [
 
-	<FMClass: #TModifier super: #Object>
+	<FMClass: #TParameter super: #Object>
 	<package: #'FAST-Core-Model'>
 	<generated>
 	^self
 ]
 
 { #category : #accessing }
-FASTTModifier >> parameterOwner [
-	"Relation named: #parameterOwner type: #FASTTWithModifiers opposite: #parameters"
+FASTTParameter >> parameterOwner [
+	"Relation named: #parameterOwner type: #FASTTWithParameters opposite: #parameters"
 
 	<generated>
 	<FMComment: 'parameterOwner'>
@@ -29,14 +29,14 @@ FASTTModifier >> parameterOwner [
 ]
 
 { #category : #accessing }
-FASTTModifier >> parameterOwner: anObject [
+FASTTParameter >> parameterOwner: anObject [
 
 	<generated>
 	parameterOwner := anObject
 ]
 
 { #category : #navigation }
-FASTTModifier >> parameterOwnerGroup [
+FASTTParameter >> parameterOwnerGroup [
 	<generated>
 	<navigation: 'ParameterOwner'>
 	^ MooseGroup with: self parameterOwner

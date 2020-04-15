@@ -240,6 +240,6 @@ FASTMetamodelGenerator >> defineTraits [
 	tArgument := builder newTraitNamed: #TArgument comment: 'I can be an argument'. 
 	tWithArguments := builder newTraitNamed: #TWithArguments comment: 'I have arguments'.
 	
-	tParameter := builder newTraitNamed: #TModifier comment: 'I can be a parameter'. 
-	tWithParameters := builder newTraitNamed: #TWithModifiers comment: 'I have parameters'
+	tParameter := builder newTraitNamed: #TParameter comment: 'I can be a parameter'. 
+	tWithParameters := builder newTraitNamed: #TWithParameters comment: 'I have parameters'
 ]
