@@ -12,6 +12,11 @@ FASTEntity >> currentParentSelector [
 ]
 
 { #category : #'*FAST-Core-Model-Extension' }
+FASTEntity >> orderedChildren [
+	^ self children asOrderedCollection sort: #startPos ascending
+]
+
+{ #category : #'*FAST-Core-Model-Extension' }
 FASTEntity >> parentNode [
 	^ self containers at: 1 ifAbsent: [ nil ] 
 ]
