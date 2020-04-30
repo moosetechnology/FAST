@@ -18,7 +18,8 @@ FASTEntity >> gtSourceCodeIn: composite [
 		display: [ self ];
 		format: [ :t | self sourceText ifNil: [ 'No source code available' ] ifNotNil: [ self mooseModel fastHighligther new highlight: self rootNode ] ];
 		withLineNumbers: true;
-		initialize: [ :presentation | (self sourceText isNil or: [ self startPos isNil or: [ self endPos isNil ] ]) ifFalse: [ presentation selectionInterval: (self startPos to: self endPos) ] ];
+		initialize: [ :presentation |  presentation selectionInterval: (self startPos to: self endPos) ];
+		when: [ (self sourceText isNotNil and: [ self startPos isNotNil and: [ self endPos isNotNil ] ]) ];
 		yourself
 ]
 

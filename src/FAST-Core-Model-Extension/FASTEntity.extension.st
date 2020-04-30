@@ -40,7 +40,9 @@ FASTEntity >> rootNode [
 
 { #category : #'*FAST-Core-Model-Extension' }
 FASTEntity >> sourceText [
-
 	"I should be overriden in my users"
-	^ (self atScope: FamixTHasImmediateSource) anyOne source 
+
+	^ (self atScope: FamixTHasImmediateSource)
+		ifNotEmpty: [ :sources | sources anyOne source ]
+		ifEmpty: [ nil ]
 ]
