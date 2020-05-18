@@ -43,6 +43,6 @@ FASTEntity >> sourceText [
 	"I should be overriden in my users"
 
 	^ (self atScope: FamixTHasImmediateSource)
-		ifNotEmpty: [ :sources | sources anyOne source ]
-		ifEmpty: [ nil ]
+		ifNotEmpty: [ :sources | sources anyOne source ifNil: [ '' ] ]
+		ifEmpty: [ '' ]
 ]
