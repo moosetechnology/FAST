@@ -193,8 +193,7 @@ FASTMetamodelGenerator >> defineHierarchy [
 	variableExpression --|> #TNamedEntity.
 	variableExpression --|> tParameter.
 	
-	namedBehaviouralEntity --|> #TNamedEntity.
-	entity --|> #TDependencyQueries.
+	namedBehaviouralEntity --|> #TNamedEntity
 ]
 
 { #category : #definition }
