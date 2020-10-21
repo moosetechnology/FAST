@@ -45,5 +45,5 @@ FASTTWithParameters >> parameters: anObject [
 FASTTWithParameters >> parametersGroup [
 	<generated>
 	<navigation: 'Parameters'>
-	^ MooseGroup withAll: self parameters asSet
+	^ MooseSpecializedGroup withAll: self parameters asSet
 ]

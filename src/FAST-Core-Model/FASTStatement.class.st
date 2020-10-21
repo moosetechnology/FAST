@@ -40,5 +40,5 @@ FASTStatement >> statementContainer: anObject [
 FASTStatement >> statementContainerGroup [
 	<generated>
 	<navigation: 'StatementContainer'>
-	^ MooseGroup with: self statementContainer
+	^ MooseSpecializedGroup with: self statementContainer
 ]

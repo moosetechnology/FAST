@@ -39,5 +39,5 @@ FASTTArgument >> argumentOwner: anObject [
 FASTTArgument >> argumentOwnerGroup [
 	<generated>
 	<navigation: 'ArgumentOwner'>
-	^ MooseGroup with: self argumentOwner
+	^ MooseSpecializedGroup with: self argumentOwner
 ]

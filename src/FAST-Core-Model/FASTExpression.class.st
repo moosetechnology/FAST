@@ -44,7 +44,7 @@ FASTExpression >> expressionStatementOwner: anObject [
 FASTExpression >> expressionStatementOwnerGroup [
 	<generated>
 	<navigation: 'ExpressionStatementOwner'>
-	^ MooseGroup with: self expressionStatementOwner
+	^ MooseSpecializedGroup with: self expressionStatementOwner
 ]
 
 { #category : #accessing }
@@ -69,5 +69,5 @@ FASTExpression >> returnOwner: anObject [
 FASTExpression >> returnOwnerGroup [
 	<generated>
 	<navigation: 'ReturnOwner'>
-	^ MooseGroup with: self returnOwner
+	^ MooseSpecializedGroup with: self returnOwner
 ]

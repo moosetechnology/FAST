@@ -39,5 +39,5 @@ FASTTParameter >> parameterOwner: anObject [
 FASTTParameter >> parameterOwnerGroup [
 	<generated>
 	<navigation: 'ParameterOwner'>
-	^ MooseGroup with: self parameterOwner
+	^ MooseSpecializedGroup with: self parameterOwner
 ]

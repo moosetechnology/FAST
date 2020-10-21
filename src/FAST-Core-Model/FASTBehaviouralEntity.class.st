@@ -47,5 +47,5 @@ FASTBehaviouralEntity >> statementBlock: anObject [
 FASTBehaviouralEntity >> statementBlockGroup [
 	<generated>
 	<navigation: 'StatementBlock'>
-	^ MooseGroup with: self statementBlock
+	^ MooseSpecializedGroup with: self statementBlock
 ]

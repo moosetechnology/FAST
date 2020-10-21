@@ -39,5 +39,5 @@ FASTExpressionStatement >> expression: anObject [
 FASTExpressionStatement >> expressionGroup [
 	<generated>
 	<navigation: 'Expression'>
-	^ MooseGroup with: self expression
+	^ MooseSpecializedGroup with: self expression
 ]
