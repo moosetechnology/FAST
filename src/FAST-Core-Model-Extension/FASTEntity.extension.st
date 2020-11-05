@@ -39,6 +39,13 @@ FASTEntity >> rootNode [
 ]
 
 { #category : #'*FAST-Core-Model-Extension' }
+FASTEntity >> sourceCode [
+	"I should be overriden in my users"
+
+	^ self sourceText copyFrom: self startPos to: self endPos
+]
+
+{ #category : #'*FAST-Core-Model-Extension' }
 FASTEntity >> sourceText [
 	"I should be overriden in my users"
 
