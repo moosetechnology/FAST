@@ -1,6 +1,6 @@
 # FAST
 
-Master: [![Build Pass](https://api.travis-ci.com/moosetechnology/FAST.svg?branch=master)](https://travis-ci.com/moosetechnology/FAST)
+![CI](https://github.com/moosetechnology/FAST/workflows/CI/badge.svg)
 [![Moose version](https://img.shields.io/badge/Moose-8-%23aac9ff.svg)](https://github.com/moosetechnology/Moose)
 
 ## FAST Meta-Model
