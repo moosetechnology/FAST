@@ -6,6 +6,8 @@ Statements are scopable because many statements allow to introduce local variabl
 Class {
 	#name : #FASTScopableEntity,
 	#superclass : #FASTEntity,
+	#traits : 'FASTTEntity',
+	#classTraits : 'FASTTEntity classTrait',
 	#category : #'FAST-Core-Model-Entities'
 }
 

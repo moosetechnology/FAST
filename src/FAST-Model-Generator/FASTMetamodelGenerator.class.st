@@ -27,7 +27,7 @@ Class {
 		'tWithArguments',
 		'tParameter',
 		'tWithParameters',
-		'entity'
+		'tEntity'
 	],
 	#category : #'FAST-Model-Generator'
 }
@@ -146,9 +146,6 @@ FASTMetamodelGenerator >> commentForVariableExpression [
 { #category : #definition }
 FASTMetamodelGenerator >> defineClasses [
 	super defineClasses.
-	entity := builder
-		newClassNamed: #Entity
-		comment: 'any entity'.
 	expression := builder newClassNamed: #Expression comment: self commentForExpression.
 	literal := builder newClassNamed: #Literal comment: self commentForLiteral.
 	booleanLiteral := builder newClassNamed: #BooleanLiteral comment: self commentForBooleanLiteral.
@@ -168,8 +165,8 @@ FASTMetamodelGenerator >> defineClasses [
 { #category : #definition }
 FASTMetamodelGenerator >> defineHierarchy [
 	super defineHierarchy.
-	entity --|> #TEntityMetaLevelDependency.
-	expression --|> entity.
+	tEntity --|> #TEntityMetaLevelDependency.
+	expression --|> tEntity.
 	expression --|> tArgument. 
 	
 	literal --|> expression.
@@ -179,7 +176,7 @@ FASTMetamodelGenerator >> defineHierarchy [
 	nullPointerLiteral --|> literal.
 	stringLiteral --|> literal.
 	variableExpression --|> expression.
-	scopableEntity --|> entity.
+	scopableEntity --|> tEntity.
 	
 	behaviouralEntity --|> scopableEntity.
 	behaviouralEntity --|> tWithParameters.
@@ -200,7 +197,7 @@ FASTMetamodelGenerator >> defineHierarchy [
 FASTMetamodelGenerator >> defineProperties [
 	super defineProperties.
 	(literal property: #value type: #String) comment: 'The literal itself as found in the source code'.
-	entity
+	tEntity
         property: #startPos type: #Number;
         property: #endPos type: #Number.
 ]
@@ -226,6 +223,8 @@ FASTMetamodelGenerator >> defineRelations [
 { #category : #definition }
 FASTMetamodelGenerator >> defineTraits [
 	super defineTraits.
+	tEntity := builder newTraitNamed: #TEntity comment: 'any entity'.
+	
 	tArgument := builder newTraitNamed: #TArgument comment: 'I can be an argument'. 
 	tWithArguments := builder newTraitNamed: #TWithArguments comment: 'I have arguments'.
 	
