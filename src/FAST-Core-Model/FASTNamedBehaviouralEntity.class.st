@@ -13,12 +13,3 @@ Class {
 	#classTraits : 'FamixTNamedEntity classTrait',
 	#category : #'FAST-Core-Model-Entities'
 }
-
-{ #category : #meta }
-FASTNamedBehaviouralEntity class >> annotation [
-
-	<FMClass: #NamedBehaviouralEntity super: #FASTBehaviouralEntity>
-	<package: #'FAST-Core-Model'>
-	<generated>
-	^self
-]

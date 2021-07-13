@@ -7,27 +7,29 @@ Class {
 	#name : #FASTMetamodelGenerator,
 	#superclass : #FamixMetamodelGenerator,
 	#instVars : [
-		'expression',
-		'literal',
-		'booleanLiteral',
-		'characterLiteral',
-		'nullPointerLiteral',
-		'stringLiteral',
-		'variableExpression',
-		'scopableEntity',
-		'behaviouralEntity',
-		'statement',
-		'expressionStatement',
-		'returnStatement',
-		'statementBlock',
-		'namedBehaviouralEntity',
-		'tExpression',
-		'tStatement',
-		'tArgument',
+		'entity',
 		'tWithArguments',
-		'tParameter',
 		'tWithParameters',
-		'entity'
+		'tEntity',
+		'tExpression',
+		'tLiteral',
+		'tBooleanLiteral',
+		'tCharacterLiteral',
+		'tNullPointerLiteral',
+		'tStringLiteral',
+		'tVariableExpression',
+		'tScopableEntity',
+		'tBehaviouralEntity',
+		'tNamedBehaviouralEntity',
+		'tStatement',
+		'tExpressionStatement',
+		'tReturnStatement',
+		'tStatementBlock',
+		'tNamedEntity',
+		'tInvocation',
+		'tNumericalLiteral',
+		'tAssignment',
+		'tVariableEntity'
 	],
 	#category : #'FAST-Model-Generator'
 }
@@ -49,7 +51,12 @@ FASTMetamodelGenerator class >> submetamodels [
 ]
 
 { #category : #comments }
-FASTMetamodelGenerator >> commentForBehaviouralEntity [
+FASTMetamodelGenerator >> commentForTAssignement [
+	^ 'A node representing an assignement'
+]
+
+{ #category : #comments }
+FASTMetamodelGenerator >> commentForTBehaviouralEntity [
 	^ 'Represents a generic behavioural entity which has parameters and local variables, as well as statements. 
 
 Can represent a SmalltalkBlock, or a JavaLambda
@@ -60,34 +67,39 @@ Local variables are intended to be stored in the local entities of the body'
 ]
 
 { #category : #comments }
-FASTMetamodelGenerator >> commentForBooleanLiteral [
+FASTMetamodelGenerator >> commentForTBooleanLiteral [
 	^ 'A boolean literal'
 ]
 
 { #category : #comments }
-FASTMetamodelGenerator >> commentForCharacterLiteral [
+FASTMetamodelGenerator >> commentForTCharacterLiteral [
 	^ 'A character literal'
 ]
 
 { #category : #comments }
-FASTMetamodelGenerator >> commentForEntity [
+FASTMetamodelGenerator >> commentForTEntity [
 	^ 'A FASTEntity is an abstract class for all FAST classes
 
 Primarily introduced to deal with symbol resolution matters.'
 ]
 
 { #category : #comments }
-FASTMetamodelGenerator >> commentForExpression [
+FASTMetamodelGenerator >> commentForTExpression [
 	^ 'An abstract superclass representing an expression node of a source code.'
 ]
 
 { #category : #comments }
-FASTMetamodelGenerator >> commentForExpressionStatement [
+FASTMetamodelGenerator >> commentForTExpressionStatement [
 	^ 'A node of a statement which is representing a single expression. '
 ]
 
 { #category : #comments }
-FASTMetamodelGenerator >> commentForLiteral [
+FASTMetamodelGenerator >> commentForTInvocation [
+	^ 'A invocation of a behavioural entity'
+]
+
+{ #category : #comments }
+FASTMetamodelGenerator >> commentForTLiteral [
 	^ 'A literal node.
 
 Contains a value for the literal.
@@ -97,7 +109,7 @@ FLAG: should refactor some literals to core-model
 ]
 
 { #category : #comments }
-FASTMetamodelGenerator >> commentForNamedBehaviouralEntity [
+FASTMetamodelGenerator >> commentForTNamedBehaviouralEntity [
 	^ '@FLAG: May be could be removed to have a simpler core model.
 Each language would have to implement it correctly then
 
@@ -107,128 +119,158 @@ Assumed to correspond to a function or a method'
 ]
 
 { #category : #comments }
-FASTMetamodelGenerator >> commentForNullPointerLiteral [
+FASTMetamodelGenerator >> commentForTNullPointerLiteral [
 	^ 'An undefined object literal'
 ]
 
 { #category : #comments }
-FASTMetamodelGenerator >> commentForReturnStatement [
+FASTMetamodelGenerator >> commentForTNumericalLiteral [
+	^ 'A numerical literal'
+]
+
+{ #category : #comments }
+FASTMetamodelGenerator >> commentForTReturnStatement [
 	^ 'A return statement node. Contains a reference to the expression which is returned.  '
 ]
 
 { #category : #comments }
-FASTMetamodelGenerator >> commentForScopableEntity [
+FASTMetamodelGenerator >> commentForTScopableEntity [
 	^ 'A Entity with an optional scope
 
-Statements are scopable because many statements allow to introduce local variables (e.g. for statement in Java)'
+Some statements are scopable because they allow to introduce local variables (e.g. for statement in Java)'
 ]
 
 { #category : #comments }
-FASTMetamodelGenerator >> commentForStatement [
+FASTMetamodelGenerator >> commentForTStatement [
 	^ 'An abstract subclass which represents a source code statemnet '
 ]
 
 { #category : #comments }
-FASTMetamodelGenerator >> commentForStatementBlock [
+FASTMetamodelGenerator >> commentForTStatementBlock [
 	^ 'A block of statements as ones in C-like langs with {}'
 ]
 
 { #category : #comments }
-FASTMetamodelGenerator >> commentForStringLiteral [
+FASTMetamodelGenerator >> commentForTStringLiteral [
 	^ 'A string literal'
 ]
 
 { #category : #comments }
-FASTMetamodelGenerator >> commentForVariableExpression [
+FASTMetamodelGenerator >> commentForTVariableEntity [
+	^ 'A node for variable name not in a expression (example: assigned variable or parameter)'
+]
+
+{ #category : #comments }
+FASTMetamodelGenerator >> commentForTVariableExpression [
 	^ 'A node that wraps around structural entity'
 ]
 
 { #category : #definition }
 FASTMetamodelGenerator >> defineClasses [
 	super defineClasses.
-	entity := builder
-		newClassNamed: #Entity
-		comment: 'any entity'.
-	expression := builder newClassNamed: #Expression comment: self commentForExpression.
-	literal := builder newClassNamed: #Literal comment: self commentForLiteral.
-	booleanLiteral := builder newClassNamed: #BooleanLiteral comment: self commentForBooleanLiteral.
-	characterLiteral := builder newClassNamed: #CharacterLiteral comment: self commentForCharacterLiteral.
-	nullPointerLiteral := builder newClassNamed: #NullPointerLiteral comment: self commentForNullPointerLiteral.
-	stringLiteral := builder newClassNamed: #StringLiteral comment: self commentForStringLiteral.
-	variableExpression := builder newClassNamed: #VariableExpression comment: self commentForVariableExpression.
-	scopableEntity := builder newClassNamed: #ScopableEntity comment: self commentForScopableEntity.
-	behaviouralEntity := builder newClassNamed: #BehaviouralEntity comment: self commentForBehaviouralEntity.
-	namedBehaviouralEntity := builder newClassNamed: #NamedBehaviouralEntity comment: self commentForNamedBehaviouralEntity.
-	statement := builder newClassNamed: #Statement comment: self commentForStatement.
-	expressionStatement := builder newClassNamed: #ExpressionStatement comment: self commentForExpressionStatement.
-	returnStatement := builder newClassNamed: #ReturnStatement comment: self commentForReturnStatement.
-	statementBlock := builder newClassNamed: #StatementBlock comment: self commentForStatementBlock
+	entity := builder newClassNamed: #Entity comment: 'any entity'. 
 ]
 
 { #category : #definition }
 FASTMetamodelGenerator >> defineHierarchy [
 	super defineHierarchy.
-	entity --|> #TEntityMetaLevelDependency.
-	expression --|> entity.
-	expression --|> tArgument. 
+	tEntity --|> #TEntityMetaLevelDependency.
+	tExpression --|> tEntity.
+	entity --|> tEntity.
 	
-	literal --|> expression.
+	tLiteral --|> tExpression.
 	
-	booleanLiteral --|> literal.
-	characterLiteral --|> literal.
-	nullPointerLiteral --|> literal.
-	stringLiteral --|> literal.
-	variableExpression --|> expression.
-	scopableEntity --|> entity.
+	tBooleanLiteral --|> tLiteral.
+	tCharacterLiteral --|> tLiteral.
+	tNullPointerLiteral --|> tLiteral.
+	tStringLiteral --|> tLiteral.
+	tNumericalLiteral --|> tLiteral.
+	tVariableExpression --|> tExpression.
+	tScopableEntity --|> tEntity.
 	
-	behaviouralEntity --|> scopableEntity.
-	behaviouralEntity --|> tWithParameters.
+	tBehaviouralEntity --|> tScopableEntity.
+	tBehaviouralEntity --|> tWithParameters.
 	
-	namedBehaviouralEntity --|> behaviouralEntity.
-	statement --|> scopableEntity.
-	expressionStatement --|> statement.
-	returnStatement --|> statement.
-	statementBlock --|> statement.
+	tNamedBehaviouralEntity --|> tBehaviouralEntity.
+	tStatement --|> tEntity.
+	tExpressionStatement --|> tStatement.
+	tReturnStatement --|> tStatement.
+	tStatementBlock --|> tStatement.
 	
-	variableExpression --|> #TNamedEntity.
-	variableExpression --|> tParameter.
+	tVariableExpression --|> tNamedEntity.
+	tVariableEntity --|> tNamedEntity.
+	tNamedBehaviouralEntity --|> tNamedEntity.
 	
-	namedBehaviouralEntity --|> #TNamedEntity
+	tAssignment --|> tExpression.
+	
+	tInvocation --|> tExpression.
+	tInvocation --|> tWithArguments.
+	
+	tNamedEntity --|> tEntity.
 ]
 
 { #category : #definition }
 FASTMetamodelGenerator >> defineProperties [
 	super defineProperties.
-	(literal property: #value type: #String) comment: 'The literal itself as found in the source code'.
-	entity
+	(tLiteral property: #value type: #String) comment: 'The literal itself as found in the source code'.
+	
+	tEntity
         property: #startPos type: #Number;
         property: #endPos type: #Number.
+
+	tNamedEntity
+		 property: #name type: #String.
 ]
 
 { #category : #definition }
 FASTMetamodelGenerator >> defineRelations [
 	super defineRelations.
-	(((expressionStatement property: #expression) comment: 'The expression of the statement') <>- ((expression property: #expressionStatementOwner) comment: 'The expression statement that own me (if it''s the case')) withoutPrimaryContainer.
+	(((tExpressionStatement property: #expression) comment: 'The expression of the statement') <>- ((tExpression property: #expressionStatementOwner) comment: 'The expression statement that own me (if it''s the case')) .
 
-	(((returnStatement property: #expression) comment: 'The expression returned') <>- ((expression property: #returnOwner)
-		comment: 'The return statement that own the expression (if it''s the case)')) withoutPrimaryContainer.
+	(((tReturnStatement property: #expression) comment: 'The expression returned') <>- ((tExpression property: #returnOwner)
+		comment: 'The return statement that own the expression (if it''s the case)')) .
 		
-	(((behaviouralEntity property: #statementBlock) comment: 'Statements block of the behavioural entity')
-		<>- ((statementBlock property: #fastBehaviouralParent) comment: 'Behavioural entity containing the statement block.')) withoutPrimaryContainer.
+	(((tBehaviouralEntity property: #statementBlock) comment: 'Statements block of the behavioural entity') <>- ((tStatementBlock property: #fastBehaviouralParent) comment: 'Behavioural entity containing the statement block.')) .
 	
-	(((statement property: #statementContainer) comment: 'Block containing this statement.') *-<> ((statementBlock property: #statements) comment: 'Statements enclosed in this block')) withoutPrimaryContainer.
+	(((tStatement property: #statementContainer) comment: 'Block containing this statement.') *-<> ((tStatementBlock property: #statements) comment: 'Statements enclosed in this block')) .
 	
-	(((tWithParameters property: #parameters) comment: 'My parameters') <>-* ((tParameter property: #parameterOwner) comment: 'parameterOwner')) withoutPrimaryContainer. 
+	((tWithParameters property: #parameters) comment: 'My parameters') <>-* ((tVariableEntity property: #parameterOwner) comment: 'parameterOwner') . 
 	
-	(((tWithArguments property: #arguments) comment: 'My arguments') <>-* ((tArgument property: #argumentOwner) comment: 'my owner')) withoutPrimaryContainer.
+	((tWithArguments property: #arguments) comment: 'My arguments') <>-* ((tExpression property: #argumentOwner) comment: 'my owner') .
+	
+	((tAssignment property: #variable) comment: 'An assigned variable (lhs of assignement)') - ((tVariableEntity property: #parentAssignmentExpression) comment: 'Optional assignment to the variable').
+	((tAssignment property: #expression) comment: 'Assigned expression (rhs of assignement)') - ((tExpression property: #assignedIn) comment: 'Optional assignment where this expression is used').
+	
+	((tInvocation property: #invoked) comment: 'The name of the behavioural invoked') - ((tNamedEntity property: #invokedIn) comment: 'Optional invocation where this name is used').
+	
 ]
 
 { #category : #definition }
 FASTMetamodelGenerator >> defineTraits [
 	super defineTraits.
-	tArgument := builder newTraitNamed: #TArgument comment: 'I can be an argument'. 
-	tWithArguments := builder newTraitNamed: #TWithArguments comment: 'I have arguments'.
+	tWithArguments := builder newTraitNamed: #TWithArguments comment: 'I have arguments'. 
 	
-	tParameter := builder newTraitNamed: #TParameter comment: 'I can be a parameter'. 
-	tWithParameters := builder newTraitNamed: #TWithParameters comment: 'I have parameters'
+	tWithParameters := builder newTraitNamed: #TWithParameters comment: 'I have parameters'.
+	
+	tEntity := builder newTraitNamed: #TEntity comment: 'any entity'.
+	tNamedEntity := builder newTraitNamed: #TNamedEntity comment: 'A entity with a name'.
+	tExpression := builder newTraitNamed: #TExpression comment: self commentForTExpression.
+	tLiteral := builder newTraitNamed: #TLiteral comment: self commentForTLiteral.
+	tBooleanLiteral := builder newTraitNamed: #TBooleanLiteral comment: self commentForTBooleanLiteral.
+	tCharacterLiteral := builder newTraitNamed: #TCharacterLiteral comment: self commentForTCharacterLiteral.
+	tNullPointerLiteral := builder newTraitNamed: #TNullPointerLiteral comment: self commentForTNullPointerLiteral.
+	tStringLiteral := builder newTraitNamed: #TStringLiteral comment: self commentForTStringLiteral.
+	tNumericalLiteral := builder newTraitNamed: #TNumericalLiteral comment: self commentForTNumericalLiteral.
+	tVariableExpression := builder newTraitNamed: #TVariableExpression comment: self commentForTVariableExpression.
+	tScopableEntity := builder newTraitNamed: #TScopableEntity comment: self commentForTScopableEntity.
+	tBehaviouralEntity := builder newTraitNamed: #TBehaviouralEntity comment: self commentForTBehaviouralEntity.
+	tNamedBehaviouralEntity := builder newTraitNamed: #TNamedBehaviouralEntity comment: self commentForTNamedBehaviouralEntity.
+	tStatement := builder newTraitNamed: #TStatement comment: self commentForTStatement.
+	tStatement withTesting.
+	tExpressionStatement := builder newTraitNamed: #TExpressionStatement comment: self commentForTExpressionStatement.
+	tReturnStatement := builder newTraitNamed: #TReturnStatement comment: self commentForTReturnStatement.
+	tStatementBlock := builder newTraitNamed: #TStatementBlock comment: self commentForTStatementBlock.
+	tAssignment := builder newTraitNamed: #TAssignment comment: self commentForTAssignement.
+	tInvocation := builder newTraitNamed: #TInvocation comment: self commentForTInvocation.
+	tVariableEntity := builder newTraitNamed: #TVariableEntity comment: self commentForTVariableEntity.
 ]

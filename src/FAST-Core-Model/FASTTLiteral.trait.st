@@ -6,26 +6,27 @@ Contains a value for the literal.
 FLAG: should refactor some literals to core-model
     e.g.: character, int, float, string, boolean 
 "
-Class {
-	#name : #FASTLiteral,
-	#superclass : #FASTExpression,
+Trait {
+	#name : #FASTTLiteral,
 	#instVars : [
 		'#value => FMProperty'
 	],
-	#category : #'FAST-Core-Model-Entities'
+	#traits : 'FASTTExpression',
+	#classTraits : 'FASTTExpression classTrait',
+	#category : #'FAST-Core-Model-Traits'
 }
 
 { #category : #meta }
-FASTLiteral class >> annotation [
+FASTTLiteral classSide >> annotation [
 
-	<FMClass: #Literal super: #FASTExpression>
+	<FMClass: #TLiteral super: #Object>
 	<package: #'FAST-Core-Model'>
 	<generated>
 	^self
 ]
 
 { #category : #accessing }
-FASTLiteral >> value [
+FASTTLiteral >> value [
 
 	<FMProperty: #value type: #String>
 	<generated>
@@ -34,7 +35,7 @@ FASTLiteral >> value [
 ]
 
 { #category : #accessing }
-FASTLiteral >> value: anObject [
+FASTTLiteral >> value: anObject [
 	<generated>
 	value := anObject
 ]

@@ -1,34 +1,35 @@
 "
 A block of statements as ones in C-like langs with {}
 "
-Class {
-	#name : #FASTStatementBlock,
-	#superclass : #FASTStatement,
+Trait {
+	#name : #FASTTStatementBlock,
 	#instVars : [
-		'#fastBehaviouralParent => FMOne type: #FASTBehaviouralEntity opposite: #statementBlock',
-		'#statements => FMMany type: #FASTStatement opposite: #statementContainer'
+		'#fastBehaviouralParent => FMOne type: #FASTTBehaviouralEntity opposite: #statementBlock',
+		'#statements => FMMany type: #FASTTStatement opposite: #statementContainer'
 	],
-	#category : #'FAST-Core-Model-Entities'
+	#traits : 'FASTTStatement',
+	#classTraits : 'FASTTStatement classTrait',
+	#category : #'FAST-Core-Model-Traits'
 }
 
 { #category : #meta }
-FASTStatementBlock class >> annotation [
+FASTTStatementBlock classSide >> annotation [
 
-	<FMClass: #StatementBlock super: #FASTStatement>
+	<FMClass: #TStatementBlock super: #Object>
 	<package: #'FAST-Core-Model'>
 	<generated>
 	^self
 ]
 
 { #category : #adding }
-FASTStatementBlock >> addStatement: anObject [
+FASTTStatementBlock >> addStatement: anObject [
 	<generated>
 	^ self statements add: anObject
 ]
 
 { #category : #accessing }
-FASTStatementBlock >> fastBehaviouralParent [
-	"Relation named: #fastBehaviouralParent type: #FASTBehaviouralEntity opposite: #statementBlock"
+FASTTStatementBlock >> fastBehaviouralParent [
+	"Relation named: #fastBehaviouralParent type: #FASTTBehaviouralEntity opposite: #statementBlock"
 
 	<generated>
 	<FMComment: 'Behavioural entity containing the statement block.'>
@@ -38,22 +39,22 @@ FASTStatementBlock >> fastBehaviouralParent [
 ]
 
 { #category : #accessing }
-FASTStatementBlock >> fastBehaviouralParent: anObject [
+FASTTStatementBlock >> fastBehaviouralParent: anObject [
 
 	<generated>
 	fastBehaviouralParent := anObject
 ]
 
 { #category : #navigation }
-FASTStatementBlock >> fastBehaviouralParentGroup [
+FASTTStatementBlock >> fastBehaviouralParentGroup [
 	<generated>
 	<navigation: 'FastBehaviouralParent'>
 	^ MooseSpecializedGroup with: self fastBehaviouralParent
 ]
 
 { #category : #accessing }
-FASTStatementBlock >> statements [
-	"Relation named: #statements type: #FASTStatement opposite: #statementContainer"
+FASTTStatementBlock >> statements [
+	"Relation named: #statements type: #FASTTStatement opposite: #statementContainer"
 
 	<generated>
 	<FMComment: 'Statements enclosed in this block'>
@@ -62,14 +63,14 @@ FASTStatementBlock >> statements [
 ]
 
 { #category : #accessing }
-FASTStatementBlock >> statements: anObject [
+FASTTStatementBlock >> statements: anObject [
 
 	<generated>
 	statements value: anObject
 ]
 
 { #category : #navigation }
-FASTStatementBlock >> statementsGroup [
+FASTTStatementBlock >> statementsGroup [
 	<generated>
 	<navigation: 'Statements'>
 	^ MooseSpecializedGroup withAll: self statements asSet

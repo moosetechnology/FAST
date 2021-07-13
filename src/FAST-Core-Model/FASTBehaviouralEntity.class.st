@@ -17,35 +17,3 @@ Class {
 	],
 	#category : #'FAST-Core-Model-Entities'
 }
-
-{ #category : #meta }
-FASTBehaviouralEntity class >> annotation [
-
-	<FMClass: #BehaviouralEntity super: #FASTScopableEntity>
-	<package: #'FAST-Core-Model'>
-	<generated>
-	^self
-]
-
-{ #category : #accessing }
-FASTBehaviouralEntity >> statementBlock [
-	"Relation named: #statementBlock type: #FASTStatementBlock opposite: #fastBehaviouralParent"
-
-	<generated>
-	<FMComment: 'Statements block of the behavioural entity'>
-	^ statementBlock
-]
-
-{ #category : #accessing }
-FASTBehaviouralEntity >> statementBlock: anObject [
-
-	<generated>
-	statementBlock := anObject
-]
-
-{ #category : #navigation }
-FASTBehaviouralEntity >> statementBlockGroup [
-	<generated>
-	<navigation: 'StatementBlock'>
-	^ MooseSpecializedGroup with: self statementBlock
-]
