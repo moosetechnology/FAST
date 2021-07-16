@@ -1,6 +1,6 @@
 Extension { #name : #FASTEntity }
 
 { #category : #'*FAST-Core-Visitor' }
-FASTEntity >> accept: aFASTJavaVisitor [
-	^ aFASTJavaVisitor visitFASTEntity: self
+FASTEntity >> accept: aVisitor [
+	^ aVisitor visitFASTEntity: self
 ]

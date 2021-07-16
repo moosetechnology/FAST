@@ -1,6 +1,6 @@
 Extension { #name : #FASTTStatementBlock }
 
 { #category : #'*FAST-Core-Visitor' }
-FASTTStatementBlock >> accept: aFASTJavaVisitor [
-	^ aFASTJavaVisitor visitFASTTStatementBlock: self
+FASTTStatementBlock >> accept: aVisitor [
+	^ aVisitor visitFASTTStatementBlock: self
 ]

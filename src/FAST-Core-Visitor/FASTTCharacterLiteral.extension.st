@@ -1,6 +1,6 @@
 Extension { #name : #FASTTCharacterLiteral }
 
 { #category : #'*FAST-Core-Visitor' }
-FASTTCharacterLiteral >> accept: aFASTJavaVisitor [
-	^ aFASTJavaVisitor visitCharacterLiteralNode: self
+FASTTCharacterLiteral >> accept: aVisitor [
+	^ aVisitor visitCharacterLiteralNode: self
 ]

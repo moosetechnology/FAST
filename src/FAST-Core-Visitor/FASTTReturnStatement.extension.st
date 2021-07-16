@@ -1,6 +1,6 @@
 Extension { #name : #FASTTReturnStatement }
 
 { #category : #'*FAST-Core-Visitor' }
-FASTTReturnStatement >> accept: aFASTJavaVisitor [
-	^ aFASTJavaVisitor visitFASTTReturnStatement: self
+FASTTReturnStatement >> accept: aVisitor [
+	^ aVisitor visitFASTTReturnStatement: self
 ]
