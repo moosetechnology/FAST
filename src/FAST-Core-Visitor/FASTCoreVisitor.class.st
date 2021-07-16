@@ -10,43 +10,8 @@ FASTCoreVisitor >> accept: aFASTEntity [
 ]
 
 { #category : #generated }
-FASTCoreVisitor >> visitFASTAssociation: aFASTAssociation [
-	^ self visitFASTSourcedEntity: aFASTAssociation
-]
-
-{ #category : #generated }
-FASTCoreVisitor >> visitFASTComment: aFASTComment [
-	^ self visitFASTSourcedEntity: aFASTComment
-]
-
-{ #category : #generated }
 FASTCoreVisitor >> visitFASTEntity: aFASTEntity [
-	^ aFASTEntity children do: [ :child | child accept: self ]
-]
-
-{ #category : #generated }
-FASTCoreVisitor >> visitFASTEntitySourceAnchor: aFASTEntitySourceAnchor [
-	^ self visitFASTEntity: aFASTEntitySourceAnchor
-]
-
-{ #category : #generated }
-FASTCoreVisitor >> visitFASTSourceAnchor: aFASTSourceAnchor [
-	^ self visitFASTEntity: aFASTSourceAnchor
-]
-
-{ #category : #generated }
-FASTCoreVisitor >> visitFASTSourceLanguage: aFASTSourceLanguage [
-	^ self visitFASTEntity: aFASTSourceLanguage
-]
-
-{ #category : #generated }
-FASTCoreVisitor >> visitFASTSourceTextAnchor: aFASTSourceTextAnchor [
-	^ self visitFASTSourceAnchor: aFASTSourceTextAnchor
-]
-
-{ #category : #generated }
-FASTCoreVisitor >> visitFASTSourcedEntity: aFASTSourcedEntity [
-	^ self visitFASTEntity: aFASTSourcedEntity
+	^ self visitFASTTEntity: aFASTEntity
 ]
 
 { #category : #generated }
@@ -65,13 +30,18 @@ FASTCoreVisitor >> visitFASTTCharacterLiteral: aFASTCharacterLiteral [
 ]
 
 { #category : #generated }
-FASTCoreVisitor >> visitFASTTEntity: aFASTEntity [
-	^ aFASTEntity children do: [ :child | child accept: self ]
+FASTCoreVisitor >> visitFASTTComment: aFASTComment [
+	^ self visitFASTTEntity: aFASTComment
+]
+
+{ #category : #generated }
+FASTCoreVisitor >> visitFASTTEntity: aFASTTEntity [
+	^ aFASTTEntity children do: [ :child | child accept: self ]
 ]
 
 { #category : #generated }
 FASTCoreVisitor >> visitFASTTExpression: aFASTExpression [
-	^ self visitFASTEntity: aFASTExpression
+	^ self visitFASTTEntity: aFASTExpression
 ]
 
 { #category : #generated }
@@ -121,7 +91,7 @@ FASTCoreVisitor >> visitFASTTReturnStatement: aFASTReturnStatement [
 
 { #category : #generated }
 FASTCoreVisitor >> visitFASTTScopableEntity: aFASTScopableEntity [
-	^ self visitFASTEntity: aFASTScopableEntity
+	^ self visitFASTTEntity: aFASTScopableEntity
 ]
 
 { #category : #generated }
@@ -141,7 +111,7 @@ FASTCoreVisitor >> visitFASTTStringLiteral: aFASTStringLiteral [
 
 { #category : #generated }
 FASTCoreVisitor >> visitFASTTVariableEntity: aFASTVariableEntity [
-	^ self visitFASTEntity: aFASTVariableEntity
+	^ self visitFASTTEntity: aFASTVariableEntity
 ]
 
 { #category : #generated }
