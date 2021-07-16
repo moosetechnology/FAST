@@ -15,21 +15,6 @@ FASTCoreVisitor >> visitFASTAssociation: aFASTAssociation [
 ]
 
 { #category : #generated }
-FASTCoreVisitor >> visitFASTBehaviouralEntity: aFASTBehaviouralEntity [
-	^ self visitFASTScopableEntity: aFASTBehaviouralEntity
-]
-
-{ #category : #generated }
-FASTCoreVisitor >> visitFASTBooleanLiteral: aFASTBooleanLiteral [
-	^ self visitFASTLiteral: aFASTBooleanLiteral
-]
-
-{ #category : #generated }
-FASTCoreVisitor >> visitFASTCharacterLiteral: aFASTCharacterLiteral [
-	^ self visitFASTLiteral: aFASTCharacterLiteral
-]
-
-{ #category : #generated }
 FASTCoreVisitor >> visitFASTComment: aFASTComment [
 	^ self visitFASTSourcedEntity: aFASTComment
 ]
@@ -42,41 +27,6 @@ FASTCoreVisitor >> visitFASTEntity: aFASTEntity [
 { #category : #generated }
 FASTCoreVisitor >> visitFASTEntitySourceAnchor: aFASTEntitySourceAnchor [
 	^ self visitFASTEntity: aFASTEntitySourceAnchor
-]
-
-{ #category : #generated }
-FASTCoreVisitor >> visitFASTExpression: aFASTExpression [
-	^ self visitFASTEntity: aFASTExpression
-]
-
-{ #category : #generated }
-FASTCoreVisitor >> visitFASTExpressionStatement: aFASTExpressionStatement [
-	^ self visitFASTStatement: aFASTExpressionStatement
-]
-
-{ #category : #generated }
-FASTCoreVisitor >> visitFASTLiteral: aFASTLiteral [
-	^ self visitFASTExpression: aFASTLiteral
-]
-
-{ #category : #generated }
-FASTCoreVisitor >> visitFASTNamedBehaviouralEntity: aFASTNamedBehaviouralEntity [
-	^ self visitFASTBehaviouralEntity: aFASTNamedBehaviouralEntity
-]
-
-{ #category : #generated }
-FASTCoreVisitor >> visitFASTNullPointerLiteral: aFASTNullPointerLiteral [
-	^ self visitFASTLiteral: aFASTNullPointerLiteral
-]
-
-{ #category : #generated }
-FASTCoreVisitor >> visitFASTReturnStatement: aFASTReturnStatement [
-	^ self visitFASTStatement: aFASTReturnStatement
-]
-
-{ #category : #generated }
-FASTCoreVisitor >> visitFASTScopableEntity: aFASTScopableEntity [
-	^ self visitFASTEntity: aFASTScopableEntity
 ]
 
 { #category : #generated }
@@ -100,26 +50,101 @@ FASTCoreVisitor >> visitFASTSourcedEntity: aFASTSourcedEntity [
 ]
 
 { #category : #generated }
-FASTCoreVisitor >> visitFASTStatement: aFASTStatement [
-	^ self visitFASTScopableEntity: aFASTStatement
+FASTCoreVisitor >> visitFASTTBehaviouralEntity: aFASTBehaviouralEntity [
+	^ self visitFASTTScopableEntity: aFASTBehaviouralEntity
 ]
 
 { #category : #generated }
-FASTCoreVisitor >> visitFASTStatementBlock: aFASTStatementBlock [
-	^ self visitFASTStatement: aFASTStatementBlock
+FASTCoreVisitor >> visitFASTTBooleanLiteral: aFASTBooleanLiteral [
+	^ self visitFASTTLiteral: aFASTBooleanLiteral
 ]
 
 { #category : #generated }
-FASTCoreVisitor >> visitFASTStringLiteral: aFASTStringLiteral [
-	^ self visitFASTLiteral: aFASTStringLiteral
+FASTCoreVisitor >> visitFASTTCharacterLiteral: aFASTCharacterLiteral [
+	^ self visitFASTTLiteral: aFASTCharacterLiteral
 ]
 
 { #category : #generated }
-FASTCoreVisitor >> visitFASTVariableEntity: aFASTVariableEntity [
+FASTCoreVisitor >> visitFASTTEntity: aFASTEntity [
+	^ aFASTEntity children do: [ :child | child accept: self ]
+]
+
+{ #category : #generated }
+FASTCoreVisitor >> visitFASTTExpression: aFASTExpression [
+	^ self visitFASTEntity: aFASTExpression
+]
+
+{ #category : #generated }
+FASTCoreVisitor >> visitFASTTExpressionStatement: aFASTExpressionStatement [
+	^ self visitFASTTStatement: aFASTExpressionStatement
+]
+
+{ #category : #generated }
+FASTCoreVisitor >> visitFASTTInvocation: aFASTAssociation [
+	^ self visitFASTTExpression: aFASTAssociation
+]
+
+{ #category : #generated }
+FASTCoreVisitor >> visitFASTTLiteral: aFASTLiteral [
+	^ self visitFASTTExpression: aFASTLiteral
+]
+
+{ #category : #generated }
+FASTCoreVisitor >> visitFASTTNamedBehaviouralEntity: aFASTNamedBehaviouralEntity [
+	^ self visitFASTTBehaviouralEntity: aFASTNamedBehaviouralEntity
+]
+
+{ #category : #generated }
+FASTCoreVisitor >> visitFASTTNamedEntity: aFASTAssociation [
+	^ self visitFASTTEntity: aFASTAssociation
+]
+
+{ #category : #generated }
+FASTCoreVisitor >> visitFASTTNilLiteral: aFASTNullPointerLiteral [
+	^ self visitFASTTLiteral: aFASTNullPointerLiteral
+]
+
+{ #category : #generated }
+FASTCoreVisitor >> visitFASTTNullPointerLiteral: aFASTAssociation [
+	^ self visitFASTTLiteral: aFASTAssociation
+]
+
+{ #category : #generated }
+FASTCoreVisitor >> visitFASTTNumericalLiteral: aFASTAssociation [
+	^ self visitFASTTLiteral: aFASTAssociation
+]
+
+{ #category : #generated }
+FASTCoreVisitor >> visitFASTTReturnStatement: aFASTReturnStatement [
+	^ self visitFASTTStatement: aFASTReturnStatement
+]
+
+{ #category : #generated }
+FASTCoreVisitor >> visitFASTTScopableEntity: aFASTScopableEntity [
+	^ self visitFASTEntity: aFASTScopableEntity
+]
+
+{ #category : #generated }
+FASTCoreVisitor >> visitFASTTStatement: aFASTStatement [
+	^ self visitFASTTScopableEntity: aFASTStatement
+]
+
+{ #category : #generated }
+FASTCoreVisitor >> visitFASTTStatementBlock: aFASTStatementBlock [
+	^ self visitFASTTStatement: aFASTStatementBlock
+]
+
+{ #category : #generated }
+FASTCoreVisitor >> visitFASTTStringLiteral: aFASTStringLiteral [
+	^ self visitFASTTLiteral: aFASTStringLiteral
+]
+
+{ #category : #generated }
+FASTCoreVisitor >> visitFASTTVariableEntity: aFASTVariableEntity [
 	^ self visitFASTEntity: aFASTVariableEntity
 ]
 
 { #category : #generated }
-FASTCoreVisitor >> visitFASTVariableExpression: aFASTVariableExpression [
-	^ self visitFASTExpression: aFASTVariableExpression
+FASTCoreVisitor >> visitFASTTVariableExpression: aFASTVariableExpression [
+	^ self visitFASTTExpression: aFASTVariableExpression
 ]

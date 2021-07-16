@@ -1,52 +1,52 @@
-Extension { #name : #FASTEntity }
+Extension { #name : #FASTTEntity }
 
 { #category : #'*FAST-Core-Model-Extension' }
-FASTEntity >> containers [
+FASTTEntity >> containers [
 	^ ((self class allDeclaredPropertiesIn: self metamodel) select: #isContainer thenCollect: [:childrenProperty | self perform: (childrenProperty implementingSelector)]) reject: #isNil
 ]
 
 { #category : #'*FAST-Core-Model-Extension' }
-FASTEntity >> currentParentSelector [
+FASTTEntity >> currentParentSelector [
 	self parentSelectors do: [ :accessor | (self perform: accessor) ifNotNil: [ :r | ^ accessor ] ].
 	^ nil
 ]
 
 { #category : #'*FAST-Core-Model-Extension' }
-FASTEntity >> orderedChildren [
+FASTTEntity >> orderedChildren [
 	^ self children asOrderedCollection sort: #startPos ascending
 ]
 
 { #category : #'*FAST-Core-Model-Extension' }
-FASTEntity >> parentNode [
+FASTTEntity >> parentNode [
 	^ self containers at: 1 ifAbsent: [ nil ] 
 ]
 
 { #category : #'*FAST-Core-Model-Extension' }
-FASTEntity >> removeAllPotentialChildrenNode [
+FASTTEntity >> removeAllPotentialChildrenNode [
 	^ self childrenSelectors do: [:selector | self perform: selector, ':' withArguments: { nil } ].
 ]
 
 { #category : #'*FAST-Core-Model-Extension' }
-FASTEntity >> removeAllPotentialParentNode [
+FASTTEntity >> removeAllPotentialParentNode [
 	^ self parentSelectors do: [:selector | self perform: selector, ':' withArguments: { nil } ].
 ]
 
 { #category : #'*FAST-Core-Model-Extension' }
-FASTEntity >> rootNode [
+FASTTEntity >> rootNode [
 
 	"I should be overriden in my users"
 	^ self parentNode ifNil: [ self ] ifNotNil: [:parent | parent rootNode ]
 ]
 
 { #category : #'*FAST-Core-Model-Extension' }
-FASTEntity >> sourceCode [
+FASTTEntity >> sourceCode [
 	"I should be overriden in my users"
 
 	^ self sourceText copyFrom: self startPos to: self endPos
 ]
 
 { #category : #'*FAST-Core-Model-Extension' }
-FASTEntity >> sourceText [
+FASTTEntity >> sourceText [
 	"I should be overriden in my users"
 
 	^ (self atScope: FamixTHasImmediateSource)
