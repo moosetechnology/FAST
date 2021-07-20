@@ -9,7 +9,7 @@ FLAG: should refactor some literals to core-model
 Trait {
 	#name : #FASTTLiteral,
 	#instVars : [
-		'#value => FMProperty'
+		'#primitiveValue => FMProperty'
 	],
 	#traits : 'FASTTExpression',
 	#classTraits : 'FASTTExpression classTrait',
@@ -26,16 +26,16 @@ FASTTLiteral classSide >> annotation [
 ]
 
 { #category : #accessing }
-FASTTLiteral >> value [
+FASTTLiteral >> primitiveValue [
 
-	<FMProperty: #value type: #String>
+	<FMProperty: #primitiveValue type: #String>
 	<generated>
-	<FMComment: 'The literal itself as found in the source code'>
-	^ value
+	<FMComment: 'The literal itself as found in the source code. We use primitiveValue in order to override value from Object'>
+	^ primitiveValue
 ]
 
 { #category : #accessing }
-FASTTLiteral >> value: anObject [
+FASTTLiteral >> primitiveValue: anObject [
 	<generated>
-	value := anObject
+	primitiveValue := anObject
 ]

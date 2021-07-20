@@ -211,15 +211,16 @@ FASTMetamodelGenerator >> defineHierarchy [
 
 { #category : #definition }
 FASTMetamodelGenerator >> defineProperties [
-	super defineProperties.
-	(tLiteral property: #value type: #String) comment: 'The literal itself as found in the source code'.
-	
-	tEntity
-        property: #startPos type: #Number;
-        property: #endPos type: #Number.
 
-	tNamedEntity
-		 property: #name type: #String.
+	super defineProperties.
+	(tLiteral property: #primitiveValue type: #String) comment:
+		'The literal itself as found in the source code. We use primitiveValue in order to override value from Object'.
+
+	tEntity
+		property: #startPos type: #Number;
+		property: #endPos type: #Number.
+
+	tNamedEntity property: #name type: #String.
 ]
 
 { #category : #definition }
