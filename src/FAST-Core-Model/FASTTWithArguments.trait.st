@@ -4,7 +4,7 @@ I have arguments
 Trait {
 	#name : #FASTTWithArguments,
 	#instVars : [
-		'#arguments => FMMany type: #FASTTArgument opposite: #argumentOwner'
+		'#arguments => FMMany type: #FASTTExpression opposite: #argumentOwner'
 	],
 	#category : #'FAST-Core-Model-Traits'
 }
@@ -26,7 +26,7 @@ FASTTWithArguments >> addArgument: anObject [
 
 { #category : #accessing }
 FASTTWithArguments >> arguments [
-	"Relation named: #arguments type: #FASTTArgument opposite: #argumentOwner"
+	"Relation named: #arguments type: #FASTTExpression opposite: #argumentOwner"
 
 	<generated>
 	<FMComment: 'My arguments'>
