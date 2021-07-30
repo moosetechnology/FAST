@@ -12,6 +12,25 @@ FASTTEntity >> currentParentSelector [
 ]
 
 { #category : #'*FAST-Core-Model-Extension' }
+FASTTEntity >> fastSourceCode [
+
+	<inspectorPresentationOrder: 500 title: 'fastSourceCode'>
+	(self sourceText isNotNil and: [ 
+		 self startPos isNotNil and: [ self endPos isNotNil ] ]) ifFalse: [ 
+		^ SpTextPresenter new
+			  text: 'Not available';
+			  yourself ].
+	^ SpMorphPresenter new
+		  morph: (RubScrolledTextMorph new
+				   setText:
+					   (self mooseModel fastHighligther new highlight: self rootNode);
+				   in: [ :this | this textArea readOnly: true ];
+				   selectionInterval: (self startPos to: self endPos);
+				   yourself);
+		  yourself
+]
+
+{ #category : #'*FAST-Core-Model-Extension' }
 FASTTEntity >> orderedChildren [
 	^ self children asOrderedCollection sort: #startPos ascending
 ]
