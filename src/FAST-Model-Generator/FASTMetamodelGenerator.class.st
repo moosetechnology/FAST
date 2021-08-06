@@ -29,7 +29,9 @@ Class {
 		'tInvocation',
 		'tNumericalLiteral',
 		'tAssignment',
-		'tVariableEntity'
+		'tVariableEntity',
+		'tComment',
+		'tWithComments'
 	],
 	#category : #'FAST-Model-Generator'
 }
@@ -74,6 +76,12 @@ FASTMetamodelGenerator >> commentForTBooleanLiteral [
 { #category : #comments }
 FASTMetamodelGenerator >> commentForTCharacterLiteral [
 	^ 'A character literal'
+]
+
+{ #category : #comments }
+FASTMetamodelGenerator >> commentForTComment [
+
+	^ 'FASTComment represents one instance of a comment (in the sense of programming language comments) for any FAST sourced entity. The commented sourced entity is called the container in the FAST model.'
 ]
 
 { #category : #comments }
@@ -165,6 +173,12 @@ FASTMetamodelGenerator >> commentForTVariableExpression [
 	^ 'A node that wraps around structural entity'
 ]
 
+{ #category : #comments }
+FASTMetamodelGenerator >> commentForTWithComments [
+
+	^ ' For entities with comments. In FAST, they are called containers. '
+]
+
 { #category : #definition }
 FASTMetamodelGenerator >> defineClasses [
 	super defineClasses.
@@ -221,6 +235,9 @@ FASTMetamodelGenerator >> defineProperties [
 		property: #endPos type: #Number.
 
 	tNamedEntity property: #name type: #String.
+	
+	((tComment property: #content type: #String) 
+		comment: 'Content of the comment as a String').
 ]
 
 { #category : #definition }
@@ -244,6 +261,11 @@ FASTMetamodelGenerator >> defineRelations [
 	
 	((tInvocation property: #invoked) comment: 'The name of the behavioural invoked') - ((tNamedEntity property: #invokedIn) comment: 'Optional invocation where this name is used').
 	
+	((tComment property: #container)
+			comment: 'Source code entity containing the comment')
+		*-
+	((tWithComments property: #comments)
+			comment: 'list of comments defined in the entity').
 ]
 
 { #category : #definition }
@@ -274,4 +296,9 @@ FASTMetamodelGenerator >> defineTraits [
 	tAssignment := builder newTraitNamed: #TAssignment comment: self commentForTAssignement.
 	tInvocation := builder newTraitNamed: #TInvocation comment: self commentForTInvocation.
 	tVariableEntity := builder newTraitNamed: #TVariableEntity comment: self commentForTVariableEntity.
+	
+	tComment := builder newTraitNamed: #TComment.
+	tComment comment: self commentForTComment.
+	tWithComments := builder newTraitNamed: #TWithComments.
+	tWithComments comment: self commentForTWithComments.
 ]
