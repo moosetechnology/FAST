@@ -12,9 +12,35 @@ FASTTEntity >> currentParentSelector [
 ]
 
 { #category : #'*FAST-Core-Model-Extension' }
-FASTTEntity >> fastSourceCode [
+FASTTEntity >> inspectionFAST [
 
-	<inspectorPresentationOrder: 500 title: 'fastSourceCode'>
+	<inspectorPresentationOrder: 450 title: 'FAST'>
+	^ SpTreeTablePresenter new
+		  addColumn: (SpCompositeTableColumn new
+				   addColumn: ((SpImageTableColumn evaluated: #midasIcon)
+						    width: 20;
+						    yourself);
+				   addColumn: (SpStringTableColumn evaluated: [ :node | 
+						    (node sourceText isNil or: [ 
+							     node startPos isNil or: [ node endPos isNil ] ])
+							    ifTrue: [ node class name allButFirst: 4 ]
+							    ifFalse: [ "4 = 'FAST' size"
+								    (node class name allButFirst: 4) , ': '
+								    ,
+								    (node sourceText copyFrom: node startPos to: node endPos) ] ]);
+				   yourself);
+		  children: [ :aClass | 
+			  aClass children asArray sorted: [ :a :b | 
+				  (a startPos ifNil: 0) <= (b startPos ifNil: 0) ] ];
+		  beMultipleSelection;
+		  roots: { self };
+		  beResizable
+]
+
+{ #category : #'*FAST-Core-Model-Extension' }
+FASTTEntity >> inspectionFASTSourceCode [
+
+	<inspectorPresentationOrder: 500 title: 'FASTSourceCode'>
 	(self sourceText isNotNil and: [ 
 		 self startPos isNotNil and: [ self endPos isNotNil ] ]) ifFalse: [ 
 		^ SpTextPresenter new
