@@ -21,13 +21,15 @@ FASTTEntity >> inspectionFAST [
 						    width: 20;
 						    yourself);
 				   addColumn: (SpStringTableColumn evaluated: [ :node | 
-						    (node sourceText isNil or: [ 
-							     node startPos isNil or: [ node endPos isNil ] ])
+						    | sourceText |
+						    sourceText := nil.
+						    (node startPos isNil or: [ 
+							     node endPos isNil or: [ 
+								     (sourceText := node rootNode sourceText) isEmptyOrNil ] ])
 							    ifTrue: [ node class name allButFirst: 4 ]
 							    ifFalse: [ "4 = 'FAST' size"
 								    (node class name allButFirst: 4) , ': '
-								    ,
-								    (node sourceText copyFrom: node startPos to: node endPos) ] ]);
+								    , (sourceText copyFrom: node startPos to: node endPos) ] ]);
 				   yourself);
 		  children: [ :aClass | 
 			  aClass children asArray sorted: [ :a :b | 
