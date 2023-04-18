@@ -53,8 +53,8 @@ FASTMetamodelGenerator class >> submetamodels [
 ]
 
 { #category : #comments }
-FASTMetamodelGenerator >> commentForTAssignement [
-	^ 'A node representing an assignement'
+FASTMetamodelGenerator >> commentForTAssignment [
+	^ 'A node representing an assignment'
 ]
 
 { #category : #comments }
@@ -256,8 +256,8 @@ FASTMetamodelGenerator >> defineRelations [
 	
 	((tWithArguments property: #arguments) comment: 'My arguments') <>-* ((tExpression property: #argumentOwner) comment: 'my owner') .
 	
-	((tAssignment property: #variable) comment: 'An assigned variable (lhs of assignement)') - ((tVariableEntity property: #parentAssignmentExpression) comment: 'Optional assignment to the variable').
-	((tAssignment property: #expression) comment: 'Assigned expression (rhs of assignement)') - ((tExpression property: #assignedIn) comment: 'Optional assignment where this expression is used').
+	((tAssignment property: #variable) comment: 'An assigned variable (lhs of assignment)') - ((tVariableEntity property: #parentAssignmentExpression) comment: 'Optional assignment to the variable').
+	((tAssignment property: #expression) comment: 'Assigned expression (rhs of assignment)') - ((tExpression property: #assignedIn) comment: 'Optional assignment where this expression is used').
 	
 	((tInvocation property: #invoked) comment: 'The name of the behavioural invoked') - ((tNamedEntity property: #invokedIn) comment: 'Optional invocation where this name is used').
 	
@@ -293,7 +293,7 @@ FASTMetamodelGenerator >> defineTraits [
 	tExpressionStatement := builder newTraitNamed: #TExpressionStatement comment: self commentForTExpressionStatement.
 	tReturnStatement := builder newTraitNamed: #TReturnStatement comment: self commentForTReturnStatement.
 	tStatementBlock := builder newTraitNamed: #TStatementBlock comment: self commentForTStatementBlock.
-	tAssignment := builder newTraitNamed: #TAssignment comment: self commentForTAssignement.
+	tAssignment := builder newTraitNamed: #TAssignment comment: self commentForTAssignment.
 	tInvocation := builder newTraitNamed: #TInvocation comment: self commentForTInvocation.
 	tVariableEntity := builder newTraitNamed: #TVariableEntity comment: self commentForTVariableEntity.
 	
