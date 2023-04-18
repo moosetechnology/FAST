@@ -14,5 +14,5 @@ FASTTCharacterLiteral classSide >> annotation [
 	<FMClass: #TCharacterLiteral super: #Object>
 	<package: #'FAST-Core-Model'>
 	<generated>
-	^self
+	^ self
 ]

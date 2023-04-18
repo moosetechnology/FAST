@@ -1,5 +1,5 @@
 "
-A node representing an assignement
+A node representing an assignment
 "
 Trait {
 	#name : #FASTTAssignment,
@@ -18,7 +18,7 @@ FASTTAssignment classSide >> annotation [
 	<FMClass: #TAssignment super: #Object>
 	<package: #'FAST-Core-Model'>
 	<generated>
-	^self
+	^ self
 ]
 
 { #category : #accessing }
@@ -26,7 +26,7 @@ FASTTAssignment >> expression [
 	"Relation named: #expression type: #FASTTExpression opposite: #assignedIn"
 
 	<generated>
-	<FMComment: 'Assigned expression (rhs of assignement)'>
+	<FMComment: 'Assigned expression (rhs of assignment)'>
 	^ expression
 ]
 
@@ -42,7 +42,7 @@ FASTTAssignment >> variable [
 	"Relation named: #variable type: #FASTTVariableEntity opposite: #parentAssignmentExpression"
 
 	<generated>
-	<FMComment: 'An assigned variable (lhs of assignement)'>
+	<FMComment: 'An assigned variable (lhs of assignment)'>
 	^ variable
 ]
 

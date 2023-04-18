@@ -15,7 +15,7 @@ FASTEntity class >> annotation [
 	<FMClass: #Entity super: #MooseEntity>
 	<package: #'FAST-Core-Model'>
 	<generated>
-	^self
+	^ self
 ]
 
 { #category : #meta }

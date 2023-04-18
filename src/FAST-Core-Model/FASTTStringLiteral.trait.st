@@ -14,5 +14,5 @@ FASTTStringLiteral classSide >> annotation [
 	<FMClass: #TStringLiteral super: #Object>
 	<package: #'FAST-Core-Model'>
 	<generated>
-	^self
+	^ self
 ]

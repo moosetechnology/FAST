@@ -18,7 +18,7 @@ FASTTNamedEntity classSide >> annotation [
 	<FMClass: #TNamedEntity super: #Object>
 	<package: #'FAST-Core-Model'>
 	<generated>
-	^self
+	^ self
 ]
 
 { #category : #accessing }

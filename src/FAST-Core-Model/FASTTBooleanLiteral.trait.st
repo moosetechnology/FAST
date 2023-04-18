@@ -14,5 +14,5 @@ FASTTBooleanLiteral classSide >> annotation [
 	<FMClass: #TBooleanLiteral super: #Object>
 	<package: #'FAST-Core-Model'>
 	<generated>
-	^self
+	^ self
 ]

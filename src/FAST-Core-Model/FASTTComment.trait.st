@@ -16,7 +16,7 @@ FASTTComment classSide >> annotation [
 	<FMClass: #TComment super: #Object>
 	<package: #'FAST-Core-Model'>
 	<generated>
-	^self
+	^ self
 ]
 
 { #category : #accessing }

@@ -14,5 +14,5 @@ FASTTNullPointerLiteral classSide >> annotation [
 	<FMClass: #TNullPointerLiteral super: #Object>
 	<package: #'FAST-Core-Model'>
 	<generated>
-	^self
+	^ self
 ]

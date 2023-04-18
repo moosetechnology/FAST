@@ -14,5 +14,5 @@ FASTTVariableExpression classSide >> annotation [
 	<FMClass: #TVariableExpression super: #Object>
 	<package: #'FAST-Core-Model'>
 	<generated>
-	^self
+	^ self
 ]

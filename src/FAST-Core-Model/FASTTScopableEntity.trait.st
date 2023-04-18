@@ -16,5 +16,5 @@ FASTTScopableEntity classSide >> annotation [
 	<FMClass: #TScopableEntity super: #Object>
 	<package: #'FAST-Core-Model'>
 	<generated>
-	^self
+	^ self
 ]

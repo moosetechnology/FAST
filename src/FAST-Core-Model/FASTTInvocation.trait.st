@@ -17,7 +17,7 @@ FASTTInvocation classSide >> annotation [
 	<FMClass: #TInvocation super: #Object>
 	<package: #'FAST-Core-Model'>
 	<generated>
-	^self
+	^ self
 ]
 
 { #category : #accessing }

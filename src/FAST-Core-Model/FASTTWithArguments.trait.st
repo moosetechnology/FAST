@@ -15,7 +15,7 @@ FASTTWithArguments classSide >> annotation [
 	<FMClass: #TWithArguments super: #Object>
 	<package: #'FAST-Core-Model'>
 	<generated>
-	^self
+	^ self
 ]
 
 { #category : #adding }

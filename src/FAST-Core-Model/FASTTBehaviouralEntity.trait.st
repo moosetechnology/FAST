@@ -23,7 +23,7 @@ FASTTBehaviouralEntity classSide >> annotation [
 	<FMClass: #TBehaviouralEntity super: #Object>
 	<package: #'FAST-Core-Model'>
 	<generated>
-	^self
+	^ self
 ]
 
 { #category : #accessing }

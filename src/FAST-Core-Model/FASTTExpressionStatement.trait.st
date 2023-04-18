@@ -17,7 +17,7 @@ FASTTExpressionStatement classSide >> annotation [
 	<FMClass: #TExpressionStatement super: #Object>
 	<package: #'FAST-Core-Model'>
 	<generated>
-	^self
+	^ self
 ]
 
 { #category : #accessing }

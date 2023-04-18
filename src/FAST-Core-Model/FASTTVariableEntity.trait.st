@@ -18,7 +18,7 @@ FASTTVariableEntity classSide >> annotation [
 	<FMClass: #TVariableEntity super: #Object>
 	<package: #'FAST-Core-Model'>
 	<generated>
-	^self
+	^ self
 ]
 
 { #category : #accessing }

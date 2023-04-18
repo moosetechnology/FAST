@@ -19,5 +19,5 @@ FASTTNamedBehaviouralEntity classSide >> annotation [
 	<FMClass: #TNamedBehaviouralEntity super: #Object>
 	<package: #'FAST-Core-Model'>
 	<generated>
-	^self
+	^ self
 ]

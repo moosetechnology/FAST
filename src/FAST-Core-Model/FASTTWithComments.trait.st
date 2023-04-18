@@ -15,7 +15,7 @@ FASTTWithComments classSide >> annotation [
 	<FMClass: #TWithComments super: #Object>
 	<package: #'FAST-Core-Model'>
 	<generated>
-	^self
+	^ self
 ]
 
 { #category : #adding }

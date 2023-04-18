@@ -18,7 +18,7 @@ FASTTStatementBlock classSide >> annotation [
 	<FMClass: #TStatementBlock super: #Object>
 	<package: #'FAST-Core-Model'>
 	<generated>
-	^self
+	^ self
 ]
 
 { #category : #adding }

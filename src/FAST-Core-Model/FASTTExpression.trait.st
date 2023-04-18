@@ -20,7 +20,7 @@ FASTTExpression classSide >> annotation [
 	<FMClass: #TExpression super: #Object>
 	<package: #'FAST-Core-Model'>
 	<generated>
-	^self
+	^ self
 ]
 
 { #category : #accessing }
