@@ -1,6 +1,8 @@
 Class {
 	#name : #FASTModel,
 	#superclass : #MooseModel,
+	#traits : 'FASTTEntityCreator',
+	#classTraits : 'FASTTEntityCreator classTrait',
 	#category : #'FAST-Core-Model-Model'
 }
 
