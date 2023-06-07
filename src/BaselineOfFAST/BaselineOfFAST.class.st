@@ -10,10 +10,6 @@ BaselineOfFAST >> baseline: spec [
 	spec
 		for: #common
 		do: [ 
-			spec blessing: #baseline.
-			spec description: 'Developement version of FAST using FamixNG for Pharo.'.
-			spec author: 'BenoitVerhaeghe'.
-			spec timestamp: '07/06/2018 00:00'.
 			self defineDependencies: spec.
 			self definePackages: spec.
 			self defineGroups: spec ]
@@ -25,15 +21,11 @@ BaselineOfFAST >> defineDependencies: spec [
 
 { #category : #baselines }
 BaselineOfFAST >> defineGroups: spec [
-	spec
-		group: 'core' with: #('FAST-Core-Model-Extension' 'FAST-Core-Model' 'FAST-Model-Generator' 'FAST-Core-Visitor' 'FAST-GTExtensions' 'FAST-Core-Deprecated');
-		group: 'default' with: #('core')
 ]
 
 { #category : #baselines }
 BaselineOfFAST >> definePackages: spec [
 	spec
-		repository: 'https://github.com/moosetechnology/FAST';
 		package: 'FAST-Core-Model';
 		package: 'FAST-Core-Visitor';
 		package: 'FAST-Core-Model-Extension' with: [ spec requires: #('FAST-Core-Model') ];

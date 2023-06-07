@@ -1,7 +1,7 @@
 # FAST
 
 ![CI](https://github.com/moosetechnology/FAST/workflows/CI/badge.svg)
-[![Moose version](https://img.shields.io/badge/Moose-9-%23aac9ff.svg)](https://github.com/moosetechnology/Moose)
+[![Moose version](https://img.shields.io/badge/Moose-10-%23aac9ff.svg)](https://github.com/moosetechnology/Moose)
 
 ## Installation
 

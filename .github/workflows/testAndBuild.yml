@@ -14,7 +14,7 @@ jobs:
       PROJECT_NAME: ${{ matrix.smalltalk }}-FAST
     strategy:
       matrix:
-        smalltalk: [ Moose64-9.0 ]
+        smalltalk: [ Moose64-10 ]
     name: ${{ matrix.smalltalk }}
     steps:
       - uses: actions/checkout@v2
