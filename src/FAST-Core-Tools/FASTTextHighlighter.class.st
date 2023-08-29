@@ -4,7 +4,7 @@ Class {
 	#instVars : [
 		'attributeMapper'
 	],
-	#category : #'FAST-Core-Highlighter'
+	#category : #'FAST-Core-Tools-Highlighter'
 }
 
 { #category : #public }

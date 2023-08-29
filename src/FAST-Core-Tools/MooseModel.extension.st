@@ -1,6 +1,6 @@
 Extension { #name : #MooseModel }
 
-{ #category : #'*FAST-Core-Highlighter' }
+{ #category : #'*FAST-Core-Tools' }
 MooseModel >> fastHighligther [
 	^ FASTTextHighlighter 
 ]
