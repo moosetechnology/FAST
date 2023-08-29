@@ -1,7 +1,7 @@
-Extension { #name : #FASTEntity }
+Extension { #name : #FASTTEntity }
 
 { #category : #'*FAST-Core-Tools' }
-FASTEntity >> addLocalUse: aFASTNode [
+FASTTEntity >> addLocalUse: aFASTNode [
 	(self
 		attributeAt: #localUses
 		ifAbsent: [ Error signal: 'missing #localUses attribute in ' , self asString ])
@@ -9,30 +9,30 @@ FASTEntity >> addLocalUse: aFASTNode [
 ]
 
 { #category : #'*FAST-Core-Tools' }
-FASTEntity >> localDeclaration [
+FASTTEntity >> localDeclaration [
 	^self
 		attributeAt: #localDeclaration
 		ifAbsent: [ Error signal: 'missing #localDeclaration attribute in ' , self asString ]
 ]
 
 { #category : #'*FAST-Core-Tools' }
-FASTEntity >> localDeclaration: aDeclarationNode [
+FASTTEntity >> localDeclaration: aDeclarationNode [
 	self attributeAt: #localDeclaration put: aDeclarationNode
 ]
 
 { #category : #'*FAST-Core-Tools' }
-FASTEntity >> localUses [
+FASTTEntity >> localUses [
 	^self
 		attributeAt: #localUses
 		ifAbsent: [ Error signal: 'missing #localUses attribute in ' , self asString ]
 ]
 
 { #category : #'*FAST-Core-Tools' }
-FASTEntity >> localUses: aCollection [
+FASTTEntity >> localUses: aCollection [
 	self attributeAt: #localUses put: aCollection 
 ]
 
 { #category : #'*FAST-Core-Tools' }
-FASTEntity >> resetLocalUses [
+FASTTEntity >> resetLocalUses [
 	self attributeAt: #localUses put: OrderedCollection new
 ]
