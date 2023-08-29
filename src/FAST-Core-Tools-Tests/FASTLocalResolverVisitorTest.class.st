@@ -15,7 +15,7 @@ Class {
 FASTLocalResolverVisitorTest >> setUp [
 	super setUp.
 
-	localResolver := FASTJavaLocalResolverVisitor new
+	localResolver := FASTLocalResolverVisitor new
 ]
 
 { #category : #tests }
