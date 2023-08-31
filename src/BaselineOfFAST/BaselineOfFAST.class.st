@@ -23,7 +23,7 @@ BaselineOfFAST >> defineDependencies: spec [
 		with: [
 			spec
 				loads: #('Basic');
-				repository: 'github://moosetechnology/Famix/src' ]
+				repository: 'github://moosetechnology/Famix:development/src' ]
 ]
 
 { #category : #baselines }
