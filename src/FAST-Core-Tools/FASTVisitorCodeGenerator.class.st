@@ -25,51 +25,77 @@ Class {
 
 { #category : #'code generation' }
 FASTVisitorCodeGenerator >> generateAccept: modelClass extensionPackage: aPackageName [
+
 	| code |
 	code := String streamContents: [ :st |
+		self generateAcceptSelectorIn: st.
+		self generatePragmaIn: st.
 		st
-			<< 'accept: aVisitor' ;
 			cr ;
 			tab ;
-			<< '^aVisitor visit' ;
-			<< modelClass name ;
-			<< ': self'
-	].
+			<< '^'.
+		self generateVisitCallFor: modelClass on: 'aVisitor' argument: 'self' in: st ].
 
-	modelClass
-		compile: code
-		classified: ('*' , aPackageName)
+	modelClass compile: code classified: '*' , aPackageName
+]
+
+{ #category : #private }
+FASTVisitorCodeGenerator >> generateAcceptSelectorIn: st [
+
+	st << 'accept: aVisitor'
+]
+
+{ #category : #private }
+FASTVisitorCodeGenerator >> generatePragmaIn: st [
+	st
+		cr ;
+		tab ;
+		<< '<generated>'
 ]
 
 { #category : #'code generation' }
 FASTVisitorCodeGenerator >> generateVisit: aModelClass in: aVisitorClass [
+
 	| parameter code category |
 	parameter := 'a' , aModelClass name.
 	code := String streamContents: [ :st |
-		st
-			<< 'visit' ;
-			<< aModelClass name ;
-			<< ': ' ;
-			<< parameter.
+		self
+			generateVisitSelectorFor: aModelClass
+			parameter: parameter
+			in: st.
+		self generatePragmaIn: st.
 
 		aModelClass traits do: [ :aTrait |
-			st
-				cr ;
-				tab ;
-				<< 'self visit' ;
-				<< aTrait name ;
-				<< ': ' ;
-				<< parameter ;
-				<< '.'.
-		].
+			st cr ; tab.
+			self generateVisitCallFor: aTrait on: 'self' argument: parameter in: st ]
 	].
 
 	category := aModelClass isTrait
-		ifTrue: [ 'visiting' ]
-		ifFalse: [ 'visiting - traits' ].
-	aVisitorClass
-		compile: code
-		classified: category
+		ifTrue: [ 'visiting - traits' ]
+		ifFalse: [ 'visiting' ].
+
+	aVisitorClass compile: code classified: category
+]
+
+{ #category : #private }
+FASTVisitorCodeGenerator >> generateVisitCallFor: modelClass on: receiver argument: argument in: st [
+	st
+		<< receiver ;
+		<< ' visit';
+		<< modelClass name;
+		<< ': ' ;
+		<< argument ;
+		<< '.'
+]
+
+{ #category : #private }
+FASTVisitorCodeGenerator >> generateVisitSelectorFor: aModelClass parameter: parameter in: st [
+
+	st
+		<< 'visit';
+		<< aModelClass name;
+		<< ': ';
+		<< parameter
 ]
 
 { #category : #run }
