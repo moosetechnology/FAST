@@ -16,6 +16,15 @@ BaselineOfFAST >> baseline: spec [
 ]
 
 { #category : #baselines }
+BaselineOfFAST >> customProjectAttributes [
+
+	^ RPackageOrganizer default packages
+		  detect: [ :package | package name = 'BaselineOfFamix' ]
+		  ifFound: [ #(  ) ]
+		  ifNone: [ #( #NeedsMoose ) ]
+]
+
+{ #category : #baselines }
 BaselineOfFAST >> defineDependencies: spec [
 
 	spec
@@ -41,12 +50,22 @@ BaselineOfFAST >> defineGroups: spec [
 
 { #category : #baselines }
 BaselineOfFAST >> definePackages: spec [
+
 	spec
-		package: 'FAST-Core-Model' ;
-		package: 'FAST-Core-Model-Extension' with: [ spec requires: #('FAST-Core-Model') ] ;
-		package: 'FAST-Core-Visitor' with: [ spec requires: #('FAST-Core-Model') ] ;
-		package: 'FAST-Model-Generator' with: [ spec requires: #('Famix') ] ;
-		package: 'FAST-Core-Tools' with: [ spec requires: #('FAST-Core-Visitor') ] ;
-		package: 'FAST-Core-Tools-Tests' with: [ spec requires: #('FAST-Core-Tools') ] ;
-		package: 'FAST-Core-Deprecated'
+		package: 'FAST-Core-Model';
+		package: 'FAST-Core-Model-Extension'
+		with: [ spec requires: #( 'FAST-Core-Model' ) ];
+		package: 'FAST-Core-Visitor'
+		with: [ spec requires: #( 'FAST-Core-Model' ) ];
+		package: 'FAST-Model-Generator';
+		package: 'FAST-Core-Tools'
+		with: [ spec requires: #( 'FAST-Core-Visitor' ) ];
+		package: 'FAST-Core-Tools-Tests'
+		with: [ spec requires: #( 'FAST-Core-Tools' ) ];
+		package: 'FAST-Core-Deprecated'.
+
+	spec for: #NeedsMoose do: [ 
+		spec
+			package: 'FAST-Model-Generator'
+			with: [ spec requires: #( 'Famix' ) ] ]
 ]
