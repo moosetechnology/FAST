@@ -27,12 +27,11 @@ BaselineOfFAST >> customProjectAttributes [
 { #category : #baselines }
 BaselineOfFAST >> defineDependencies: spec [
 
-	spec
-		baseline: 'Famix'
-		with: [
+	spec for: #NeedsMoose do: [ 
+		spec baseline: 'Famix' with: [ 
 			spec
-				loads: #('Basic');
-				repository: 'github://moosetechnology/Famix:development/src' ]
+				loads: #( 'Basic' );
+				repository: 'github://moosetechnology/Famix:development/src' ] ]
 ]
 
 { #category : #baselines }
