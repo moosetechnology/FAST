@@ -65,6 +65,7 @@ BaselineOfFAST >> definePackages: spec [
 
 	spec for: #NeedsMoose do: [ 
 		spec
+			package: 'FAST-Core-Model' with: [ spec requires: #( 'Famix' ) ];
 			package: 'FAST-Model-Generator'
 			with: [ spec requires: #( 'Famix' ) ] ]
 ]
