@@ -31,7 +31,9 @@ Class {
 		'tAssignment',
 		'tVariableEntity',
 		'tComment',
-		'tWithComments'
+		'tWithComments',
+		'tBinaryExpression',
+		'tUnaryExpression'
 	],
 	#category : #'FAST-Model-Generator'
 }
@@ -66,6 +68,11 @@ Subclassed for NamedBehavioural as methods/functions
 
 Has parameters , and a body (StatementBlock).
 Local variables are intended to be stored in the local entities of the body'
+]
+
+{ #category : #comments }
+FASTMetamodelGenerator >> commentForTBinaryExpression [
+	^ 'A trait representing a binary expression of a node of a source code.'
 ]
 
 { #category : #comments }
@@ -164,6 +171,11 @@ FASTMetamodelGenerator >> commentForTStringLiteral [
 ]
 
 { #category : #comments }
+FASTMetamodelGenerator >> commentForTUnaryExpression [
+	^ 'A trait representing an unary expression of a node of a source code.'
+]
+
+{ #category : #comments }
 FASTMetamodelGenerator >> commentForTVariableEntity [
 	^ 'A node for variable name not in a expression (example: assigned variable or parameter)'
 ]
@@ -193,6 +205,8 @@ FASTMetamodelGenerator >> defineHierarchy [
 	entity --|> tEntity.
 	
 	tLiteral --|> tExpression.
+	tBinaryExpression --|> tExpression.
+	tUnaryExpression --|> tExpression.
 	
 	tBooleanLiteral --|> tLiteral.
 	tCharacterLiteral --|> tLiteral.
@@ -278,6 +292,8 @@ FASTMetamodelGenerator >> defineTraits [
 	tEntity := builder newTraitNamed: #TEntity comment: 'any entity'.
 	tNamedEntity := builder newTraitNamed: #TNamedEntity comment: 'A entity with a name'.
 	tExpression := builder newTraitNamed: #TExpression comment: self commentForTExpression.
+	tBinaryExpression := builder newTraitNamed: #TBinaryExpression comment: self commentForTBinaryExpression.
+	tUnaryExpression := builder newTraitNamed: #TUnaryExpression comment: self commentForTUnaryExpression.
 	tLiteral := builder newTraitNamed: #TLiteral comment: self commentForTLiteral.
 	tBooleanLiteral := builder newTraitNamed: #TBooleanLiteral comment: self commentForTBooleanLiteral.
 	tCharacterLiteral := builder newTraitNamed: #TCharacterLiteral comment: self commentForTCharacterLiteral.
