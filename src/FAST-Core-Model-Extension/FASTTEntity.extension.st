@@ -12,6 +12,21 @@ FASTTEntity >> currentParentSelector [
 ]
 
 { #category : #'*FAST-Core-Model-Extension' }
+FASTTEntity >> display [
+
+	"default display line is the source code of the entity"
+
+	| sourceText |
+	sourceText := (self startPos isNotNil and: [ self endPos isNotNil ]) 
+		              ifTrue: [ self rootNode sourceText ].
+
+	^ (self class name allButFirst: 4)
+	  , (sourceText ifNil: [ '' ] ifNotNil: [ 
+			   ': ' , (sourceText copyFrom: self startPos to: self endPos) 
+				   truncateWithElipsisTo: 50 ])
+]
+
+{ #category : #'*FAST-Core-Model-Extension' }
 FASTTEntity >> inspectionFAST [
 
 	<inspectorPresentationOrder: 450 title: 'FAST'>
@@ -20,7 +35,7 @@ FASTTEntity >> inspectionFAST [
 				   addColumn: ((SpImageTableColumn evaluated: #mooseIcon)
 						    width: 20;
 						    yourself);
-				   addColumn: (SpStringTableColumn evaluated: [ :node | node inspectionFASTDisplay ]);
+				   addColumn: (SpStringTableColumn evaluated: [ :node | node display ]);
 				   yourself);
 		  children: [ :aClass | 
 			  aClass children asArray sorted: [ :a :b | 
@@ -28,21 +43,6 @@ FASTTEntity >> inspectionFAST [
 		  beMultipleSelection;
 		  roots: { self };
 		  beResizable
-]
-
-{ #category : #'*FAST-Core-Model-Extension' }
-FASTTEntity >> inspectionFASTDisplay [
-	"default display line is the source code of the entity"
-
-	| sourceText |
-	sourceText := (self startPos isNotNil and: [ self endPos isNotNil ])
-		ifTrue: [ self rootNode sourceText ]
-		ifFalse: [ nil ].
-
-	^ (self class name allButFirst: 4)
-	  , (sourceText ifNil: [ '' ] ifNotNil: [
-			   ': ' , (sourceText copyFrom: self startPos to: self endPos)
-				   truncateWithElipsisTo: 50 ])
 ]
 
 { #category : #'*FAST-Core-Model-Extension' }
