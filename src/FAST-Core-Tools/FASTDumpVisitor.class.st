@@ -86,7 +86,9 @@ FASTDumpVisitor >> visit: aFASTEntity [
 FASTDumpVisitor >> visitChildren: children [
 
 	stream nextPut: ${.
-	children do: [ :aFASTEntity | self visit: aFASTEntity ].
+	children
+		do: [ :aFASTEntity | self visit: aFASTEntity ]
+		separatedBy: [ stream nextPut: $. ].
 	stream nextPut: $}
 ]
 
