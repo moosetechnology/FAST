@@ -9,6 +9,24 @@ FASTTEntity >> addLocalUse: aFASTNode [
 ]
 
 { #category : #'*FAST-Core-Tools' }
+FASTTEntity >> dump [
+
+	"Generate an expression that recreates the receiver"
+
+	^ FASTDumpVisitor visit: self
+]
+
+{ #category : #'*FAST-Core-Tools' }
+FASTTEntity >> inspectionFASTDump [
+
+	<inspectorPresentationOrder: 550 title: 'FASTDump'>
+	^ SpCodePresenter new
+		  text: (RBParser parseExpression: self dump) formattedCode;
+		  beForScripting;
+		  yourself
+]
+
+{ #category : #'*FAST-Core-Tools' }
 FASTTEntity >> localDeclaration [
 	^self
 		attributeAt: #localDeclaration

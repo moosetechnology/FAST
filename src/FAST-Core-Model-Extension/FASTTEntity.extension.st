@@ -27,14 +27,6 @@ FASTTEntity >> display [
 ]
 
 { #category : #'*FAST-Core-Model-Extension' }
-FASTTEntity >> dump [
-
-	"Generate an expression that recreates the receiver"
-
-	^ FASTDumpVisitor visit: self
-]
-
-{ #category : #'*FAST-Core-Model-Extension' }
 FASTTEntity >> inspectionFAST [
 
 	<inspectorPresentationOrder: 450 title: 'FAST'>
@@ -51,16 +43,6 @@ FASTTEntity >> inspectionFAST [
 		  beMultipleSelection;
 		  roots: { self };
 		  beResizable
-]
-
-{ #category : #'*FAST-Core-Model-Extension' }
-FASTTEntity >> inspectionFASTDump [
-
-	<inspectorPresentationOrder: 550 title: 'FASTDump'>
-	^ SpCodePresenter new
-		  text: (RBParser parseExpression: self dump) formattedCode;
-		  beForScripting;
-		  yourself
 ]
 
 { #category : #'*FAST-Core-Model-Extension' }
