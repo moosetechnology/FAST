@@ -74,6 +74,9 @@ FASTDifferentialValidator >> compare: ast1 to: ast2 [
 	(ast1 class = ast2 class)
 		ifFalse: [ self ast: ast1 differ: ast2 ].
 
+	((self childrenNodes: ast1) size = (self childrenNodes: ast2) size)
+		ifFalse: [ self ast: ast1 differ: ast2 ].
+
 	(self childrenNodes: ast1)
 		with: (self childrenNodes: ast2)
 		do: [ :a :b | self compare: a to: b ]
