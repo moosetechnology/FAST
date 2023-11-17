@@ -84,7 +84,7 @@ FASTDifferentialValidator >> getASTFromFileReference: aFileReference [
 
 	| model |
 	aFileReference readStreamDo: [ :stream |
-		model := self getASTFromString: stream ].
+		model := self getASTFromString: stream contents ].
 
 	^self getTopLevelNodes: model
 ]
