@@ -128,7 +128,7 @@ FASTDifferentialValidator >> isSourceFile: aFileReference [
 { #category : #'instance creation' }
 FASTDifferentialValidator >> on: aDirectoryName [
 
-	self runOnDirectory: aDirectoryName asFileReference
+	self runOnFileReference: aDirectoryName asFileReference
 ]
 
 { #category : #utilities }
