@@ -70,16 +70,28 @@ FASTDifferentialValidator >> childrenNodes: astNode [
 
 { #category : #utilities }
 FASTDifferentialValidator >> compare: ast1 to: ast2 [
+	"comparing the two lists of children may seem a bit complicate, but it is trying
+	 to give more info on when the children starts to differ"
+
+	| children1 children2 size1 size2 |
 
 	(ast1 class = ast2 class)
 		ifFalse: [ self ast: ast1 differ: ast2 ].
 
-	((self childrenNodes: ast1) size = (self childrenNodes: ast2) size)
-		ifFalse: [ self ast: ast1 differ: ast2 ].
+	children1 := self childrenNodes: ast1.
+	children2 := self childrenNodes: ast2.
 
-	(self childrenNodes: ast1)
-		with: (self childrenNodes: ast2)
-		do: [ :a :b | self compare: a to: b ]
+	size1 := children1 size.
+	size2 := children2 size.
+
+	1 to: size1 do: [ :i |
+		(size2 < i)
+			ifTrue: [ self ast: (children1 at: i) differ: nil ]
+			ifFalse: [ self compare: (children1 at: i) to: (children2 at: i) ]
+	].
+
+	(children2 size > children1 size)
+	ifTrue: [self ast: nil differ: (children2 at: (children1 size + 1)) ]
 ]
 
 { #category : #utilities }
