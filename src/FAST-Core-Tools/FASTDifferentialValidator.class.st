@@ -28,7 +28,8 @@ Class {
 	#superclass : #Object,
 	#instVars : [
 		'skipPaths',
-		'comparator'
+		'comparator',
+		'encoding'
 	],
 	#category : #'FAST-Core-Tools-Validator'
 }
@@ -51,11 +52,30 @@ FASTDifferentialValidator >> compare: node1 to: node2 [
 	self comparator compare: node1 to: node2
 ]
 
+{ #category : #accessing }
+FASTDifferentialValidator >> defaultEncoding [
+	"other possibilities are 'latin1', 'utf8', ...
+	see `ZnCharacterEncoder knownEncodingIdentifiers` for all possibilities"
+	^encoding ifNil: [ 'iso-8859-1' ]
+]
+
+{ #category : #accessing }
+FASTDifferentialValidator >> encoding [
+
+	^encoding
+]
+
+{ #category : #accessing }
+FASTDifferentialValidator >> encoding: aString [
+
+	encoding := aString
+]
+
 { #category : #utilities }
 FASTDifferentialValidator >> getASTFromFileReference: aFileReference [
 
 	| model |
-	aFileReference readStreamDo: [ :stream |
+	aFileReference readStreamEncoded: self defaultEncoding do: [ :stream |
 		model := self getASTFromString: stream contents ].
 
 	^self getTopLevelNodes: model
