@@ -28,122 +28,54 @@ Class {
 	#superclass : #Object,
 	#instVars : [
 		'skipPaths',
-		'strict'
+		'comparator',
+		'encoding'
 	],
-	#category : #'FAST-Core-Tools'
+	#category : #'FAST-Core-Tools-Validator'
 }
 
-{ #category : #comparison }
-FASTDifferentialValidator >> ast: node1 acceptableDifferenceTo: node2 [
-	"In non strict mode, some differences could be accepted"
+{ #category : #accessing }
+FASTDifferentialValidator >> comparator [
 
-	^false	
+	^comparator ifNil: [ comparator := self comparatorClass new ]
 ]
 
-{ #category : #comparison }
-FASTDifferentialValidator >> ast: node1 acceptableDifferenceTo: node2 property: property [
+{ #category : #accessing }
+FASTDifferentialValidator >> comparatorClass [
 
-	^#(startPos endPos) includes: property
+	^FamixModelComparator
 ]
 
-{ #category : #comparison }
-FASTDifferentialValidator >> ast: node1 differ: node2 [
-
-	self strict ifTrue:  [ Exception signal: 'ASTs differ' ].
-
-	(self ast: node1 acceptableDifferenceTo: node2)
-		ifTrue:  [
-			('  ** difference in ignored, position in source: ' , node1 startPos asString)
-				traceCr.
-			Notification signal
-		]
-		ifFalse: [ Exception signal: 'ASTs differ' ]
-]
-
-{ #category : #comparison }
-FASTDifferentialValidator >> ast: node1 differ: node2 property: property [
-
-	(self ast: node1 acceptableDifferenceTo: node2 property: property)
-		ifFalse: [ Exception signal: 'ASTs differ on property: ' , property implementingSelector ]
-]
-
-{ #category : #configuration }
-FASTDifferentialValidator >> beStrict [
-
-	self strict: true
-]
-
-{ #category : #utilities }
-FASTDifferentialValidator >> childrenNodes: astNode [
-
-	^OrderedCollection withAll:
-		(astNode children sorted: [:a :b | a startPos <= b startPos])
-
-]
-
-{ #category : #comparison }
+{ #category : #running }
 FASTDifferentialValidator >> compare: node1 to: node2 [
-	"check the two nodes have the same class
-	 then check they have the same properties (attributes with primitive types)
-	 then check recursively that they ahev the same sub-nodes"
-
-	self compareClasses: node1 to: node2.
-	self compareProperties: node1 to: node2.
-	self compareChildren: node1 to: node2
+	
+	self comparator compare: node1 to: node2
 ]
 
-{ #category : #comparison }
-FASTDifferentialValidator >> compareChildren: node1 to: node2 [
-	"comparing the two lists of children may seem a bit complicate, but it is trying
-	 to give more info when the children starts to differ
-	For example comparing using #with:collect: gives very little information if the two lists
-	differ in size"
-
-	| size1 children1 size2 children2 |
-	children1 := self childrenNodes: node1.
-	children2 := self childrenNodes: node2.
-
-	size1 := children1 size.
-	size2 := children2 size.
-
-	1 to: size1 do: [ :i |
-		size2 < i
-			ifTrue: [ self ast: (children1 at: i) differ: nil ]
-			ifFalse: [ self compare: (children1 at: i) to: (children2 at: i) ] ].
-
-	children2 size > children1 size ifTrue: [
-		self ast: nil differ: (children2 at: children1 size + 1) ]
+{ #category : #accessing }
+FASTDifferentialValidator >> defaultEncoding [
+	"other possibilities are 'latin1', 'utf8', ...
+	see `ZnCharacterEncoder knownEncodingIdentifiers` for all possibilities"
+	^encoding ifNil: [ 'iso-8859-1' ]
 ]
 
-{ #category : #comparison }
-FASTDifferentialValidator >> compareClasses: node1 to: node2 [
+{ #category : #accessing }
+FASTDifferentialValidator >> encoding [
 
-	node1 class = node2 class ifFalse: [
-		self ast: node1 differ: node2 ]
+	^encoding
 ]
 
-{ #category : #comparison }
-FASTDifferentialValidator >> compareProperties: node1 to: node2 [
-	"compare the values of the 'properties' (attributes with primitive types) of the two nodes
-	 since the two nodes should be the same class, they have the same properties"
+{ #category : #accessing }
+FASTDifferentialValidator >> encoding: aString [
 
-	(node1 class mooseDescription allPrimitiveProperties) do: [ :property || value1 value2 |
-		(self propertyToCompare: property) ifTrue: [
-			value1 := node1 perform: property implementingSelector.
-			value2 := node2 perform: property implementingSelector.
-
-			(value1 = value2) ifFalse: [
-			self ast: node1 differ: node2 property: property
-		]]
-	]
-
+	encoding := aString
 ]
 
 { #category : #utilities }
 FASTDifferentialValidator >> getASTFromFileReference: aFileReference [
 
 	| model |
-	aFileReference readStreamDo: [ :stream |
+	aFileReference readStreamEncoded: self defaultEncoding do: [ :stream |
 		model := self getASTFromString: stream contents ].
 
 	^self getTopLevelNodes: model
@@ -172,7 +104,6 @@ FASTDifferentialValidator >> initialize [
 
 	super initialize.
 
-	strict := false.
 	skipPaths := #().
 ]
 
@@ -186,16 +117,6 @@ FASTDifferentialValidator >> isSourceFile: aFileReference [
 FASTDifferentialValidator >> on: aDirectoryName [
 
 	self runOnFileReference: aDirectoryName asFileReference
-]
-
-{ #category : #testing }
-FASTDifferentialValidator >> propertyToCompare: aFMProperty [
-	"do not compare on derived (ie. computed) properties, only those with a stored value
-	 do not compare on startPos/endPos as they are not meaningfull"
-
-	aFMProperty isDerived ifTrue: [^false].
-	(#(startPos endPos) includes: aFMProperty implementingSelector) ifTrue: [^false].
-	^true
 ]
 
 { #category : #utilities }
@@ -241,9 +162,7 @@ FASTDifferentialValidator >> runOnSourceFile: aFileReference [
 		astBis := self getRootNode:
 			(self getASTFromString: (self reExportAST: astOrig)).
 	
-		[self compare: astOrig to: astBis]
-		on: Notification
-		do: [ "continue" ]
+		self compare: astOrig to: astBis
 	]
 ]
 
@@ -257,16 +176,4 @@ FASTDifferentialValidator >> skipPaths [
 FASTDifferentialValidator >> skipPaths: anObject [
 
 	skipPaths := anObject
-]
-
-{ #category : #accessing }
-FASTDifferentialValidator >> strict [
-
-	^ strict
-]
-
-{ #category : #accessing }
-FASTDifferentialValidator >> strict: anObject [
-
-	strict := anObject
 ]
