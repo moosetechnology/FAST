@@ -41,7 +41,7 @@ BaselineOfFAST >> defineGroups: spec [
 		with: #( 'FAST-Core-Model' 'FAST-Core-Model-Extension' 'FAST-Model-Generator'  'FAST-Core-Visitor' ) ;
 
 		group: 'tools'
-		with: #( 'FAST-Core-Tools' 'FAST-Core-Tools-Tests' ) ;
+		with: #( 'core' 'FAST-Core-Tools' 'FAST-Core-Tools-Tests' ) ;
 
 		group: 'default' with: #( 'core' )
 
