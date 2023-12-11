@@ -7,10 +7,10 @@ It offers two features:
 Trait {
 	#name : #FASTTExporter,
 	#instVars : [
-		'indent',
 		'operatorsPrecedence',
 		'expressionContextOperator',
-		'outputStream'
+		'outputStream',
+		'indentLevel'
 	],
 	#category : #'FAST-Core-Visitor'
 }
@@ -133,8 +133,13 @@ FASTTExporter >> expressionContextOperator [
 { #category : #outputting }
 FASTTExporter >> indent [
 
-	indent ifNil: [ ^indent := 1 ].
-	^indent := indent + 1
+	^indentLevel := self indentLevel + 1
+]
+
+{ #category : #accessing }
+FASTTExporter >> indentLevel [
+
+	^ indentLevel ifNil: [ indentLevel := 0 ]
 ]
 
 { #category : #outputting }
@@ -220,8 +225,7 @@ FASTTExporter >> outputExpression: aBlock withOperator: operator [
 FASTTExporter >> outputIndentPrefix [
 	"prints indentation spaces"
 
-	indent ifNil: [ indent := 0 ].
-	self spaces: (indent * 2)
+	self spaces: (self indentLevel * 2)
 	
 ]
 
@@ -260,9 +264,8 @@ FASTTExporter >> spaces: n [
 { #category : #outputting }
 FASTTExporter >> unindent [
 
-	indent ifNil: [ ^indent := 0 ].
-	(indent <= 0) ifTrue: [ ^indent := 0 ].
-	^indent := indent - 1
+	(self indentLevel <= 0) ifTrue: [ ^indentLevel := 0 ].
+	^indentLevel := self indentLevel - 1
 ]
 
 { #category : #outputting }
