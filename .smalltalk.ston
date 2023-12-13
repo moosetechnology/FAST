@@ -9,7 +9,7 @@ SmalltalkCISpec {
     SCIMetacelloLoadSpec {
       #baseline : 'FAST',
       #directory : 'src',
-      #load : [ 'default' ],
+      #load : [ 'core', 'tools' ],
       #platforms : [ #pharo ]
     }
   ]
