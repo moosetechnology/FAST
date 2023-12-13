@@ -1,0 +1,40 @@
+name: CI MOOSE11
+
+#
+# DO NOT KILL/MODIFY (Moose64-10) THIS WORKFLOW WITHOUT A MAJOR RELEASE OF THE PROJECT
+# IF YOU PLAN TO MOVE TO NEXT VERSION, PLEASE CREATE A NEW BRANCH
+# AND DO A MAJOR RELEASE
+#
+
+env:
+  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+# Controls when the action will run. Triggers the workflow on push or pull request
+# events but only for the development branch
+on:
+  push:
+    branches: 
+      - v*
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    env:
+      PROJECT_NAME: ${{ matrix.smalltalk }}-FAST-Java
+    strategy:
+      matrix:
+        smalltalk: [ Moose64-11 ]
+    name: ${{ matrix.smalltalk }}
+    steps:
+      - uses: actions/checkout@v2
+      - uses: hpi-swa/setup-smalltalkCI@v1
+        with:
+          smalltalk-image: ${{ matrix.smalltalk }}
+      - run: smalltalkci -s ${{ matrix.smalltalk }}
+        shell: bash
+        timeout-minutes: 15
+     
+      - name: Coveralls
+        uses: coverallsapp/github-action@master
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
