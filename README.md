@@ -1,6 +1,8 @@
 # FAST
 
-![CI](https://github.com/moosetechnology/FAST/workflows/CI/badge.svg)
+[![CI MOOSE10](https://github.com/moosetechnology/FAST/actions/workflows/testAndBuild-moose10.yml/badge.svg)](https://github.com/moosetechnology/FAST/actions/workflows/testAndBuild-moose10.yml)
+[![CI MOOSE11](https://github.com/moosetechnology/FAST/actions/workflows/testAndBuild-moose11.yml/badge.svg)](https://github.com/moosetechnology/FAST/actions/workflows/testAndBuild-moose11.yml)
+
 [![Moose version](https://img.shields.io/badge/Moose-10-%23aac9ff.svg)](https://github.com/moosetechnology/Moose)
 
 ## Installation
