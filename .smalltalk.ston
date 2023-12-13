@@ -1,7 +1,10 @@
 SmalltalkCISpec {
-  #testing : {
-    #failOnZeroTests : false
-  }, 
+   #testing : {
+    #coverage : {
+      #packages : [ 'FAST-Core.*' ],
+      #format : #lcov
+    }
+  },
   #loading : [
     SCIMetacelloLoadSpec {
       #baseline : 'FAST',
