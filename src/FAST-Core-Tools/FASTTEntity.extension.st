@@ -19,7 +19,7 @@ FASTTEntity >> dump [
 { #category : #'*FAST-Core-Tools' }
 FASTTEntity >> inspectionFASTDump [
 
-	<inspectorPresentationOrder: 550 title: 'FASTDump'>
+	<inspectorPresentationOrder: 1.3 title: 'FASTDump'>
 	^ SpCodePresenter new
 		  text: (RBParser parseExpression: self dump) formattedCode;
 		  beForScripting;

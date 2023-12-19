@@ -29,17 +29,18 @@ FASTTEntity >> display [
 { #category : #'*FAST-Core-Model-Extension' }
 FASTTEntity >> inspectionFAST [
 
-	<inspectorPresentationOrder: 450 title: 'FAST'>
+	<inspectorPresentationOrder: 1.1 title: 'FAST'>
 	^ SpTreeTablePresenter new
 		  addColumn: (SpCompositeTableColumn new
 				   addColumn: ((SpImageTableColumn evaluated: #mooseIcon)
 						    width: 20;
 						    yourself);
-				   addColumn: (SpStringTableColumn evaluated: [ :node | node display ]);
+				   addColumn:
+				   (SpStringTableColumn evaluated: [ :node | node display ]);
 				   yourself);
-		  children: [ :aClass | 
-			  aClass children asArray sorted: [ :a :b | 
-				  (a startPos ifNil: 0) <= (b startPos ifNil: 0) ] ];
+		  children: [ :aClass |
+			  aClass children asArray sorted: [ :a :b |
+				  (a startPos ifNil: [ 0 ]) <= (b startPos ifNil: [ 0 ]) ] ];
 		  beMultipleSelection;
 		  roots: { self };
 		  beResizable
@@ -48,9 +49,9 @@ FASTTEntity >> inspectionFAST [
 { #category : #'*FAST-Core-Model-Extension' }
 FASTTEntity >> inspectionFASTSourceCode [
 
-	<inspectorPresentationOrder: 500 title: 'FASTSourceCode'>
-	(self sourceText isNotNil and: [ 
-		 self startPos isNotNil and: [ self endPos isNotNil ] ]) ifFalse: [ 
+	<inspectorPresentationOrder: 1.2 title: 'FASTSourceCode'>
+	(self sourceText isNotNil and: [
+		 self startPos isNotNil and: [ self endPos isNotNil ] ]) ifFalse: [
 		^ SpTextPresenter new
 			  text: 'Not available';
 			  yourself ].
