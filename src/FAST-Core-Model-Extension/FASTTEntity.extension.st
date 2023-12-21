@@ -13,17 +13,17 @@ FASTTEntity >> currentParentSelector [
 
 { #category : #'*FAST-Core-Model-Extension' }
 FASTTEntity >> display [
-
 	"default display line is the source code of the entity"
 
 	| sourceText |
-	sourceText := (self startPos isNotNil and: [ self endPos isNotNil ]) 
+	sourceText := (self startPos isNotNil and: [ self endPos isNotNil ])
 		              ifTrue: [ self rootNode sourceText ].
-
-	^ (self class name allButFirst: 4)
-	  , (sourceText ifNil: [ '' ] ifNotNil: [ 
-			   ': ' , (sourceText copyFrom: self startPos to: self endPos) 
-				   truncateWithElipsisTo: 50 ])
+	^ sourceText isEmptyOrNil
+		  ifTrue: [ self class name allButFirst: 4 ]
+		  ifFalse: [
+			  (self class name allButFirst: 4) , ': '
+			  , (sourceText copyFrom: self startPos to: self endPos)
+				  truncateWithElipsisTo: 50 ]
 ]
 
 { #category : #'*FAST-Core-Model-Extension' }
