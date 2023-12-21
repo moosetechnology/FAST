@@ -34,14 +34,13 @@ FASTDumpVisitor >> initialize [
 
 { #category : #enumerating }
 FASTDumpVisitor >> propertiesAndValuesOf: aFASTEntity do: twoArgsBlock [
-
 	"Iterate over the attributes and child relations of the given entity."
 
 	| value |
 	(self propertiesOf: aFASTEntity)
-		select: [ :property | 
-			(property isChildrenProperty or: [ 
-				 (property hasOpposite | property isDerived) not ]) and: [ 
+		select: [ :property |
+			(property isChildrenProperty or: [
+				 (property hasOpposite | property isDerived) not ]) and: [
 				value := aFASTEntity perform: property implementingSelector.
 				property isMultivalued
 					ifTrue: [ value isNotEmpty ]
@@ -69,14 +68,15 @@ FASTDumpVisitor >> visit: aFASTEntity [
 	| beforeFirst |
 	beforeFirst := true.
 	stream << aFASTEntity className << ' new '.
-	self propertiesAndValuesOf: aFASTEntity do: [ :property :value | 
+	self propertiesAndValuesOf: aFASTEntity do: [ :property :value |
 		beforeFirst
 			ifTrue: [ beforeFirst := false ]
 			ifFalse: [ stream nextPut: $; ].
 		stream nextPutAll: property implementingSelector asMutator.
 		property hasOpposite
 			ifTrue: [ "relation"
-				property isMultivalued
+				(property isMultivalued or: [ "temporary check until https://github.com/moosetechnology/FAST-JAVA/issues/210 is fixed"
+					 value isKindOf: FMMultivalueLink ])
 					ifFalse: [ self visitOnlyChild: value ]
 					ifTrue: [ self visitChildren: value ] ]
 			ifFalse: [ "attribute" value printOn: stream ] ]
