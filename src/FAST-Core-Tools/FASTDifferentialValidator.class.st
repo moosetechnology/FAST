@@ -154,7 +154,15 @@ FASTDifferentialValidator >> runOnSourceFile: aFileReference [
 	| astOrig astBis topLevelNodes |
 	aFileReference fullName traceCr.
 
-	topLevelNodes := self getASTFromFileReference: aFileReference.
+	topLevelNodes := [
+		self getASTFromFileReference: aFileReference
+	]
+	on: Error
+	do: [
+		'  ** NOT PARSEABLE **' traceCr.
+		"Note: If we cannot get the original AST, no use to try to regenerate it"
+		#()
+	].
 
 	topLevelNodes ifNotEmpty: [
 		
