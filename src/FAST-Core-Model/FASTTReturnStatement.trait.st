@@ -1,5 +1,20 @@
 "
 A return statement node. Contains a reference to the expression which is returned.  
+
+## Relations
+======================
+
+### Parents
+- Relation: #statementContainer Type: #FASTTStatementBlock Opposite: #statements Comment: Block containing this statement.
+### Children
+- Relation: #expression Type: #FASTTExpression Opposite: #returnOwner Comment: The expression returned
+
+## Properties
+======================
+
+- Named: #endPos Type: Number
+- Named: #startPos Type: Number
+
 "
 Trait {
 	#name : #FASTTReturnStatement,

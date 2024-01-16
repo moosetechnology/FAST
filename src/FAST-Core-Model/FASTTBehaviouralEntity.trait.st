@@ -6,6 +6,20 @@ Subclassed for NamedBehavioural as methods/functions
 
 Has parameters , and a body (StatementBlock).
 Local variables are intended to be stored in the local entities of the body
+
+## Relations
+======================
+
+### Children
+- Relation: #parameters Type: #FASTTVariableEntity Opposite: #parameterOwner Comment: My parameters
+- Relation: #statementBlock Type: #FASTTStatementBlock Opposite: #fastBehaviouralParent Comment: Statements block of the behavioural entity
+
+## Properties
+======================
+
+- Named: #endPos Type: Number
+- Named: #startPos Type: Number
+
 "
 Trait {
 	#name : #FASTTBehaviouralEntity,

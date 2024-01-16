@@ -1,5 +1,19 @@
 "
 A entity with a name
+
+## Relations
+======================
+
+### Other
+- Relation: #invokedIn Type: #FASTTInvocation Opposite: #invoked Comment: Optional invocation where this name is used
+
+## Properties
+======================
+
+- Named: #endPos Type: Number
+- Named: #name Type: String
+- Named: #startPos Type: Number
+
 "
 Trait {
 	#name : #FASTTNamedEntity,

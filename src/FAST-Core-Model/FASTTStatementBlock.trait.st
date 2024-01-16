@@ -1,5 +1,21 @@
 "
 A block of statements as ones in C-like langs with {}
+
+## Relations
+======================
+
+### Parents
+- Relation: #fastBehaviouralParent Type: #FASTTBehaviouralEntity Opposite: #statementBlock Comment: Behavioural entity containing the statement block.
+- Relation: #statementContainer Type: #FASTTStatementBlock Opposite: #statements Comment: Block containing this statement.
+### Children
+- Relation: #statements Type: #FASTTStatement Opposite: #statementContainer Comment: Statements enclosed in this block
+
+## Properties
+======================
+
+- Named: #endPos Type: Number
+- Named: #startPos Type: Number
+
 "
 Trait {
 	#name : #FASTTStatementBlock,

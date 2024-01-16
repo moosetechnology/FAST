@@ -1,5 +1,24 @@
 "
 A node representing an assignment
+
+## Relations
+======================
+
+### Parents
+- Relation: #argumentOwner Type: #FASTTWithArguments Opposite: #arguments Comment: my owner
+- Relation: #expressionStatementOwner Type: #FASTTExpressionStatement Opposite: #expression Comment: The expression statement that own me (if it's the case
+- Relation: #returnOwner Type: #FASTTReturnStatement Opposite: #expression Comment: The return statement that own the expression (if it's the case)
+### Other
+- Relation: #assignedIn Type: #FASTTAssignment Opposite: #expression Comment: Optional assignment where this expression is used
+- Relation: #expression Type: #FASTTExpression Opposite: #assignedIn Comment: Assigned expression (rhs of assignment)
+- Relation: #variable Type: #FASTTVariableEntity Opposite: #parentAssignmentExpression Comment: An assigned variable (lhs of assignment)
+
+## Properties
+======================
+
+- Named: #endPos Type: Number
+- Named: #startPos Type: Number
+
 "
 Trait {
 	#name : #FASTTAssignment,

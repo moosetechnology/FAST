@@ -1,5 +1,22 @@
 "
 A node for variable name not in a expression (example: assigned variable or parameter)
+
+## Relations
+======================
+
+### Parents
+- Relation: #parameterOwner Type: #FASTTWithParameters Opposite: #parameters Comment: parameterOwner
+### Other
+- Relation: #invokedIn Type: #FASTTInvocation Opposite: #invoked Comment: Optional invocation where this name is used
+- Relation: #parentAssignmentExpression Type: #FASTTAssignment Opposite: #variable Comment: Optional assignment to the variable
+
+## Properties
+======================
+
+- Named: #endPos Type: Number
+- Named: #name Type: String
+- Named: #startPos Type: Number
+
 "
 Trait {
 	#name : #FASTTVariableEntity,

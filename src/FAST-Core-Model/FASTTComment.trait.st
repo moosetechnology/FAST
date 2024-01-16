@@ -1,5 +1,17 @@
 "
 FASTComment represents one instance of a comment (in the sense of programming language comments) for any FAST sourced entity. The commented sourced entity is called the container in the FAST model.
+
+## Relations
+======================
+
+### Other
+- Relation: #container Type: #FASTTWithComments Opposite: #comments Comment: Source code entity containing the comment
+
+## Properties
+======================
+
+- Named: #content Type: String Comment: Content of the comment as a String
+
 "
 Trait {
 	#name : #FASTTComment,

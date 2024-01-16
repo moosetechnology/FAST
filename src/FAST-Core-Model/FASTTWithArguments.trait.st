@@ -1,5 +1,13 @@
 "
 I have arguments
+
+## Relations
+======================
+
+### Children
+- Relation: #arguments Type: #FASTTExpression Opposite: #argumentOwner Comment: My arguments
+
+
 "
 Trait {
 	#name : #FASTTWithArguments,

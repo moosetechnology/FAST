@@ -1,5 +1,13 @@
 "
 I have parameters
+
+## Relations
+======================
+
+### Children
+- Relation: #parameters Type: #FASTTVariableEntity Opposite: #parameterOwner Comment: My parameters
+
+
 "
 Trait {
 	#name : #FASTTWithParameters,

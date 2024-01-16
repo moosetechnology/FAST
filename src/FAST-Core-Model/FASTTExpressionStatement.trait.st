@@ -1,5 +1,20 @@
 "
 A node of a statement which is representing a single expression. 
+
+## Relations
+======================
+
+### Parents
+- Relation: #statementContainer Type: #FASTTStatementBlock Opposite: #statements Comment: Block containing this statement.
+### Children
+- Relation: #expression Type: #FASTTExpression Opposite: #expressionStatementOwner Comment: The expression of the statement
+
+## Properties
+======================
+
+- Named: #endPos Type: Number
+- Named: #startPos Type: Number
+
 "
 Trait {
 	#name : #FASTTExpressionStatement,

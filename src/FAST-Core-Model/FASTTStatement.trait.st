@@ -1,5 +1,18 @@
 "
 An abstract subclass which represents a source code statemnet 
+
+## Relations
+======================
+
+### Parents
+- Relation: #statementContainer Type: #FASTTStatementBlock Opposite: #statements Comment: Block containing this statement.
+
+## Properties
+======================
+
+- Named: #endPos Type: Number
+- Named: #startPos Type: Number
+
 "
 Trait {
 	#name : #FASTTStatement,

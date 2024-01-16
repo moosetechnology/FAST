@@ -1,5 +1,25 @@
 "
 A invocation of a behavioural entity
+
+## Relations
+======================
+
+### Parents
+- Relation: #argumentOwner Type: #FASTTWithArguments Opposite: #arguments Comment: my owner
+- Relation: #expressionStatementOwner Type: #FASTTExpressionStatement Opposite: #expression Comment: The expression statement that own me (if it's the case
+- Relation: #returnOwner Type: #FASTTReturnStatement Opposite: #expression Comment: The return statement that own the expression (if it's the case)
+### Children
+- Relation: #arguments Type: #FASTTExpression Opposite: #argumentOwner Comment: My arguments
+### Other
+- Relation: #assignedIn Type: #FASTTAssignment Opposite: #expression Comment: Optional assignment where this expression is used
+- Relation: #invoked Type: #FASTTNamedEntity Opposite: #invokedIn Comment: The name of the behavioural invoked
+
+## Properties
+======================
+
+- Named: #endPos Type: Number
+- Named: #startPos Type: Number
+
 "
 Trait {
 	#name : #FASTTInvocation,
