@@ -52,6 +52,7 @@ FASTTExporter >> defaultOperatorsPrecedence [
 		#'-unary' -> 110 .
 
 		#'!' -> 110 .
+		#'!unary' -> 110.
 		#not -> 110 .
 		
 		"cast"
