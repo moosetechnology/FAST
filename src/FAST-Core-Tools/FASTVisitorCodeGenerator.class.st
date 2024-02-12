@@ -24,6 +24,12 @@ Class {
 }
 
 { #category : #'code generation' }
+FASTVisitorCodeGenerator >> asParameterName: aModelClass [
+
+	^'a' , aModelClass name
+]
+
+{ #category : #'code generation' }
 FASTVisitorCodeGenerator >> generateAccept: modelClass extensionPackage: aPackageName [
 
 	| code |
@@ -56,23 +62,27 @@ FASTVisitorCodeGenerator >> generatePragmaIn: st [
 { #category : #'code generation' }
 FASTVisitorCodeGenerator >> generateVisit: aModelClass in: aVisitorClass [
 
-	| parameter code category |
-	parameter := 'a' , aModelClass name.
+	| code category |
 	code := String streamContents: [ :st |
-		self
-			generateVisitSelectorFor: aModelClass
-			parameter: parameter
-			in: st.
-		self generatePragmaIn: st.
+		        self
+			        generateVisitSelectorFor: aModelClass
+			        parameter: (self asParameterName: aModelClass)
+			        in: st.
+		        self generatePragmaIn: st.
 
-		aModelClass traits do: [ :aTrait |
-			st cr ; tab.
-			self generateVisitCallFor: aTrait on: 'self' argument: parameter in: st ]
-	].
+		        aModelClass traits do: [ :aTrait |
+			        st
+				        cr;
+				        tab.
+			        self
+				        generateVisitCallFor: aTrait
+				        on: 'self'
+				        argument: (self asParameterName: aModelClass)
+				        in: st ] ].
 
 	category := aModelClass isTrait
-		ifTrue: [ 'visiting - traits' ]
-		ifFalse: [ 'visiting' ].
+		            ifTrue: [ 'visiting - traits' ]
+		            ifFalse: [ 'visiting' ].
 
 	aVisitorClass compile: code classified: category
 ]
