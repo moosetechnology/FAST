@@ -23,7 +23,7 @@ Class {
 { #category : #Fame }
 FASTCopyVisitorCodeGenerator >> fmDescription: aModelClass [
 
-	^metamodel fmTypeOf: aModelClass
+	^metamodel descriptionOf: aModelClass ifAbsent: [  nil ]
 ]
 
 { #category : #Fame }
@@ -72,17 +72,17 @@ FASTCopyVisitorCodeGenerator >> generateObjectCopy: aModelClass in: stream [
 { #category : #'code generation' }
 FASTCopyVisitorCodeGenerator >> generatePropertiesCopy: aModelClass in: stream [
 
-	(self fmDescription: aModelClass) allProperties do: [ :property |
-		self generatePropertyCopy: property for: aModelClass in: stream ]
+	(self fmDescription: aModelClass)
+		ifNotNil: [ :fmDescription |
+			fmDescription allProperties do: [ :property |
+				(self shouldCopyProperty: property for: aModelClass)
+					ifTrue: [ self generatePropertyCopy: property for: aModelClass in: stream ]
+			]
+		]
 ]
 
 { #category : #'code generation' }
 FASTCopyVisitorCodeGenerator >> generatePropertyCopy: property for: aModelClass in: stream [
-
-	(property name beginsWith: 'parent') ifTrue: [ ^self ].
-	(property hasOpposite and: [ property isTarget ]) ifTrue: [ ^self].
-	property isContainer ifTrue: [ ^self].
-	(self isSamePackage: property) ifFalse: [ ^self ].
 
 	stream
 		tab ;
@@ -147,4 +147,23 @@ FASTCopyVisitorCodeGenerator >> rootClass: aFASTEntityClass visitorClass: aFASTV
 	aFASTEntityClass withAllSubclassesDo: [ :modelClass |
 		self generateVisit: modelClass in: aFASTVisitorClass.
 	].
+]
+
+{ #category : #'code generation' }
+FASTCopyVisitorCodeGenerator >> shouldCopyProperty: property for: aModelClass [
+
+	"Dealing with some special cases (errors in the meta-model, they should be marked #isContainer)"
+	(property name beginsWith: 'parent') ifTrue: [ ^false ].
+
+	(#(assignedIn invokedIn container) anySatisfy: [ :specialCase | property name = specialCase ])
+		ifTrue: [ ^false ].
+
+	(#(startPos endPos) anySatisfy: [ :specialCase | property name = specialCase ])
+		ifTrue: [ ^true ].
+
+	(property hasOpposite and: [ property isTarget ]) ifTrue: [ ^false].
+	property isContainer ifTrue: [ ^false].
+	(self isSamePackage: property) ifFalse: [ ^false ].
+
+	^true
 ]
