@@ -152,12 +152,6 @@ FASTCopyVisitorCodeGenerator >> rootClass: aFASTEntityClass visitorClass: aFASTV
 { #category : #'code generation' }
 FASTCopyVisitorCodeGenerator >> shouldCopyProperty: property for: aModelClass [
 
-	"Dealing with some special cases (errors in the meta-model, they should be marked #isContainer)"
-	(property name beginsWith: 'parent') ifTrue: [ ^false ].
-
-	(#(assignedIn invokedIn container) anySatisfy: [ :specialCase | property name = specialCase ])
-		ifTrue: [ ^false ].
-
 	(#(startPos endPos) anySatisfy: [ :specialCase | property name = specialCase ])
 		ifTrue: [ ^true ].
 
