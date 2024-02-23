@@ -109,7 +109,7 @@ FASTCopyVisitorCodeGenerator >> generateVisit: aModelClass in: aVisitorClass [
 		self generateVisitBody: aModelClass in: outputStream.
 	].
 
-	aVisitorClass compile: code classified: AbstractProtocol unclassified
+	aVisitorClass compile: code classified: Protocol unclassified
 ]
 
 { #category : #'code generation' }
@@ -136,6 +136,30 @@ FASTCopyVisitorCodeGenerator >> isSamePackage: aFMProperty [
 	^package = aFMProperty mmClass package
 ]
 
+{ #category : #'accessing - private tests' }
+FASTCopyVisitorCodeGenerator >> metamodel [
+
+	^ metamodel
+]
+
+{ #category : #'accessing - private tests' }
+FASTCopyVisitorCodeGenerator >> metamodel: anObject [
+
+	metamodel := anObject
+]
+
+{ #category : #'accessing - private tests' }
+FASTCopyVisitorCodeGenerator >> package [
+
+	^ package
+]
+
+{ #category : #'accessing - private tests' }
+FASTCopyVisitorCodeGenerator >> package: anObject [
+
+	package := anObject
+]
+
 { #category : #run }
 FASTCopyVisitorCodeGenerator >> rootClass: aFASTEntityClass visitorClass: aFASTVisitorClass [
 
@@ -151,12 +175,6 @@ FASTCopyVisitorCodeGenerator >> rootClass: aFASTEntityClass visitorClass: aFASTV
 
 { #category : #'code generation' }
 FASTCopyVisitorCodeGenerator >> shouldCopyProperty: property for: aModelClass [
-
-	"Dealing with some special cases (errors in the meta-model, they should be marked #isContainer)"
-	(property name beginsWith: 'parent') ifTrue: [ ^false ].
-
-	(#(assignedIn invokedIn container) anySatisfy: [ :specialCase | property name = specialCase ])
-		ifTrue: [ ^false ].
 
 	(#(startPos endPos) anySatisfy: [ :specialCase | property name = specialCase ])
 		ifTrue: [ ^true ].

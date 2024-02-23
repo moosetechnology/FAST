@@ -94,20 +94,6 @@ FASTLocalResolverVisitorTest >> testLocalDeclarationFor [
 ]
 
 { #category : #tests }
-FASTLocalResolverVisitorTest >> testNonLocalDeclarationWithName [
-	"testing helper method #nonLocalDeclaration:withName:"
-	| node |
-	node := FASTEntity new.
-	localResolver resetScopes.
-
-	localResolver nonLocalDeclaration: node withName: 'blah'.
-
-	self assert: node localDeclaration notNil.
-	self assert: node localDeclaration class equals: FASTNonLocalDeclaration.
-	self assert: node localDeclaration name equals: 'blah'
-]
-
-{ #category : #tests }
 FASTLocalResolverVisitorTest >> testResetScopes [
 	localResolver resetScopes.
 	self assert: localResolver hasScopes.

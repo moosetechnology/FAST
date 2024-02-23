@@ -28,9 +28,13 @@ FASTLocalResolverVisitor >> currentScope [
 
 { #category : #private }
 FASTLocalResolverVisitor >> findDeclaration: aName [
+	"search for 'aName' in the current scope and its parent.
+	Returns nil if not found"
+
 	^self currentScope
 		at: aName
 		ifAbsent: [ |scope decl|
+			decl := nil.
 			scope := self popScope.
 			self hasScopes
 				ifTrue: [ decl := self findDeclaration: aName ].
@@ -55,12 +59,6 @@ FASTLocalResolverVisitor >> initialize [
 FASTLocalResolverVisitor >> localDeclaration: declarationNode for: referingNode [
 	referingNode localDeclaration: declarationNode.
 	declarationNode addLocalUse: referingNode
-]
-
-{ #category : #private }
-FASTLocalResolverVisitor >> nonLocalDeclaration: referingNode withName: name [
-	self localDeclaration: (self scopeAddNonLocalDeclaration: name) for: referingNode
-
 ]
 
 { #category : #api }
@@ -141,17 +139,11 @@ FASTLocalResolverVisitor >> visitFASTIdentifierExpression: aFASTIdentifier [
 	 - if not found, creates a NonLocalDeclaration for it
 	 - binds this reference to the declaration"
 
-	(self findDeclaration: aFASTIdentifier name)
-	ifNil: [
-		self
-			nonLocalDeclaration: aFASTIdentifier
-			withName: aFASTIdentifier name
-	]
-	ifNotNil: [ :decl |
-		self 
-			localDeclaration: decl
-			for: aFASTIdentifier
-		 ]
+	self 
+		localDeclaration: (
+			(self findDeclaration: aFASTIdentifier name)
+			ifNil: [ self scopeAddNonLocalDeclaration: aFASTIdentifier name ])
+		for: aFASTIdentifier
 ]
 
 { #category : #visiting }
@@ -171,6 +163,9 @@ FASTLocalResolverVisitor >> visitFASTScopeChildren: childrenNodes [
 	"creates a new scope and visit its children nodes
 	 Order of nodes is important to ensure declarations are visited before statements"
 
+self shouldNotImplement.
+"Actually does not seem to be used anywhere ..."
+
 	self pushScope.
 
 	(childrenNodes sorted: [:a :b | a startPos < b startPos])
@@ -179,7 +174,7 @@ FASTLocalResolverVisitor >> visitFASTScopeChildren: childrenNodes [
 	^self popScope
 ]
 
-{ #category : #generated }
+{ #category : #visiting }
 FASTLocalResolverVisitor >> visitFASTTStatementBlock: aFASTJavaStatementBlock [
 	self pushScope.
 
