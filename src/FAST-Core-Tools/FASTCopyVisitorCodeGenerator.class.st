@@ -109,7 +109,7 @@ FASTCopyVisitorCodeGenerator >> generateVisit: aModelClass in: aVisitorClass [
 		self generateVisitBody: aModelClass in: outputStream.
 	].
 
-	aVisitorClass compile: code classified: AbstractProtocol unclassified
+	aVisitorClass compile: code classified: Protocol unclassified
 ]
 
 { #category : #'code generation' }
