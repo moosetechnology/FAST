@@ -43,6 +43,20 @@ FASTCopyVisitorCodeGeneratorTest >> testGenerateCopyMethod [
 ]
 
 { #category : #tests }
+FASTCopyVisitorCodeGeneratorTest >> testShouldCopyPropertyFor [
+
+	| property |
+	
+	property := FmxTraitsTestGenerateAccessorBClassA asMooseDescription
+		allProperties detect: [ :prop | prop name = 'relationToB' ].
+
+	generator package: (FmxTraitsTestGenerateAccessorBClassA metamodel packages detect: [ :p | p name = 'Famix-MetamodelBuilder-TestsTraitsResources-A' ]).
+	self assert: (generator shouldCopyProperty: property for: FmxTraitsTestGenerateAccessorBClassA).
+	
+
+]
+
+{ #category : #tests }
 FASTCopyVisitorCodeGeneratorTest >> testShouldNotCopyDerivedProperty [
 
 	| property |
@@ -52,4 +66,16 @@ FASTCopyVisitorCodeGeneratorTest >> testShouldNotCopyDerivedProperty [
 		
 	self assert: property isDerived.
 	self deny: (generator shouldCopyProperty: property for: FmxTraitsTestGenerateAccessorBClassB)
+]
+
+{ #category : #tests }
+FASTCopyVisitorCodeGeneratorTest >> testShouldNotCopyPropertyFromOtherPackage [
+
+	| property |
+	
+	property := FmxTraitsTestGenerateAccessorBClassB asMooseDescription
+		allProperties detect: [ :prop | prop name = 'relationToA' ].
+		
+	generator package: (FmxTraitsTestGenerateAccessorBClassA metamodel packages detect: [ :p | p name = 'Famix-MetamodelBuilder-TestsTraitsResources-B' ]).
+	self assert: (generator shouldCopyProperty: property for: FmxTraitsTestGenerateAccessorBClassA)
 ]

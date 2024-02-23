@@ -136,6 +136,30 @@ FASTCopyVisitorCodeGenerator >> isSamePackage: aFMProperty [
 	^package = aFMProperty mmClass package
 ]
 
+{ #category : #'accessing - private tests' }
+FASTCopyVisitorCodeGenerator >> metamodel [
+
+	^ metamodel
+]
+
+{ #category : #'accessing - private tests' }
+FASTCopyVisitorCodeGenerator >> metamodel: anObject [
+
+	metamodel := anObject
+]
+
+{ #category : #'accessing - private tests' }
+FASTCopyVisitorCodeGenerator >> package [
+
+	^ package
+]
+
+{ #category : #'accessing - private tests' }
+FASTCopyVisitorCodeGenerator >> package: anObject [
+
+	package := anObject
+]
+
 { #category : #run }
 FASTCopyVisitorCodeGenerator >> rootClass: aFASTEntityClass visitorClass: aFASTVisitorClass [
 
