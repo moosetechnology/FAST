@@ -5,19 +5,27 @@ A node representing an assignment
 ======================
 
 ### Parents
-- Relation: #argumentOwner Type: #FASTTWithArguments Opposite: #arguments Comment: my owner
-- Relation: #expressionStatementOwner Type: #FASTTExpressionStatement Opposite: #expression Comment: The expression statement that own me (if it's the case
-- Relation: #returnOwner Type: #FASTTReturnStatement Opposite: #expression Comment: The return statement that own the expression (if it's the case)
-### Other
-- Relation: #assignedIn Type: #FASTTAssignment Opposite: #expression Comment: Optional assignment where this expression is used
-- Relation: #expression Type: #FASTTExpression Opposite: #assignedIn Comment: Assigned expression (rhs of assignment)
-- Relation: #variable Type: #FASTTVariableEntity Opposite: #parentAssignmentExpression Comment: An assigned variable (lhs of assignment)
+| Relation | Origin | Opposite | Type | Comment |
+|---|
+| `argumentOwner` | `FASTTExpression` | `arguments` | `FASTTWithArguments` | my owner|
+| `assignedIn` | `FASTTExpression` | `expression` | `FASTTAssignment` | Optional assignment where this expression is used|
+| `expressionStatementOwner` | `FASTTExpression` | `expression` | `FASTTExpressionStatement` | The expression statement that own me (if it's the case|
+| `returnOwner` | `FASTTExpression` | `expression` | `FASTTReturnStatement` | The return statement that own the expression (if it's the case)|
+
+### Children
+| Relation | Origin | Opposite | Type | Comment |
+|---|
+| `expression` | `FASTTAssignment` | `assignedIn` | `FASTTExpression` | Assigned expression (rhs of assignment)|
+| `variable` | `FASTTAssignment` | `parentAssignmentExpression` | `FASTTVariableEntity` | An assigned variable (lhs of assignment)|
+
 
 ## Properties
 ======================
 
-- Named: #endPos Type: Number
-- Named: #startPos Type: Number
+| Name | Type | Default value | Comment |
+|---|
+| `endPos` | `Number` | nil | |
+| `startPos` | `Number` | nil | |
 
 "
 Trait {
@@ -56,6 +64,13 @@ FASTTAssignment >> expression: anObject [
 	expression := anObject
 ]
 
+{ #category : #navigation }
+FASTTAssignment >> expressionGroup [
+	<generated>
+	<navigation: 'Expression'>
+	^ MooseSpecializedGroup with: self expression
+]
+
 { #category : #accessing }
 FASTTAssignment >> variable [
 	"Relation named: #variable type: #FASTTVariableEntity opposite: #parentAssignmentExpression"
@@ -70,4 +85,11 @@ FASTTAssignment >> variable: anObject [
 
 	<generated>
 	variable := anObject
+]
+
+{ #category : #navigation }
+FASTTAssignment >> variableGroup [
+	<generated>
+	<navigation: 'Variable'>
+	^ MooseSpecializedGroup with: self variable
 ]

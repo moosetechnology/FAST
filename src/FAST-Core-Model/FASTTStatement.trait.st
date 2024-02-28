@@ -5,13 +5,18 @@ An abstract subclass which represents a source code statemnet
 ======================
 
 ### Parents
-- Relation: #statementContainer Type: #FASTTStatementBlock Opposite: #statements Comment: Block containing this statement.
+| Relation | Origin | Opposite | Type | Comment |
+|---|
+| `statementContainer` | `FASTTStatement` | `statements` | `FASTTStatementBlock` | Block containing this statement.|
+
 
 ## Properties
 ======================
 
-- Named: #endPos Type: Number
-- Named: #startPos Type: Number
+| Name | Type | Default value | Comment |
+|---|
+| `endPos` | `Number` | nil | |
+| `startPos` | `Number` | nil | |
 
 "
 Trait {

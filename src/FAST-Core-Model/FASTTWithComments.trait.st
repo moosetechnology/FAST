@@ -5,7 +5,10 @@ For entities with comments. In FAST, they are called containers.
 ======================
 
 ### Other
-- Relation: #comments Type: #FASTTComment Opposite: #container Comment: list of comments defined in the entity
+| Relation | Origin | Opposite | Type | Comment |
+|---|
+| `comments` | `FASTTWithComments` | `container` | `FASTTComment` | list of comments defined in the entity|
+
 
 
 "

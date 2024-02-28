@@ -5,15 +5,23 @@ A return statement node. Contains a reference to the expression which is returne
 ======================
 
 ### Parents
-- Relation: #statementContainer Type: #FASTTStatementBlock Opposite: #statements Comment: Block containing this statement.
+| Relation | Origin | Opposite | Type | Comment |
+|---|
+| `statementContainer` | `FASTTStatement` | `statements` | `FASTTStatementBlock` | Block containing this statement.|
+
 ### Children
-- Relation: #expression Type: #FASTTExpression Opposite: #returnOwner Comment: The expression returned
+| Relation | Origin | Opposite | Type | Comment |
+|---|
+| `expression` | `FASTTReturnStatement` | `returnOwner` | `FASTTExpression` | The expression returned|
+
 
 ## Properties
 ======================
 
-- Named: #endPos Type: Number
-- Named: #startPos Type: Number
+| Name | Type | Default value | Comment |
+|---|
+| `endPos` | `Number` | nil | |
+| `startPos` | `Number` | nil | |
 
 "
 Trait {

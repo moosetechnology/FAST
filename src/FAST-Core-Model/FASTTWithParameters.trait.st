@@ -5,7 +5,10 @@ I have parameters
 ======================
 
 ### Children
-- Relation: #parameters Type: #FASTTVariableEntity Opposite: #parameterOwner Comment: My parameters
+| Relation | Origin | Opposite | Type | Comment |
+|---|
+| `parameters` | `FASTTWithParameters` | `parameterOwner` | `FASTTVariableEntity` | My parameters|
+
 
 
 "

@@ -5,7 +5,10 @@ I have arguments
 ======================
 
 ### Children
-- Relation: #arguments Type: #FASTTExpression Opposite: #argumentOwner Comment: My arguments
+| Relation | Origin | Opposite | Type | Comment |
+|---|
+| `arguments` | `FASTTWithArguments` | `argumentOwner` | `FASTTExpression` | My arguments|
+
 
 
 "
