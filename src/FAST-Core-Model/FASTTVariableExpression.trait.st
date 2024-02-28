@@ -5,19 +5,23 @@ A node that wraps around structural entity
 ======================
 
 ### Parents
-- Relation: #argumentOwner Type: #FASTTWithArguments Opposite: #arguments Comment: my owner
-- Relation: #expressionStatementOwner Type: #FASTTExpressionStatement Opposite: #expression Comment: The expression statement that own me (if it's the case
-- Relation: #returnOwner Type: #FASTTReturnStatement Opposite: #expression Comment: The return statement that own the expression (if it's the case)
-### Other
-- Relation: #assignedIn Type: #FASTTAssignment Opposite: #expression Comment: Optional assignment where this expression is used
-- Relation: #invokedIn Type: #FASTTInvocation Opposite: #invoked Comment: Optional invocation where this name is used
+| Relation | Origin | Opposite | Type | Comment |
+|---|
+| `argumentOwner` | `FASTTExpression` | `arguments` | `FASTTWithArguments` | my owner|
+| `assignedIn` | `FASTTExpression` | `expression` | `FASTTAssignment` | Optional assignment where this expression is used|
+| `expressionStatementOwner` | `FASTTExpression` | `expression` | `FASTTExpressionStatement` | The expression statement that own me (if it's the case|
+| `invokedIn` | `FASTTNamedEntity` | `invoked` | `FASTTInvocation` | Optional invocation where this name is used|
+| `returnOwner` | `FASTTExpression` | `expression` | `FASTTReturnStatement` | The return statement that own the expression (if it's the case)|
+
 
 ## Properties
 ======================
 
-- Named: #endPos Type: Number
-- Named: #name Type: String
-- Named: #startPos Type: Number
+| Name | Type | Default value | Comment |
+|---|
+| `endPos` | `Number` | nil | |
+| `name` | `String` | nil | |
+| `startPos` | `Number` | nil | |
 
 "
 Trait {

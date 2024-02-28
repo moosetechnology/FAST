@@ -5,15 +5,23 @@ A node of a statement which is representing a single expression.
 ======================
 
 ### Parents
-- Relation: #statementContainer Type: #FASTTStatementBlock Opposite: #statements Comment: Block containing this statement.
+| Relation | Origin | Opposite | Type | Comment |
+|---|
+| `statementContainer` | `FASTTStatement` | `statements` | `FASTTStatementBlock` | Block containing this statement.|
+
 ### Children
-- Relation: #expression Type: #FASTTExpression Opposite: #expressionStatementOwner Comment: The expression of the statement
+| Relation | Origin | Opposite | Type | Comment |
+|---|
+| `expression` | `FASTTExpressionStatement` | `expressionStatementOwner` | `FASTTExpression` | The expression of the statement|
+
 
 ## Properties
 ======================
 
-- Named: #endPos Type: Number
-- Named: #startPos Type: Number
+| Name | Type | Default value | Comment |
+|---|
+| `endPos` | `Number` | nil | |
+| `startPos` | `Number` | nil | |
 
 "
 Trait {

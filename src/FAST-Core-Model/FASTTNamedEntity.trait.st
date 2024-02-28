@@ -4,15 +4,20 @@ A entity with a name
 ## Relations
 ======================
 
-### Other
-- Relation: #invokedIn Type: #FASTTInvocation Opposite: #invoked Comment: Optional invocation where this name is used
+### Parents
+| Relation | Origin | Opposite | Type | Comment |
+|---|
+| `invokedIn` | `FASTTNamedEntity` | `invoked` | `FASTTInvocation` | Optional invocation where this name is used|
+
 
 ## Properties
 ======================
 
-- Named: #endPos Type: Number
-- Named: #name Type: String
-- Named: #startPos Type: Number
+| Name | Type | Default value | Comment |
+|---|
+| `endPos` | `Number` | nil | |
+| `name` | `String` | nil | |
+| `startPos` | `Number` | nil | |
 
 "
 Trait {
@@ -41,6 +46,7 @@ FASTTNamedEntity >> invokedIn [
 
 	<generated>
 	<FMComment: 'Optional invocation where this name is used'>
+	<container>
 	<derived>
 	^ invokedIn
 ]
@@ -50,6 +56,13 @@ FASTTNamedEntity >> invokedIn: anObject [
 
 	<generated>
 	invokedIn := anObject
+]
+
+{ #category : #navigation }
+FASTTNamedEntity >> invokedInGroup [
+	<generated>
+	<navigation: 'InvokedIn'>
+	^ MooseSpecializedGroup with: self invokedIn
 ]
 
 { #category : #accessing }

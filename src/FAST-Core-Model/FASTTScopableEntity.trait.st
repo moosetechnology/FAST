@@ -6,8 +6,10 @@ Some statements are scopable because they allow to introduce local variables (e.
 ## Properties
 ======================
 
-- Named: #endPos Type: Number
-- Named: #startPos Type: Number
+| Name | Type | Default value | Comment |
+|---|
+| `endPos` | `Number` | nil | |
+| `startPos` | `Number` | nil | |
 
 "
 Trait {

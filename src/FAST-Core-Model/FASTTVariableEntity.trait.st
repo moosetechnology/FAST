@@ -5,17 +5,21 @@ A node for variable name not in a expression (example: assigned variable or para
 ======================
 
 ### Parents
-- Relation: #parameterOwner Type: #FASTTWithParameters Opposite: #parameters Comment: parameterOwner
-### Other
-- Relation: #invokedIn Type: #FASTTInvocation Opposite: #invoked Comment: Optional invocation where this name is used
-- Relation: #parentAssignmentExpression Type: #FASTTAssignment Opposite: #variable Comment: Optional assignment to the variable
+| Relation | Origin | Opposite | Type | Comment |
+|---|
+| `invokedIn` | `FASTTNamedEntity` | `invoked` | `FASTTInvocation` | Optional invocation where this name is used|
+| `parameterOwner` | `FASTTVariableEntity` | `parameters` | `FASTTWithParameters` | parameterOwner|
+| `parentAssignmentExpression` | `FASTTVariableEntity` | `variable` | `FASTTAssignment` | Optional assignment to the variable|
+
 
 ## Properties
 ======================
 
-- Named: #endPos Type: Number
-- Named: #name Type: String
-- Named: #startPos Type: Number
+| Name | Type | Default value | Comment |
+|---|
+| `endPos` | `Number` | nil | |
+| `name` | `String` | nil | |
+| `startPos` | `Number` | nil | |
 
 "
 Trait {
@@ -68,6 +72,7 @@ FASTTVariableEntity >> parentAssignmentExpression [
 
 	<generated>
 	<FMComment: 'Optional assignment to the variable'>
+	<container>
 	<derived>
 	^ parentAssignmentExpression
 ]
@@ -77,4 +82,11 @@ FASTTVariableEntity >> parentAssignmentExpression: anObject [
 
 	<generated>
 	parentAssignmentExpression := anObject
+]
+
+{ #category : #navigation }
+FASTTVariableEntity >> parentAssignmentExpressionGroup [
+	<generated>
+	<navigation: 'ParentAssignmentExpression'>
+	^ MooseSpecializedGroup with: self parentAssignmentExpression
 ]
