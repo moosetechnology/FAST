@@ -4,7 +4,7 @@ For entities with comments. In FAST, they are called containers.
 ## Relations
 ======================
 
-### Other
+### Children
 | Relation | Origin | Opposite | Type | Comment |
 |---|
 | `comments` | `FASTTWithComments` | `container` | `FASTTComment` | list of comments defined in the entity|
@@ -50,6 +50,13 @@ FASTTWithComments >> comments: anObject [
 
 	<generated>
 	comments value: anObject
+]
+
+{ #category : #navigation }
+FASTTWithComments >> commentsGroup [
+	<generated>
+	<navigation: 'Comments'>
+	^ MooseSpecializedGroup withAll: self comments asSet
 ]
 
 { #category : #adding }
