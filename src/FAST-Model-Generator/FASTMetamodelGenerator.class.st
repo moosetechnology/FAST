@@ -277,7 +277,7 @@ FASTMetamodelGenerator >> defineRelations [
 	
 	((tComment property: #container)
 			comment: 'Source code entity containing the comment')
-		*-
+		*-<>
 	((tWithComments property: #comments)
 			comment: 'list of comments defined in the entity').
 ]
