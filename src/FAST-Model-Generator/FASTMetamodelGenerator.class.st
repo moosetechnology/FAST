@@ -270,10 +270,10 @@ FASTMetamodelGenerator >> defineRelations [
 	
 	((tWithArguments property: #arguments) comment: 'My arguments') <>-* ((tExpression property: #argumentOwner) comment: 'my owner') .
 	
-	((tAssignment property: #variable) comment: 'An assigned variable (lhs of assignment)') - ((tVariableEntity property: #parentAssignmentExpression) comment: 'Optional assignment to the variable').
-	((tAssignment property: #expression) comment: 'Assigned expression (rhs of assignment)') - ((tExpression property: #assignedIn) comment: 'Optional assignment where this expression is used').
+	((tAssignment property: #variable) comment: 'An assigned variable (lhs of assignment)') <>- ((tVariableEntity property: #parentAssignmentExpression) comment: 'Optional assignment to the variable').
+	((tAssignment property: #expression) comment: 'Assigned expression (rhs of assignment)') <>- ((tExpression property: #assignedIn) comment: 'Optional assignment where this expression is used').
 	
-	((tInvocation property: #invoked) comment: 'The name of the behavioural invoked') - ((tNamedEntity property: #invokedIn) comment: 'Optional invocation where this name is used').
+	((tInvocation property: #invoked) comment: 'The name of the behavioural invoked') <>- ((tNamedEntity property: #invokedIn) comment: 'Optional invocation where this name is used').
 	
 	((tComment property: #container)
 			comment: 'Source code entity containing the comment')
