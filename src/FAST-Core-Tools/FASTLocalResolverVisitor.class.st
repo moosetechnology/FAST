@@ -15,142 +15,37 @@ Class {
 	#name : #FASTLocalResolverVisitor,
 	#superclass : #FASTCoreVisitor,
 	#instVars : [
-		'scopes'
+		'scoper'
 	],
 	#category : #'FAST-Core-Tools-Resolver'
 }
-
-{ #category : #accessing }
-FASTLocalResolverVisitor >> currentScope [
-
-	^ scopes top
-]
-
-{ #category : #private }
-FASTLocalResolverVisitor >> findDeclaration: aName [
-	"search for 'aName' in the current scope and its parent.
-	Returns nil if not found"
-
-	^self currentScope
-		at: aName
-		ifAbsent: [ |scope decl|
-			decl := nil.
-			scope := self popScope.
-			self hasScopes
-				ifTrue: [ decl := self findDeclaration: aName ].
-			self pushScope: scope.
-			decl
-		]
-]
-
-{ #category : #accessing }
-FASTLocalResolverVisitor >> hasScopes [
-	^scopes isNotEmpty
-]
 
 { #category : #initialization }
 FASTLocalResolverVisitor >> initialize [ 
 	super initialize.
 
-	scopes := Stack new
-]
-
-{ #category : #private }
-FASTLocalResolverVisitor >> localDeclaration: declarationNode for: referingNode [
-	referingNode localDeclaration: declarationNode.
-	declarationNode addLocalUse: referingNode
+	scoper := FASTLocalResolverScoping new
 ]
 
 { #category : #api }
 FASTLocalResolverVisitor >> on: aFASTBehaviouralEntity [
 
-	self resetScopes.
 	aFASTBehaviouralEntity accept: self
-]
-
-{ #category : #accessing }
-FASTLocalResolverVisitor >> popScope [
-
-	^scopes pop
-]
-
-{ #category : #accessing }
-FASTLocalResolverVisitor >> pushScope [
-
-	self pushScope: Dictionary new
-]
-
-{ #category : #accessing }
-FASTLocalResolverVisitor >> pushScope: aScope [
-
-	scopes push: aScope
-]
-
-{ #category : #accessing }
-FASTLocalResolverVisitor >> resetScopes [
-
-	scopes := Stack new.
-	"first scope for the method"
-	self pushScope
-]
-
-{ #category : #private }
-FASTLocalResolverVisitor >> scopeAdd: aName declaration: aFASTNode [
-
-	self currentScope
-		at: aName
-		ifPresent: [ DuplicatedVariableError signal:
-			'local variable ' , aName , 'already found in this scope' ]
-		ifAbsent: [
-			aFASTNode resetLocalUses.
-			self currentScope at: aName put: aFASTNode
-		].
-	
-]
-
-{ #category : #private }
-FASTLocalResolverVisitor >> scopeAddNonLocalDeclaration: name [
-	"makes a non-local declaration kind of local by adding
-	 a FASTNonLocalDeclaration into the current scope"
-
-	| currentScope nonLocalDeclaration |
-	currentScope := self popScope.
-	scopes
-		ifEmpty: [
-			self pushScope: currentScope.
-			nonLocalDeclaration := FASTNonLocalDeclaration new name: name.
-			self
-				scopeAdd: name
-				declaration: nonLocalDeclaration
-			]
-		ifNotEmpty: [
-			nonLocalDeclaration := self scopeAddNonLocalDeclaration: name.
-			self pushScope: currentScope.
-		].
-	^nonLocalDeclaration 
-		
 ]
 
 { #category : #visiting }
 FASTLocalResolverVisitor >> visitFASTIdentifierExpression: aFASTIdentifier [
-	"reference to an identifier in the AST
-	 - the identifier refers to a variable (structuralEntity)
-	 - look for a definition of this identifier in the hierarchy of scopes
-	 - if not found, creates a NonLocalDeclaration for it
-	 - binds this reference to the declaration"
+	"reference to an identifier in the AST that must be linked to its declaration"
 
-	self 
-		localDeclaration: (
-			(self findDeclaration: aFASTIdentifier name)
-			ifNil: [ self scopeAddNonLocalDeclaration: aFASTIdentifier name ])
-		for: aFASTIdentifier
+	scoper bind: aFASTIdentifier toLocalDeclaration: aFASTIdentifier name
+
 ]
 
 { #category : #visiting }
 FASTLocalResolverVisitor >> visitFASTLocalDeclaration: aFASTVariableDeclaration [
 	"register a variable (structuralEntity) declaration into the current scope"
 
-	self
+	scoper
 		scopeAdd: aFASTVariableDeclaration variable name
 		declaration: aFASTVariableDeclaration.
 
@@ -166,21 +61,21 @@ FASTLocalResolverVisitor >> visitFASTScopeChildren: childrenNodes [
 self shouldNotImplement.
 "Actually does not seem to be used anywhere ..."
 
-	self pushScope.
+	scoper pushScope.
 
 	(childrenNodes sorted: [:a :b | a startPos < b startPos])
 		do: [ :node | node accept: self ].
 
-	^self popScope
+	^scoper popScope
 ]
 
 { #category : #visiting }
 FASTLocalResolverVisitor >> visitFASTTStatementBlock: aFASTJavaStatementBlock [
-	self pushScope.
+	scoper pushScope.
 
 	"visit order is important to ensure declarations are visited before statements"
 	(aFASTJavaStatementBlock statements sorted: [:a :b | a startPos < b startPos])
 		do: [ :node | node accept: self ].
 
-	^self popScope
+	^scoper popScope
 ]

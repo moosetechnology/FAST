@@ -3,7 +3,7 @@ A ""null-object"" signaling the declaration of a 'name' was not found
 "
 Class {
 	#name : #FASTNonLocalDeclaration,
-	#superclass : #FASTEntity,
+	#superclass : #FASTFortranEntity,
 	#instVars : [
 		'name'
 	],
