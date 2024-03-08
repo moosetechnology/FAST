@@ -44,6 +44,12 @@ FASTTEntity >> endPos: anObject [
 	endPos := anObject
 ]
 
+{ #category : #testing }
+FASTTEntity >> isNonLocalDeclaration [
+
+	^false
+]
+
 { #category : #accessing }
 FASTTEntity >> startPos [
 
