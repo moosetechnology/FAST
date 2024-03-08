@@ -35,38 +35,10 @@ FASTLocalResolverVisitor >> on: aFASTBehaviouralEntity [
 
 { #category : #visiting }
 FASTLocalResolverVisitor >> visitFASTIdentifierExpression: aFASTIdentifier [
-	"reference to an identifier in the AST that must be linked to its declaration"
+	"reference to an identifier in the AST that must be bound to its declaration"
 
 	scoper bind: aFASTIdentifier toLocalDeclaration: aFASTIdentifier name
 
-]
-
-{ #category : #visiting }
-FASTLocalResolverVisitor >> visitFASTLocalDeclaration: aFASTVariableDeclaration [
-	"register a variable (structuralEntity) declaration into the current scope"
-
-	scoper
-		scopeAdd: aFASTVariableDeclaration variable name
-		declaration: aFASTVariableDeclaration.
-
-	aFASTVariableDeclaration variable localDeclaration: aFASTVariableDeclaration.
-
-]
-
-{ #category : #visiting }
-FASTLocalResolverVisitor >> visitFASTScopeChildren: childrenNodes [
-	"creates a new scope and visit its children nodes
-	 Order of nodes is important to ensure declarations are visited before statements"
-
-self shouldNotImplement.
-"Actually does not seem to be used anywhere ..."
-
-	scoper pushScope.
-
-	(childrenNodes sorted: [:a :b | a startPos < b startPos])
-		do: [ :node | node accept: self ].
-
-	^scoper popScope
 ]
 
 { #category : #visiting }

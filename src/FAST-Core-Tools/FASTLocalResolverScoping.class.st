@@ -108,7 +108,7 @@ FASTLocalResolverScoping >> scopeAdd: aName declaration: aFASTNode [
 	self currentScope
 		at: aName
 		ifPresent: [ DuplicatedVariableError signal:
-			'local variable ' , aName , 'already found in this scope' ]
+			'local variable ' , aName , ' already found in this scope' ]
 		ifAbsent: [
 			aFASTNode resetLocalUses.
 			self currentScope at: aName put: aFASTNode
