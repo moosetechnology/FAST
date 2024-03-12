@@ -252,34 +252,66 @@ FASTMetamodelGenerator >> defineProperties [
 	
 	((tComment property: #content type: #String) 
 		comment: 'Content of the comment as a String').
+
+	(tUnaryExpression property: #operator type: #String) comment:
+		'Unary expression operator'.
+
+	(tBinaryExpression property: #operator type: #String) comment:
+		'Binary expression operator'.
+
 ]
 
 { #category : #definition }
 FASTMetamodelGenerator >> defineRelations [
 	super defineRelations.
-	(((tExpressionStatement property: #expression) comment: 'The expression of the statement') <>- ((tExpression property: #expressionStatementOwner) comment: 'The expression statement that own me (if it''s the case')) .
 
-	(((tReturnStatement property: #expression) comment: 'The expression returned') <>- ((tExpression property: #returnOwner)
+	(((tExpressionStatement property: #expression) comment: 'The expression of the statement')
+	<>- ((tExpression property: #expressionStatementOwner)
+		comment: 'The expression statement that own me (if it''s the case')) .
+
+	(((tReturnStatement property: #expression) comment: 'The expression returned')
+	<>- ((tExpression property: #returnOwner)
 		comment: 'The return statement that own the expression (if it''s the case)')) .
-		
-	(((tBehaviouralEntity property: #statementBlock) comment: 'Statements block of the behavioural entity') <>- ((tStatementBlock property: #fastBehaviouralParent) comment: 'Behavioural entity containing the statement block.')) .
-	
-	(((tStatement property: #statementContainer) comment: 'Block containing this statement.') *-<> ((tStatementBlock property: #statements) comment: 'Statements enclosed in this block')) .
-	
-	((tWithParameters property: #parameters) comment: 'My parameters') <>-* ((tVariableEntity property: #parameterOwner) comment: 'parameterOwner') . 
-	
-	((tWithArguments property: #arguments) comment: 'My arguments') <>-* ((tExpression property: #argumentOwner) comment: 'my owner') .
-	
-	((tAssignment property: #variable) comment: 'An assigned variable (lhs of assignment)') <>- ((tVariableEntity property: #parentAssignmentExpression) comment: 'Optional assignment to the variable').
-	((tAssignment property: #expression) comment: 'Assigned expression (rhs of assignment)') <>- ((tExpression property: #assignedIn) comment: 'Optional assignment where this expression is used').
-	
-	((tInvocation property: #invoked) comment: 'The name of the behavioural invoked') <>- ((tNamedEntity property: #invokedIn) comment: 'Optional invocation where this name is used').
-	
-	((tComment property: #container)
-			comment: 'Source code entity containing the comment')
-		*-<>
-	((tWithComments property: #comments)
+
+	(((tBehaviouralEntity property: #statementBlock) comment: 'Statements block of the behavioural entity')
+	<>- ((tStatementBlock property: #fastBehaviouralParent)
+		comment: 'Behavioural entity containing the statement block.')) .
+
+	(((tStatement property: #statementContainer) comment: 'Block containing this statement.')
+	*-<> ((tStatementBlock property: #statements) comment: 'Statements enclosed in this block')) .
+
+	((tWithParameters property: #parameters) comment: 'My parameters')
+	<>-* ((tVariableEntity property: #parameterOwner) comment: 'parameterOwner') . 
+
+	((tWithArguments property: #arguments) comment: 'My arguments')
+	<>-* ((tExpression property: #argumentOwner) comment: 'my owner') .
+
+	((tAssignment property: #variable) comment: 'An assigned variable (lhs of assignment)')
+	<>- ((tVariableEntity property: #parentAssignmentExpression)
+		comment: 'Optional assignment to the variable').
+
+	((tAssignment property: #expression) comment: 'Assigned expression (rhs of assignment)')
+	<>- ((tExpression property: #assignedIn)
+		comment: 'Optional assignment where this expression is used').
+
+	((tUnaryExpression property: #expression) comment: '(sub-)expression in the unary expression')
+	<>- ((tExpression property: #parentExpression) comment: 'Parent (unary) expression').
+
+	((tBinaryExpression property: #left) comment: 'left part of a binary expression')
+	<>- ((tExpression property: #parentExpressionLeft)
+		comment: 'Parent (binary) expression of which I am left side').
+
+	((tBinaryExpression property: #right) comment: 'left part of the expression')
+	<>- ((tExpression property: #parentExpressionRight)
+		comment: 'Parent (binary) expression of which I am right side').
+
+	((tInvocation property: #invoked) comment: 'The name of the behavioural invoked')
+	<>- ((tNamedEntity property: #invokedIn) comment: 'Optional invocation where this name is used').
+
+	((tComment property: #container) comment: 'Source code entity containing the comment')
+		*-<> ((tWithComments property: #comments)
 			comment: 'list of comments defined in the entity').
+
 ]
 
 { #category : #definition }
