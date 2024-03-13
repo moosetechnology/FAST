@@ -11,15 +11,15 @@ A trait representing a binary expression of a node of a source code.
 | `assignedIn` | `FASTTExpression` | `expression` | `FASTTAssignment` | Optional assignment where this expression is used|
 | `expressionStatementOwner` | `FASTTExpression` | `expression` | `FASTTExpressionStatement` | The expression statement that own me (if it's the case|
 | `parentExpression` | `FASTTExpression` | `expression` | `FASTTUnaryExpression` | Parent (unary) expression|
-| `parentExpressionLeft` | `FASTTExpression` | `left` | `FASTTBinaryExpression` | Parent (binary) expression of which I am left side|
-| `parentExpressionRight` | `FASTTExpression` | `right` | `FASTTBinaryExpression` | Parent (binary) expression of which I am right side|
+| `parentExpressionLeft` | `FASTTExpression` | `leftOperand` | `FASTTBinaryExpression` | Parent (binary) expression of which I am left side|
+| `parentExpressionRight` | `FASTTExpression` | `rightOperand` | `FASTTBinaryExpression` | Parent (binary) expression of which I am right side|
 | `returnOwner` | `FASTTExpression` | `expression` | `FASTTReturnStatement` | The return statement that own the expression (if it's the case)|
 
 ### Children
 | Relation | Origin | Opposite | Type | Comment |
 |---|
-| `left` | `FASTTBinaryExpression` | `parentExpressionLeft` | `FASTTExpression` | left part of a binary expression|
-| `right` | `FASTTBinaryExpression` | `parentExpressionRight` | `FASTTExpression` | left part of the expression|
+| `leftOperand` | `FASTTBinaryExpression` | `parentExpressionLeft` | `FASTTExpression` | left part of a binary expression|
+| `rightOperand` | `FASTTBinaryExpression` | `parentExpressionRight` | `FASTTExpression` | left part of the expression|
 
 
 ## Properties
@@ -35,9 +35,9 @@ A trait representing a binary expression of a node of a source code.
 Trait {
 	#name : #FASTTBinaryExpression,
 	#instVars : [
-		'#left => FMOne type: #FASTTExpression opposite: #parentExpressionLeft',
+		'#leftOperand => FMOne type: #FASTTExpression opposite: #parentExpressionLeft',
 		'#operator => FMProperty',
-		'#right => FMOne type: #FASTTExpression opposite: #parentExpressionRight'
+		'#rightOperand => FMOne type: #FASTTExpression opposite: #parentExpressionRight'
 	],
 	#traits : 'FASTTExpression',
 	#classTraits : 'FASTTExpression classTrait',
@@ -54,26 +54,26 @@ FASTTBinaryExpression classSide >> annotation [
 ]
 
 { #category : #accessing }
-FASTTBinaryExpression >> left [
-	"Relation named: #left type: #FASTTExpression opposite: #parentExpressionLeft"
+FASTTBinaryExpression >> leftOperand [
+	"Relation named: #leftOperand type: #FASTTExpression opposite: #parentExpressionLeft"
 
 	<generated>
 	<FMComment: 'left part of a binary expression'>
-	^ left
+	^ leftOperand
 ]
 
 { #category : #accessing }
-FASTTBinaryExpression >> left: anObject [
+FASTTBinaryExpression >> leftOperand: anObject [
 
 	<generated>
-	left := anObject
+	leftOperand := anObject
 ]
 
 { #category : #navigation }
-FASTTBinaryExpression >> leftGroup [
+FASTTBinaryExpression >> leftOperandGroup [
 	<generated>
-	<navigation: 'Left'>
-	^ MooseSpecializedGroup with: self left
+	<navigation: 'LeftOperand'>
+	^ MooseSpecializedGroup with: self leftOperand
 ]
 
 { #category : #accessing }
@@ -92,24 +92,24 @@ FASTTBinaryExpression >> operator: anObject [
 ]
 
 { #category : #accessing }
-FASTTBinaryExpression >> right [
-	"Relation named: #right type: #FASTTExpression opposite: #parentExpressionRight"
+FASTTBinaryExpression >> rightOperand [
+	"Relation named: #rightOperand type: #FASTTExpression opposite: #parentExpressionRight"
 
 	<generated>
 	<FMComment: 'left part of the expression'>
-	^ right
+	^ rightOperand
 ]
 
 { #category : #accessing }
-FASTTBinaryExpression >> right: anObject [
+FASTTBinaryExpression >> rightOperand: anObject [
 
 	<generated>
-	right := anObject
+	rightOperand := anObject
 ]
 
 { #category : #navigation }
-FASTTBinaryExpression >> rightGroup [
+FASTTBinaryExpression >> rightOperandGroup [
 	<generated>
-	<navigation: 'Right'>
-	^ MooseSpecializedGroup with: self right
+	<navigation: 'RightOperand'>
+	^ MooseSpecializedGroup with: self rightOperand
 ]
