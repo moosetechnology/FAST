@@ -11,8 +11,8 @@ An abstract superclass representing an expression node of a source code.
 | `assignedIn` | `FASTTExpression` | `expression` | `FASTTAssignment` | Optional assignment where this expression is used|
 | `expressionStatementOwner` | `FASTTExpression` | `expression` | `FASTTExpressionStatement` | The expression statement that own me (if it's the case|
 | `parentExpression` | `FASTTExpression` | `expression` | `FASTTUnaryExpression` | Parent (unary) expression|
-| `parentExpressionLeft` | `FASTTExpression` | `left` | `FASTTBinaryExpression` | Parent (binary) expression of which I am left side|
-| `parentExpressionRight` | `FASTTExpression` | `right` | `FASTTBinaryExpression` | Parent (binary) expression of which I am right side|
+| `parentExpressionLeft` | `FASTTExpression` | `leftOperand` | `FASTTBinaryExpression` | Parent (binary) expression of which I am left side|
+| `parentExpressionRight` | `FASTTExpression` | `rightOperand` | `FASTTBinaryExpression` | Parent (binary) expression of which I am right side|
 | `returnOwner` | `FASTTExpression` | `expression` | `FASTTReturnStatement` | The return statement that own the expression (if it's the case)|
 
 
@@ -32,8 +32,8 @@ Trait {
 		'#assignedIn => FMOne type: #FASTTAssignment opposite: #expression',
 		'#expressionStatementOwner => FMOne type: #FASTTExpressionStatement opposite: #expression',
 		'#parentExpression => FMOne type: #FASTTUnaryExpression opposite: #expression',
-		'#parentExpressionLeft => FMOne type: #FASTTBinaryExpression opposite: #left',
-		'#parentExpressionRight => FMOne type: #FASTTBinaryExpression opposite: #right',
+		'#parentExpressionLeft => FMOne type: #FASTTBinaryExpression opposite: #leftOperand',
+		'#parentExpressionRight => FMOne type: #FASTTBinaryExpression opposite: #rightOperand',
 		'#returnOwner => FMOne type: #FASTTReturnStatement opposite: #expression'
 	],
 	#traits : 'FASTTEntity',
@@ -151,7 +151,7 @@ FASTTExpression >> parentExpressionGroup [
 
 { #category : #accessing }
 FASTTExpression >> parentExpressionLeft [
-	"Relation named: #parentExpressionLeft type: #FASTTBinaryExpression opposite: #left"
+	"Relation named: #parentExpressionLeft type: #FASTTBinaryExpression opposite: #leftOperand"
 
 	<generated>
 	<FMComment: 'Parent (binary) expression of which I am left side'>
@@ -176,7 +176,7 @@ FASTTExpression >> parentExpressionLeftGroup [
 
 { #category : #accessing }
 FASTTExpression >> parentExpressionRight [
-	"Relation named: #parentExpressionRight type: #FASTTBinaryExpression opposite: #right"
+	"Relation named: #parentExpressionRight type: #FASTTBinaryExpression opposite: #rightOperand"
 
 	<generated>
 	<FMComment: 'Parent (binary) expression of which I am right side'>

@@ -297,11 +297,11 @@ FASTMetamodelGenerator >> defineRelations [
 	((tUnaryExpression property: #expression) comment: '(sub-)expression in the unary expression')
 	<>- ((tExpression property: #parentExpression) comment: 'Parent (unary) expression').
 
-	((tBinaryExpression property: #left) comment: 'left part of a binary expression')
+	((tBinaryExpression property: #leftOperand) comment: 'left part of a binary expression')
 	<>- ((tExpression property: #parentExpressionLeft)
 		comment: 'Parent (binary) expression of which I am left side').
 
-	((tBinaryExpression property: #right) comment: 'left part of the expression')
+	((tBinaryExpression property: #rightOperand) comment: 'left part of the expression')
 	<>- ((tExpression property: #parentExpressionRight)
 		comment: 'Parent (binary) expression of which I am right side').
 
