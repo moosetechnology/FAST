@@ -10,7 +10,8 @@ Trait {
 		'operatorsPrecedence',
 		'expressionContextOperator',
 		'outputStream',
-		'indentLevel'
+		'indentLevel',
+		'indentSize'
 	],
 	#category : #'FAST-Core-Visitor'
 }
@@ -144,6 +145,18 @@ FASTTExporter >> indentLevel [
 ]
 
 { #category : #outputting }
+FASTTExporter >> indentSize [
+
+	^  indentSize ifNil: [ indentSize := 2 ]
+]
+
+{ #category : #accessing }
+FASTTExporter >> indentSize: anObject [
+
+	indentSize := anObject
+]
+
+{ #category : #outputting }
 FASTTExporter >> indented: aPrintable [
 
 	self outputIndentPrefix.
@@ -226,8 +239,7 @@ FASTTExporter >> outputExpression: aBlock withOperator: operator [
 FASTTExporter >> outputIndentPrefix [
 	"prints indentation spaces"
 
-	self spaces: (self indentLevel * 2)
-	
+	self spaces: self indentLevel * self indentSize
 ]
 
 { #category : #outputting }
@@ -235,6 +247,12 @@ FASTTExporter >> outputStream [
 	"lazy accessor"
 
 	^outputStream ifNil: [ outputStream := WriteStream on: '' ]
+]
+
+{ #category : #outputting }
+FASTTExporter >> outputStream: anOutputStream [
+
+	^ outputStream := anOutputStream
 ]
 
 { #category : #precedence }
