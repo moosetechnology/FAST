@@ -18,10 +18,8 @@ BaselineOfFAST >> baseline: spec [
 { #category : #baselines }
 BaselineOfFAST >> customProjectAttributes [
 
-	^ RPackageOrganizer default packages
-		  detect: [ :package | package name = 'BaselineOfFamix' ]
-		  ifFound: [ #(  ) ]
-		  ifNone: [ #( #NeedsMoose ) ]
+	'BaselineOfFamix' asPackageIfAbsent: [ ^ #( #NeedsMoose ) ].
+	^ #( )
 ]
 
 { #category : #baselines }
