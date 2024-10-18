@@ -1,0 +1,61 @@
+# This workflows runs your tests as specified in your .smalltalk.ston configuration file.
+
+name: Run tests
+
+on:
+# Only one trigger is necessary, keep only the ones you need. Default branch is set by default, change it according to your needs.
+# Find more information here: # https://docs.github.com/en/actions/using-workflows/events-that-trigger-workflows
+  push:
+    branches: [ "v2" ]
+  pull_request:
+    branches: [ "v2" ]
+ 
+jobs:
+  run:
+    uses: moosetechnology/.github/.github/workflows/run-tests.yml@main
+    secrets: inherit
+# Optional inputs: un-comment the lines below. See documentation in the next commented paragraph.
+#      with:
+#        pharo-versions: "[ 'Moose64-trunk' ]"
+#        create-artifact: true
+#        image-name: ""
+#        pre-upload-script: ""
+#        run-coverage: true # Don't forget to modify you .smalltalk.ston file!
+
+
+
+############ INPUTS DOCUMENTATION ############
+
+# pharo-version: 
+#  An array of strings corresponding to a Pharo or Moose image.
+#    Default is the Pharo versions compatible with the latest Moose version.
+#    Alternatively, you can:
+#       - set the value of this option with valid Pharo or Moose versions (always an array, even if you set only 1 image).  See available images here: https://github.com/hpi-swa/smalltalkCI?tab=readme-ov-file#images
+#       - assign a Moose version to your branch using repository variables. See https://github.com/moosetechnology/.github?tab=readme-ov-file#use-different-values-for-specfic-branches
+#          The default Pharo version will then be the available Pharo versions corresponding to this Moose version.
+
+# create-artifact:
+#  A boolean. 
+#  Default is false.
+#  Set it to true to build an artifact containing all the files necessary to run your image locally. Note that smalltalkCI will be deleted from this image.
+
+# image-name:
+#  A string.
+#  If create-artifact is set to true, this will be the beginning of the name of the artifact and the image in it.
+#  The full name of each artifact will be <imagename>-<pharo-version>. This way you get an artifact per pharo version used.
+#    Default value: <RepositoryName-branchName>
+#    Alternatively, you can:
+#        - set the value of this option to a name valid for all branches targeted by your workflow
+#        - assign an image name to your branch using repository variables. See https://github.com/moosetechnology/.github?tab=readme-ov-file#use-different-values-for-specfic-branches
+
+# pre-upload-script:
+#  A string that can be executed in Pharo.
+#  If create-artifact is set to true, this will be executed in the image after the tests are run and before uploading the artifact.
+#  It is mostly used when you need to register information from the workflow run. For example, store commit ID. 
+#  If you do not need workflow information, you can instead use smalltalkCI custom scripts: https://github.com/hpi-swa/smalltalkCI?tab=readme-ov-file#custom-scripts
+#    Default value: ""
+
+# run-coverage:
+#  Compute coverage using Coveralls.
+#  See https://github.com/hpi-swa/smalltalkCI/blob/master/docs/COVERAGE.md for more documentation.
+#  Be sure to run on packages or classes in the repository (not loaded via dependency)
