@@ -13,14 +13,16 @@ For entities with comments. In FAST, they are called containers.
 
 "
 Trait {
-	#name : #FASTTWithComments,
+	#name : 'FASTTWithComments',
 	#instVars : [
 		'#comments => FMMany type: #FASTTComment opposite: #container'
 	],
-	#category : #'FAST-Core-Model-Traits'
+	#category : 'FAST-Core-Model-Traits',
+	#package : 'FAST-Core-Model',
+	#tag : 'Traits'
 }
 
-{ #category : #meta }
+{ #category : 'meta' }
 FASTTWithComments classSide >> annotation [
 
 	<FMClass: #TWithComments super: #Object>
@@ -29,13 +31,13 @@ FASTTWithComments classSide >> annotation [
 	^ self
 ]
 
-{ #category : #adding }
+{ #category : 'adding' }
 FASTTWithComments >> addComment: anObject [
 	<generated>
 	^ self comments add: anObject
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 FASTTWithComments >> comments [
 	"Relation named: #comments type: #FASTTComment opposite: #container"
 
@@ -45,21 +47,21 @@ FASTTWithComments >> comments [
 	^ comments
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 FASTTWithComments >> comments: anObject [
 
 	<generated>
 	comments value: anObject
 ]
 
-{ #category : #navigation }
+{ #category : 'navigation' }
 FASTTWithComments >> commentsGroup [
 	<generated>
 	<navigation: 'Comments'>
 	^ MooseSpecializedGroup withAll: self comments asSet
 ]
 
-{ #category : #adding }
+{ #category : 'adding' }
 FASTTWithComments >> hasComments [
 	<FMProperty: #hasComments type: #Boolean>
 	<derived>
@@ -67,7 +69,7 @@ FASTTWithComments >> hasComments [
 	^ self comments isNotEmpty
 ]
 
-{ #category : #adding }
+{ #category : 'adding' }
 FASTTWithComments >> numberOfComments [
 	<FMProperty: #numberOfComments type: #Number>
 	<derived>
@@ -82,12 +84,12 @@ FASTTWithComments >> numberOfComments [
 
 ]
 
-{ #category : #adding }
+{ #category : 'adding' }
 FASTTWithComments >> numberOfComments: aNumber [
 	self cacheAt: #numberOfComments put: aNumber
 ]
 
-{ #category : #adding }
+{ #category : 'adding' }
 FASTTWithComments >> removeComment: aComment [
 	self comments remove: aComment
 ]

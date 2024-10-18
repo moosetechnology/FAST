@@ -27,17 +27,26 @@ An undefined object literal
 
 "
 Trait {
-	#name : #FASTTNullPointerLiteral,
+	#name : 'FASTTNullPointerLiteral',
 	#traits : 'FASTTLiteral',
 	#classTraits : 'FASTTLiteral classTrait',
-	#category : #'FAST-Core-Model-Traits'
+	#category : 'FAST-Core-Model-Traits',
+	#package : 'FAST-Core-Model',
+	#tag : 'Traits'
 }
 
-{ #category : #meta }
+{ #category : 'meta' }
 FASTTNullPointerLiteral classSide >> annotation [
 
 	<FMClass: #TNullPointerLiteral super: #Object>
 	<package: #'FAST-Core-Model'>
 	<generated>
 	^ self
+]
+
+{ #category : 'testing' }
+FASTTNullPointerLiteral >> isNullPointerLiteral [
+
+	<generated>
+	^ true
 ]

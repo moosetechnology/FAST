@@ -13,14 +13,16 @@ I have arguments
 
 "
 Trait {
-	#name : #FASTTWithArguments,
+	#name : 'FASTTWithArguments',
 	#instVars : [
 		'#arguments => FMMany type: #FASTTExpression opposite: #argumentOwner'
 	],
-	#category : #'FAST-Core-Model-Traits'
+	#category : 'FAST-Core-Model-Traits',
+	#package : 'FAST-Core-Model',
+	#tag : 'Traits'
 }
 
-{ #category : #meta }
+{ #category : 'meta' }
 FASTTWithArguments classSide >> annotation [
 
 	<FMClass: #TWithArguments super: #Object>
@@ -29,13 +31,13 @@ FASTTWithArguments classSide >> annotation [
 	^ self
 ]
 
-{ #category : #adding }
+{ #category : 'adding' }
 FASTTWithArguments >> addArgument: anObject [
 	<generated>
 	^ self arguments add: anObject
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 FASTTWithArguments >> arguments [
 	"Relation named: #arguments type: #FASTTExpression opposite: #argumentOwner"
 
@@ -45,14 +47,14 @@ FASTTWithArguments >> arguments [
 	^ arguments
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 FASTTWithArguments >> arguments: anObject [
 
 	<generated>
 	arguments value: anObject
 ]
 
-{ #category : #navigation }
+{ #category : 'navigation' }
 FASTTWithArguments >> argumentsGroup [
 	<generated>
 	<navigation: 'Arguments'>

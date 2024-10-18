@@ -32,13 +32,15 @@ Assumed to correspond to a function or a method
 
 "
 Trait {
-	#name : #FASTTNamedBehaviouralEntity,
+	#name : 'FASTTNamedBehaviouralEntity',
 	#traits : 'FASTTBehaviouralEntity + FASTTNamedEntity',
 	#classTraits : 'FASTTBehaviouralEntity classTrait + FASTTNamedEntity classTrait',
-	#category : #'FAST-Core-Model-Traits'
+	#category : 'FAST-Core-Model-Traits',
+	#package : 'FAST-Core-Model',
+	#tag : 'Traits'
 }
 
-{ #category : #meta }
+{ #category : 'meta' }
 FASTTNamedBehaviouralEntity classSide >> annotation [
 
 	<FMClass: #TNamedBehaviouralEntity super: #Object>

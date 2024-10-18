@@ -32,17 +32,19 @@ A node representing an assignment
 
 "
 Trait {
-	#name : #FASTTAssignment,
+	#name : 'FASTTAssignment',
 	#instVars : [
 		'#expression => FMOne type: #FASTTExpression opposite: #assignedIn',
 		'#variable => FMOne type: #FASTTVariableEntity opposite: #parentAssignmentExpression'
 	],
 	#traits : 'FASTTExpression',
 	#classTraits : 'FASTTExpression classTrait',
-	#category : #'FAST-Core-Model-Traits'
+	#category : 'FAST-Core-Model-Traits',
+	#package : 'FAST-Core-Model',
+	#tag : 'Traits'
 }
 
-{ #category : #meta }
+{ #category : 'meta' }
 FASTTAssignment classSide >> annotation [
 
 	<FMClass: #TAssignment super: #Object>
@@ -51,7 +53,7 @@ FASTTAssignment classSide >> annotation [
 	^ self
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 FASTTAssignment >> expression [
 	"Relation named: #expression type: #FASTTExpression opposite: #assignedIn"
 
@@ -60,21 +62,28 @@ FASTTAssignment >> expression [
 	^ expression
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 FASTTAssignment >> expression: anObject [
 
 	<generated>
 	expression := anObject
 ]
 
-{ #category : #navigation }
+{ #category : 'navigation' }
 FASTTAssignment >> expressionGroup [
 	<generated>
 	<navigation: 'Expression'>
 	^ MooseSpecializedGroup with: self expression
 ]
 
-{ #category : #accessing }
+{ #category : 'testing' }
+FASTTAssignment >> isAssignment [
+
+	<generated>
+	^ true
+]
+
+{ #category : 'accessing' }
 FASTTAssignment >> variable [
 	"Relation named: #variable type: #FASTTVariableEntity opposite: #parentAssignmentExpression"
 
@@ -83,14 +92,14 @@ FASTTAssignment >> variable [
 	^ variable
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 FASTTAssignment >> variable: anObject [
 
 	<generated>
 	variable := anObject
 ]
 
-{ #category : #navigation }
+{ #category : 'navigation' }
 FASTTAssignment >> variableGroup [
 	<generated>
 	<navigation: 'Variable'>

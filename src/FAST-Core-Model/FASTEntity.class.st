@@ -11,14 +11,16 @@ any entity
 
 "
 Class {
-	#name : #FASTEntity,
-	#superclass : #MooseEntity,
+	#name : 'FASTEntity',
+	#superclass : 'MooseEntity',
 	#traits : 'FASTTEntity',
 	#classTraits : 'FASTTEntity classTrait',
-	#category : #'FAST-Core-Model-Entities'
+	#category : 'FAST-Core-Model-Entities',
+	#package : 'FAST-Core-Model',
+	#tag : 'Entities'
 }
 
-{ #category : #meta }
+{ #category : 'meta' }
 FASTEntity class >> annotation [
 
 	<FMClass: #Entity super: #MooseEntity>
@@ -27,14 +29,14 @@ FASTEntity class >> annotation [
 	^ self
 ]
 
-{ #category : #meta }
+{ #category : 'meta' }
 FASTEntity class >> metamodel [
 
 	<generated>
 	^ FASTModel metamodel
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 FASTEntity >> isQueryable [
 
 	<generated>

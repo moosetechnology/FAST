@@ -32,16 +32,18 @@ FLAG: should refactor some literals to core-model
 
 "
 Trait {
-	#name : #FASTTLiteral,
+	#name : 'FASTTLiteral',
 	#instVars : [
 		'#primitiveValue => FMProperty'
 	],
 	#traits : 'FASTTExpression',
 	#classTraits : 'FASTTExpression classTrait',
-	#category : #'FAST-Core-Model-Traits'
+	#category : 'FAST-Core-Model-Traits',
+	#package : 'FAST-Core-Model',
+	#tag : 'Traits'
 }
 
-{ #category : #meta }
+{ #category : 'meta' }
 FASTTLiteral classSide >> annotation [
 
 	<FMClass: #TLiteral super: #Object>
@@ -50,7 +52,14 @@ FASTTLiteral classSide >> annotation [
 	^ self
 ]
 
-{ #category : #accessing }
+{ #category : 'testing' }
+FASTTLiteral >> isLiteral [
+
+	<generated>
+	^ true
+]
+
+{ #category : 'accessing' }
 FASTTLiteral >> primitiveValue [
 
 	<FMProperty: #primitiveValue type: #String>
@@ -59,7 +68,7 @@ FASTTLiteral >> primitiveValue [
 	^ primitiveValue
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 FASTTLiteral >> primitiveValue: anObject [
 	<generated>
 	primitiveValue := anObject

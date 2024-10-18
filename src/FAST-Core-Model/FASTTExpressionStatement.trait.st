@@ -25,16 +25,18 @@ A node of a statement which is representing a single expression.
 
 "
 Trait {
-	#name : #FASTTExpressionStatement,
+	#name : 'FASTTExpressionStatement',
 	#instVars : [
 		'#expression => FMOne type: #FASTTExpression opposite: #expressionStatementOwner'
 	],
 	#traits : 'FASTTStatement',
 	#classTraits : 'FASTTStatement classTrait',
-	#category : #'FAST-Core-Model-Traits'
+	#category : 'FAST-Core-Model-Traits',
+	#package : 'FAST-Core-Model',
+	#tag : 'Traits'
 }
 
-{ #category : #meta }
+{ #category : 'meta' }
 FASTTExpressionStatement classSide >> annotation [
 
 	<FMClass: #TExpressionStatement super: #Object>
@@ -43,7 +45,7 @@ FASTTExpressionStatement classSide >> annotation [
 	^ self
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 FASTTExpressionStatement >> expression [
 	"Relation named: #expression type: #FASTTExpression opposite: #expressionStatementOwner"
 
@@ -52,16 +54,23 @@ FASTTExpressionStatement >> expression [
 	^ expression
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 FASTTExpressionStatement >> expression: anObject [
 
 	<generated>
 	expression := anObject
 ]
 
-{ #category : #navigation }
+{ #category : 'navigation' }
 FASTTExpressionStatement >> expressionGroup [
 	<generated>
 	<navigation: 'Expression'>
 	^ MooseSpecializedGroup with: self expression
+]
+
+{ #category : 'testing' }
+FASTTExpressionStatement >> isExpressionStatement [
+
+	<generated>
+	^ true
 ]

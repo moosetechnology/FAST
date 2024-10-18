@@ -5,11 +5,13 @@ It provides an API for creating entities and adding them to the model.
 
 "
 Trait {
-	#name : #FASTTEntityCreator,
-	#category : #'FAST-Core-Model-Model'
+	#name : 'FASTTEntityCreator',
+	#category : 'FAST-Core-Model-Model',
+	#package : 'FAST-Core-Model',
+	#tag : 'Model'
 }
 
-{ #category : #meta }
+{ #category : 'meta' }
 FASTTEntityCreator classSide >> annotation [
 
 	<FMClass: #TEntityCreator super: #Object>
@@ -18,7 +20,7 @@ FASTTEntityCreator classSide >> annotation [
 	^ self
 ]
 
-{ #category : #'entity creation' }
+{ #category : 'entity creation' }
 FASTTEntityCreator >> newEntity [
 
 	<generated>

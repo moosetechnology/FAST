@@ -27,17 +27,26 @@ A numerical literal
 
 "
 Trait {
-	#name : #FASTTNumericalLiteral,
+	#name : 'FASTTNumericalLiteral',
 	#traits : 'FASTTLiteral',
 	#classTraits : 'FASTTLiteral classTrait',
-	#category : #'FAST-Core-Model-Traits'
+	#category : 'FAST-Core-Model-Traits',
+	#package : 'FAST-Core-Model',
+	#tag : 'Traits'
 }
 
-{ #category : #meta }
+{ #category : 'meta' }
 FASTTNumericalLiteral classSide >> annotation [
 
 	<FMClass: #TNumericalLiteral super: #Object>
 	<package: #'FAST-Core-Model'>
 	<generated>
 	^ self
+]
+
+{ #category : 'testing' }
+FASTTNumericalLiteral >> isNumericalLiteral [
+
+	<generated>
+	^ true
 ]

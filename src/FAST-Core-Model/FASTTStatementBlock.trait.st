@@ -26,17 +26,19 @@ A block of statements as ones in C-like langs with {}
 
 "
 Trait {
-	#name : #FASTTStatementBlock,
+	#name : 'FASTTStatementBlock',
 	#instVars : [
 		'#fastBehaviouralParent => FMOne type: #FASTTBehaviouralEntity opposite: #statementBlock',
 		'#statements => FMMany type: #FASTTStatement opposite: #statementContainer'
 	],
 	#traits : 'FASTTStatement',
 	#classTraits : 'FASTTStatement classTrait',
-	#category : #'FAST-Core-Model-Traits'
+	#category : 'FAST-Core-Model-Traits',
+	#package : 'FAST-Core-Model',
+	#tag : 'Traits'
 }
 
-{ #category : #meta }
+{ #category : 'meta' }
 FASTTStatementBlock classSide >> annotation [
 
 	<FMClass: #TStatementBlock super: #Object>
@@ -45,13 +47,13 @@ FASTTStatementBlock classSide >> annotation [
 	^ self
 ]
 
-{ #category : #adding }
+{ #category : 'adding' }
 FASTTStatementBlock >> addStatement: anObject [
 	<generated>
 	^ self statements add: anObject
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 FASTTStatementBlock >> fastBehaviouralParent [
 	"Relation named: #fastBehaviouralParent type: #FASTTBehaviouralEntity opposite: #statementBlock"
 
@@ -62,21 +64,28 @@ FASTTStatementBlock >> fastBehaviouralParent [
 	^ fastBehaviouralParent
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 FASTTStatementBlock >> fastBehaviouralParent: anObject [
 
 	<generated>
 	fastBehaviouralParent := anObject
 ]
 
-{ #category : #navigation }
+{ #category : 'navigation' }
 FASTTStatementBlock >> fastBehaviouralParentGroup [
 	<generated>
 	<navigation: 'FastBehaviouralParent'>
 	^ MooseSpecializedGroup with: self fastBehaviouralParent
 ]
 
-{ #category : #accessing }
+{ #category : 'testing' }
+FASTTStatementBlock >> isStatementBlock [
+
+	<generated>
+	^ true
+]
+
+{ #category : 'accessing' }
 FASTTStatementBlock >> statements [
 	"Relation named: #statements type: #FASTTStatement opposite: #statementContainer"
 
@@ -86,14 +95,14 @@ FASTTStatementBlock >> statements [
 	^ statements
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 FASTTStatementBlock >> statements: anObject [
 
 	<generated>
 	statements value: anObject
 ]
 
-{ #category : #navigation }
+{ #category : 'navigation' }
 FASTTStatementBlock >> statementsGroup [
 	<generated>
 	<navigation: 'Statements'>

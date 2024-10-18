@@ -26,7 +26,7 @@ An abstract superclass representing an expression node of a source code.
 
 "
 Trait {
-	#name : #FASTTExpression,
+	#name : 'FASTTExpression',
 	#instVars : [
 		'#argumentOwner => FMOne type: #FASTTWithArguments opposite: #arguments',
 		'#assignedIn => FMOne type: #FASTTAssignment opposite: #expression',
@@ -38,10 +38,12 @@ Trait {
 	],
 	#traits : 'FASTTEntity',
 	#classTraits : 'FASTTEntity classTrait',
-	#category : #'FAST-Core-Model-Traits'
+	#category : 'FAST-Core-Model-Traits',
+	#package : 'FAST-Core-Model',
+	#tag : 'Traits'
 }
 
-{ #category : #meta }
+{ #category : 'meta' }
 FASTTExpression classSide >> annotation [
 
 	<FMClass: #TExpression super: #Object>
@@ -50,7 +52,7 @@ FASTTExpression classSide >> annotation [
 	^ self
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 FASTTExpression >> argumentOwner [
 	"Relation named: #argumentOwner type: #FASTTWithArguments opposite: #arguments"
 
@@ -60,21 +62,21 @@ FASTTExpression >> argumentOwner [
 	^ argumentOwner
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 FASTTExpression >> argumentOwner: anObject [
 
 	<generated>
 	argumentOwner := anObject
 ]
 
-{ #category : #navigation }
+{ #category : 'navigation' }
 FASTTExpression >> argumentOwnerGroup [
 	<generated>
 	<navigation: 'ArgumentOwner'>
 	^ MooseSpecializedGroup with: self argumentOwner
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 FASTTExpression >> assignedIn [
 	"Relation named: #assignedIn type: #FASTTAssignment opposite: #expression"
 
@@ -85,21 +87,21 @@ FASTTExpression >> assignedIn [
 	^ assignedIn
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 FASTTExpression >> assignedIn: anObject [
 
 	<generated>
 	assignedIn := anObject
 ]
 
-{ #category : #navigation }
+{ #category : 'navigation' }
 FASTTExpression >> assignedInGroup [
 	<generated>
 	<navigation: 'AssignedIn'>
 	^ MooseSpecializedGroup with: self assignedIn
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 FASTTExpression >> expressionStatementOwner [
 	"Relation named: #expressionStatementOwner type: #FASTTExpressionStatement opposite: #expression"
 
@@ -110,21 +112,28 @@ FASTTExpression >> expressionStatementOwner [
 	^ expressionStatementOwner
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 FASTTExpression >> expressionStatementOwner: anObject [
 
 	<generated>
 	expressionStatementOwner := anObject
 ]
 
-{ #category : #navigation }
+{ #category : 'navigation' }
 FASTTExpression >> expressionStatementOwnerGroup [
 	<generated>
 	<navigation: 'ExpressionStatementOwner'>
 	^ MooseSpecializedGroup with: self expressionStatementOwner
 ]
 
-{ #category : #accessing }
+{ #category : 'testing' }
+FASTTExpression >> isExpression [
+
+	<generated>
+	^ true
+]
+
+{ #category : 'accessing' }
 FASTTExpression >> parentExpression [
 	"Relation named: #parentExpression type: #FASTTUnaryExpression opposite: #expression"
 
@@ -135,21 +144,21 @@ FASTTExpression >> parentExpression [
 	^ parentExpression
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 FASTTExpression >> parentExpression: anObject [
 
 	<generated>
 	parentExpression := anObject
 ]
 
-{ #category : #navigation }
+{ #category : 'navigation' }
 FASTTExpression >> parentExpressionGroup [
 	<generated>
 	<navigation: 'ParentExpression'>
 	^ MooseSpecializedGroup with: self parentExpression
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 FASTTExpression >> parentExpressionLeft [
 	"Relation named: #parentExpressionLeft type: #FASTTBinaryExpression opposite: #leftOperand"
 
@@ -160,21 +169,21 @@ FASTTExpression >> parentExpressionLeft [
 	^ parentExpressionLeft
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 FASTTExpression >> parentExpressionLeft: anObject [
 
 	<generated>
 	parentExpressionLeft := anObject
 ]
 
-{ #category : #navigation }
+{ #category : 'navigation' }
 FASTTExpression >> parentExpressionLeftGroup [
 	<generated>
 	<navigation: 'ParentExpressionLeft'>
 	^ MooseSpecializedGroup with: self parentExpressionLeft
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 FASTTExpression >> parentExpressionRight [
 	"Relation named: #parentExpressionRight type: #FASTTBinaryExpression opposite: #rightOperand"
 
@@ -185,21 +194,21 @@ FASTTExpression >> parentExpressionRight [
 	^ parentExpressionRight
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 FASTTExpression >> parentExpressionRight: anObject [
 
 	<generated>
 	parentExpressionRight := anObject
 ]
 
-{ #category : #navigation }
+{ #category : 'navigation' }
 FASTTExpression >> parentExpressionRightGroup [
 	<generated>
 	<navigation: 'ParentExpressionRight'>
 	^ MooseSpecializedGroup with: self parentExpressionRight
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 FASTTExpression >> returnOwner [
 	"Relation named: #returnOwner type: #FASTTReturnStatement opposite: #expression"
 
@@ -210,14 +219,14 @@ FASTTExpression >> returnOwner [
 	^ returnOwner
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 FASTTExpression >> returnOwner: anObject [
 
 	<generated>
 	returnOwner := anObject
 ]
 
-{ #category : #navigation }
+{ #category : 'navigation' }
 FASTTExpression >> returnOwnerGroup [
 	<generated>
 	<navigation: 'ReturnOwner'>

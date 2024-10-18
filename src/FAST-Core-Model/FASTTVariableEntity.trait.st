@@ -23,17 +23,19 @@ A node for variable name not in a expression (example: assigned variable or para
 
 "
 Trait {
-	#name : #FASTTVariableEntity,
+	#name : 'FASTTVariableEntity',
 	#instVars : [
 		'#parameterOwner => FMOne type: #FASTTWithParameters opposite: #parameters',
 		'#parentAssignmentExpression => FMOne type: #FASTTAssignment opposite: #variable'
 	],
 	#traits : 'FASTTNamedEntity',
 	#classTraits : 'FASTTNamedEntity classTrait',
-	#category : #'FAST-Core-Model-Traits'
+	#category : 'FAST-Core-Model-Traits',
+	#package : 'FAST-Core-Model',
+	#tag : 'Traits'
 }
 
-{ #category : #meta }
+{ #category : 'meta' }
 FASTTVariableEntity classSide >> annotation [
 
 	<FMClass: #TVariableEntity super: #Object>
@@ -42,7 +44,14 @@ FASTTVariableEntity classSide >> annotation [
 	^ self
 ]
 
-{ #category : #accessing }
+{ #category : 'testing' }
+FASTTVariableEntity >> isVariableEntity [
+
+	<generated>
+	^ true
+]
+
+{ #category : 'accessing' }
 FASTTVariableEntity >> parameterOwner [
 	"Relation named: #parameterOwner type: #FASTTWithParameters opposite: #parameters"
 
@@ -52,21 +61,21 @@ FASTTVariableEntity >> parameterOwner [
 	^ parameterOwner
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 FASTTVariableEntity >> parameterOwner: anObject [
 
 	<generated>
 	parameterOwner := anObject
 ]
 
-{ #category : #navigation }
+{ #category : 'navigation' }
 FASTTVariableEntity >> parameterOwnerGroup [
 	<generated>
 	<navigation: 'ParameterOwner'>
 	^ MooseSpecializedGroup with: self parameterOwner
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 FASTTVariableEntity >> parentAssignmentExpression [
 	"Relation named: #parentAssignmentExpression type: #FASTTAssignment opposite: #variable"
 
@@ -77,14 +86,14 @@ FASTTVariableEntity >> parentAssignmentExpression [
 	^ parentAssignmentExpression
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 FASTTVariableEntity >> parentAssignmentExpression: anObject [
 
 	<generated>
 	parentAssignmentExpression := anObject
 ]
 
-{ #category : #navigation }
+{ #category : 'navigation' }
 FASTTVariableEntity >> parentAssignmentExpressionGroup [
 	<generated>
 	<navigation: 'ParentAssignmentExpression'>

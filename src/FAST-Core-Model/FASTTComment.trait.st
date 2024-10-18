@@ -19,15 +19,17 @@ FASTComment represents one instance of a comment (in the sense of programming la
 
 "
 Trait {
-	#name : #FASTTComment,
+	#name : 'FASTTComment',
 	#instVars : [
 		'#content => FMProperty',
 		'#container => FMOne type: #FASTTWithComments opposite: #comments'
 	],
-	#category : #'FAST-Core-Model-Traits'
+	#category : 'FAST-Core-Model-Traits',
+	#package : 'FAST-Core-Model',
+	#tag : 'Traits'
 }
 
-{ #category : #meta }
+{ #category : 'meta' }
 FASTTComment classSide >> annotation [
 
 	<FMClass: #TComment super: #Object>
@@ -36,7 +38,7 @@ FASTTComment classSide >> annotation [
 	^ self
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 FASTTComment >> container [
 	"Relation named: #container type: #FASTTWithComments opposite: #comments"
 
@@ -46,21 +48,21 @@ FASTTComment >> container [
 	^ container
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 FASTTComment >> container: anObject [
 
 	<generated>
 	container := anObject
 ]
 
-{ #category : #navigation }
+{ #category : 'navigation' }
 FASTTComment >> containerGroup [
 	<generated>
 	<navigation: 'Container'>
 	^ MooseSpecializedGroup with: self container
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 FASTTComment >> content [
 
 	<FMProperty: #content type: #String>
@@ -69,7 +71,7 @@ FASTTComment >> content [
 	^ content
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 FASTTComment >> content: anObject [
 	<generated>
 	content := anObject

@@ -11,17 +11,19 @@ any entity
 
 "
 Trait {
-	#name : #FASTTEntity,
+	#name : 'FASTTEntity',
 	#instVars : [
 		'#endPos => FMProperty',
 		'#startPos => FMProperty'
 	],
 	#traits : 'TEntityMetaLevelDependency',
 	#classTraits : 'TEntityMetaLevelDependency classTrait',
-	#category : #'FAST-Core-Model-Traits'
+	#category : 'FAST-Core-Model-Traits',
+	#package : 'FAST-Core-Model',
+	#tag : 'Traits'
 }
 
-{ #category : #meta }
+{ #category : 'meta' }
 FASTTEntity classSide >> annotation [
 
 	<FMClass: #TEntity super: #Object>
@@ -30,7 +32,7 @@ FASTTEntity classSide >> annotation [
 	^ self
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 FASTTEntity >> endPos [
 
 	<FMProperty: #endPos type: #Number>
@@ -38,19 +40,19 @@ FASTTEntity >> endPos [
 	^ endPos
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 FASTTEntity >> endPos: anObject [
 	<generated>
 	endPos := anObject
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 FASTTEntity >> isNonLocalDeclaration [
 
 	^false
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 FASTTEntity >> startPos [
 
 	<FMProperty: #startPos type: #Number>
@@ -58,7 +60,7 @@ FASTTEntity >> startPos [
 	^ startPos
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 FASTTEntity >> startPos: anObject [
 	<generated>
 	startPos := anObject

@@ -21,17 +21,19 @@ A entity with a name
 
 "
 Trait {
-	#name : #FASTTNamedEntity,
+	#name : 'FASTTNamedEntity',
 	#instVars : [
 		'#invokedIn => FMOne type: #FASTTInvocation opposite: #invoked',
 		'#name => FMProperty'
 	],
 	#traits : 'FASTTEntity',
 	#classTraits : 'FASTTEntity classTrait',
-	#category : #'FAST-Core-Model-Traits'
+	#category : 'FAST-Core-Model-Traits',
+	#package : 'FAST-Core-Model',
+	#tag : 'Traits'
 }
 
-{ #category : #meta }
+{ #category : 'meta' }
 FASTTNamedEntity classSide >> annotation [
 
 	<FMClass: #TNamedEntity super: #Object>
@@ -40,7 +42,7 @@ FASTTNamedEntity classSide >> annotation [
 	^ self
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 FASTTNamedEntity >> invokedIn [
 	"Relation named: #invokedIn type: #FASTTInvocation opposite: #invoked"
 
@@ -51,21 +53,21 @@ FASTTNamedEntity >> invokedIn [
 	^ invokedIn
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 FASTTNamedEntity >> invokedIn: anObject [
 
 	<generated>
 	invokedIn := anObject
 ]
 
-{ #category : #navigation }
+{ #category : 'navigation' }
 FASTTNamedEntity >> invokedInGroup [
 	<generated>
 	<navigation: 'InvokedIn'>
 	^ MooseSpecializedGroup with: self invokedIn
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 FASTTNamedEntity >> name [
 
 	<FMProperty: #name type: #String>
@@ -73,7 +75,7 @@ FASTTNamedEntity >> name [
 	^ name
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 FASTTNamedEntity >> name: anObject [
 	<generated>
 	name := anObject

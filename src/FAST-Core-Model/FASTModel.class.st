@@ -1,18 +1,20 @@
 Class {
-	#name : #FASTModel,
-	#superclass : #MooseModel,
+	#name : 'FASTModel',
+	#superclass : 'MooseModel',
 	#traits : 'FASTTEntityCreator',
 	#classTraits : 'FASTTEntityCreator classTrait',
-	#category : #'FAST-Core-Model-Model'
+	#category : 'FAST-Core-Model-Model',
+	#package : 'FAST-Core-Model',
+	#tag : 'Model'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 FASTModel class >> allSubmetamodelsPackagesNames [
 	<generated>
 	^ #(#'Moose-Query' #'Famix-Traits')
 ]
 
-{ #category : #meta }
+{ #category : 'meta' }
 FASTModel class >> annotation [
 	<FMClass: #FASTModel super: #MooseModel>
 	<package: #'FAST-Core-Model'>
