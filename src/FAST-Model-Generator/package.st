@@ -1,1 +1,1 @@
-Package { #name : #'FAST-Model-Generator' }
+Package { #name : 'FAST-Model-Generator' }

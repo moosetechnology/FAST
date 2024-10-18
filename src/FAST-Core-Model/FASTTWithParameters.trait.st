@@ -13,14 +13,16 @@ I have parameters
 
 "
 Trait {
-	#name : #FASTTWithParameters,
+	#name : 'FASTTWithParameters',
 	#instVars : [
 		'#parameters => FMMany type: #FASTTVariableEntity opposite: #parameterOwner'
 	],
-	#category : #'FAST-Core-Model-Traits'
+	#category : 'FAST-Core-Model-Traits',
+	#package : 'FAST-Core-Model',
+	#tag : 'Traits'
 }
 
-{ #category : #meta }
+{ #category : 'meta' }
 FASTTWithParameters classSide >> annotation [
 
 	<FMClass: #TWithParameters super: #Object>
@@ -29,13 +31,13 @@ FASTTWithParameters classSide >> annotation [
 	^ self
 ]
 
-{ #category : #adding }
+{ #category : 'adding' }
 FASTTWithParameters >> addParameter: anObject [
 	<generated>
 	^ self parameters add: anObject
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 FASTTWithParameters >> parameters [
 	"Relation named: #parameters type: #FASTTVariableEntity opposite: #parameterOwner"
 
@@ -45,14 +47,14 @@ FASTTWithParameters >> parameters [
 	^ parameters
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 FASTTWithParameters >> parameters: anObject [
 
 	<generated>
 	parameters value: anObject
 ]
 
-{ #category : #navigation }
+{ #category : 'navigation' }
 FASTTWithParameters >> parametersGroup [
 	<generated>
 	<navigation: 'Parameters'>

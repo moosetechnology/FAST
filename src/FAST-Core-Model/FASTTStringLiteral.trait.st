@@ -27,17 +27,26 @@ A string literal
 
 "
 Trait {
-	#name : #FASTTStringLiteral,
+	#name : 'FASTTStringLiteral',
 	#traits : 'FASTTLiteral',
 	#classTraits : 'FASTTLiteral classTrait',
-	#category : #'FAST-Core-Model-Traits'
+	#category : 'FAST-Core-Model-Traits',
+	#package : 'FAST-Core-Model',
+	#tag : 'Traits'
 }
 
-{ #category : #meta }
+{ #category : 'meta' }
 FASTTStringLiteral classSide >> annotation [
 
 	<FMClass: #TStringLiteral super: #Object>
 	<package: #'FAST-Core-Model'>
 	<generated>
 	^ self
+]
+
+{ #category : 'testing' }
+FASTTStringLiteral >> isStringLiteral [
+
+	<generated>
+	^ true
 ]

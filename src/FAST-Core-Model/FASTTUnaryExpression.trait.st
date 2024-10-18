@@ -32,17 +32,19 @@ A trait representing an unary expression of a node of a source code.
 
 "
 Trait {
-	#name : #FASTTUnaryExpression,
+	#name : 'FASTTUnaryExpression',
 	#instVars : [
 		'#expression => FMOne type: #FASTTExpression opposite: #parentExpression',
 		'#operator => FMProperty'
 	],
 	#traits : 'FASTTExpression',
 	#classTraits : 'FASTTExpression classTrait',
-	#category : #'FAST-Core-Model-Traits'
+	#category : 'FAST-Core-Model-Traits',
+	#package : 'FAST-Core-Model',
+	#tag : 'Traits'
 }
 
-{ #category : #meta }
+{ #category : 'meta' }
 FASTTUnaryExpression classSide >> annotation [
 
 	<FMClass: #TUnaryExpression super: #Object>
@@ -51,7 +53,7 @@ FASTTUnaryExpression classSide >> annotation [
 	^ self
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 FASTTUnaryExpression >> expression [
 	"Relation named: #expression type: #FASTTExpression opposite: #parentExpression"
 
@@ -60,21 +62,28 @@ FASTTUnaryExpression >> expression [
 	^ expression
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 FASTTUnaryExpression >> expression: anObject [
 
 	<generated>
 	expression := anObject
 ]
 
-{ #category : #navigation }
+{ #category : 'navigation' }
 FASTTUnaryExpression >> expressionGroup [
 	<generated>
 	<navigation: 'Expression'>
 	^ MooseSpecializedGroup with: self expression
 ]
 
-{ #category : #accessing }
+{ #category : 'testing' }
+FASTTUnaryExpression >> isUnaryExpression [
+
+	<generated>
+	^ true
+]
+
+{ #category : 'accessing' }
 FASTTUnaryExpression >> operator [
 
 	<FMProperty: #operator type: #String>
@@ -83,7 +92,7 @@ FASTTUnaryExpression >> operator [
 	^ operator
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 FASTTUnaryExpression >> operator: anObject [
 	<generated>
 	operator := anObject

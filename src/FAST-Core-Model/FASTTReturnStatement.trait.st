@@ -25,16 +25,18 @@ A return statement node. Contains a reference to the expression which is returne
 
 "
 Trait {
-	#name : #FASTTReturnStatement,
+	#name : 'FASTTReturnStatement',
 	#instVars : [
 		'#expression => FMOne type: #FASTTExpression opposite: #returnOwner'
 	],
 	#traits : 'FASTTStatement',
 	#classTraits : 'FASTTStatement classTrait',
-	#category : #'FAST-Core-Model-Traits'
+	#category : 'FAST-Core-Model-Traits',
+	#package : 'FAST-Core-Model',
+	#tag : 'Traits'
 }
 
-{ #category : #meta }
+{ #category : 'meta' }
 FASTTReturnStatement classSide >> annotation [
 
 	<FMClass: #TReturnStatement super: #Object>
@@ -43,7 +45,7 @@ FASTTReturnStatement classSide >> annotation [
 	^ self
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 FASTTReturnStatement >> expression [
 	"Relation named: #expression type: #FASTTExpression opposite: #returnOwner"
 
@@ -52,16 +54,23 @@ FASTTReturnStatement >> expression [
 	^ expression
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 FASTTReturnStatement >> expression: anObject [
 
 	<generated>
 	expression := anObject
 ]
 
-{ #category : #navigation }
+{ #category : 'navigation' }
 FASTTReturnStatement >> expressionGroup [
 	<generated>
 	<navigation: 'Expression'>
 	^ MooseSpecializedGroup with: self expression
+]
+
+{ #category : 'testing' }
+FASTTReturnStatement >> isReturnStatement [
+
+	<generated>
+	^ true
 ]

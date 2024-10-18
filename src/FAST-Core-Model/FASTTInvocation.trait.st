@@ -32,16 +32,18 @@ A invocation of a behavioural entity
 
 "
 Trait {
-	#name : #FASTTInvocation,
+	#name : 'FASTTInvocation',
 	#instVars : [
 		'#invoked => FMOne type: #FASTTNamedEntity opposite: #invokedIn'
 	],
 	#traits : 'FASTTExpression + FASTTWithArguments',
 	#classTraits : 'FASTTExpression classTrait + FASTTWithArguments classTrait',
-	#category : #'FAST-Core-Model-Traits'
+	#category : 'FAST-Core-Model-Traits',
+	#package : 'FAST-Core-Model',
+	#tag : 'Traits'
 }
 
-{ #category : #meta }
+{ #category : 'meta' }
 FASTTInvocation classSide >> annotation [
 
 	<FMClass: #TInvocation super: #Object>
@@ -50,7 +52,7 @@ FASTTInvocation classSide >> annotation [
 	^ self
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 FASTTInvocation >> invoked [
 	"Relation named: #invoked type: #FASTTNamedEntity opposite: #invokedIn"
 
@@ -59,16 +61,23 @@ FASTTInvocation >> invoked [
 	^ invoked
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 FASTTInvocation >> invoked: anObject [
 
 	<generated>
 	invoked := anObject
 ]
 
-{ #category : #navigation }
+{ #category : 'navigation' }
 FASTTInvocation >> invokedGroup [
 	<generated>
 	<navigation: 'Invoked'>
 	^ MooseSpecializedGroup with: self invoked
+]
+
+{ #category : 'testing' }
+FASTTInvocation >> isInvocation [
+
+	<generated>
+	^ true
 ]

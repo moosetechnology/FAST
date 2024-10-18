@@ -13,17 +13,26 @@ Some statements are scopable because they allow to introduce local variables (e.
 
 "
 Trait {
-	#name : #FASTTScopableEntity,
+	#name : 'FASTTScopableEntity',
 	#traits : 'FASTTEntity',
 	#classTraits : 'FASTTEntity classTrait',
-	#category : #'FAST-Core-Model-Traits'
+	#category : 'FAST-Core-Model-Traits',
+	#package : 'FAST-Core-Model',
+	#tag : 'Traits'
 }
 
-{ #category : #meta }
+{ #category : 'meta' }
 FASTTScopableEntity classSide >> annotation [
 
 	<FMClass: #TScopableEntity super: #Object>
 	<package: #'FAST-Core-Model'>
 	<generated>
 	^ self
+]
+
+{ #category : 'testing' }
+FASTTScopableEntity >> isScopableEntity [
+
+	<generated>
+	^ true
 ]

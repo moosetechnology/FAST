@@ -27,17 +27,26 @@ A character literal
 
 "
 Trait {
-	#name : #FASTTCharacterLiteral,
+	#name : 'FASTTCharacterLiteral',
 	#traits : 'FASTTLiteral',
 	#classTraits : 'FASTTLiteral classTrait',
-	#category : #'FAST-Core-Model-Traits'
+	#category : 'FAST-Core-Model-Traits',
+	#package : 'FAST-Core-Model',
+	#tag : 'Traits'
 }
 
-{ #category : #meta }
+{ #category : 'meta' }
 FASTTCharacterLiteral classSide >> annotation [
 
 	<FMClass: #TCharacterLiteral super: #Object>
 	<package: #'FAST-Core-Model'>
 	<generated>
 	^ self
+]
+
+{ #category : 'testing' }
+FASTTCharacterLiteral >> isCharacterLiteral [
+
+	<generated>
+	^ true
 ]

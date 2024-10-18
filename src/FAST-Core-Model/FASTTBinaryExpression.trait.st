@@ -33,7 +33,7 @@ A trait representing a binary expression of a node of a source code.
 
 "
 Trait {
-	#name : #FASTTBinaryExpression,
+	#name : 'FASTTBinaryExpression',
 	#instVars : [
 		'#leftOperand => FMOne type: #FASTTExpression opposite: #parentExpressionLeft',
 		'#operator => FMProperty',
@@ -41,10 +41,12 @@ Trait {
 	],
 	#traits : 'FASTTExpression',
 	#classTraits : 'FASTTExpression classTrait',
-	#category : #'FAST-Core-Model-Traits'
+	#category : 'FAST-Core-Model-Traits',
+	#package : 'FAST-Core-Model',
+	#tag : 'Traits'
 }
 
-{ #category : #meta }
+{ #category : 'meta' }
 FASTTBinaryExpression classSide >> annotation [
 
 	<FMClass: #TBinaryExpression super: #Object>
@@ -53,7 +55,14 @@ FASTTBinaryExpression classSide >> annotation [
 	^ self
 ]
 
-{ #category : #accessing }
+{ #category : 'testing' }
+FASTTBinaryExpression >> isBinaryExpression [
+
+	<generated>
+	^ true
+]
+
+{ #category : 'accessing' }
 FASTTBinaryExpression >> leftOperand [
 	"Relation named: #leftOperand type: #FASTTExpression opposite: #parentExpressionLeft"
 
@@ -62,21 +71,21 @@ FASTTBinaryExpression >> leftOperand [
 	^ leftOperand
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 FASTTBinaryExpression >> leftOperand: anObject [
 
 	<generated>
 	leftOperand := anObject
 ]
 
-{ #category : #navigation }
+{ #category : 'navigation' }
 FASTTBinaryExpression >> leftOperandGroup [
 	<generated>
 	<navigation: 'LeftOperand'>
 	^ MooseSpecializedGroup with: self leftOperand
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 FASTTBinaryExpression >> operator [
 
 	<FMProperty: #operator type: #String>
@@ -85,13 +94,13 @@ FASTTBinaryExpression >> operator [
 	^ operator
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 FASTTBinaryExpression >> operator: anObject [
 	<generated>
 	operator := anObject
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 FASTTBinaryExpression >> rightOperand [
 	"Relation named: #rightOperand type: #FASTTExpression opposite: #parentExpressionRight"
 
@@ -100,14 +109,14 @@ FASTTBinaryExpression >> rightOperand [
 	^ rightOperand
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 FASTTBinaryExpression >> rightOperand: anObject [
 
 	<generated>
 	rightOperand := anObject
 ]
 
-{ #category : #navigation }
+{ #category : 'navigation' }
 FASTTBinaryExpression >> rightOperandGroup [
 	<generated>
 	<navigation: 'RightOperand'>

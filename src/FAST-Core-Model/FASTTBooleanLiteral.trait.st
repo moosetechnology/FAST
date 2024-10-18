@@ -27,17 +27,26 @@ A boolean literal
 
 "
 Trait {
-	#name : #FASTTBooleanLiteral,
+	#name : 'FASTTBooleanLiteral',
 	#traits : 'FASTTLiteral',
 	#classTraits : 'FASTTLiteral classTrait',
-	#category : #'FAST-Core-Model-Traits'
+	#category : 'FAST-Core-Model-Traits',
+	#package : 'FAST-Core-Model',
+	#tag : 'Traits'
 }
 
-{ #category : #meta }
+{ #category : 'meta' }
 FASTTBooleanLiteral classSide >> annotation [
 
 	<FMClass: #TBooleanLiteral super: #Object>
 	<package: #'FAST-Core-Model'>
 	<generated>
 	^ self
+]
+
+{ #category : 'testing' }
+FASTTBooleanLiteral >> isBooleanLiteral [
+
+	<generated>
+	^ true
 ]

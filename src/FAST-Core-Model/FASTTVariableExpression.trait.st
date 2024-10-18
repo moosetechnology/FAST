@@ -28,17 +28,26 @@ A node that wraps around structural entity
 
 "
 Trait {
-	#name : #FASTTVariableExpression,
+	#name : 'FASTTVariableExpression',
 	#traits : 'FASTTExpression + FASTTNamedEntity',
 	#classTraits : 'FASTTExpression classTrait + FASTTNamedEntity classTrait',
-	#category : #'FAST-Core-Model-Traits'
+	#category : 'FAST-Core-Model-Traits',
+	#package : 'FAST-Core-Model',
+	#tag : 'Traits'
 }
 
-{ #category : #meta }
+{ #category : 'meta' }
 FASTTVariableExpression classSide >> annotation [
 
 	<FMClass: #TVariableExpression super: #Object>
 	<package: #'FAST-Core-Model'>
 	<generated>
 	^ self
+]
+
+{ #category : 'testing' }
+FASTTVariableExpression >> isVariableExpression [
+
+	<generated>
+	^ true
 ]

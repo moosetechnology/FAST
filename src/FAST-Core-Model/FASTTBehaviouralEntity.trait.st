@@ -27,16 +27,18 @@ Local variables are intended to be stored in the local entities of the body
 
 "
 Trait {
-	#name : #FASTTBehaviouralEntity,
+	#name : 'FASTTBehaviouralEntity',
 	#instVars : [
 		'#statementBlock => FMOne type: #FASTTStatementBlock opposite: #fastBehaviouralParent'
 	],
 	#traits : 'FASTTScopableEntity + FASTTWithParameters',
 	#classTraits : 'FASTTScopableEntity classTrait + FASTTWithParameters classTrait',
-	#category : #'FAST-Core-Model-Traits'
+	#category : 'FAST-Core-Model-Traits',
+	#package : 'FAST-Core-Model',
+	#tag : 'Traits'
 }
 
-{ #category : #meta }
+{ #category : 'meta' }
 FASTTBehaviouralEntity classSide >> annotation [
 
 	<FMClass: #TBehaviouralEntity super: #Object>
@@ -45,7 +47,14 @@ FASTTBehaviouralEntity classSide >> annotation [
 	^ self
 ]
 
-{ #category : #accessing }
+{ #category : 'testing' }
+FASTTBehaviouralEntity >> isBehaviouralEntity [
+
+	<generated>
+	^ true
+]
+
+{ #category : 'accessing' }
 FASTTBehaviouralEntity >> statementBlock [
 	"Relation named: #statementBlock type: #FASTTStatementBlock opposite: #fastBehaviouralParent"
 
@@ -54,14 +63,14 @@ FASTTBehaviouralEntity >> statementBlock [
 	^ statementBlock
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 FASTTBehaviouralEntity >> statementBlock: anObject [
 
 	<generated>
 	statementBlock := anObject
 ]
 
-{ #category : #navigation }
+{ #category : 'navigation' }
 FASTTBehaviouralEntity >> statementBlockGroup [
 	<generated>
 	<navigation: 'StatementBlock'>

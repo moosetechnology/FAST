@@ -20,16 +20,18 @@ An abstract subclass which represents a source code statemnet
 
 "
 Trait {
-	#name : #FASTTStatement,
+	#name : 'FASTTStatement',
 	#instVars : [
 		'#statementContainer => FMOne type: #FASTTStatementBlock opposite: #statements'
 	],
 	#traits : 'FASTTEntity',
 	#classTraits : 'FASTTEntity classTrait',
-	#category : #'FAST-Core-Model-Traits'
+	#category : 'FAST-Core-Model-Traits',
+	#package : 'FAST-Core-Model',
+	#tag : 'Traits'
 }
 
-{ #category : #meta }
+{ #category : 'meta' }
 FASTTStatement classSide >> annotation [
 
 	<FMClass: #TStatement super: #Object>
@@ -38,14 +40,14 @@ FASTTStatement classSide >> annotation [
 	^ self
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 FASTTStatement >> isStatement [
 
 	<generated>
 	^ true
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 FASTTStatement >> statementContainer [
 	"Relation named: #statementContainer type: #FASTTStatementBlock opposite: #statements"
 
@@ -55,14 +57,14 @@ FASTTStatement >> statementContainer [
 	^ statementContainer
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 FASTTStatement >> statementContainer: anObject [
 
 	<generated>
 	statementContainer := anObject
 ]
 
-{ #category : #navigation }
+{ #category : 'navigation' }
 FASTTStatement >> statementContainerGroup [
 	<generated>
 	<navigation: 'StatementContainer'>
