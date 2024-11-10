@@ -29,10 +29,19 @@ FASTCopyVisitorCodeGeneratorTest >> setUp [
 	generator := FASTCopyVisitorCodeGenerator new.
 
 	visitorClass := Mock named: 'visitor'.
-	visitorMethods := OrderedCollection new.
 
+	visitorClass stub package willReturn: (self class package).
+
+	visitorMethods := OrderedCollection new.
 	(visitorClass stub compile: Any classified: Any) will: [ :method :category |
 		visitorMethods add: method -> category ]
+]
+
+{ #category : 'running' }
+FASTCopyVisitorCodeGeneratorTest >> tearDown [ 
+	super tearDown.
+
+	self class package extensionMethods do: #removeFromSystem
 ]
 
 { #category : 'tests' }
@@ -45,21 +54,7 @@ FASTCopyVisitorCodeGeneratorTest >> testGenerateCopyMethod [
 ]
 
 { #category : 'tests' }
-FASTCopyVisitorCodeGeneratorTest >> testShouldCopyPropertyFor [
-
-	| property |
-	
-	property := FmxTraitsTestGenerateAccessorBClassA asMooseDescription
-		allProperties detect: [ :prop | prop name = 'relationToB' ].
-
-	generator package: (FmxTraitsTestGenerateAccessorBClassA metamodel packages detect: [ :p | p name = 'Famix-MetamodelBuilder-TestsTraitsResources-A' ]).
-	self assert: (generator shouldCopyProperty: property).
-	
-
-]
-
-{ #category : 'tests' }
-FASTCopyVisitorCodeGeneratorTest >> testShouldNotCopyDerivedProperty [
+FASTCopyVisitorCodeGeneratorTest >> testShouldCopyMultiValuedDerivedProperty [
 
 	| property |
 	
@@ -67,17 +62,58 @@ FASTCopyVisitorCodeGeneratorTest >> testShouldNotCopyDerivedProperty [
 		allProperties detect: [ :prop | prop name = 'relationToA' ].
 		
 	self assert: property isDerived.
-	self deny: (generator shouldCopyProperty: property)
+	self assert: (generator shouldCopyProperty: property)
 ]
 
 { #category : 'tests' }
-FASTCopyVisitorCodeGeneratorTest >> testShouldNotCopyPropertyFromOtherPackage [
+FASTCopyVisitorCodeGeneratorTest >> testShouldCopyNotMultiValuedProperty [
 
 	| property |
 	
 	property := FmxTraitsTestGenerateAccessorBClassB asMooseDescription
 		allProperties detect: [ :prop | prop name = 'relationToA' ].
 		
-	generator package: (FmxTraitsTestGenerateAccessorBClassA metamodel packages detect: [ :p | p name = 'Famix-MetamodelBuilder-TestsTraitsResources-B' ]).
+	self deny: property isMultivalued.
 	self assert: (generator shouldCopyProperty: property)
+]
+
+{ #category : 'tests' }
+FASTCopyVisitorCodeGeneratorTest >> testShouldCopyPropertyToOtherEntity [
+
+	| property |
+	
+	property := FmxTraitsTestGenerateAccessorBClassA asMooseDescription
+		allProperties detect: [ :prop | prop name = 'relationToB' ].
+
+	self assert: (generator shouldCopyProperty: property).
+	
+
+]
+
+{ #category : 'tests' }
+FASTCopyVisitorCodeGeneratorTest >> testShouldNotCopyMultivaluedDerivedProperty [
+
+	| property |
+	
+	property := FmxTraitsTestGenerateAccessorBClassB asMooseDescription
+		allProperties detect: [ :prop | prop name = 'relationToA' ].
+
+	"focing it to be multivalued"
+	property isMultivalued: true.
+	self assert: property isMultivalued.
+	self deny: (generator shouldCopyProperty: property)
+]
+
+{ #category : 'tests' }
+FASTCopyVisitorCodeGeneratorTest >> testShouldNotCopyPropertyParent [
+	"property pointing to parent should not be copied"
+	| property |
+	
+	property := FmxTraitsTestGenerateAccessorBClassA asMooseDescription
+		allProperties detect: [ :prop | prop name = 'relationToB' ].
+
+	"forcing it to be to parent"
+	property isContainer: true.
+	self assert: property isContainer.
+	self deny: (generator shouldCopyProperty: property)
 ]

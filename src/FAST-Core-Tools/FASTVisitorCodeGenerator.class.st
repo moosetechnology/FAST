@@ -64,7 +64,9 @@ FASTVisitorCodeGenerator >> generateAccept: modelClass [
 { #category : 'code generation' }
 FASTVisitorCodeGenerator >> generateAcceptSelectorOn: stream [
 
-	stream << 'accept: aVisitor'
+	stream
+		<< 'accept: aVisitor' ;
+		cr
 ]
 
 { #category : 'code generation' }
