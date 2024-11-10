@@ -1,10 +1,12 @@
 Class {
-	#name : #FamixModelComparatorForTesting,
-	#superclass : #FamixModelComparator,
-	#category : #'FAST-Core-Tools-Validator'
+	#name : 'FamixModelComparatorForTesting',
+	#superclass : 'FamixModelComparator',
+	#category : 'FAST-Core-Tools-Validator',
+	#package : 'FAST-Core-Tools',
+	#tag : 'Validator'
 }
 
-{ #category : #comparison }
+{ #category : 'comparison' }
 FamixModelComparatorForTesting >> ast: node1 acceptableDifferenceTo: node2 property: property [
 
 	| recoveryBlock |

@@ -12,28 +12,30 @@ FASTLocalResolverVisitor new on: aFASTJavaMethodEntity
 ```
 "
 Class {
-	#name : #FASTLocalResolverVisitor,
-	#superclass : #FASTCoreVisitor,
+	#name : 'FASTLocalResolverVisitor',
+	#superclass : 'FASTCoreVisitor',
 	#instVars : [
 		'scoper'
 	],
-	#category : #'FAST-Core-Tools-Resolver'
+	#category : 'FAST-Core-Tools-Resolver',
+	#package : 'FAST-Core-Tools',
+	#tag : 'Resolver'
 }
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 FASTLocalResolverVisitor >> initialize [ 
 	super initialize.
 
 	scoper := FASTLocalResolverScoping new
 ]
 
-{ #category : #api }
+{ #category : 'api' }
 FASTLocalResolverVisitor >> on: aFASTBehaviouralEntity [
 
 	aFASTBehaviouralEntity accept: self
 ]
 
-{ #category : #visiting }
+{ #category : 'visiting' }
 FASTLocalResolverVisitor >> visitFASTIdentifierExpression: aFASTIdentifier [
 	"reference to an identifier in the AST that must be bound to its declaration"
 
@@ -41,7 +43,7 @@ FASTLocalResolverVisitor >> visitFASTIdentifierExpression: aFASTIdentifier [
 
 ]
 
-{ #category : #visiting }
+{ #category : 'visiting' }
 FASTLocalResolverVisitor >> visitFASTTStatementBlock: aFASTJavaStatementBlock [
 	scoper pushScope.
 

@@ -1,33 +1,35 @@
 Class {
-	#name : #FASTAbstractValidator,
-	#superclass : #Object,
+	#name : 'FASTAbstractValidator',
+	#superclass : 'Object',
 	#instVars : [
 		'skipPaths',
 		'encoding'
 	],
-	#category : #'FAST-Core-Tools-Validator'
+	#category : 'FAST-Core-Tools-Validator',
+	#package : 'FAST-Core-Tools',
+	#tag : 'Validator'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 FASTAbstractValidator >> defaultEncoding [
 	"other possibilities are 'latin1', 'utf8', ...
 	see `ZnCharacterEncoder knownEncodingIdentifiers` for all possibilities"
 	^encoding ifNil: [ 'iso-8859-1' ]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 FASTAbstractValidator >> encoding [
 
 	^encoding
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 FASTAbstractValidator >> encoding: aString [
 
 	encoding := aString
 ]
 
-{ #category : #utilities }
+{ #category : 'utilities' }
 FASTAbstractValidator >> getASTFromFileReference: aFileReference [
 
 	^aFileReference readStreamEncoded: self defaultEncoding do: [ :stream |
@@ -35,13 +37,13 @@ FASTAbstractValidator >> getASTFromFileReference: aFileReference [
 
 ]
 
-{ #category : #utilities }
+{ #category : 'utilities' }
 FASTAbstractValidator >> getASTFromString: stream [
 
 	self subclassResponsibility  
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 FASTAbstractValidator >> initialize [
 
 	super initialize.
@@ -49,19 +51,19 @@ FASTAbstractValidator >> initialize [
 	skipPaths := #().
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 FASTAbstractValidator >> isSourceFile: aFileReference [
 
 	self subclassResponsibility 
 ]
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 FASTAbstractValidator >> on: aDirectoryName [
 
 	self runOnFileReference: aDirectoryName asFileReference
 ]
 
-{ #category : #running }
+{ #category : 'running' }
 FASTAbstractValidator >> runOnDirectory: aDirectory [
 
 	aDirectory isDirectory
@@ -70,7 +72,7 @@ FASTAbstractValidator >> runOnDirectory: aDirectory [
 	aDirectory children do: [ :fileRef | self runOnFileReference: fileRef ]
 ]
 
-{ #category : #running }
+{ #category : 'running' }
 FASTAbstractValidator >> runOnFileReference: aFileReference [
 
 	(self skipPaths includes: aFileReference fullName)
@@ -84,19 +86,19 @@ FASTAbstractValidator >> runOnFileReference: aFileReference [
 
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 FASTAbstractValidator >> runOnSourceFile: aFileReference [
 
 	self subclassResponsibility 
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 FASTAbstractValidator >> skipPaths [
 
 	^ skipPaths
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 FASTAbstractValidator >> skipPaths: anObject [
 
 	skipPaths := anObject

@@ -2,17 +2,19 @@
 A FASTCopyVisitorCodeGeneratorTest is a test class for testing the behavior of FASTCopyVisitorCodeGenerator
 "
 Class {
-	#name : #FASTCopyVisitorCodeGeneratorTest,
-	#superclass : #TestCase,
+	#name : 'FASTCopyVisitorCodeGeneratorTest',
+	#superclass : 'TestCase',
 	#instVars : [
 		'visitorClass',
 		'visitorMethods',
 		'generator'
 	],
-	#category : #'FAST-Core-Tools-Tests-VisitorGenerator'
+	#category : 'FAST-Core-Tools-Tests-VisitorGenerator',
+	#package : 'FAST-Core-Tools-Tests',
+	#tag : 'VisitorGenerator'
 }
 
-{ #category : #running }
+{ #category : 'running' }
 FASTCopyVisitorCodeGeneratorTest >> assertGeneratedMethod: aBlock [
 
 	visitorMethods
@@ -20,7 +22,7 @@ FASTCopyVisitorCodeGeneratorTest >> assertGeneratedMethod: aBlock [
 		ifNone: [ self fail ]
 ]
 
-{ #category : #running }
+{ #category : 'running' }
 FASTCopyVisitorCodeGeneratorTest >> setUp [
 	super setUp.
 
@@ -33,7 +35,7 @@ FASTCopyVisitorCodeGeneratorTest >> setUp [
 		visitorMethods add: method -> category ]
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 FASTCopyVisitorCodeGeneratorTest >> testGenerateCopyMethod [
 
 	generator rootClass: FmxTraitsTestGenerateAccessorBEntity visitorClass: visitorClass.
@@ -42,7 +44,7 @@ FASTCopyVisitorCodeGeneratorTest >> testGenerateCopyMethod [
 		methodCode beginsWith: 'copy: ' ]
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 FASTCopyVisitorCodeGeneratorTest >> testShouldCopyPropertyFor [
 
 	| property |
@@ -51,12 +53,12 @@ FASTCopyVisitorCodeGeneratorTest >> testShouldCopyPropertyFor [
 		allProperties detect: [ :prop | prop name = 'relationToB' ].
 
 	generator package: (FmxTraitsTestGenerateAccessorBClassA metamodel packages detect: [ :p | p name = 'Famix-MetamodelBuilder-TestsTraitsResources-A' ]).
-	self assert: (generator shouldCopyProperty: property for: FmxTraitsTestGenerateAccessorBClassA).
+	self assert: (generator shouldCopyProperty: property).
 	
 
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 FASTCopyVisitorCodeGeneratorTest >> testShouldNotCopyDerivedProperty [
 
 	| property |
@@ -65,10 +67,10 @@ FASTCopyVisitorCodeGeneratorTest >> testShouldNotCopyDerivedProperty [
 		allProperties detect: [ :prop | prop name = 'relationToA' ].
 		
 	self assert: property isDerived.
-	self deny: (generator shouldCopyProperty: property for: FmxTraitsTestGenerateAccessorBClassB)
+	self deny: (generator shouldCopyProperty: property)
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 FASTCopyVisitorCodeGeneratorTest >> testShouldNotCopyPropertyFromOtherPackage [
 
 	| property |
@@ -77,5 +79,5 @@ FASTCopyVisitorCodeGeneratorTest >> testShouldNotCopyPropertyFromOtherPackage [
 		allProperties detect: [ :prop | prop name = 'relationToA' ].
 		
 	generator package: (FmxTraitsTestGenerateAccessorBClassA metamodel packages detect: [ :p | p name = 'Famix-MetamodelBuilder-TestsTraitsResources-B' ]).
-	self assert: (generator shouldCopyProperty: property for: FmxTraitsTestGenerateAccessorBClassA)
+	self assert: (generator shouldCopyProperty: property)
 ]

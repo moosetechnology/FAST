@@ -1,19 +1,21 @@
 Class {
-	#name : #FamixModelComparatorTest,
-	#superclass : #TestCase,
+	#name : 'FamixModelComparatorTest',
+	#superclass : 'TestCase',
 	#instVars : [
 		'validator'
 	],
-	#category : #'FAST-Core-Tools-Validator'
+	#category : 'FAST-Core-Tools-Validator',
+	#package : 'FAST-Core-Tools',
+	#tag : 'Validator'
 }
 
-{ #category : #running }
+{ #category : 'running' }
 FamixModelComparatorTest >> setUp [
 
 	validator := FamixModelComparatorForTesting new
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 FamixModelComparatorTest >> testClassDifference [
 
 	| node1 node2 |
@@ -25,7 +27,7 @@ FamixModelComparatorTest >> testClassDifference [
 		raise: FamixModelComparatorRecoveryException 
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 FamixModelComparatorTest >> testClassNoDifference [
 
 	| node1 node2 |
@@ -37,7 +39,7 @@ FamixModelComparatorTest >> testClassNoDifference [
 		raise: FamixModelComparatorRecoveryException 
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 FamixModelComparatorTest >> testPropertyAcceptableDifference [
 
 	| node1 node2 |
@@ -49,7 +51,7 @@ FamixModelComparatorTest >> testPropertyAcceptableDifference [
 		raise: FamixModelComparatorRecoveryException 
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 FamixModelComparatorTest >> testPropertyDifference [
 
 	| node1 node2 |
@@ -61,7 +63,7 @@ FamixModelComparatorTest >> testPropertyDifference [
 		raise: FamixModelComparatorRecoveryException 
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 FamixModelComparatorTest >> testPropertyNoDifference [
 
 	| node1 node2 |

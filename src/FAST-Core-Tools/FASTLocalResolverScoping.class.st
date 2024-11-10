@@ -6,15 +6,17 @@ I can:
 - link variable uses to their declaration
 "
 Class {
-	#name : #FASTLocalResolverScoping,
-	#superclass : #FASTCoreVisitor,
+	#name : 'FASTLocalResolverScoping',
+	#superclass : 'FASTCoreVisitor',
 	#instVars : [
 		'scopes'
 	],
-	#category : #'FAST-Core-Tools-Resolver'
+	#category : 'FAST-Core-Tools-Resolver',
+	#package : 'FAST-Core-Tools',
+	#tag : 'Resolver'
 }
 
-{ #category : #api }
+{ #category : 'api' }
 FASTLocalResolverScoping >> bind: aFASTNode toLocalDeclaration: aName [
 	"reference to aName by aFASTNode
 	 - assuming the identifier refers to a variable (structuralEntity)
@@ -29,13 +31,13 @@ FASTLocalResolverScoping >> bind: aFASTNode toLocalDeclaration: aName [
 		for: aFASTNode
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 FASTLocalResolverScoping >> currentScope [
 
 	^ scopes top
 ]
 
-{ #category : #api }
+{ #category : 'api' }
 FASTLocalResolverScoping >> findDeclaration: aName [
 	"search for 'aName' in the current scope and its parent.
 	Returns nil if not found"
@@ -52,49 +54,49 @@ FASTLocalResolverScoping >> findDeclaration: aName [
 		]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 FASTLocalResolverScoping >> hasScopes [
 	^scopes isNotEmpty
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 FASTLocalResolverScoping >> initialize [ 
 	super initialize.
 
 	self resetScopes
 ]
 
-{ #category : #api }
+{ #category : 'api' }
 FASTLocalResolverScoping >> localDeclaration: declarationNode for: referingNode [
 	referingNode localDeclaration: declarationNode.
 	declarationNode addLocalUse: referingNode
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 FASTLocalResolverScoping >> nonLocalDeclaration: name [
 
 	^ FASTNonLocalDeclaration new name: name
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 FASTLocalResolverScoping >> popScope [
 
 	^scopes pop
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 FASTLocalResolverScoping >> pushScope [
 
 	self pushScope: Dictionary new
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 FASTLocalResolverScoping >> pushScope: aScope [
 
 	scopes push: aScope
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 FASTLocalResolverScoping >> resetScopes [
 
 	scopes := Stack new.
@@ -102,7 +104,7 @@ FASTLocalResolverScoping >> resetScopes [
 	self pushScope
 ]
 
-{ #category : #api }
+{ #category : 'api' }
 FASTLocalResolverScoping >> scopeAdd: aName declaration: aFASTNode [
 
 	self currentScope
@@ -116,7 +118,7 @@ FASTLocalResolverScoping >> scopeAdd: aName declaration: aFASTNode [
 	
 ]
 
-{ #category : #api }
+{ #category : 'api' }
 FASTLocalResolverScoping >> scopeAddNonLocalDeclaration: name [
 	"makes a non-local declaration kind of local by adding
 	 a FASTNonLocalDeclaration into the current scope"

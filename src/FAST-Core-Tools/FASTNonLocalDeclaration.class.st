@@ -2,29 +2,31 @@
 A ""null-object"" signaling the declaration of a 'name' was not found
 "
 Class {
-	#name : #FASTNonLocalDeclaration,
-	#superclass : #FASTEntity,
+	#name : 'FASTNonLocalDeclaration',
+	#superclass : 'FASTEntity',
 	#traits : 'FASTTEntity',
 	#classTraits : 'FASTTEntity classTrait',
 	#instVars : [
 		'name'
 	],
-	#category : #'FAST-Core-Tools-Resolver'
+	#category : 'FAST-Core-Tools-Resolver',
+	#package : 'FAST-Core-Tools',
+	#tag : 'Resolver'
 }
 
-{ #category : #testing }
+{ #category : 'testing' }
 FASTNonLocalDeclaration >> isNonLocalDeclaration [
 
 	^true
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 FASTNonLocalDeclaration >> name [
 
 	^ name
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 FASTNonLocalDeclaration >> name: anObject [
 
 	name := anObject

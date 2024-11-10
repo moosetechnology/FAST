@@ -24,54 +24,56 @@ For this, a suitable `acceptableAST:differentFrom:` method should be defined tha
 There is a `skipPaths` list to allow skiping some paths in the main file directory
 "
 Class {
-	#name : #FASTDifferentialValidator,
-	#superclass : #Object,
+	#name : 'FASTDifferentialValidator',
+	#superclass : 'Object',
 	#instVars : [
 		'skipPaths',
 		'comparator',
 		'encoding'
 	],
-	#category : #'FAST-Core-Tools-Validator'
+	#category : 'FAST-Core-Tools-Validator',
+	#package : 'FAST-Core-Tools',
+	#tag : 'Validator'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 FASTDifferentialValidator >> comparator [
 
 	^comparator ifNil: [ comparator := self comparatorClass new ]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 FASTDifferentialValidator >> comparatorClass [
 
 	^FamixModelComparator
 ]
 
-{ #category : #running }
+{ #category : 'running' }
 FASTDifferentialValidator >> compare: node1 to: node2 [
 	
 	self comparator compare: node1 to: node2
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 FASTDifferentialValidator >> defaultEncoding [
 	"other possibilities are 'latin1', 'utf8', ...
 	see `ZnCharacterEncoder knownEncodingIdentifiers` for all possibilities"
 	^encoding ifNil: [ 'iso-8859-1' ]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 FASTDifferentialValidator >> encoding [
 
 	^encoding
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 FASTDifferentialValidator >> encoding: aString [
 
 	encoding := aString
 ]
 
-{ #category : #utilities }
+{ #category : 'utilities' }
 FASTDifferentialValidator >> getASTFromFileReference: aFileReference [
 
 	| model |
@@ -81,25 +83,25 @@ FASTDifferentialValidator >> getASTFromFileReference: aFileReference [
 	^self getTopLevelNodes: model
 ]
 
-{ #category : #utilities }
+{ #category : 'utilities' }
 FASTDifferentialValidator >> getASTFromString: stream [
 
 	self subclassResponsibility  
 ]
 
-{ #category : #utilities }
+{ #category : 'utilities' }
 FASTDifferentialValidator >> getRootNode: aModel [
 
 	^aModel detect: [ : e | e allParents isEmpty ]
 ]
 
-{ #category : #utilities }
+{ #category : 'utilities' }
 FASTDifferentialValidator >> getTopLevelNodes: model [
 
 	self subclassResponsibility
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 FASTDifferentialValidator >> initialize [
 
 	super initialize.
@@ -107,25 +109,25 @@ FASTDifferentialValidator >> initialize [
 	skipPaths := #().
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 FASTDifferentialValidator >> isSourceFile: aFileReference [
 
 	self subclassResponsibility 
 ]
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 FASTDifferentialValidator >> on: aDirectoryName [
 
 	self runOnFileReference: aDirectoryName asFileReference
 ]
 
-{ #category : #utilities }
+{ #category : 'utilities' }
 FASTDifferentialValidator >> reExportAST: ast [
 
 	self subclassResponsibility
 ]
 
-{ #category : #running }
+{ #category : 'running' }
 FASTDifferentialValidator >> runOnDirectory: aDirectory [
 
 	aDirectory isDirectory
@@ -134,7 +136,7 @@ FASTDifferentialValidator >> runOnDirectory: aDirectory [
 	aDirectory children do: [ :fileRef | self runOnFileReference: fileRef ]
 ]
 
-{ #category : #running }
+{ #category : 'running' }
 FASTDifferentialValidator >> runOnFileReference: aFileReference [
 
 	(self skipPaths includes: aFileReference fullName)
@@ -148,7 +150,7 @@ FASTDifferentialValidator >> runOnFileReference: aFileReference [
 
 ]
 
-{ #category : #running }
+{ #category : 'running' }
 FASTDifferentialValidator >> runOnSourceFile: aFileReference [
 
 	| astOrig astBis topLevelNodes |
@@ -174,13 +176,13 @@ FASTDifferentialValidator >> runOnSourceFile: aFileReference [
 	]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 FASTDifferentialValidator >> skipPaths [
 
 	^ skipPaths
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 FASTDifferentialValidator >> skipPaths: anObject [
 
 	skipPaths := anObject

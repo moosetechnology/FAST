@@ -24,57 +24,59 @@ For this, a suitable `acceptableAST:differentFrom:` method should be defined tha
 There is a `skipPaths` list to allow skiping some paths in the main file directory
 "
 Class {
-	#name : #FASTAbstractDifferentialValidator,
-	#superclass : #FASTAbstractValidator,
+	#name : 'FASTAbstractDifferentialValidator',
+	#superclass : 'FASTAbstractValidator',
 	#instVars : [
 		'comparator'
 	],
-	#category : #'FAST-Core-Tools-Validator'
+	#category : 'FAST-Core-Tools-Validator',
+	#package : 'FAST-Core-Tools',
+	#tag : 'Validator'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 FASTAbstractDifferentialValidator >> comparator [
 
 	^comparator ifNil: [ comparator := self comparatorClass new ]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 FASTAbstractDifferentialValidator >> comparatorClass [
 
 	^FamixModelComparator
 ]
 
-{ #category : #running }
+{ #category : 'running' }
 FASTAbstractDifferentialValidator >> compare: node1 to: node2 [
 	
 	self comparator compare: node1 to: node2
 ]
 
-{ #category : #utilities }
+{ #category : 'utilities' }
 FASTAbstractDifferentialValidator >> getASTFromFileReference: aFileReference [
 
 	^self getTopLevelNodes: (super getASTFromFileReference: aFileReference)
 ]
 
-{ #category : #utilities }
+{ #category : 'utilities' }
 FASTAbstractDifferentialValidator >> getRootNode: aModel [
 
 	^aModel detect: [ : e | e allParents isEmpty ]
 ]
 
-{ #category : #utilities }
+{ #category : 'utilities' }
 FASTAbstractDifferentialValidator >> getTopLevelNodes: model [
 
 	self subclassResponsibility
 ]
 
-{ #category : #utilities }
+{ #category : 'utilities' }
 FASTAbstractDifferentialValidator >> reExportAST: ast [
 
 	self subclassResponsibility
 ]
 
-{ #category : #running }
+{ #category : 'running' }
 FASTAbstractDifferentialValidator >> runOnSourceFile: aFileReference [
 
 	| astOrig astBis topLevelNodes |

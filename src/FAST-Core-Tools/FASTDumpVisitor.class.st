@@ -2,16 +2,18 @@
 I'm a visitor who generates code that, when executed, recreates the visited FAST nodes (similarly to `RBDumpVisitor` and the `storeOn:` protocol).
 "
 Class {
-	#name : #FASTDumpVisitor,
-	#superclass : #Object,
+	#name : 'FASTDumpVisitor',
+	#superclass : 'Object',
 	#instVars : [
 		'propertyCache',
 		'stream'
 	],
-	#category : #'FAST-Core-Tools-Visitor'
+	#category : 'FAST-Core-Tools-Visitor',
+	#package : 'FAST-Core-Tools',
+	#tag : 'Visitor'
 }
 
-{ #category : #visiting }
+{ #category : 'visiting' }
 FASTDumpVisitor class >> visit: aFASTEntity [
 
 	^ self new
@@ -19,20 +21,20 @@ FASTDumpVisitor class >> visit: aFASTEntity [
 		  contents
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 FASTDumpVisitor >> contents [
 
 	^ stream contents
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 FASTDumpVisitor >> initialize [
 
 	stream := String new writeStream.
 	propertyCache := IdentityDictionary new
 ]
 
-{ #category : #enumerating }
+{ #category : 'enumerating' }
 FASTDumpVisitor >> propertiesAndValuesOf: aFASTEntity do: twoArgsBlock [
 	"Iterate over the attributes and child relations of the given entity."
 
@@ -48,7 +50,7 @@ FASTDumpVisitor >> propertiesAndValuesOf: aFASTEntity do: twoArgsBlock [
 		thenDo: [ :property | twoArgsBlock value: property value: value ]
 ]
 
-{ #category : #enumerating }
+{ #category : 'enumerating' }
 FASTDumpVisitor >> propertiesOf: aFASTEntity [
 
 	^ propertyCache
@@ -56,13 +58,13 @@ FASTDumpVisitor >> propertiesOf: aFASTEntity [
 		  ifAbsentPut: [ aFASTEntity allDeclaredProperties ]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 FASTDumpVisitor >> stream [
 
 	^ stream
 ]
 
-{ #category : #visiting }
+{ #category : 'visiting' }
 FASTDumpVisitor >> visit: aFASTEntity [
 
 	| beforeFirst |
@@ -82,7 +84,7 @@ FASTDumpVisitor >> visit: aFASTEntity [
 			ifFalse: [ "attribute" value printOn: stream ] ]
 ]
 
-{ #category : #visiting }
+{ #category : 'visiting' }
 FASTDumpVisitor >> visitChildren: children [
 
 	stream nextPut: ${.
@@ -92,7 +94,7 @@ FASTDumpVisitor >> visitChildren: children [
 	stream nextPut: $}
 ]
 
-{ #category : #visiting }
+{ #category : 'visiting' }
 FASTDumpVisitor >> visitOnlyChild: aFASTEntity [
 
 	stream nextPut: $(.

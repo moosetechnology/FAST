@@ -1,20 +1,22 @@
 Class {
-	#name : #FamixModelComparator,
-	#superclass : #Object,
+	#name : 'FamixModelComparator',
+	#superclass : 'Object',
 	#instVars : [
 		'strict'
 	],
-	#category : #'FAST-Core-Tools-Validator'
+	#category : 'FAST-Core-Tools-Validator',
+	#package : 'FAST-Core-Tools',
+	#tag : 'Validator'
 }
 
-{ #category : #comparison }
+{ #category : 'comparison' }
 FamixModelComparator >> ast: node1 acceptableDifferenceTo: node2 [
 	"In non strict mode, some differences could be accepted"
 
 	^false	
 ]
 
-{ #category : #comparison }
+{ #category : 'comparison' }
 FamixModelComparator >> ast: node1 acceptableDifferenceTo: node2 property: property [
 	"returns nil if the difference is not acceptable
 	 otherwise, must return  a block testing where the comparison process might resume"
@@ -22,7 +24,7 @@ FamixModelComparator >> ast: node1 acceptableDifferenceTo: node2 property: prope
 	^nil
 ]
 
-{ #category : #comparison }
+{ #category : 'comparison' }
 FamixModelComparator >> ast: node1 differ: node2 [
 
 	self strict ifTrue:  [ self differenceNotResumable ].
@@ -32,7 +34,7 @@ FamixModelComparator >> ast: node1 differ: node2 [
 		ifFalse: [ self differenceNotResumable ]
 ]
 
-{ #category : #comparison }
+{ #category : 'comparison' }
 FamixModelComparator >> ast: node1 differ: node2 property: property [
 
 	self strict ifTrue:  [ self differenceNotResumable ].
@@ -42,13 +44,13 @@ FamixModelComparator >> ast: node1 differ: node2 property: property [
 		ifNotNil: [ :recovery | self differenceResumableOncondition: recovery ]
 ]
 
-{ #category : #configuration }
+{ #category : 'configuration' }
 FamixModelComparator >> beStrict [
 
 	self strict: true
 ]
 
-{ #category : #utilities }
+{ #category : 'utilities' }
 FamixModelComparator >> childrenNodes: astNode [
 
 	^OrderedCollection withAll:
@@ -56,7 +58,7 @@ FamixModelComparator >> childrenNodes: astNode [
 
 ]
 
-{ #category : #comparison }
+{ #category : 'comparison' }
 FamixModelComparator >> compare: node1 to: node2 [
 	"check the two nodes have the same class
 	 then check they have the same properties (attributes with primitive types)
@@ -78,7 +80,7 @@ FamixModelComparator >> compare: node1 to: node2 [
 	]
 ]
 
-{ #category : #comparison }
+{ #category : 'comparison' }
 FamixModelComparator >> compareChildren: node1 to: node2 [
 	"comparing the two lists of children may seem a bit complicate, but it is trying
 	 to give more info when the children starts to differ
@@ -101,14 +103,14 @@ FamixModelComparator >> compareChildren: node1 to: node2 [
 		self ast: nil differ: (children2 at: children1 size + 1) ]
 ]
 
-{ #category : #comparison }
+{ #category : 'comparison' }
 FamixModelComparator >> compareClasses: node1 to: node2 [
 
 	node1 class = node2 class ifFalse: [
 		self ast: node1 differ: node2 ]
 ]
 
-{ #category : #comparison }
+{ #category : 'comparison' }
 FamixModelComparator >> compareProperties: node1 to: node2 [
 	"compare the values of the 'properties' (attributes with primitive types) of the two nodes
 	 since the two nodes should be the same class, they have the same properties"
@@ -126,14 +128,14 @@ FamixModelComparator >> compareProperties: node1 to: node2 [
 
 ]
 
-{ #category : #exceptionbuilder }
+{ #category : 'exceptionbuilder' }
 FamixModelComparator >> differenceNotResumable [
 
 	FamixModelComparatorRecoveryException signal: 'ASTs differ'
 		
 ]
 
-{ #category : #exceptionbuilder }
+{ #category : 'exceptionbuilder' }
 FamixModelComparator >> differenceResumableInParent [
 	"raises an exception with a 'true' condition.
 	 Process will resume in immediate parent"
@@ -143,7 +145,7 @@ FamixModelComparator >> differenceResumableInParent [
 		signal: 'Overlooking difference in AST'
 ]
 
-{ #category : #exceptionbuilder }
+{ #category : 'exceptionbuilder' }
 FamixModelComparator >> differenceResumableOncondition: aBlock [
 
 	FamixModelComparatorRecoveryException new
@@ -151,7 +153,7 @@ FamixModelComparator >> differenceResumableOncondition: aBlock [
 		signal: 'Overlooking difference in AST'
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 FamixModelComparator >> initialize [
 
 	super initialize.
@@ -159,7 +161,7 @@ FamixModelComparator >> initialize [
 	strict := false.
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 FamixModelComparator >> propertyToCompare: aFMProperty [
 	"do not compare on derived (ie. computed) properties, only those with a stored value
 	 do not compare on startPos/endPos as they are not meaningfull"
@@ -169,13 +171,13 @@ FamixModelComparator >> propertyToCompare: aFMProperty [
 	^true
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 FamixModelComparator >> strict [
 
 	^ strict
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 FamixModelComparator >> strict: anObject [
 
 	strict := anObject

@@ -2,22 +2,24 @@
 A FASTLocalResolverScopingTest is a test class for testing the behavior of FASTLocalResolverScoping
 "
 Class {
-	#name : #FASTLocalResolverScopingTest,
-	#superclass : #TestCase,
+	#name : 'FASTLocalResolverScopingTest',
+	#superclass : 'TestCase',
 	#instVars : [
 		'resolverScoping'
 	],
-	#category : #'FAST-Core-Tools-Tests-Resolver'
+	#category : 'FAST-Core-Tools-Tests-Resolver',
+	#package : 'FAST-Core-Tools-Tests',
+	#tag : 'Resolver'
 }
 
-{ #category : #running }
+{ #category : 'running' }
 FASTLocalResolverScopingTest >> setUp [
 	super setUp.
 
 	resolverScoping := FASTLocalResolverScoping new
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 FASTLocalResolverScopingTest >> testAddNonLocalDeclaration [
 	"testing helper method #addNonLocalDeclaration:"
 	resolverScoping resetScopes.
@@ -32,7 +34,7 @@ FASTLocalResolverScopingTest >> testAddNonLocalDeclaration [
 	self assert: (resolverScoping findDeclaration: 'blah') class equals: FASTNonLocalDeclaration
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 FASTLocalResolverScopingTest >> testFindDeclarationInCurrentScope [
 	|node|
 	node := FASTEntity new.
@@ -42,14 +44,14 @@ FASTLocalResolverScopingTest >> testFindDeclarationInCurrentScope [
 	self assert: (resolverScoping findDeclaration: 'blah') equals: node
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 FASTLocalResolverScopingTest >> testFindDeclarationInEmptyScope [
 	resolverScoping resetScopes.
 	self assert: (resolverScoping findDeclaration: 'blah') equals: nil.
 
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 FASTLocalResolverScopingTest >> testFindDeclarationInParentScope [
 	|node|
 	node := FASTEntity new.
@@ -60,7 +62,7 @@ FASTLocalResolverScopingTest >> testFindDeclarationInParentScope [
 	self assert: (resolverScoping findDeclaration: 'blah') equals: node
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 FASTLocalResolverScopingTest >> testFindDeclarationNotInScope [
 	|node|
 	node := FASTEntity new.
@@ -71,14 +73,14 @@ FASTLocalResolverScopingTest >> testFindDeclarationNotInScope [
 
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 FASTLocalResolverScopingTest >> testHasScopes [
 	"initialization creates a scope"
 
 	self assert: resolverScoping hasScopes 
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 FASTLocalResolverScopingTest >> testLocalDeclarationFor [
 	"testing helper method #localDeclaration:for:"
 	| declNode refNode |
@@ -94,14 +96,14 @@ FASTLocalResolverScopingTest >> testLocalDeclarationFor [
 	self assert: declNode localUses first equals: refNode
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 FASTLocalResolverScopingTest >> testResetScopes [
 	resolverScoping resetScopes.
 	self assert: resolverScoping hasScopes.
 
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 FASTLocalResolverScopingTest >> testScopeAddDeclarationTwiceRaisesError [
 	|node|
 	node := FASTEntity new.
@@ -116,7 +118,7 @@ FASTLocalResolverScopingTest >> testScopeAddDeclarationTwiceRaisesError [
 		raise: DuplicatedVariableError
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 FASTLocalResolverScopingTest >> testScopeAddNonLocalDeclarationTwiceRaisesError [
 	|node|
 	node := FASTEntity new.

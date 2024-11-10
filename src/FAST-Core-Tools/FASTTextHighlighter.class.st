@@ -1,42 +1,44 @@
 Class {
-	#name : #FASTTextHighlighter,
-	#superclass : #Object,
+	#name : 'FASTTextHighlighter',
+	#superclass : 'Object',
 	#instVars : [
 		'attributeMapper'
 	],
-	#category : #'FAST-Core-Tools-Highlighter'
+	#category : 'FAST-Core-Tools-Highlighter',
+	#package : 'FAST-Core-Tools',
+	#tag : 'Highlighter'
 }
 
-{ #category : #public }
+{ #category : 'public' }
 FASTTextHighlighter >> addAttribute: aTextAttribute for: anEntity [ 
 	| attributes |
 	attributes := self attributeMapper at: anEntity ifAbsentPut: [ OrderedCollection new ].
 	attributes add: aTextAttribute
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 FASTTextHighlighter >> attributeMapper [ 
 	"returns a dictionary with keys corresponding to parser names and 
 	values corresponding to a collection of TextAttributes"
 	^ attributeMapper
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 FASTTextHighlighter >> attributeMapper: aDictionary [ 
 	attributeMapper := aDictionary
 ]
 
-{ #category : #public }
+{ #category : 'public' }
 FASTTextHighlighter >> bold: anElementString [
 	self addAttribute: TextEmphasis bold for: anElementString
 ]
 
-{ #category : #public }
+{ #category : 'public' }
 FASTTextHighlighter >> color: anElementString with: aColor [
 	self addAttribute: (TextColor new color: aColor) for: anElementString
 ]
 
-{ #category : #public }
+{ #category : 'public' }
 FASTTextHighlighter >> highlight: anFASTEntity [
 	| text |
 	text := anFASTEntity sourceText asText.
@@ -47,7 +49,7 @@ FASTTextHighlighter >> highlight: anFASTEntity [
 	^ text
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 FASTTextHighlighter >> initialize [
 	super initialize.
 	attributeMapper := Dictionary new

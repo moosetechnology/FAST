@@ -13,27 +13,29 @@ From example, comparing if-condition could fail and the recovery would occur fro
 One must be specific enough in the condition so that another ancestor does not accept to recover when it was not expected. A possible way to do this is to specify the exact file and position of the node intended
 "
 Class {
-	#name : #FamixModelComparatorRecoveryException,
-	#superclass : #Exception,
+	#name : 'FamixModelComparatorRecoveryException',
+	#superclass : 'Exception',
 	#instVars : [
 		'condition'
 	],
-	#category : #'FAST-Core-Tools-Validator'
+	#category : 'FAST-Core-Tools-Validator',
+	#package : 'FAST-Core-Tools',
+	#tag : 'Validator'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 FamixModelComparatorRecoveryException >> condition [
 
 	^ condition
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 FamixModelComparatorRecoveryException >> condition: anObject [
 
 	condition := anObject
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 FamixModelComparatorRecoveryException >> initialize [
 	"if no condition is specified, no recovery is possible"
 
