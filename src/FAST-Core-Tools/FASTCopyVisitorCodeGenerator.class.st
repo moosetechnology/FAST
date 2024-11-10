@@ -149,6 +149,10 @@ FASTCopyVisitorCodeGenerator >> shouldCopyProperty: property [
 	( #(startPos endPos) includes: property name )
 		ifTrue: [ ^true ].
 
+	"for now explicitly removing this one from the copy..."
+	(property name = #allTagAssociations)
+		ifTrue: [ ^false ].
+
 	property hasOpposite ifFalse: [ ^property isDerived not ].
 	
 	property isContainer ifTrue: [ ^false].
