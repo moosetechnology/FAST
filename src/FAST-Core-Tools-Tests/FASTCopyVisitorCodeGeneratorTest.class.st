@@ -37,20 +37,15 @@ FASTCopyVisitorCodeGeneratorTest >> setUp [
 		visitorMethods add: method -> category ]
 ]
 
-{ #category : 'running' }
-FASTCopyVisitorCodeGeneratorTest >> tearDown [ 
-	super tearDown.
-
-	self class package extensionMethods do: #removeFromSystem
-]
-
 { #category : 'tests' }
 FASTCopyVisitorCodeGeneratorTest >> testGenerateCopyMethod [
 
 	generator rootClass: FmxTraitsTestGenerateAccessorBEntity visitorClass: visitorClass.
 
-	self assertGeneratedMethod: [ :methodCode |
-		methodCode beginsWith: 'copy: ' ]
+	[ self assertGeneratedMethod: [ :methodCode |
+			methodCode beginsWith: 'copy: ' ]
+	]
+	ensure: [ self class package extensionMethods do: #removeFromSystem ]
 ]
 
 { #category : 'tests' }
@@ -98,10 +93,13 @@ FASTCopyVisitorCodeGeneratorTest >> testShouldNotCopyMultivaluedDerivedProperty 
 	property := FmxTraitsTestGenerateAccessorBClassB asMooseDescription
 		allProperties detect: [ :prop | prop name = 'relationToA' ].
 
-	"focing it to be multivalued"
+	"forcing it to be multivalued"
 	property isMultivalued: true.
-	self assert: property isMultivalued.
-	self deny: (generator shouldCopyProperty: property)
+	[
+		self assert: property isMultivalued.
+		self deny: (generator shouldCopyProperty: property)
+	]
+	ensure: [ property isMultivalued: false ]
 ]
 
 { #category : 'tests' }
@@ -114,6 +112,8 @@ FASTCopyVisitorCodeGeneratorTest >> testShouldNotCopyPropertyParent [
 
 	"forcing it to be to parent"
 	property isContainer: true.
-	self assert: property isContainer.
-	self deny: (generator shouldCopyProperty: property)
+	[ self assert: property isContainer.
+	  self deny: (generator shouldCopyProperty: property)
+	]
+ensure: [ property isContainer: false ]
 ]
