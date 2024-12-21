@@ -1,1 +1,1 @@
-Package { #name : #'FAST-Core-Model-Extension' }
+Package { #name : 'FAST-Core-Model-Extension' }
