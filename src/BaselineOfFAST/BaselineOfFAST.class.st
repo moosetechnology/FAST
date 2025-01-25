@@ -1,10 +1,11 @@
 Class {
-	#name : #BaselineOfFAST,
-	#superclass : #BaselineOf,
-	#category : #BaselineOfFAST
+	#name : 'BaselineOfFAST',
+	#superclass : 'BaselineOf',
+	#category : 'BaselineOfFAST',
+	#package : 'BaselineOfFAST'
 }
 
-{ #category : #baselines }
+{ #category : 'baselines' }
 BaselineOfFAST >> baseline: spec [
 	<baseline>
 	spec
@@ -15,7 +16,7 @@ BaselineOfFAST >> baseline: spec [
 			self defineGroups: spec ]
 ]
 
-{ #category : #baselines }
+{ #category : 'baselines' }
 BaselineOfFAST >> customProjectAttributes [
 
 	^ RPackageOrganizer default packages
@@ -24,7 +25,7 @@ BaselineOfFAST >> customProjectAttributes [
 		  ifNone: [ #( #NeedsMoose ) ]
 ]
 
-{ #category : #baselines }
+{ #category : 'baselines' }
 BaselineOfFAST >> defineDependencies: spec [
 
 	spec for: #NeedsMoose do: [ 
@@ -34,20 +35,20 @@ BaselineOfFAST >> defineDependencies: spec [
 				repository: 'github://moosetechnology/Famix:development/src' ] ]
 ]
 
-{ #category : #baselines }
+{ #category : 'baselines' }
 BaselineOfFAST >> defineGroups: spec [
 	spec
 		group: 'core'
 		with: #( 'FAST-Core-Model' 'FAST-Core-Model-Extension' 'FAST-Model-Generator'  'FAST-Core-Visitor' ) ;
 
-		group: 'tools'
+		group: 'all'
 		with: #( 'core' 'FAST-Core-Tools' 'FAST-Core-Tools-Tests' ) ;
 
 		group: 'default' with: #( 'core' )
 
 ]
 
-{ #category : #baselines }
+{ #category : 'baselines' }
 BaselineOfFAST >> definePackages: spec [
 
 	spec
