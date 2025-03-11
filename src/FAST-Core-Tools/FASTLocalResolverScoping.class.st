@@ -120,7 +120,7 @@ FASTLocalResolverScoping >> scopeAdd: aName declaration: aFASTNode [
 { #category : 'api' }
 FASTLocalResolverScoping >> scopeAddNonLocalDeclaration: name [
 	"makes a non-local declaration kind of local by adding
-	 a FASTNonLocalDeclaration into the current scope"
+	 a FASTNonLocalDeclaration into the top-most scope"
 
 	| currentScope nonLocalDeclaration |
 	currentScope := self popScope.
