@@ -17,18 +17,23 @@ Class {
 }
 
 { #category : 'api' }
+FASTLocalResolverScoping >> addUse: referingNode toLocalDeclaration: declarationNode [
+	referingNode localDeclaration: declarationNode.
+	declarationNode addLocalUse: referingNode
+]
+
+{ #category : 'api' }
 FASTLocalResolverScoping >> bind: aFASTNode toLocalDeclaration: aName [
 	"reference to aName by aFASTNode
 	 - assuming the identifier refers to a variable (structuralEntity)
 	 - look for a definition of this identifier in the hierarchy of scopes
 	 - if not found, creates a `#nonLocalDeclaration:` for it
-	 - binds this reference to the declaration"
+	 - binds the reference made by aFASTNode to the declaration of aName"
 
 	self
-		localDeclaration: (
-			(self findDeclaration: aName)
-				ifNil: [ self scopeAddNonLocalDeclaration: aName ])
-		for: aFASTNode
+		addUse: aFASTNode
+		toLocalDeclaration: ((self findDeclaration: aName) ifNil: [
+				 self scopeAddNonLocalDeclaration: aName ])
 ]
 
 { #category : 'accessing' }
@@ -64,12 +69,6 @@ FASTLocalResolverScoping >> initialize [
 	super initialize.
 
 	self resetScopes
-]
-
-{ #category : 'api' }
-FASTLocalResolverScoping >> localDeclaration: declarationNode for: referingNode [
-	referingNode localDeclaration: declarationNode.
-	declarationNode addLocalUse: referingNode
 ]
 
 { #category : 'private' }

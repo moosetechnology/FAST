@@ -83,11 +83,12 @@ FASTLocalResolverScopingTest >> testHasScopes [
 { #category : 'tests' }
 FASTLocalResolverScopingTest >> testLocalDeclarationFor [
 	"testing helper method #localDeclaration:for:"
+
 	| declNode refNode |
 	declNode := FASTEntity new.
 	refNode := FASTEntity new.
-	declNode resetLocalUses.
-	resolverScoping localDeclaration: declNode for: refNode.
+	declNode clearLocalUses.
+	resolverScoping addUse: refNode toLocalDeclaration: declNode.
 
 	self assert: refNode localDeclaration notNil.
 	self assert: refNode localDeclaration equals: declNode.
