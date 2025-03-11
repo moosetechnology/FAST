@@ -1,13 +1,13 @@
 "
-I handle scopes and there local declarations for `FASTLocalResolver`s
+I handle scopes and their local declarations for `FASTLocalResolver`
 
 I can:
 - search for variable declarations in a scope and its parents.
-- link variable uses to their declaration
+- bind variable uses to their declaration
 "
 Class {
 	#name : 'FASTLocalResolverScoping',
-	#superclass : 'FASTCoreVisitor',
+	#superclass : 'Object',
 	#instVars : [
 		'scopes'
 	],
@@ -112,7 +112,7 @@ FASTLocalResolverScoping >> scopeAdd: aName declaration: aFASTNode [
 		ifPresent: [ DuplicatedVariableError signal:
 			'local variable ' , aName , ' already found in this scope' ]
 		ifAbsent: [
-			aFASTNode resetLocalUses.
+			aFASTNode clearLocalUses.
 			self currentScope at: aName put: aFASTNode
 		].
 	
