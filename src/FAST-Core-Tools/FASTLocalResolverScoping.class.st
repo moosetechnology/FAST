@@ -18,6 +18,7 @@ Class {
 
 { #category : 'api' }
 FASTLocalResolverScoping >> addUse: referingNode toLocalDeclaration: declarationNode [
+
 	referingNode localDeclaration: declarationNode.
 	declarationNode addLocalUse: referingNode
 ]
@@ -40,6 +41,13 @@ FASTLocalResolverScoping >> bind: aFASTNode toLocalDeclaration: aName [
 FASTLocalResolverScoping >> currentScope [
 
 	^ scopes top
+]
+
+{ #category : 'api' }
+FASTLocalResolverScoping >> duplicateDeclarationError: aName [
+
+	DuplicatedVariableError signal:
+			'local variable ' , aName , ' already found in this scope'
 ]
 
 { #category : 'api' }
@@ -108,8 +116,7 @@ FASTLocalResolverScoping >> scopeAdd: aName declaration: aFASTNode [
 
 	self currentScope
 		at: aName
-		ifPresent: [ DuplicatedVariableError signal:
-			'local variable ' , aName , ' already found in this scope' ]
+		ifPresent: [ self duplicateDeclarationError: aName ]
 		ifAbsent: [
 			aFASTNode clearLocalUses.
 			self currentScope at: aName put: aFASTNode
