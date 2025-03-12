@@ -1,13 +1,13 @@
 "
-I handle scopes and there local declarations for `FASTLocalResolver`s
+I handle scopes and their local declarations for `FASTLocalResolver`
 
 I can:
 - search for variable declarations in a scope and its parents.
-- link variable uses to their declaration
+- bind variable uses to their declaration
 "
 Class {
 	#name : 'FASTLocalResolverScoping',
-	#superclass : 'FASTCoreVisitor',
+	#superclass : 'Object',
 	#instVars : [
 		'scopes'
 	],
@@ -17,24 +17,37 @@ Class {
 }
 
 { #category : 'api' }
+FASTLocalResolverScoping >> addUse: referingNode toLocalDeclaration: declarationNode [
+
+	referingNode localDeclaration: declarationNode.
+	declarationNode addLocalUse: referingNode
+]
+
+{ #category : 'api' }
 FASTLocalResolverScoping >> bind: aFASTNode toLocalDeclaration: aName [
 	"reference to aName by aFASTNode
 	 - assuming the identifier refers to a variable (structuralEntity)
 	 - look for a definition of this identifier in the hierarchy of scopes
 	 - if not found, creates a `#nonLocalDeclaration:` for it
-	 - binds this reference to the declaration"
+	 - binds the reference made by aFASTNode to the declaration of aName"
 
 	self
-		localDeclaration: (
-			(self findDeclaration: aName)
-				ifNil: [ self scopeAddNonLocalDeclaration: aName ])
-		for: aFASTNode
+		addUse: aFASTNode
+		toLocalDeclaration: ((self findDeclaration: aName) ifNil: [
+				 self scopeAddNonLocalDeclaration: aName ])
 ]
 
 { #category : 'accessing' }
 FASTLocalResolverScoping >> currentScope [
 
 	^ scopes top
+]
+
+{ #category : 'api' }
+FASTLocalResolverScoping >> duplicateDeclarationError: aName [
+
+	DuplicatedVariableError signal:
+			'local variable ' , aName , ' already found in this scope'
 ]
 
 { #category : 'api' }
@@ -64,12 +77,6 @@ FASTLocalResolverScoping >> initialize [
 	super initialize.
 
 	self resetScopes
-]
-
-{ #category : 'api' }
-FASTLocalResolverScoping >> localDeclaration: declarationNode for: referingNode [
-	referingNode localDeclaration: declarationNode.
-	declarationNode addLocalUse: referingNode
 ]
 
 { #category : 'private' }
@@ -109,10 +116,9 @@ FASTLocalResolverScoping >> scopeAdd: aName declaration: aFASTNode [
 
 	self currentScope
 		at: aName
-		ifPresent: [ DuplicatedVariableError signal:
-			'local variable ' , aName , ' already found in this scope' ]
+		ifPresent: [ self duplicateDeclarationError: aName ]
 		ifAbsent: [
-			aFASTNode resetLocalUses.
+			aFASTNode clearLocalUses.
 			self currentScope at: aName put: aFASTNode
 		].
 	
@@ -121,7 +127,7 @@ FASTLocalResolverScoping >> scopeAdd: aName declaration: aFASTNode [
 { #category : 'api' }
 FASTLocalResolverScoping >> scopeAddNonLocalDeclaration: name [
 	"makes a non-local declaration kind of local by adding
-	 a FASTNonLocalDeclaration into the current scope"
+	 a FASTNonLocalDeclaration into the top-most scope"
 
 	| currentScope nonLocalDeclaration |
 	currentScope := self popScope.

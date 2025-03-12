@@ -9,6 +9,11 @@ FASTTEntity >> addLocalUse: aFASTNode [
 ]
 
 { #category : '*FAST-Core-Tools' }
+FASTTEntity >> clearLocalUses [
+	self attributeAt: #localUses put: OrderedCollection new
+]
+
+{ #category : '*FAST-Core-Tools' }
 FASTTEntity >> dump [
 
 	"Generate an expression that recreates the receiver"
@@ -48,9 +53,4 @@ FASTTEntity >> localUses [
 { #category : '*FAST-Core-Tools' }
 FASTTEntity >> localUses: aCollection [
 	self attributeAt: #localUses put: aCollection 
-]
-
-{ #category : '*FAST-Core-Tools' }
-FASTTEntity >> resetLocalUses [
-	self attributeAt: #localUses put: OrderedCollection new
 ]
