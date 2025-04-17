@@ -33,7 +33,9 @@ Class {
 		'tComment',
 		'tWithComments',
 		'tBinaryExpression',
-		'tUnaryExpression'
+		'tUnaryExpression',
+		'tConditionalStatement',
+		'tLoopStatement'
 	],
 	#category : 'FAST-Model-Generator',
 	#package : 'FAST-Model-Generator'
@@ -219,10 +221,12 @@ FASTMetamodelGenerator >> defineHierarchy [
 	
 	tBehaviouralEntity --|> tScopableEntity.
 	tBehaviouralEntity --|> tWithParameters.
-	
-	tNamedBehaviouralEntity --|> tBehaviouralEntity.
+
 	tStatement --|> tEntity.
+	tConditionalStatement --|> tStatement.
 	tExpressionStatement --|> tStatement.
+	tLoopStatement --|> tStatement.
+	tNamedBehaviouralEntity --|> tBehaviouralEntity.
 	tReturnStatement --|> tStatement.
 	tStatementBlock --|> tStatement.
 	
@@ -266,37 +270,17 @@ FASTMetamodelGenerator >> defineProperties [
 FASTMetamodelGenerator >> defineRelations [
 	super defineRelations.
 
-	(((tExpressionStatement property: #expression) comment: 'The expression of the statement')
-	<>- ((tExpression property: #expressionStatementOwner)
-		comment: 'The expression statement that own me (if it''s the case')) .
-
-	(((tReturnStatement property: #expression) comment: 'The expression returned')
-	<>- ((tExpression property: #returnOwner)
-		comment: 'The return statement that own the expression (if it''s the case)')) .
-
-	(((tBehaviouralEntity property: #statementBlock) comment: 'Statements block of the behavioural entity')
-	<>- ((tStatementBlock property: #fastBehaviouralParent)
-		comment: 'Behavioural entity containing the statement block.')) .
-
-	(((tStatement property: #statementContainer) comment: 'Block containing this statement.')
-	*-<> ((tStatementBlock property: #statements) comment: 'Statements enclosed in this block')) .
-
-	((tWithParameters property: #parameters) comment: 'My parameters')
-	<>-* ((tVariableEntity property: #parameterOwner) comment: 'parameterOwner') . 
-
-	((tWithArguments property: #arguments) comment: 'My arguments')
-	<>-* ((tExpression property: #argumentOwner) comment: 'my owner') .
+	((tAssignment property: #expression) comment: 'Assigned expression (rhs of assignment)')
+	<>- ((tExpression property: #assignedIn)
+		comment: 'Optional assignment where this expression is used').
 
 	((tAssignment property: #variable) comment: 'An assigned variable (lhs of assignment)')
 	<>- ((tVariableEntity property: #parentAssignmentExpression)
 		comment: 'Optional assignment to the variable').
 
-	((tAssignment property: #expression) comment: 'Assigned expression (rhs of assignment)')
-	<>- ((tExpression property: #assignedIn)
-		comment: 'Optional assignment where this expression is used').
-
-	((tUnaryExpression property: #expression) comment: '(sub-)expression in the unary expression')
-	<>- ((tExpression property: #parentExpression) comment: 'Parent (unary) expression').
+	(((tBehaviouralEntity property: #statementBlock) comment: 'Statements block of the behavioural entity')
+	<>- ((tStatementBlock property: #fastBehaviouralParent)
+		comment: 'Behavioural entity containing the statement block.')) .
 
 	((tBinaryExpression property: #leftOperand) comment: 'left part of a binary expression')
 	<>- ((tExpression property: #parentExpressionLeft)
@@ -306,66 +290,93 @@ FASTMetamodelGenerator >> defineRelations [
 	<>- ((tExpression property: #parentExpressionRight)
 		comment: 'Parent (binary) expression of which I am right side').
 
-	((tInvocation property: #invoked) comment: 'The name of the behavioural invoked')
-	<>- ((tNamedEntity property: #invokedIn) comment: 'Optional invocation where this name is used').
-
 	((tComment property: #container) comment: 'Source code entity containing the comment')
 		*-<> ((tWithComments property: #comments)
 			comment: 'list of comments defined in the entity').
+
+	((tConditionalStatement property: #condition) comment: 'The boolean condition tested')
+	<>- ((tExpression property: #parentConditionalStatement) comment: 'Optional condition statement where this expression is used').
+
+	(((tExpressionStatement property: #expression) comment: 'The expression of the statement')
+	<>- ((tExpression property: #expressionStatementOwner)
+		comment: 'The expression statement that own me (if it''s the case')) .
+
+	((tInvocation property: #invoked) comment: 'The name of the behavioural invoked')
+	<>- ((tNamedEntity property: #invokedIn) comment: 'Optional invocation where this name is used').
+
+	((tLoopStatement property: #body) comment: 'The body of the loop')
+	<>- ((tStatement property: #parentLoopStatement) comment: 'Optional loop of which this statement is the body').
+
+	(((tReturnStatement property: #expression) comment: 'The expression returned')
+	<>- ((tExpression property: #returnOwner)
+		comment: 'The return statement that own the expression (if it''s the case)')) .
+
+	(((tStatement property: #statementContainer) comment: 'Block containing this statement.')
+	*-<> ((tStatementBlock property: #statements) comment: 'Statements enclosed in this block')) .
+
+	((tUnaryExpression property: #expression) comment: '(sub-)expression in the unary expression')
+	<>- ((tExpression property: #parentExpression) comment: 'Parent (unary) expression').
+
+	((tWithParameters property: #parameters) comment: 'My parameters')
+	<>-* ((tVariableEntity property: #parameterOwner) comment: 'parameterOwner') . 
+
+	((tWithArguments property: #arguments) comment: 'My arguments')
+	<>-* ((tExpression property: #argumentOwner) comment: 'my owner') .
 
 ]
 
 { #category : 'definition' }
 FASTMetamodelGenerator >> defineTraits [
 	super defineTraits.
-	tWithArguments := builder newTraitNamed: #TWithArguments comment: 'I have arguments'. 
-	
-	tWithParameters := builder newTraitNamed: #TWithParameters comment: 'I have parameters'.
-	
-	tEntity := builder newTraitNamed: #TEntity comment: 'any entity'.
-	tNamedEntity := builder newTraitNamed: #TNamedEntity comment: 'A entity with a name'.
-	tExpression := builder newTraitNamed: #TExpression comment: self commentForTExpression.
-	tExpression withTesting.
+
+	tAssignment := builder newTraitNamed: #TAssignment comment: self commentForTAssignment.
+	tAssignment withTesting.
+	tBehaviouralEntity := builder newTraitNamed: #TBehaviouralEntity comment: self commentForTBehaviouralEntity.
+	tBehaviouralEntity withTesting.
 	tBinaryExpression := builder newTraitNamed: #TBinaryExpression comment: self commentForTBinaryExpression.
 	tBinaryExpression withTesting.
-	tUnaryExpression := builder newTraitNamed: #TUnaryExpression comment: self commentForTUnaryExpression.
-	tUnaryExpression withTesting.
-	tLiteral := builder newTraitNamed: #TLiteral comment: self commentForTLiteral.
-	tLiteral withTesting.
 	tBooleanLiteral := builder newTraitNamed: #TBooleanLiteral comment: self commentForTBooleanLiteral.
 	tBooleanLiteral withTesting.
 	tCharacterLiteral := builder newTraitNamed: #TCharacterLiteral comment: self commentForTCharacterLiteral.
 	tCharacterLiteral withTesting.
-	tNullPointerLiteral := builder newTraitNamed: #TNullPointerLiteral comment: self commentForTNullPointerLiteral.
-	tNullPointerLiteral withTesting.
-	tStringLiteral := builder newTraitNamed: #TStringLiteral comment: self commentForTStringLiteral.
-	tStringLiteral withTesting.
-	tNumericalLiteral := builder newTraitNamed: #TNumericalLiteral comment: self commentForTNumericalLiteral.
-	tNumericalLiteral withTesting.
-	tVariableExpression := builder newTraitNamed: #TVariableExpression comment: self commentForTVariableExpression.
-	tVariableExpression withTesting.
-	tScopableEntity := builder newTraitNamed: #TScopableEntity comment: self commentForTScopableEntity.
-	tScopableEntity withTesting.
-	tBehaviouralEntity := builder newTraitNamed: #TBehaviouralEntity comment: self commentForTBehaviouralEntity.
-	tBehaviouralEntity withTesting.
-	tNamedBehaviouralEntity := builder newTraitNamed: #TNamedBehaviouralEntity comment: self commentForTNamedBehaviouralEntity.
-	tStatement := builder newTraitNamed: #TStatement comment: self commentForTStatement.
-	tStatement withTesting.
-	tExpressionStatement := builder newTraitNamed: #TExpressionStatement comment: self commentForTExpressionStatement.
-	tExpressionStatement withTesting.
-	tReturnStatement := builder newTraitNamed: #TReturnStatement comment: self commentForTReturnStatement.
-	tReturnStatement withTesting.
-	tStatementBlock := builder newTraitNamed: #TStatementBlock comment: self commentForTStatementBlock.
-	tStatementBlock withTesting.
-	tAssignment := builder newTraitNamed: #TAssignment comment: self commentForTAssignment.
-	tAssignment withTesting.
-	tInvocation := builder newTraitNamed: #TInvocation comment: self commentForTInvocation.
-	tInvocation withTesting.
-	tVariableEntity := builder newTraitNamed: #TVariableEntity comment: self commentForTVariableEntity.
-	tVariableEntity withTesting.
-	
 	tComment := builder newTraitNamed: #TComment.
 	tComment comment: self commentForTComment.
+	tConditionalStatement := builder newTraitNamed: #TConditionalStatement.
+	tConditionalStatement comment: 'I represent any statement that has a boolean condition (ie. ifStatement)'.
+	tEntity := builder newTraitNamed: #TEntity comment: 'any entity'.
+	tExpression := builder newTraitNamed: #TExpression comment: self commentForTExpression.
+	tExpression withTesting.
+	tExpressionStatement := builder newTraitNamed: #TExpressionStatement comment: self commentForTExpressionStatement.
+	tExpressionStatement withTesting.
+	tInvocation := builder newTraitNamed: #TInvocation comment: self commentForTInvocation.
+	tInvocation withTesting.
+	tLiteral := builder newTraitNamed: #TLiteral comment: self commentForTLiteral.
+	tLiteral withTesting.
+	tConditionalStatement := builder newTraitNamed: #TConditionalStatement comment: 'I represent any statement that has a boolean condition (ie. ifStatement)'.
+	tLoopStatement := builder newTraitNamed: #TLoopStatement comment: 'I represent any loop statement (for, while...)'.
+	tNamedEntity := builder newTraitNamed: #TNamedEntity comment: 'A entity with a name'.
+	tNullPointerLiteral := builder newTraitNamed: #TNullPointerLiteral comment: self commentForTNullPointerLiteral.
+	tNullPointerLiteral withTesting.
+	tNumericalLiteral := builder newTraitNamed: #TNumericalLiteral comment: self commentForTNumericalLiteral.
+	tNumericalLiteral withTesting.
+	tReturnStatement := builder newTraitNamed: #TReturnStatement comment: self commentForTReturnStatement.
+	tReturnStatement withTesting.
+	tScopableEntity := builder newTraitNamed: #TScopableEntity comment: self commentForTScopableEntity.
+	tScopableEntity withTesting.
+	tStatement := builder newTraitNamed: #TStatement comment: self commentForTStatement.
+	tStatement withTesting.
+	tStatementBlock := builder newTraitNamed: #TStatementBlock comment: self commentForTStatementBlock.
+	tStatementBlock withTesting.
+	tStringLiteral := builder newTraitNamed: #TStringLiteral comment: self commentForTStringLiteral.
+	tStringLiteral withTesting.
+	tUnaryExpression := builder newTraitNamed: #TUnaryExpression comment: self commentForTUnaryExpression.
+	tUnaryExpression withTesting.
+	tVariableEntity := builder newTraitNamed: #TVariableEntity comment: self commentForTVariableEntity.
+	tVariableEntity withTesting.
+	tVariableExpression := builder newTraitNamed: #TVariableExpression comment: self commentForTVariableExpression.
+	tVariableExpression withTesting.
+	tWithArguments := builder newTraitNamed: #TWithArguments comment: 'I have arguments'. 
 	tWithComments := builder newTraitNamed: #TWithComments.
 	tWithComments comment: self commentForTWithComments.
+	tWithParameters := builder newTraitNamed: #TWithParameters comment: 'I have parameters'.
 ]
