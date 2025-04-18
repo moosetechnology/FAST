@@ -1,5 +1,5 @@
 "
-A return statement node. Contains a reference to the expression which is returned.  
+I represent any statement that has a boolean condition (eg. ifStatement)
 
 ## Relations
 ======================
@@ -13,7 +13,7 @@ A return statement node. Contains a reference to the expression which is returne
 ### Children
 | Relation | Origin | Opposite | Type | Comment |
 |---|
-| `expression` | `FASTTReturnStatement` | `returnOwner` | `FASTTExpression` | The expression returned|
+| `condition` | `FASTTConditionalStatement` | `parentConditionalStatement` | `FASTTExpression` | The boolean condition tested|
 
 
 ## Properties
@@ -26,9 +26,9 @@ A return statement node. Contains a reference to the expression which is returne
 
 "
 Trait {
-	#name : 'FASTTReturnStatement',
+	#name : 'FASTTConditionalStatement',
 	#instVars : [
-		'#expression => FMOne type: #FASTTExpression opposite: #returnOwner'
+		'#condition => FMOne type: #FASTTExpression opposite: #parentConditionalStatement'
 	],
 	#traits : 'FASTTStatement',
 	#classTraits : 'FASTTStatement classTrait',
@@ -38,40 +38,33 @@ Trait {
 }
 
 { #category : 'meta' }
-FASTTReturnStatement classSide >> annotation [
+FASTTConditionalStatement classSide >> annotation [
 
-	<FMClass: #TReturnStatement super: #Object>
+	<FMClass: #TConditionalStatement super: #Object>
 	<package: #'FAST-Core-Model'>
 	<generated>
 	^ self
 ]
 
 { #category : 'accessing' }
-FASTTReturnStatement >> expression [
-	"Relation named: #expression type: #FASTTExpression opposite: #returnOwner"
+FASTTConditionalStatement >> condition [
+	"Relation named: #condition type: #FASTTExpression opposite: #parentConditionalStatement"
 
 	<generated>
-	<FMComment: 'The expression returned'>
-	^ expression
+	<FMComment: 'The boolean condition tested'>
+	^ condition
 ]
 
 { #category : 'accessing' }
-FASTTReturnStatement >> expression: anObject [
+FASTTConditionalStatement >> condition: anObject [
 
 	<generated>
-	expression := anObject
+	condition := anObject
 ]
 
 { #category : 'navigation' }
-FASTTReturnStatement >> expressionGroup [
+FASTTConditionalStatement >> conditionGroup [
 	<generated>
-	<navigation: 'Expression'>
-	^ MooseSpecializedGroup with: self expression
-]
-
-{ #category : 'testing' }
-FASTTReturnStatement >> isReturnStatement [
-
-	<generated>
-	^ true
+	<navigation: 'Condition'>
+	^ MooseSpecializedGroup with: self condition
 ]

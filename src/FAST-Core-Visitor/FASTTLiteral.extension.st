@@ -1,6 +1,6 @@
-Extension { #name : #FASTTLiteral }
+Extension { #name : 'FASTTLiteral' }
 
-{ #category : #'*FAST-Core-Visitor' }
+{ #category : '*FAST-Core-Visitor' }
 FASTTLiteral >> accept: aVisitor [
 	^ aVisitor visitFASTTLiteral: self
 ]

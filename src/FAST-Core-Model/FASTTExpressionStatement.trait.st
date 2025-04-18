@@ -7,6 +7,7 @@ A node of a statement which is representing a single expression.
 ### Parents
 | Relation | Origin | Opposite | Type | Comment |
 |---|
+| `parentLoopStatement` | `FASTTStatement` | `body` | `FASTTLoopStatement` | Optional loop of which this statement is the body|
 | `statementContainer` | `FASTTStatement` | `statements` | `FASTTStatementBlock` | Block containing this statement.|
 
 ### Children

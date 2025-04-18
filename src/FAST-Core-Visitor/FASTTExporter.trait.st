@@ -5,7 +5,7 @@ It offers two features:
 - handling operators precedence and deciding when to put parenthesis around an expression
 "
 Trait {
-	#name : #FASTTExporter,
+	#name : 'FASTTExporter',
 	#instVars : [
 		'operatorsPrecedence',
 		'expressionContextOperator',
@@ -13,17 +13,18 @@ Trait {
 		'indentLevel',
 		'indentSize'
 	],
-	#category : #'FAST-Core-Visitor'
+	#category : 'FAST-Core-Visitor',
+	#package : 'FAST-Core-Visitor'
 }
 
-{ #category : #outputting }
+{ #category : 'outputting' }
 FASTTExporter >> << aPrintable [
 	"syntactical sugar"
 
 	self output: aPrintable
 ]
 
-{ #category : #precedence }
+{ #category : 'precedence' }
 FASTTExporter >> defaultOperatorsPrecedence [
 	"operatorsPrecedence is a dictionary: operator -> precedence for all possible operators
 	Higher number means higher precedence
@@ -124,7 +125,7 @@ FASTTExporter >> defaultOperatorsPrecedence [
 	}
 ]
 
-{ #category : #precedence }
+{ #category : 'precedence' }
 FASTTExporter >> expressionContextOperator [
 	"lazy accessor"
 
@@ -132,38 +133,38 @@ FASTTExporter >> expressionContextOperator [
 
 ]
 
-{ #category : #outputting }
+{ #category : 'outputting' }
 FASTTExporter >> indent [
 
 	^indentLevel := self indentLevel + 1
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 FASTTExporter >> indentLevel [
 
 	^ indentLevel ifNil: [ indentLevel := 0 ]
 ]
 
-{ #category : #outputting }
+{ #category : 'outputting' }
 FASTTExporter >> indentSize [
 
 	^  indentSize ifNil: [ indentSize := 2 ]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 FASTTExporter >> indentSize: anObject [
 
 	indentSize := anObject
 ]
 
-{ #category : #outputting }
+{ #category : 'outputting' }
 FASTTExporter >> indented: aPrintable [
 
 	self outputIndentPrefix.
 	self unindented: aPrintable
 ]
 
-{ #category : #precedence }
+{ #category : 'precedence' }
 FASTTExporter >> languageOperatorsPrecedence [
 	"this methods gives a chance to redefine precedence in different languages
 
@@ -171,7 +172,7 @@ FASTTExporter >> languageOperatorsPrecedence [
 
 ]
 
-{ #category : #precedence }
+{ #category : 'precedence' }
 FASTTExporter >> lowerPrecedence: operator [
 	"check whether #operator has lower precedence than a surounding expression (top of
 	expressionContextOperator)
@@ -183,19 +184,19 @@ FASTTExporter >> lowerPrecedence: operator [
 			(self operatorPrecedence: operator) < (self operatorPrecedence: operatorStack top)]
 ]
 
-{ #category : #outputting }
+{ #category : 'outputting' }
 FASTTExporter >> newLine [
 
 	self outputStream cr
 ]
 
-{ #category : #precedence }
+{ #category : 'precedence' }
 FASTTExporter >> operatorPrecedence: operator [
 
 	^self operatorsPrecedence at: operator asSymbol
 ]
 
-{ #category : #precedence }
+{ #category : 'precedence' }
 FASTTExporter >> operatorsPrecedence [
 	"lazy accessor"
 
@@ -205,13 +206,13 @@ FASTTExporter >> operatorsPrecedence [
 			operatorsPrecedence ]
 ]
 
-{ #category : #outputting }
+{ #category : 'outputting' }
 FASTTExporter >> output: aPrintable [
 
 	self outputStream << aPrintable
 ]
 
-{ #category : #precedence }
+{ #category : 'precedence' }
 FASTTExporter >> outputExpression: aBlock inParentheses: aBoolean [
 	"executes aBlock to output some expression, putting it within parenthesis if needed"
 
@@ -220,7 +221,7 @@ FASTTExporter >> outputExpression: aBlock inParentheses: aBoolean [
 	aBoolean ifTrue: [ self output: ')' ]
 ]
 
-{ #category : #precedence }
+{ #category : 'precedence' }
 FASTTExporter >> outputExpression: aBlock withOperator: operator [
 	"execute aBlock possibly putting parenthesis around the result depending on the precedence of #operator
 	 But before executing a block, we need to push the operator on the context stack so that 
@@ -235,27 +236,27 @@ FASTTExporter >> outputExpression: aBlock withOperator: operator [
 		 inParentheses: (self lowerPrecedence: operator)
 ]
 
-{ #category : #outputting }
+{ #category : 'outputting' }
 FASTTExporter >> outputIndentPrefix [
 	"prints indentation spaces"
 
 	self spaces: self indentLevel * self indentSize
 ]
 
-{ #category : #outputting }
+{ #category : 'outputting' }
 FASTTExporter >> outputStream [
 	"lazy accessor"
 
 	^outputStream ifNil: [ outputStream := WriteStream on: '' ]
 ]
 
-{ #category : #outputting }
+{ #category : 'outputting' }
 FASTTExporter >> outputStream: anOutputStream [
 
 	^ outputStream := anOutputStream
 ]
 
-{ #category : #precedence }
+{ #category : 'precedence' }
 FASTTExporter >> outputTopLevelExpression: aBlock [
 	"Execute aBlock to output an expression.
 	 Puts special symbol on the expressionContextOperator stack to indicate the start of a
@@ -268,26 +269,26 @@ FASTTExporter >> outputTopLevelExpression: aBlock [
 	self expressionContextOperator pop
 ]
 
-{ #category : #outputting }
+{ #category : 'outputting' }
 FASTTExporter >> space [
 
 	self output: String space
 ]
 
-{ #category : #outputting }
+{ #category : 'outputting' }
 FASTTExporter >> spaces: n [
 
 	n timesRepeat: [ self space ]
 ]
 
-{ #category : #outputting }
+{ #category : 'outputting' }
 FASTTExporter >> unindent [
 
 	(self indentLevel <= 0) ifTrue: [ ^indentLevel := 0 ].
 	^indentLevel := self indentLevel - 1
 ]
 
-{ #category : #outputting }
+{ #category : 'outputting' }
 FASTTExporter >> unindented: aPrintable [
 
 	self output: aPrintable

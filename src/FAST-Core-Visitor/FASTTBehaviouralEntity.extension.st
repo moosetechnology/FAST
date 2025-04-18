@@ -1,6 +1,6 @@
-Extension { #name : #FASTTBehaviouralEntity }
+Extension { #name : 'FASTTBehaviouralEntity' }
 
-{ #category : #'*FAST-Core-Visitor' }
+{ #category : '*FAST-Core-Visitor' }
 FASTTBehaviouralEntity >> accept: aVisitor [
 	^ aVisitor visitFASTTBehaviouralEntity: self
 ]

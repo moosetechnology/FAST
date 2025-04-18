@@ -1,6 +1,6 @@
-Extension { #name : #FASTTExpression }
+Extension { #name : 'FASTTExpression' }
 
-{ #category : #'*FAST-Core-Visitor' }
+{ #category : '*FAST-Core-Visitor' }
 FASTTExpression >> accept: aVisitor [
 	^ aVisitor visitFASTTExpression: self
 ]

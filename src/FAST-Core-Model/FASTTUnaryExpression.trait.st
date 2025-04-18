@@ -10,6 +10,7 @@ A trait representing an unary expression of a node of a source code.
 | `argumentOwner` | `FASTTExpression` | `arguments` | `FASTTWithArguments` | my owner|
 | `assignedIn` | `FASTTExpression` | `expression` | `FASTTAssignment` | Optional assignment where this expression is used|
 | `expressionStatementOwner` | `FASTTExpression` | `expression` | `FASTTExpressionStatement` | The expression statement that own me (if it's the case|
+| `parentConditionalStatement` | `FASTTExpression` | `condition` | `FASTTConditionalStatement` | Optional condition statement where this expression is used|
 | `parentExpression` | `FASTTExpression` | `expression` | `FASTTUnaryExpression` | Parent (unary) expression|
 | `parentExpressionLeft` | `FASTTExpression` | `leftOperand` | `FASTTBinaryExpression` | Parent (binary) expression of which I am left side|
 | `parentExpressionRight` | `FASTTExpression` | `rightOperand` | `FASTTBinaryExpression` | Parent (binary) expression of which I am right side|
@@ -34,8 +35,8 @@ A trait representing an unary expression of a node of a source code.
 Trait {
 	#name : 'FASTTUnaryExpression',
 	#instVars : [
-		'#expression => FMOne type: #FASTTExpression opposite: #parentExpression',
-		'#operator => FMProperty'
+		'#operator => FMProperty',
+		'#expression => FMOne type: #FASTTExpression opposite: #parentExpression'
 	],
 	#traits : 'FASTTExpression',
 	#classTraits : 'FASTTExpression classTrait',

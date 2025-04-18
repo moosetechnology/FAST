@@ -1,6 +1,6 @@
-Extension { #name : #FASTTNullPointerLiteral }
+Extension { #name : 'FASTTNullPointerLiteral' }
 
-{ #category : #'*FAST-Core-Visitor' }
+{ #category : '*FAST-Core-Visitor' }
 FASTTNullPointerLiteral >> accept: aVisitor [
 	^ aVisitor visitFASTTNullPointerLiteral: self
 ]

@@ -1,120 +1,121 @@
 Class {
-	#name : #FASTCoreVisitor,
-	#superclass : #Object,
-	#category : #'FAST-Core-Visitor'
+	#name : 'FASTCoreVisitor',
+	#superclass : 'Object',
+	#category : 'FAST-Core-Visitor',
+	#package : 'FAST-Core-Visitor'
 }
 
-{ #category : #generated }
+{ #category : 'generated' }
 FASTCoreVisitor >> accept: aFASTEntity [
 	^ aFASTEntity accept: self
 ]
 
-{ #category : #generated }
+{ #category : 'generated' }
 FASTCoreVisitor >> visitFASTEntity: aFASTEntity [
 	^ self visitFASTTEntity: aFASTEntity
 ]
 
-{ #category : #generated }
+{ #category : 'generated' }
 FASTCoreVisitor >> visitFASTTBehaviouralEntity: aFASTBehaviouralEntity [
 	^ self visitFASTTScopableEntity: aFASTBehaviouralEntity
 ]
 
-{ #category : #generated }
+{ #category : 'generated' }
 FASTCoreVisitor >> visitFASTTBooleanLiteral: aFASTBooleanLiteral [
 	^ self visitFASTTLiteral: aFASTBooleanLiteral
 ]
 
-{ #category : #generated }
+{ #category : 'generated' }
 FASTCoreVisitor >> visitFASTTCharacterLiteral: aFASTCharacterLiteral [
 	^ self visitFASTTLiteral: aFASTCharacterLiteral
 ]
 
-{ #category : #generated }
+{ #category : 'generated' }
 FASTCoreVisitor >> visitFASTTComment: aFASTComment [
 	^ self visitFASTTEntity: aFASTComment
 ]
 
-{ #category : #generated }
+{ #category : 'generated' }
 FASTCoreVisitor >> visitFASTTEntity: aFASTTEntity [
 	^ aFASTTEntity children do: [ :child | child accept: self ]
 ]
 
-{ #category : #generated }
+{ #category : 'generated' }
 FASTCoreVisitor >> visitFASTTExpression: aFASTExpression [
 	^ self visitFASTTEntity: aFASTExpression
 ]
 
-{ #category : #generated }
+{ #category : 'generated' }
 FASTCoreVisitor >> visitFASTTExpressionStatement: aFASTExpressionStatement [
 	^ self visitFASTTStatement: aFASTExpressionStatement
 ]
 
-{ #category : #generated }
+{ #category : 'generated' }
 FASTCoreVisitor >> visitFASTTInvocation: aFASTAssociation [
 	^ self visitFASTTExpression: aFASTAssociation
 ]
 
-{ #category : #generated }
+{ #category : 'generated' }
 FASTCoreVisitor >> visitFASTTLiteral: aFASTLiteral [
 	^ self visitFASTTExpression: aFASTLiteral
 ]
 
-{ #category : #generated }
+{ #category : 'generated' }
 FASTCoreVisitor >> visitFASTTNamedBehaviouralEntity: aFASTNamedBehaviouralEntity [
 	^ self visitFASTTBehaviouralEntity: aFASTNamedBehaviouralEntity
 ]
 
-{ #category : #generated }
+{ #category : 'generated' }
 FASTCoreVisitor >> visitFASTTNamedEntity: aFASTAssociation [
 	^ self visitFASTTEntity: aFASTAssociation
 ]
 
-{ #category : #generated }
+{ #category : 'generated' }
 FASTCoreVisitor >> visitFASTTNilLiteral: aFASTNullPointerLiteral [
 	^ self visitFASTTLiteral: aFASTNullPointerLiteral
 ]
 
-{ #category : #generated }
+{ #category : 'generated' }
 FASTCoreVisitor >> visitFASTTNullPointerLiteral: aFASTAssociation [
 	^ self visitFASTTLiteral: aFASTAssociation
 ]
 
-{ #category : #generated }
+{ #category : 'generated' }
 FASTCoreVisitor >> visitFASTTNumericalLiteral: aFASTAssociation [
 	^ self visitFASTTLiteral: aFASTAssociation
 ]
 
-{ #category : #generated }
+{ #category : 'generated' }
 FASTCoreVisitor >> visitFASTTReturnStatement: aFASTReturnStatement [
 	^ self visitFASTTStatement: aFASTReturnStatement
 ]
 
-{ #category : #generated }
+{ #category : 'generated' }
 FASTCoreVisitor >> visitFASTTScopableEntity: aFASTScopableEntity [
 	^ self visitFASTTEntity: aFASTScopableEntity
 ]
 
-{ #category : #generated }
+{ #category : 'generated' }
 FASTCoreVisitor >> visitFASTTStatement: aFASTStatement [
 	^ self visitFASTTScopableEntity: aFASTStatement
 ]
 
-{ #category : #generated }
+{ #category : 'generated' }
 FASTCoreVisitor >> visitFASTTStatementBlock: aFASTStatementBlock [
 	^ self visitFASTTStatement: aFASTStatementBlock
 ]
 
-{ #category : #generated }
+{ #category : 'generated' }
 FASTCoreVisitor >> visitFASTTStringLiteral: aFASTStringLiteral [
 	^ self visitFASTTLiteral: aFASTStringLiteral
 ]
 
-{ #category : #generated }
+{ #category : 'generated' }
 FASTCoreVisitor >> visitFASTTVariableEntity: aFASTVariableEntity [
 	^ self visitFASTTEntity: aFASTVariableEntity
 ]
 
-{ #category : #generated }
+{ #category : 'generated' }
 FASTCoreVisitor >> visitFASTTVariableExpression: aFASTVariableExpression [
 	^ self visitFASTTExpression: aFASTVariableExpression
 ]

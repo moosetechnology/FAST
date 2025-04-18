@@ -13,8 +13,8 @@ any entity
 Trait {
 	#name : 'FASTTEntity',
 	#instVars : [
-		'#endPos => FMProperty',
-		'#startPos => FMProperty'
+		'#startPos => FMProperty',
+		'#endPos => FMProperty'
 	],
 	#traits : 'TEntityMetaLevelDependency',
 	#classTraits : 'TEntityMetaLevelDependency classTrait',
