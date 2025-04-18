@@ -341,8 +341,7 @@ FASTMetamodelGenerator >> defineTraits [
 	tCharacterLiteral withTesting.
 	tComment := builder newTraitNamed: #TComment.
 	tComment comment: self commentForTComment.
-	tConditionalStatement := builder newTraitNamed: #TConditionalStatement.
-	tConditionalStatement comment: 'I represent any statement that has a boolean condition (ie. ifStatement)'.
+	tConditionalStatement := builder newTraitNamed: #TConditionalStatement comment: 'I represent any statement that has a boolean condition (eg. ifStatement)'.
 	tEntity := builder newTraitNamed: #TEntity comment: 'any entity'.
 	tExpression := builder newTraitNamed: #TExpression comment: self commentForTExpression.
 	tExpression withTesting.
@@ -352,9 +351,9 @@ FASTMetamodelGenerator >> defineTraits [
 	tInvocation withTesting.
 	tLiteral := builder newTraitNamed: #TLiteral comment: self commentForTLiteral.
 	tLiteral withTesting.
-	tConditionalStatement := builder newTraitNamed: #TConditionalStatement comment: 'I represent any statement that has a boolean condition (ie. ifStatement)'.
 	tLoopStatement := builder newTraitNamed: #TLoopStatement comment: 'I represent any loop statement (for, while...)'.
 	tNamedEntity := builder newTraitNamed: #TNamedEntity comment: 'A entity with a name'.
+	tNamedBehaviouralEntity := builder newTraitNamed: #TNamedBehaviouralEntity comment: self commentForTNamedBehaviouralEntity.
 	tNullPointerLiteral := builder newTraitNamed: #TNullPointerLiteral comment: self commentForTNullPointerLiteral.
 	tNullPointerLiteral withTesting.
 	tNumericalLiteral := builder newTraitNamed: #TNumericalLiteral comment: self commentForTNumericalLiteral.
