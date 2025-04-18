@@ -7,6 +7,7 @@ An abstract subclass which represents a source code statemnet
 ### Parents
 | Relation | Origin | Opposite | Type | Comment |
 |---|
+| `parentLoopStatement` | `FASTTStatement` | `body` | `FASTTLoopStatement` | Optional loop of which this statement is the body|
 | `statementContainer` | `FASTTStatement` | `statements` | `FASTTStatementBlock` | Block containing this statement.|
 
 
@@ -22,6 +23,7 @@ An abstract subclass which represents a source code statemnet
 Trait {
 	#name : 'FASTTStatement',
 	#instVars : [
+		'#parentLoopStatement => FMOne type: #FASTTLoopStatement opposite: #body',
 		'#statementContainer => FMOne type: #FASTTStatementBlock opposite: #statements'
 	],
 	#traits : 'FASTTEntity',
@@ -40,11 +42,41 @@ FASTTStatement classSide >> annotation [
 	^ self
 ]
 
+{ #category : '*FAST-Core-Visitor' }
+FASTTStatement >> accept: aVisitor [
+	^ aVisitor visitFASTTStatement: self
+]
+
 { #category : 'testing' }
 FASTTStatement >> isStatement [
 
 	<generated>
 	^ true
+]
+
+{ #category : 'accessing' }
+FASTTStatement >> parentLoopStatement [
+	"Relation named: #parentLoopStatement type: #FASTTLoopStatement opposite: #body"
+
+	<generated>
+	<FMComment: 'Optional loop of which this statement is the body'>
+	<container>
+	<derived>
+	^ parentLoopStatement
+]
+
+{ #category : 'accessing' }
+FASTTStatement >> parentLoopStatement: anObject [
+
+	<generated>
+	parentLoopStatement := anObject
+]
+
+{ #category : 'navigation' }
+FASTTStatement >> parentLoopStatementGroup [
+	<generated>
+	<navigation: 'ParentLoopStatement'>
+	^ MooseSpecializedGroup with: self parentLoopStatement
 ]
 
 { #category : 'accessing' }

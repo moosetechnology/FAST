@@ -10,6 +10,7 @@ A string literal
 | `argumentOwner` | `FASTTExpression` | `arguments` | `FASTTWithArguments` | my owner|
 | `assignedIn` | `FASTTExpression` | `expression` | `FASTTAssignment` | Optional assignment where this expression is used|
 | `expressionStatementOwner` | `FASTTExpression` | `expression` | `FASTTExpressionStatement` | The expression statement that own me (if it's the case|
+| `parentConditionalStatement` | `FASTTExpression` | `condition` | `FASTTConditionalStatement` | Optional condition statement where this expression is used|
 | `parentExpression` | `FASTTExpression` | `expression` | `FASTTUnaryExpression` | Parent (unary) expression|
 | `parentExpressionLeft` | `FASTTExpression` | `leftOperand` | `FASTTBinaryExpression` | Parent (binary) expression of which I am left side|
 | `parentExpressionRight` | `FASTTExpression` | `rightOperand` | `FASTTBinaryExpression` | Parent (binary) expression of which I am right side|
@@ -42,6 +43,11 @@ FASTTStringLiteral classSide >> annotation [
 	<package: #'FAST-Core-Model'>
 	<generated>
 	^ self
+]
+
+{ #category : '*FAST-Core-Visitor' }
+FASTTStringLiteral >> accept: aVisitor [
+	^ aVisitor visitFASTTStringLiteral: self
 ]
 
 { #category : 'testing' }

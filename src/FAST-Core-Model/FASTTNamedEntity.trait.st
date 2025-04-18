@@ -23,8 +23,8 @@ A entity with a name
 Trait {
 	#name : 'FASTTNamedEntity',
 	#instVars : [
-		'#invokedIn => FMOne type: #FASTTInvocation opposite: #invoked',
-		'#name => FMProperty'
+		'#name => FMProperty',
+		'#invokedIn => FMOne type: #FASTTInvocation opposite: #invoked'
 	],
 	#traits : 'FASTTEntity',
 	#classTraits : 'FASTTEntity classTrait',

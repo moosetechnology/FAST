@@ -25,8 +25,8 @@ A node for variable name not in a expression (example: assigned variable or para
 Trait {
 	#name : 'FASTTVariableEntity',
 	#instVars : [
-		'#parameterOwner => FMOne type: #FASTTWithParameters opposite: #parameters',
-		'#parentAssignmentExpression => FMOne type: #FASTTAssignment opposite: #variable'
+		'#parentAssignmentExpression => FMOne type: #FASTTAssignment opposite: #variable',
+		'#parameterOwner => FMOne type: #FASTTWithParameters opposite: #parameters'
 	],
 	#traits : 'FASTTNamedEntity',
 	#classTraits : 'FASTTNamedEntity classTrait',

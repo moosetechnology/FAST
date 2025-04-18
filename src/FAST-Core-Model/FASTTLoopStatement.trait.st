@@ -1,5 +1,5 @@
 "
-A return statement node. Contains a reference to the expression which is returned.  
+I represent any loop statement (for, while...)
 
 ## Relations
 ======================
@@ -13,7 +13,7 @@ A return statement node. Contains a reference to the expression which is returne
 ### Children
 | Relation | Origin | Opposite | Type | Comment |
 |---|
-| `expression` | `FASTTReturnStatement` | `returnOwner` | `FASTTExpression` | The expression returned|
+| `body` | `FASTTLoopStatement` | `parentLoopStatement` | `FASTTStatement` | The body of the loop|
 
 
 ## Properties
@@ -26,9 +26,9 @@ A return statement node. Contains a reference to the expression which is returne
 
 "
 Trait {
-	#name : 'FASTTReturnStatement',
+	#name : 'FASTTLoopStatement',
 	#instVars : [
-		'#expression => FMOne type: #FASTTExpression opposite: #returnOwner'
+		'#body => FMOne type: #FASTTStatement opposite: #parentLoopStatement'
 	],
 	#traits : 'FASTTStatement',
 	#classTraits : 'FASTTStatement classTrait',
@@ -38,40 +38,33 @@ Trait {
 }
 
 { #category : 'meta' }
-FASTTReturnStatement classSide >> annotation [
+FASTTLoopStatement classSide >> annotation [
 
-	<FMClass: #TReturnStatement super: #Object>
+	<FMClass: #TLoopStatement super: #Object>
 	<package: #'FAST-Core-Model'>
 	<generated>
 	^ self
 ]
 
 { #category : 'accessing' }
-FASTTReturnStatement >> expression [
-	"Relation named: #expression type: #FASTTExpression opposite: #returnOwner"
+FASTTLoopStatement >> body [
+	"Relation named: #body type: #FASTTStatement opposite: #parentLoopStatement"
 
 	<generated>
-	<FMComment: 'The expression returned'>
-	^ expression
+	<FMComment: 'The body of the loop'>
+	^ body
 ]
 
 { #category : 'accessing' }
-FASTTReturnStatement >> expression: anObject [
+FASTTLoopStatement >> body: anObject [
 
 	<generated>
-	expression := anObject
+	body := anObject
 ]
 
 { #category : 'navigation' }
-FASTTReturnStatement >> expressionGroup [
+FASTTLoopStatement >> bodyGroup [
 	<generated>
-	<navigation: 'Expression'>
-	^ MooseSpecializedGroup with: self expression
-]
-
-{ #category : 'testing' }
-FASTTReturnStatement >> isReturnStatement [
-
-	<generated>
-	^ true
+	<navigation: 'Body'>
+	^ MooseSpecializedGroup with: self body
 ]

@@ -1,6 +1,6 @@
-Extension { #name : #FASTTNamedEntity }
+Extension { #name : 'FASTTNamedEntity' }
 
-{ #category : #'*FAST-Core-Visitor' }
+{ #category : '*FAST-Core-Visitor' }
 FASTTNamedEntity >> accept: aVisitor [
 	^ aVisitor visitFASTTNamedEntity: self
 ]
