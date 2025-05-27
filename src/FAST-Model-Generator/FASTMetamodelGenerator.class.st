@@ -35,11 +35,149 @@ Class {
 		'tBinaryExpression',
 		'tUnaryExpression',
 		'tConditionalStatement',
-		'tLoopStatement'
+		'tLoopStatement',
+		'tBranchStatement'
 	],
 	#category : 'FAST-Model-Generator',
 	#package : 'FAST-Model-Generator'
 }
+
+{ #category : 'comments' }
+FASTMetamodelGenerator class >> commentForTAssignment [
+	^ 'A node representing an assignment'
+]
+
+{ #category : 'comments' }
+FASTMetamodelGenerator class >> commentForTBehaviouralEntity [
+	^ 'Represents a generic behavioural entity which has parameters and local variables, as well as statements. 
+
+Can represent a SmalltalkBlock, or a JavaLambda
+Subclassed for NamedBehavioural as methods/functions
+
+Has parameters , and a body (StatementBlock).
+Local variables are intended to be stored in the local entities of the body'
+]
+
+{ #category : 'comments' }
+FASTMetamodelGenerator class >> commentForTBinaryExpression [
+	^ 'A trait representing a binary expression of a node of a source code.'
+]
+
+{ #category : 'comments' }
+FASTMetamodelGenerator class >> commentForTBooleanLiteral [
+	^ 'A boolean literal'
+]
+
+{ #category : 'comments' }
+FASTMetamodelGenerator class >> commentForTCharacterLiteral [
+	^ 'A character literal'
+]
+
+{ #category : 'comments' }
+FASTMetamodelGenerator class >> commentForTComment [
+
+	^ 'FASTComment represents one instance of a comment (in the sense of programming language comments) for any FAST sourced entity. The commented sourced entity is called the container in the FAST model.'
+]
+
+{ #category : 'comments' }
+FASTMetamodelGenerator class >> commentForTEntity [
+	^ 'A FASTEntity is an abstract class for all FAST classes
+
+Primarily introduced to deal with symbol resolution matters.'
+]
+
+{ #category : 'comments' }
+FASTMetamodelGenerator class >> commentForTExpression [
+	^ 'An abstract superclass representing an expression node of a source code.'
+]
+
+{ #category : 'comments' }
+FASTMetamodelGenerator class >> commentForTExpressionStatement [
+	^ 'A node of a statement which is representing a single expression. '
+]
+
+{ #category : 'comments' }
+FASTMetamodelGenerator class >> commentForTInvocation [
+	^ 'A invocation of a behavioural entity'
+]
+
+{ #category : 'comments' }
+FASTMetamodelGenerator class >> commentForTLiteral [
+	^ 'A literal node.
+
+Contains a value for the literal.
+
+FLAG: should refactor some literals to core-model
+    e.g.: character, int, float, string, boolean '
+]
+
+{ #category : 'comments' }
+FASTMetamodelGenerator class >> commentForTNamedBehaviouralEntity [
+	^ '@FLAG: May be could be removed to have a simpler core model.
+Each language would have to implement it correctly then
+
+A behavioural entity that can be referenced with a name.
+
+Assumed to correspond to a function or a method'
+]
+
+{ #category : 'comments' }
+FASTMetamodelGenerator class >> commentForTNullPointerLiteral [
+	^ 'An undefined object literal'
+]
+
+{ #category : 'comments' }
+FASTMetamodelGenerator class >> commentForTNumericalLiteral [
+	^ 'A numerical literal'
+]
+
+{ #category : 'comments' }
+FASTMetamodelGenerator class >> commentForTReturnStatement [
+	^ 'A return statement node. Contains a reference to the expression which is returned.  '
+]
+
+{ #category : 'comments' }
+FASTMetamodelGenerator class >> commentForTScopableEntity [
+	^ 'A Entity with an optional scope
+
+Some statements are scopable because they allow to introduce local variables (e.g. for statement in Java)'
+]
+
+{ #category : 'comments' }
+FASTMetamodelGenerator class >> commentForTStatement [
+	^ 'An abstract subclass which represents a source code statemnet '
+]
+
+{ #category : 'comments' }
+FASTMetamodelGenerator class >> commentForTStatementBlock [
+	^ 'A block of statements as ones in C-like langs with {}'
+]
+
+{ #category : 'comments' }
+FASTMetamodelGenerator class >> commentForTStringLiteral [
+	^ 'A string literal'
+]
+
+{ #category : 'comments' }
+FASTMetamodelGenerator class >> commentForTUnaryExpression [
+	^ 'A trait representing an unary expression of a node of a source code.'
+]
+
+{ #category : 'comments' }
+FASTMetamodelGenerator class >> commentForTVariableEntity [
+	^ 'A node for variable name not in a expression (example: assigned variable or parameter)'
+]
+
+{ #category : 'comments' }
+FASTMetamodelGenerator class >> commentForTVariableExpression [
+	^ 'A node that wraps around structural entity'
+]
+
+{ #category : 'comments' }
+FASTMetamodelGenerator class >> commentForTWithComments [
+
+	^ ' For entities with comments. In FAST, they are called containers. '
+]
 
 { #category : 'accessing' }
 FASTMetamodelGenerator class >> packageName [
@@ -55,143 +193,6 @@ FASTMetamodelGenerator class >> prefix [
 { #category : 'accessing' }
 FASTMetamodelGenerator class >> submetamodels [ 
 	^ { FamixGenerator }
-]
-
-{ #category : 'comments' }
-FASTMetamodelGenerator >> commentForTAssignment [
-	^ 'A node representing an assignment'
-]
-
-{ #category : 'comments' }
-FASTMetamodelGenerator >> commentForTBehaviouralEntity [
-	^ 'Represents a generic behavioural entity which has parameters and local variables, as well as statements. 
-
-Can represent a SmalltalkBlock, or a JavaLambda
-Subclassed for NamedBehavioural as methods/functions
-
-Has parameters , and a body (StatementBlock).
-Local variables are intended to be stored in the local entities of the body'
-]
-
-{ #category : 'comments' }
-FASTMetamodelGenerator >> commentForTBinaryExpression [
-	^ 'A trait representing a binary expression of a node of a source code.'
-]
-
-{ #category : 'comments' }
-FASTMetamodelGenerator >> commentForTBooleanLiteral [
-	^ 'A boolean literal'
-]
-
-{ #category : 'comments' }
-FASTMetamodelGenerator >> commentForTCharacterLiteral [
-	^ 'A character literal'
-]
-
-{ #category : 'comments' }
-FASTMetamodelGenerator >> commentForTComment [
-
-	^ 'FASTComment represents one instance of a comment (in the sense of programming language comments) for any FAST sourced entity. The commented sourced entity is called the container in the FAST model.'
-]
-
-{ #category : 'comments' }
-FASTMetamodelGenerator >> commentForTEntity [
-	^ 'A FASTEntity is an abstract class for all FAST classes
-
-Primarily introduced to deal with symbol resolution matters.'
-]
-
-{ #category : 'comments' }
-FASTMetamodelGenerator >> commentForTExpression [
-	^ 'An abstract superclass representing an expression node of a source code.'
-]
-
-{ #category : 'comments' }
-FASTMetamodelGenerator >> commentForTExpressionStatement [
-	^ 'A node of a statement which is representing a single expression. '
-]
-
-{ #category : 'comments' }
-FASTMetamodelGenerator >> commentForTInvocation [
-	^ 'A invocation of a behavioural entity'
-]
-
-{ #category : 'comments' }
-FASTMetamodelGenerator >> commentForTLiteral [
-	^ 'A literal node.
-
-Contains a value for the literal.
-
-FLAG: should refactor some literals to core-model
-    e.g.: character, int, float, string, boolean '
-]
-
-{ #category : 'comments' }
-FASTMetamodelGenerator >> commentForTNamedBehaviouralEntity [
-	^ '@FLAG: May be could be removed to have a simpler core model.
-Each language would have to implement it correctly then
-
-A behavioural entity that can be referenced with a name.
-
-Assumed to correspond to a function or a method'
-]
-
-{ #category : 'comments' }
-FASTMetamodelGenerator >> commentForTNullPointerLiteral [
-	^ 'An undefined object literal'
-]
-
-{ #category : 'comments' }
-FASTMetamodelGenerator >> commentForTNumericalLiteral [
-	^ 'A numerical literal'
-]
-
-{ #category : 'comments' }
-FASTMetamodelGenerator >> commentForTReturnStatement [
-	^ 'A return statement node. Contains a reference to the expression which is returned.  '
-]
-
-{ #category : 'comments' }
-FASTMetamodelGenerator >> commentForTScopableEntity [
-	^ 'A Entity with an optional scope
-
-Some statements are scopable because they allow to introduce local variables (e.g. for statement in Java)'
-]
-
-{ #category : 'comments' }
-FASTMetamodelGenerator >> commentForTStatement [
-	^ 'An abstract subclass which represents a source code statemnet '
-]
-
-{ #category : 'comments' }
-FASTMetamodelGenerator >> commentForTStatementBlock [
-	^ 'A block of statements as ones in C-like langs with {}'
-]
-
-{ #category : 'comments' }
-FASTMetamodelGenerator >> commentForTStringLiteral [
-	^ 'A string literal'
-]
-
-{ #category : 'comments' }
-FASTMetamodelGenerator >> commentForTUnaryExpression [
-	^ 'A trait representing an unary expression of a node of a source code.'
-]
-
-{ #category : 'comments' }
-FASTMetamodelGenerator >> commentForTVariableEntity [
-	^ 'A node for variable name not in a expression (example: assigned variable or parameter)'
-]
-
-{ #category : 'comments' }
-FASTMetamodelGenerator >> commentForTVariableExpression [
-	^ 'A node that wraps around structural entity'
-]
-
-{ #category : 'comments' }
-FASTMetamodelGenerator >> commentForTWithComments [
-
-	^ ' For entities with comments. In FAST, they are called containers. '
 ]
 
 { #category : 'definition' }
