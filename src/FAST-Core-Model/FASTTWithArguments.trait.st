@@ -31,6 +31,11 @@ FASTTWithArguments classSide >> annotation [
 	^ self
 ]
 
+{ #category : 'visiting' }
+FASTTWithArguments >> accept: aVisitor [
+	^ aVisitor visitFASTTWithArguments: self
+]
+
 { #category : 'adding' }
 FASTTWithArguments >> addArgument: anObject [
 	<generated>

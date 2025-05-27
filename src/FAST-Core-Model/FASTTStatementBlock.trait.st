@@ -8,7 +8,7 @@ A block of statements as ones in C-like langs with {}
 | Relation | Origin | Opposite | Type | Comment |
 |---|
 | `fastBehaviouralParent` | `FASTTStatementBlock` | `statementBlock` | `FASTTBehaviouralEntity` | Behavioural entity containing the statement block.|
-| `parentLoopStatement` | `FASTTStatement` | `body` | `FASTTLoopStatement` | Optional loop of which this statement is the body|
+| `parentBranchStatement` | `FASTTStatement` | `branches` | `FASTTBranchStatement` | My parent BranchStatement (of which I am a branch)|
 | `statementContainer` | `FASTTStatement` | `statements` | `FASTTStatementBlock` | Block containing this statement.|
 
 ### Children
@@ -46,6 +46,11 @@ FASTTStatementBlock classSide >> annotation [
 	<package: #'FAST-Core-Model'>
 	<generated>
 	^ self
+]
+
+{ #category : '*FAST-Core-Visitor' }
+FASTTStatementBlock >> accept: aVisitor [
+	^ aVisitor visitFASTTStatementBlock: self
 ]
 
 { #category : 'adding' }

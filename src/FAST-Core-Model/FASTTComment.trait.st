@@ -38,6 +38,11 @@ FASTTComment classSide >> annotation [
 	^ self
 ]
 
+{ #category : 'visiting' }
+FASTTComment >> accept: aVisitor [
+	^ aVisitor visitFASTTComment: self
+]
+
 { #category : 'accessing' }
 FASTTComment >> container [
 	"Relation named: #container type: #FASTTWithComments opposite: #comments"

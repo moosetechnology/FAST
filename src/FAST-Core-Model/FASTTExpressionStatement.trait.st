@@ -7,7 +7,7 @@ A node of a statement which is representing a single expression.
 ### Parents
 | Relation | Origin | Opposite | Type | Comment |
 |---|
-| `parentLoopStatement` | `FASTTStatement` | `body` | `FASTTLoopStatement` | Optional loop of which this statement is the body|
+| `parentBranchStatement` | `FASTTStatement` | `branches` | `FASTTBranchStatement` | My parent BranchStatement (of which I am a branch)|
 | `statementContainer` | `FASTTStatement` | `statements` | `FASTTStatementBlock` | Block containing this statement.|
 
 ### Children
@@ -44,6 +44,11 @@ FASTTExpressionStatement classSide >> annotation [
 	<package: #'FAST-Core-Model'>
 	<generated>
 	^ self
+]
+
+{ #category : '*FAST-Core-Visitor' }
+FASTTExpressionStatement >> accept: aVisitor [
+	^ aVisitor visitFASTTExpressionStatement: self
 ]
 
 { #category : 'accessing' }

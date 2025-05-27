@@ -31,6 +31,11 @@ FASTTWithParameters classSide >> annotation [
 	^ self
 ]
 
+{ #category : 'visiting' }
+FASTTWithParameters >> accept: aVisitor [
+	^ aVisitor visitFASTTWithParameters: self
+]
+
 { #category : 'adding' }
 FASTTWithParameters >> addParameter: anObject [
 	<generated>

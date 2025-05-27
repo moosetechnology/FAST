@@ -31,6 +31,11 @@ FASTTWithComments classSide >> annotation [
 	^ self
 ]
 
+{ #category : 'visiting' }
+FASTTWithComments >> accept: aVisitor [
+	^ aVisitor visitFASTTWithComments: self
+]
+
 { #category : 'adding' }
 FASTTWithComments >> addComment: anObject [
 	<generated>

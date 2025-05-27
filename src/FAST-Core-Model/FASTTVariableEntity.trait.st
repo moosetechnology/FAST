@@ -44,6 +44,11 @@ FASTTVariableEntity classSide >> annotation [
 	^ self
 ]
 
+{ #category : '*FAST-Core-Visitor' }
+FASTTVariableEntity >> accept: aVisitor [
+	^ aVisitor visitFASTTVariableEntity: self
+]
+
 { #category : 'testing' }
 FASTTVariableEntity >> isVariableEntity [
 

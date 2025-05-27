@@ -7,7 +7,7 @@ An abstract subclass which represents a source code statemnet
 ### Parents
 | Relation | Origin | Opposite | Type | Comment |
 |---|
-| `parentLoopStatement` | `FASTTStatement` | `body` | `FASTTLoopStatement` | Optional loop of which this statement is the body|
+| `parentBranchStatement` | `FASTTStatement` | `branches` | `FASTTBranchStatement` | My parent BranchStatement (of which I am a branch)|
 | `statementContainer` | `FASTTStatement` | `statements` | `FASTTStatementBlock` | Block containing this statement.|
 
 
@@ -23,7 +23,7 @@ An abstract subclass which represents a source code statemnet
 Trait {
 	#name : 'FASTTStatement',
 	#instVars : [
-		'#parentLoopStatement => FMOne type: #FASTTLoopStatement opposite: #body',
+		'#parentBranchStatement => FMOne type: #FASTTBranchStatement opposite: #branches',
 		'#statementContainer => FMOne type: #FASTTStatementBlock opposite: #statements'
 	],
 	#traits : 'FASTTEntity',
@@ -55,28 +55,27 @@ FASTTStatement >> isStatement [
 ]
 
 { #category : 'accessing' }
-FASTTStatement >> parentLoopStatement [
-	"Relation named: #parentLoopStatement type: #FASTTLoopStatement opposite: #body"
+FASTTStatement >> parentBranchStatement [
+	"Relation named: #parentBranchStatement type: #FASTTBranchStatement opposite: #branches"
 
 	<generated>
-	<FMComment: 'Optional loop of which this statement is the body'>
+	<FMComment: 'My parent BranchStatement (of which I am a branch)'>
 	<container>
-	<derived>
-	^ parentLoopStatement
+	^ parentBranchStatement
 ]
 
 { #category : 'accessing' }
-FASTTStatement >> parentLoopStatement: anObject [
+FASTTStatement >> parentBranchStatement: anObject [
 
 	<generated>
-	parentLoopStatement := anObject
+	parentBranchStatement := anObject
 ]
 
 { #category : 'navigation' }
-FASTTStatement >> parentLoopStatementGroup [
+FASTTStatement >> parentBranchStatementGroup [
 	<generated>
-	<navigation: 'ParentLoopStatement'>
-	^ MooseSpecializedGroup with: self parentLoopStatement
+	<navigation: 'ParentBranchStatement'>
+	^ MooseSpecializedGroup with: self parentBranchStatement
 ]
 
 { #category : 'accessing' }

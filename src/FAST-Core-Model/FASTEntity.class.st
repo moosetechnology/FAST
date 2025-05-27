@@ -36,6 +36,11 @@ FASTEntity class >> metamodel [
 	^ FASTModel metamodel
 ]
 
+{ #category : '*FAST-Core-Visitor' }
+FASTEntity >> accept: aVisitor [
+	^ aVisitor visitFASTEntity: self
+]
+
 { #category : 'testing' }
 FASTEntity >> isQueryable [
 

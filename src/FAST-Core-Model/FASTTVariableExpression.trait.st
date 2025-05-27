@@ -11,7 +11,7 @@ A node that wraps around structural entity
 | `assignedIn` | `FASTTExpression` | `expression` | `FASTTAssignment` | Optional assignment where this expression is used|
 | `expressionStatementOwner` | `FASTTExpression` | `expression` | `FASTTExpressionStatement` | The expression statement that own me (if it's the case|
 | `invokedIn` | `FASTTNamedEntity` | `invoked` | `FASTTInvocation` | Optional invocation where this name is used|
-| `parentConditionalStatement` | `FASTTExpression` | `condition` | `FASTTConditionalStatement` | Optional condition statement where this expression is used|
+| `parentBranchStatement` | `FASTTExpression` | `expression` | `FASTTBranchStatement` | Branch statement that I ""command""|
 | `parentExpression` | `FASTTExpression` | `expression` | `FASTTUnaryExpression` | Parent (unary) expression|
 | `parentExpressionLeft` | `FASTTExpression` | `leftOperand` | `FASTTBinaryExpression` | Parent (binary) expression of which I am left side|
 | `parentExpressionRight` | `FASTTExpression` | `rightOperand` | `FASTTBinaryExpression` | Parent (binary) expression of which I am right side|
@@ -48,7 +48,6 @@ FASTTVariableExpression classSide >> annotation [
 
 { #category : '*FAST-Core-Visitor' }
 FASTTVariableExpression >> accept: aVisitor [
-	"Arbitrary use of an accept: available in the used traits (FASTVariable or FASTTExpression)"
 	^ aVisitor visitFASTTVariableExpression: self
 ]
 
