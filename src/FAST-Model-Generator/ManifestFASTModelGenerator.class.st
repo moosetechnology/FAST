@@ -15,3 +15,10 @@ ManifestFASTModelGenerator class >> ruleLongMethodsRuleV1FalsePositive [
 	<ignoreForCoverage>
 	^ #(#(#(#RGClassDefinition #(#FASTMetamodelGenerator)) #'2025-04-17T18:13:50.356175+02:00') )
 ]
+
+{ #category : 'code-critics' }
+ManifestFASTModelGenerator class >> ruleRefersToClassRuleV1FalsePositive [
+
+	<ignoreForCoverage>
+	^ #(#(#(#RGClassDefinition #(#FASTMetamodelGenerator)) #'2025-05-27T18:07:19.455877+02:00') )
+]

@@ -224,9 +224,9 @@ FASTMetamodelGenerator >> defineHierarchy [
 	tBehaviouralEntity --|> tWithParameters.
 
 	tStatement --|> tEntity.
-	tConditionalStatement --|> tStatement.
+	tConditionalStatement --|> tBranchStatement.
 	tExpressionStatement --|> tStatement.
-	tLoopStatement --|> tStatement.
+	tLoopStatement --|> tBranchStatement.
 	tNamedBehaviouralEntity --|> tBehaviouralEntity.
 	tReturnStatement --|> tStatement.
 	tStatementBlock --|> tStatement.
@@ -291,12 +291,20 @@ FASTMetamodelGenerator >> defineRelations [
 	<>- ((tExpression property: #parentExpressionRight)
 		comment: 'Parent (binary) expression of which I am right side').
 
+	((tBranchStatement property: #expression) comment: 'The expression commanding which branch is executed')
+	<>- ((tExpression property: #parentBranchStatement)
+		comment: 'Branch statement that I "command"').
+
+	((tBranchStatement property: #branches) comment: 'The various children branches of this BranchStatement')
+	<>-* ((tStatement property: #parentBranchStatement)
+		comment: 'My parent BranchStatement (of which I am a branch)').
+
 	((tComment property: #container) comment: 'Source code entity containing the comment')
 		*-<> ((tWithComments property: #comments)
 			comment: 'list of comments defined in the entity').
 
-	((tConditionalStatement property: #condition) comment: 'The boolean condition tested')
-	<>- ((tExpression property: #parentConditionalStatement) comment: 'Optional condition statement where this expression is used').
+	"((tConditionalStatement property: #condition) comment: 'The boolean condition tested')
+	<>- ((tExpression property: #parentConditionalStatement) comment: 'Optional condition statement where this expression is used')."
 
 	(((tExpressionStatement property: #expression) comment: 'The expression of the statement')
 	<>- ((tExpression property: #expressionStatementOwner)
@@ -305,8 +313,8 @@ FASTMetamodelGenerator >> defineRelations [
 	((tInvocation property: #invoked) comment: 'The name of the behavioural invoked')
 	<>- ((tNamedEntity property: #invokedIn) comment: 'Optional invocation where this name is used').
 
-	((tLoopStatement property: #body) comment: 'The body of the loop')
-	<>- ((tStatement property: #parentLoopStatement) comment: 'Optional loop of which this statement is the body').
+	"((tLoopStatement property: #body) comment: 'The body of the loop')
+	<>- ((tStatement property: #parentLoopStatement) comment: 'Optional loop of which this statement is the body')."
 
 	(((tReturnStatement property: #expression) comment: 'The expression returned')
 	<>- ((tExpression property: #returnOwner)
@@ -330,53 +338,54 @@ FASTMetamodelGenerator >> defineRelations [
 FASTMetamodelGenerator >> defineTraits [
 	super defineTraits.
 
-	tAssignment := builder newTraitNamed: #TAssignment comment: self commentForTAssignment.
+	tAssignment := builder newTraitNamed: #TAssignment comment: FASTMetamodelGenerator commentForTAssignment.
 	tAssignment withTesting.
-	tBehaviouralEntity := builder newTraitNamed: #TBehaviouralEntity comment: self commentForTBehaviouralEntity.
+	tBehaviouralEntity := builder newTraitNamed: #TBehaviouralEntity comment: FASTMetamodelGenerator commentForTBehaviouralEntity.
 	tBehaviouralEntity withTesting.
-	tBinaryExpression := builder newTraitNamed: #TBinaryExpression comment: self commentForTBinaryExpression.
+	tBinaryExpression := builder newTraitNamed: #TBinaryExpression comment: FASTMetamodelGenerator commentForTBinaryExpression.
 	tBinaryExpression withTesting.
-	tBooleanLiteral := builder newTraitNamed: #TBooleanLiteral comment: self commentForTBooleanLiteral.
+	tBooleanLiteral := builder newTraitNamed: #TBooleanLiteral comment: FASTMetamodelGenerator commentForTBooleanLiteral.
 	tBooleanLiteral withTesting.
-	tCharacterLiteral := builder newTraitNamed: #TCharacterLiteral comment: self commentForTCharacterLiteral.
+	tBranchStatement := builder newTraitNamed: #TBranchStatement comment: 'I represent any statement that has several branches of execution (eg. swithcStatement, ifStatement)'.
+	tCharacterLiteral := builder newTraitNamed: #TCharacterLiteral comment: FASTMetamodelGenerator commentForTCharacterLiteral.
 	tCharacterLiteral withTesting.
 	tComment := builder newTraitNamed: #TComment.
-	tComment comment: self commentForTComment.
+	tComment comment: FASTMetamodelGenerator commentForTComment.
 	tConditionalStatement := builder newTraitNamed: #TConditionalStatement comment: 'I represent any statement that has a boolean condition (eg. ifStatement)'.
 	tEntity := builder newTraitNamed: #TEntity comment: 'any entity'.
-	tExpression := builder newTraitNamed: #TExpression comment: self commentForTExpression.
+	tExpression := builder newTraitNamed: #TExpression comment: FASTMetamodelGenerator commentForTExpression.
 	tExpression withTesting.
-	tExpressionStatement := builder newTraitNamed: #TExpressionStatement comment: self commentForTExpressionStatement.
+	tExpressionStatement := builder newTraitNamed: #TExpressionStatement comment: FASTMetamodelGenerator commentForTExpressionStatement.
 	tExpressionStatement withTesting.
-	tInvocation := builder newTraitNamed: #TInvocation comment: self commentForTInvocation.
+	tInvocation := builder newTraitNamed: #TInvocation comment: FASTMetamodelGenerator commentForTInvocation.
 	tInvocation withTesting.
-	tLiteral := builder newTraitNamed: #TLiteral comment: self commentForTLiteral.
+	tLiteral := builder newTraitNamed: #TLiteral comment: FASTMetamodelGenerator commentForTLiteral.
 	tLiteral withTesting.
 	tLoopStatement := builder newTraitNamed: #TLoopStatement comment: 'I represent any loop statement (for, while...)'.
 	tNamedEntity := builder newTraitNamed: #TNamedEntity comment: 'A entity with a name'.
-	tNamedBehaviouralEntity := builder newTraitNamed: #TNamedBehaviouralEntity comment: self commentForTNamedBehaviouralEntity.
-	tNullPointerLiteral := builder newTraitNamed: #TNullPointerLiteral comment: self commentForTNullPointerLiteral.
+	tNamedBehaviouralEntity := builder newTraitNamed: #TNamedBehaviouralEntity comment: FASTMetamodelGenerator commentForTNamedBehaviouralEntity.
+	tNullPointerLiteral := builder newTraitNamed: #TNullPointerLiteral comment: FASTMetamodelGenerator commentForTNullPointerLiteral.
 	tNullPointerLiteral withTesting.
-	tNumericalLiteral := builder newTraitNamed: #TNumericalLiteral comment: self commentForTNumericalLiteral.
+	tNumericalLiteral := builder newTraitNamed: #TNumericalLiteral comment: FASTMetamodelGenerator commentForTNumericalLiteral.
 	tNumericalLiteral withTesting.
-	tReturnStatement := builder newTraitNamed: #TReturnStatement comment: self commentForTReturnStatement.
+	tReturnStatement := builder newTraitNamed: #TReturnStatement comment: FASTMetamodelGenerator commentForTReturnStatement.
 	tReturnStatement withTesting.
-	tScopableEntity := builder newTraitNamed: #TScopableEntity comment: self commentForTScopableEntity.
+	tScopableEntity := builder newTraitNamed: #TScopableEntity comment: FASTMetamodelGenerator commentForTScopableEntity.
 	tScopableEntity withTesting.
-	tStatement := builder newTraitNamed: #TStatement comment: self commentForTStatement.
+	tStatement := builder newTraitNamed: #TStatement comment: FASTMetamodelGenerator commentForTStatement.
 	tStatement withTesting.
-	tStatementBlock := builder newTraitNamed: #TStatementBlock comment: self commentForTStatementBlock.
+	tStatementBlock := builder newTraitNamed: #TStatementBlock comment: FASTMetamodelGenerator commentForTStatementBlock.
 	tStatementBlock withTesting.
-	tStringLiteral := builder newTraitNamed: #TStringLiteral comment: self commentForTStringLiteral.
+	tStringLiteral := builder newTraitNamed: #TStringLiteral comment: FASTMetamodelGenerator commentForTStringLiteral.
 	tStringLiteral withTesting.
-	tUnaryExpression := builder newTraitNamed: #TUnaryExpression comment: self commentForTUnaryExpression.
+	tUnaryExpression := builder newTraitNamed: #TUnaryExpression comment: FASTMetamodelGenerator commentForTUnaryExpression.
 	tUnaryExpression withTesting.
-	tVariableEntity := builder newTraitNamed: #TVariableEntity comment: self commentForTVariableEntity.
+	tVariableEntity := builder newTraitNamed: #TVariableEntity comment: FASTMetamodelGenerator commentForTVariableEntity.
 	tVariableEntity withTesting.
-	tVariableExpression := builder newTraitNamed: #TVariableExpression comment: self commentForTVariableExpression.
+	tVariableExpression := builder newTraitNamed: #TVariableExpression comment: FASTMetamodelGenerator commentForTVariableExpression.
 	tVariableExpression withTesting.
 	tWithArguments := builder newTraitNamed: #TWithArguments comment: 'I have arguments'. 
 	tWithComments := builder newTraitNamed: #TWithComments.
-	tWithComments comment: self commentForTWithComments.
+	tWithComments comment: FASTMetamodelGenerator commentForTWithComments.
 	tWithParameters := builder newTraitNamed: #TWithParameters comment: 'I have parameters'.
 ]
