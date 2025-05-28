@@ -224,6 +224,7 @@ FASTMetamodelGenerator >> defineHierarchy [
 	tBehaviouralEntity --|> tWithParameters.
 
 	tStatement --|> tEntity.
+	tBranchStatement --|> tStatement.
 	tConditionalStatement --|> tBranchStatement.
 	tExpressionStatement --|> tStatement.
 	tLoopStatement --|> tBranchStatement.

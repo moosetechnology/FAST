@@ -4,6 +4,12 @@ I represent any loop statement (for, while...)
 ## Relations
 ======================
 
+### Parents
+| Relation | Origin | Opposite | Type | Comment |
+|---|
+| `parentBranchStatement` | `FASTTStatement` | `branches` | `FASTTBranchStatement` | My parent BranchStatement (of which I am a branch)|
+| `statementContainer` | `FASTTStatement` | `statements` | `FASTTStatementBlock` | Block containing this statement.|
+
 ### Children
 | Relation | Origin | Opposite | Type | Comment |
 |---|
@@ -11,6 +17,13 @@ I represent any loop statement (for, while...)
 | `expression` | `FASTTBranchStatement` | `parentBranchStatement` | `FASTTExpression` | The expression commanding which branch is executed|
 
 
+## Properties
+======================
+
+| Name | Type | Default value | Comment |
+|---|
+| `endPos` | `Number` | nil | |
+| `startPos` | `Number` | nil | |
 
 "
 Trait {
@@ -34,4 +47,18 @@ FASTTLoopStatement classSide >> annotation [
 { #category : '*FAST-Core-Visitor' }
 FASTTLoopStatement >> accept: aVisitor [
 	^ aVisitor visitFASTTLoopStatement: self
+]
+
+{ #category : 'accessing' }
+FASTTLoopStatement >> body [
+	"syntactic sugar"
+
+	^branches at: 1 ifAbsent: [ nil ]
+]
+
+{ #category : 'accessing' }
+FASTTLoopStatement >> body: aStatement [
+	"syntactic sugar"
+
+	branches at: 1 put: aStatement 
 ]

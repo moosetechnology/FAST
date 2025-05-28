@@ -4,6 +4,12 @@ I represent any statement that has a boolean condition (eg. ifStatement)
 ## Relations
 ======================
 
+### Parents
+| Relation | Origin | Opposite | Type | Comment |
+|---|
+| `parentBranchStatement` | `FASTTStatement` | `branches` | `FASTTBranchStatement` | My parent BranchStatement (of which I am a branch)|
+| `statementContainer` | `FASTTStatement` | `statements` | `FASTTStatementBlock` | Block containing this statement.|
+
 ### Children
 | Relation | Origin | Opposite | Type | Comment |
 |---|
@@ -11,6 +17,13 @@ I represent any statement that has a boolean condition (eg. ifStatement)
 | `expression` | `FASTTBranchStatement` | `parentBranchStatement` | `FASTTExpression` | The expression commanding which branch is executed|
 
 
+## Properties
+======================
+
+| Name | Type | Default value | Comment |
+|---|
+| `endPos` | `Number` | nil | |
+| `startPos` | `Number` | nil | |
 
 "
 Trait {
@@ -34,4 +47,46 @@ FASTTConditionalStatement classSide >> annotation [
 { #category : '*FAST-Core-Visitor' }
 FASTTConditionalStatement >> accept: aVisitor [
 	^ aVisitor visitFASTTConditionalStatement: self
+]
+
+{ #category : 'accessing' }
+FASTTConditionalStatement >> condition [
+	"syntactic sugar"
+
+	^self expression
+]
+
+{ #category : 'accessing' }
+FASTTConditionalStatement >> condition: aBooleanExpression [
+	"syntactic sugar"
+
+	expression := aBooleanExpression 
+]
+
+{ #category : 'accessing' }
+FASTTConditionalStatement >> falseBranch [
+	"syntactic sugar"
+
+	^branches at: 2 ifAbsent: [ nil ]
+]
+
+{ #category : 'accessing' }
+FASTTConditionalStatement >> falseBranch: aStatement [
+	"syntactic sugar"
+
+	branches at: 2 put: aStatement 
+]
+
+{ #category : 'accessing' }
+FASTTConditionalStatement >> trueBranch [
+	"syntactic sugar"
+
+	^branches at: 1 ifAbsent: [ nil ]
+]
+
+{ #category : 'accessing' }
+FASTTConditionalStatement >> trueBranch: aStatement [
+	"syntactic sugar"
+
+	branches at: 1 put: aStatement 
 ]

@@ -4,6 +4,12 @@ I represent any statement that has several branches of execution (eg. swithcStat
 ## Relations
 ======================
 
+### Parents
+| Relation | Origin | Opposite | Type | Comment |
+|---|
+| `parentBranchStatement` | `FASTTStatement` | `branches` | `FASTTBranchStatement` | My parent BranchStatement (of which I am a branch)|
+| `statementContainer` | `FASTTStatement` | `statements` | `FASTTStatementBlock` | Block containing this statement.|
+
 ### Children
 | Relation | Origin | Opposite | Type | Comment |
 |---|
@@ -11,6 +17,13 @@ I represent any statement that has several branches of execution (eg. swithcStat
 | `expression` | `FASTTBranchStatement` | `parentBranchStatement` | `FASTTExpression` | The expression commanding which branch is executed|
 
 
+## Properties
+======================
+
+| Name | Type | Default value | Comment |
+|---|
+| `endPos` | `Number` | nil | |
+| `startPos` | `Number` | nil | |
 
 "
 Trait {
@@ -19,6 +32,8 @@ Trait {
 		'#branches => FMMany type: #FASTTStatement opposite: #parentBranchStatement',
 		'#expression => FMOne type: #FASTTExpression opposite: #parentBranchStatement'
 	],
+	#traits : 'FASTTStatement',
+	#classTraits : 'FASTTStatement classTrait',
 	#category : 'FAST-Core-Model-Traits',
 	#package : 'FAST-Core-Model',
 	#tag : 'Traits'
