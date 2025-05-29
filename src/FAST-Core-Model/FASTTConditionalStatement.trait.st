@@ -67,13 +67,15 @@ FASTTConditionalStatement >> condition: aBooleanExpression [
 FASTTConditionalStatement >> falseBranch [
 	"syntactic sugar"
 
-	^branches at: 2 ifAbsent: [ nil ]
+	self mustHaveBranches: 2.
+	^branches at: 2
 ]
 
 { #category : 'accessing' }
 FASTTConditionalStatement >> falseBranch: aStatement [
 	"syntactic sugar"
 
+	self mustHaveBranches: 2.
 	branches at: 2 put: aStatement 
 ]
 
@@ -81,6 +83,7 @@ FASTTConditionalStatement >> falseBranch: aStatement [
 FASTTConditionalStatement >> trueBranch [
 	"syntactic sugar"
 
+	self mustHaveBranches: 2.
 	^branches at: 1 ifAbsent: [ nil ]
 ]
 
@@ -88,5 +91,6 @@ FASTTConditionalStatement >> trueBranch [
 FASTTConditionalStatement >> trueBranch: aStatement [
 	"syntactic sugar"
 
+	self mustHaveBranches: 2.
 	branches at: 1 put: aStatement 
 ]

@@ -53,6 +53,7 @@ FASTTLoopStatement >> accept: aVisitor [
 FASTTLoopStatement >> body [
 	"syntactic sugar"
 
+	self mustHaveBranches: 1.
 	^branches at: 1 ifAbsent: [ nil ]
 ]
 
@@ -60,5 +61,6 @@ FASTTLoopStatement >> body [
 FASTTLoopStatement >> body: aStatement [
 	"syntactic sugar"
 
+	self mustHaveBranches: 1.
 	branches at: 1 put: aStatement 
 ]

@@ -100,3 +100,13 @@ FASTTBranchStatement >> expressionGroup [
 	<navigation: 'Expression'>
 	^ MooseSpecializedGroup with: self expression
 ]
+
+{ #category : 'accessing' }
+FASTTBranchStatement >> mustHaveBranches: n [
+	"makes sure there are that many branches
+	 for this need to access the #add: method of OrderedCollection (super-class of FMSlotMultiValueLink)"
+
+	[ branches size < n]
+		whileTrue: [ branches uncheckUnsafeAdd: nil ].
+
+]
