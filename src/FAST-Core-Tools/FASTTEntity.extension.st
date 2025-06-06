@@ -22,6 +22,12 @@ FASTTEntity >> dump [
 ]
 
 { #category : '*FAST-Core-Tools' }
+FASTTEntity >> exportForCFG [
+
+	self explicitRequirement 
+]
+
+{ #category : '*FAST-Core-Tools' }
 FASTTEntity >> inspectionFASTDump [
 
 	<inspectorPresentationOrder: 1.3 title: 'FASTDump'>
