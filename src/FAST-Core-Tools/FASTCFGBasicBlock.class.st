@@ -22,10 +22,10 @@ FASTCFGBasicBlock >> nextBlock [
 
 { #category : 'accessing' }
 FASTCFGBasicBlock >> nextBlock: aBlock [
-	"puts aBlock in #nextBlock unless it already contains aNullBlock"
+	"puts aBlock in receiver's #nextBlock unless it already contains a NullBlock"
 
 	(nextBlock isNotNil and: [ nextBlock isNullBlock ])
-	ifTrue: [ ^self ].
+		ifTrue: [ ^self ].
 	
 	nextBlock := aBlock
 ]
@@ -47,7 +47,5 @@ FASTCFGBasicBlock >> nextBlocks [
 { #category : 'printing' }
 FASTCFGBasicBlock >> sourceCode [
 
-	^FASTFortranExporterVisitor export: (FASTFortranStatementBlock new
-		statements: self statements ;
-		yourself)
+	^String cr join: (self statements collect: #exportForCFG)
 ]

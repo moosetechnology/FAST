@@ -84,7 +84,9 @@ FASTCFGAbstractBasicBlock >> isStart: anObject [
 { #category : 'accessing' }
 FASTCFGAbstractBasicBlock >> lastStatement [
 
-	^self statements last
+	^self statements
+		ifEmpty: [ nil ]
+		ifNotEmpty: [ :stmts | stmts last]
 ]
 
 { #category : 'accessing' }
