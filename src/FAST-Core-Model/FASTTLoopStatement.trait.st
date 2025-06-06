@@ -62,5 +62,8 @@ FASTTLoopStatement >> body: aStatement [
 	"syntactic sugar"
 
 	self mustHaveBranches: 1.
-	branches at: 1 put: aStatement 
+	(branches at: 1) ifNotNil: [ :oldValue | oldValue parentBranchStatement: nil ].
+	branches at: 1 put: aStatement.
+	aStatement unsafeSet: #parentBranchStatement value: self.
+
 ]

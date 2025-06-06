@@ -101,3 +101,11 @@ FASTTStatement >> statementContainerGroup [
 	<navigation: 'StatementContainer'>
 	^ MooseSpecializedGroup with: self statementContainer
 ]
+
+{ #category : 'accessing' }
+FASTTStatement >> unsafeSet: aProperty value: aValue [
+
+	| i |
+	i := self class instVarIndexFor: aProperty.
+	self instVarAt: i put: aValue
+]
