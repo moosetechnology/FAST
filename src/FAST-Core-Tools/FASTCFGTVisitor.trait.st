@@ -20,22 +20,13 @@ Trait {
 	#instVars : [
 		'basicBlocks',
 		'currentBlock',
-		'pendingNextBlock'
+		'branchValues',
+		'pendingChainActions'
 	],
 	#category : 'FAST-Core-Tools-CFG',
 	#package : 'FAST-Core-Tools',
 	#tag : 'CFG'
 }
-
-{ #category : 'basicBlocks' }
-FASTCFGTVisitor >> addPendingNextBlockAction: settingAction [
-	"settingAction is a pharo block with one argument (a BasicBlock) and will be used to set the successor of another block
-	 when we will know it
-	 For now, sets the nextBlock to nil and register the settingAction for future use"
-
-	settingAction value: nil.
-	pendingNextBlock add: settingAction
-]
 
 { #category : 'accessing' }
 FASTCFGTVisitor >> basicBlocks [
@@ -50,11 +41,15 @@ FASTCFGTVisitor >> basicBlocks: anObject [
 ]
 
 { #category : 'basicBlocks' }
-FASTCFGTVisitor >> chainPendingBlocksTo: newBlock [
+FASTCFGTVisitor >> branchFor: aBranch predecessorBlock: predecessorBlock onValue: branchValue [
+	"creates blocks for aBranch.
+	 First of these blocks will be successor of predecessorBlock with the associated branchValue"
 
-	self pendingNextBlock copy do: [ :settingAction |
-		self runChainAction: settingAction with: newBlock ].
+	self valueAction: branchValue fromBlock: predecessorBlock.
 
+	aBranch accept: self.
+
+	self closeCurrentBlock
 ]
 
 { #category : 'basicBlocks' }
@@ -75,98 +70,200 @@ FASTCFGTVisitor >> currentBlock: anObject [
 	currentBlock := anObject
 ]
 
+{ #category : 'private' }
+FASTCFGTVisitor >> ensureBranchValuesForAllBranches: aFASTTBranchStatement [
+	"make sure there is an edge value for all possible branches by creating default ones if
+	 #branchValues is not long enough"
+
+	| missingValues |
+
+	missingValues := (branchValues size + 1) to: (aFASTTBranchStatement branches size).
+
+	branchValues addAll: (missingValues collect: [ :i | 'branch_' , i asString ])
+]
+
+{ #category : 'actions' }
+FASTCFGTVisitor >> labeledAction: label toBlock: successorBlock [
+
+	| action |
+	action := FASTCFGLabeledLinkingAction new
+		label: label ;
+		successor: successorBlock ;
+		yourself.
+	self linkingActions add: action.
+	^action
+]
+
+{ #category : 'accessing' }
+FASTCFGTVisitor >> linkingActions [
+
+	^pendingChainActions ifNil: [ pendingChainActions := OrderedCollection new ]
+]
+
 { #category : 'basicBlocks' }
 FASTCFGTVisitor >> newBasicBlock: aBasicBlockClass [
 	"creates a new BasicBlock and set it to currentBlock
-	 typically called inside: `currentBlock nextBlock: (self newBasicBlock:)` to chain the new block
-	 to the previous currentBlock"
+	 Chains the new block to any registered previous block in pendingChainActions"
 
 	| newBlock |
 	newBlock := aBasicBlockClass new.
 	self basicBlocks add: newBlock.
 	currentBlock := newBlock.
 
-	self chainPendingBlocksTo: newBlock.
+	self runPendingActionsWithSuccessor: newBlock.
 
 	^ newBlock
 ]
 
-{ #category : 'accessing' }
-FASTCFGTVisitor >> pendingNextBlock [
+{ #category : 'basicBlocks' }
+FASTCFGTVisitor >> newConditionalBlock: aFASTFortranStatement [
 
-	^pendingNextBlock ifNil: [ pendingNextBlock := OrderedCollection new ]
+	| newBlock |
+	newBlock := self newBasicBlock: FASTCFGConditionalBasicBlock.
+	newBlock statement: aFASTFortranStatement.
+	self closeCurrentBlock.
+	^newBlock
 ]
 
-{ #category : 'accessing' }
-FASTCFGTVisitor >> pendingNextBlock: anObject [
+{ #category : 'private' }
+FASTCFGTVisitor >> nextBranchValue [
 
-	pendingNextBlock := anObject
+	^branchValues removeFirst 
 ]
 
 { #category : 'basicBlocks' }
-FASTCFGTVisitor >> removePendingActionFor: aBlock [
-	"pending action are pharo blocks with no clear link to the BasicBlock they modify
-	 We use #copiedValueAt: to get this information from the pharo block
-	 This is an ugly hack"
+FASTCFGTVisitor >> runPendingActionsWithSuccessor: successorBlock [
 
-	self pendingNextBlock copy do: [ :action |
-		((action copiedValueAt: 1) = aBlock) 
-		ifTrue: [ self pendingNextBlock remove: action ]
+	self linkingActions do: [ :linkingAction |
+		linkingAction runWith: successorBlock ]
+]
+
+{ #category : 'actions' }
+FASTCFGTVisitor >> unconditionalActionFromBlock: predecessorBlock [
+
+	| action |
+	action := FASTCFGUnconditionalLinkingAction new
+		predecessorBlock: predecessorBlock ;
+		yourself.
+	self linkingActions add: action.
+	^action
+]
+
+{ #category : 'actions' }
+FASTCFGTVisitor >> valueAction: aValue fromBlock: predecessorBlock [
+
+	| action |
+	action := FASTCFGValuedLinkingAction new
+		value: aValue ;
+		predecessorBlock: predecessorBlock ;
+		yourself.
+	self linkingActions add: action.
+	^action
+]
+
+{ #category : 'visiting - statements' }
+FASTCFGTVisitor >> visitFASTTBehaviouralEntity: aFASTTBehaviouralEntity [
+
+	aFASTTBehaviouralEntity statementBlock accept: self.
+
+	basicBlocks first isStart: true.
+	self runPendingActionsWithSuccessor: FASTCFGNullBlock new
+]
+
+{ #category : 'visiting - statements' }
+FASTCFGTVisitor >> visitFASTTBranchStatement: aFASTTBranchStatement [
+	"BranchingStatement starts with an expression that selects what branch to execute
+	   this becomes a conditionalBlock
+	 Each branch should be associated with a value (for display in CFG)
+	 nextBlock of each branch will be whatever comes after the branchingStatement"
+
+	| conditionalBlock branchesPendingActions |
+	self ensureBranchValuesForAllBranches: aFASTTBranchStatement.
+	branchesPendingActions := OrderedCollection new.
+
+	conditionalBlock := self newConditionalBlock: aFASTTBranchStatement.
+
+	aFASTTBranchStatement branches do: [ :aBranch |
+		aBranch ifNotNil: [
+			self
+				branchFor: aBranch
+				predecessorBlock: conditionalBlock
+				onValue: self nextBranchValue.
+
+			branchesPendingActions addAll: self linkingActions.
+			self linkingActions removeAll
+		]
+	].
+
+	"put back all branches pendingNextBlocks for after this statement"
+	self linkingActions addAll: (branchesPendingActions select: #isActive).
+
+	^conditionalBlock 
+]
+
+{ #category : 'visiting - statements' }
+FASTCFGTVisitor >> visitFASTTConditionalStatement: aFASTTConditionalStatement [
+
+	| conditionalBlock |
+	branchValues := OrderedCollection withAll: { true . false }.
+
+	conditionalBlock := self visitFASTTBranchStatement: aFASTTConditionalStatement.
+
+	aFASTTConditionalStatement falseBranch ifNil: [
+		self
+			valueAction: false
+			fromBlock: conditionalBlock
 	]
-]
-
-{ #category : 'basicBlocks' }
-FASTCFGTVisitor >> runChainAction: settingAction with: aBasicBlock [
-
-	settingAction value: aBasicBlock.
-	self pendingNextBlock remove: settingAction
 
 ]
 
-{ #category : 'visiting' }
-FASTCFGTVisitor >> visitFASTTBinaryExpression: aFASTTBinaryExpression [
-	"pruning the visit, no need to go inside expressions"
-
-]
-
-{ #category : 'visiting' }
+{ #category : 'visiting - statements' }
 FASTCFGTVisitor >> visitFASTTLoopStatement: aFASTTLoopStatement [
-	"basic blocks for a LOOP
-	 - there must be some ConditionalBlock to enter or end the loop.
-	   We assume it has already been created and is the currentBlock
-	 - BasicBlock for the body of the loop
-	 - another BasicBlock for after the LOOP"
+	"TLoopStatements are different from TBranchStatements in that the last block of the body
+	 links back to the initial ConditionalStatement instead of to the block after the branchingStatement"
 
 	| conditionalBlock |
 
-	conditionalBlock := self currentBlock.
+	conditionalBlock := self newConditionalBlock: aFASTTLoopStatement.
 
-	"loop body"
-	self assert: self pendingNextBlock isEmpty.
-	self addPendingNextBlockAction: [ :bodyBlock |
-		conditionalBlock nextBlock: bodyBlock onValue: true ].
-	self closeCurrentBlock.
-	aFASTTLoopStatement body accept: self.
-	self chainPendingBlocksTo: conditionalBlock.
+	"loop's body"
+	self
+		branchFor: aFASTTLoopStatement body
+		predecessorBlock: conditionalBlock
+		onValue: true.
+	self runPendingActionsWithSuccessor: conditionalBlock.
 
 	"after loop"
-	self assert: self pendingNextBlock isEmpty.
-	self addPendingNextBlockAction: [ :afterBlock |
-		conditionalBlock nextBlock: afterBlock onValue: false ].
+	self
+		valueAction: false
+		fromBlock: conditionalBlock
+]
 
-	"parentLoopBlocks pop."
+{ #category : 'visiting - statements' }
+FASTCFGTVisitor >> visitFASTTReturnStatement: aFASTTReturnStatement [
+	"Ends the current basicBlock and has no nextBlock"
+
+	self visitFASTTStatement: aFASTTReturnStatement.
+
+	self runPendingActionsWithSuccessor: FASTCFGNullBlock new.
+
 	self closeCurrentBlock
 ]
 
-{ #category : 'visiting' }
+{ #category : 'visiting - statements' }
 FASTCFGTVisitor >> visitFASTTStatement: aFASTTStatement [
 
-	| newBlock |
-
 	self currentBlock ifNil: [
-		newBlock := self newBasicBlock: FASTCFGBasicBlock.
-		self addPendingNextBlockAction: [ :nextBlock |
-			newBlock nextBlock: nextBlock ] ].
+		self newBasicBlock: FASTCFGBasicBlock.
+		self unconditionalActionFromBlock: currentBlock.
+	].
 	self currentBlock addStatement: aFASTTStatement
 
+]
+
+{ #category : 'visiting - statements' }
+FASTCFGTVisitor >> visitFASTTStatementBlock: aFASTTStatementBlock [
+
+	aFASTTStatementBlock statements do: [ :statement |
+		statement accept: self ]
 ]
