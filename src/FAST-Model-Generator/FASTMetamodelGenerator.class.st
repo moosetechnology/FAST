@@ -36,7 +36,9 @@ Class {
 		'tUnaryExpression',
 		'tConditionalStatement',
 		'tLoopStatement',
-		'tBranchStatement'
+		'tBranchStatement',
+		'tLabeledStatement',
+		'tGotoStatement'
 	],
 	#category : 'FAST-Model-Generator',
 	#package : 'FAST-Model-Generator'
@@ -204,6 +206,7 @@ FASTMetamodelGenerator >> defineClasses [
 { #category : 'definition' }
 FASTMetamodelGenerator >> defineHierarchy [
 	super defineHierarchy.
+
 	tEntity --|> #TEntityMetaLevelDependency.
 	tExpression --|> tEntity.
 	entity --|> tEntity.
@@ -227,6 +230,7 @@ FASTMetamodelGenerator >> defineHierarchy [
 	tBranchStatement --|> tStatement.
 	tConditionalStatement --|> tBranchStatement.
 	tExpressionStatement --|> tStatement.
+	tGotoStatement --|> tStatement.
 	tLoopStatement --|> tBranchStatement.
 	tNamedBehaviouralEntity --|> tBehaviouralEntity.
 	tReturnStatement --|> tStatement.
@@ -255,6 +259,8 @@ FASTMetamodelGenerator >> defineProperties [
 		property: #startPos type: #Number;
 		property: #endPos type: #Number.
 
+	tGotoStatement property: #label type: #String.
+	
 	tNamedEntity property: #name type: #String.
 	
 	((tComment property: #content type: #String) 
@@ -358,8 +364,10 @@ FASTMetamodelGenerator >> defineTraits [
 	tExpression withTesting.
 	tExpressionStatement := builder newTraitNamed: #TExpressionStatement comment: FASTMetamodelGenerator commentForTExpressionStatement.
 	tExpressionStatement withTesting.
+	tGotoStatement := builder newTraitNamed: #TGotoStatement comment: 'I represent an unconditional jump statement (ie. a GOTO)'.
 	tInvocation := builder newTraitNamed: #TInvocation comment: FASTMetamodelGenerator commentForTInvocation.
 	tInvocation withTesting.
+	tLabeledStatement := builder newTraitNamed: #TLabeledStatement comment: 'I represent a statement that is labeled (can be target of a GOTO)'.
 	tLiteral := builder newTraitNamed: #TLiteral comment: FASTMetamodelGenerator commentForTLiteral.
 	tLiteral withTesting.
 	tLoopStatement := builder newTraitNamed: #TLoopStatement comment: 'I represent any loop statement (for, while...)'.

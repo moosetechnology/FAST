@@ -64,6 +64,7 @@ FASTTLoopStatement >> body: aStatement [
 	self mustHaveBranches: 1.
 	(branches at: 1) ifNotNil: [ :oldValue | oldValue parentBranchStatement: nil ].
 	branches at: 1 put: aStatement.
-	aStatement unsafeSet: #parentBranchStatement value: self.
+	aStatement ifNotNil: [
+		aStatement unsafeSet: #parentBranchStatement value: self ]
 
 ]
