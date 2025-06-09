@@ -17,14 +17,14 @@ I represent an unconditional jump statement (ie. a GOTO)
 | Name | Type | Default value | Comment |
 |---|
 | `endPos` | `Number` | nil | |
-| `label` | `String` | nil | |
+| `gotoLabel` | `String` | nil | The goto destination label. Note: property ""label"" already used by tLabeledStatement|
 | `startPos` | `Number` | nil | |
 
 "
 Trait {
 	#name : 'FASTTGotoStatement',
 	#instVars : [
-		'#label => FMProperty'
+		'#gotoLabel => FMProperty'
 	],
 	#traits : 'FASTTStatement',
 	#classTraits : 'FASTTStatement classTrait',
@@ -43,15 +43,16 @@ FASTTGotoStatement classSide >> annotation [
 ]
 
 { #category : 'accessing' }
-FASTTGotoStatement >> label [
+FASTTGotoStatement >> gotoLabel [
 
-	<FMProperty: #label type: #String>
+	<FMProperty: #gotoLabel type: #String>
 	<generated>
-	^ label
+	<FMComment: 'The goto destination label. Note: property "label" already used by tLabeledStatement'>
+	^ gotoLabel
 ]
 
 { #category : 'accessing' }
-FASTTGotoStatement >> label: anObject [
+FASTTGotoStatement >> gotoLabel: anObject [
 	<generated>
-	label := anObject
+	gotoLabel := anObject
 ]

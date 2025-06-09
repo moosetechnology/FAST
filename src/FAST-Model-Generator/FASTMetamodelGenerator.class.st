@@ -259,7 +259,8 @@ FASTMetamodelGenerator >> defineProperties [
 		property: #startPos type: #Number;
 		property: #endPos type: #Number.
 
-	tGotoStatement property: #label type: #String.
+	(tGotoStatement property: #gotoLabel type: #String)
+		comment: 'The goto destination label. Note: property "label" already used by tLabeledStatement'.
 	
 	tNamedEntity property: #name type: #String.
 	
