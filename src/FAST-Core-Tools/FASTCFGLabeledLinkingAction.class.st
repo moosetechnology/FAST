@@ -36,7 +36,10 @@ FASTCFGLabeledLinkingAction >> label: anObject [
 { #category : 'execute' }
 FASTCFGLabeledLinkingAction >> runWith: predecessorBlock [
 
-	^false
+	(predecessorBlock label = label) ifFalse: [ ^false ].
+
+	predecessorBlock nextBlock: successorBlock.
+	^true
 ]
 
 { #category : 'execute' }
