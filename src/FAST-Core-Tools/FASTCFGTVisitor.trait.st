@@ -166,7 +166,7 @@ FASTCFGTVisitor >> visitFASTTBehaviouralEntity: aFASTTBehaviouralEntity [
 
 	aFASTTBehaviouralEntity statementBlock accept: self.
 
-	basicBlocks first isStart: true.
+	self basicBlocks first isStart: true.
 	self runPendingActionsWithSuccessor: FASTCFGNullBlock new
 ]
 
