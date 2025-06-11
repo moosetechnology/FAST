@@ -7,15 +7,45 @@ The action has a method to tell whether it is #active (it can be executed) or no
 Class {
 	#name : 'FASTCFGLinkingAction',
 	#superclass : 'Object',
+	#instVars : [
+		'active',
+		'predecessorBlock'
+	],
 	#category : 'FAST-Core-Tools-CFG',
 	#package : 'FAST-Core-Tools',
 	#tag : 'CFG'
 }
 
+{ #category : 'accessing' }
+FASTCFGLinkingAction >> active: anObject [
+
+	active := anObject
+]
+
+{ #category : 'initialization' }
+FASTCFGLinkingAction >> initialize [ 
+
+	super initialize.
+
+	active := true
+]
+
 { #category : 'testing' }
 FASTCFGLinkingAction >> isActive [
 
-	self subclassResponsibility
+	^active
+]
+
+{ #category : 'accessing' }
+FASTCFGLinkingAction >> predecessorBlock [
+
+	^predecessorBlock
+]
+
+{ #category : 'accessing' }
+FASTCFGLinkingAction >> predecessorBlock: anObject [
+
+	predecessorBlock := anObject
 ]
 
 { #category : 'running' }
