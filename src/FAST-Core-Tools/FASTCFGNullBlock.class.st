@@ -14,7 +14,7 @@ Class {
 { #category : 'testing' }
 FASTCFGNullBlock >> isEmpty [
 
-	^false
+	^true
 ]
 
 { #category : 'testing' }
@@ -33,6 +33,11 @@ FASTCFGNullBlock >> isNullBlock [
 FASTCFGNullBlock >> isStart [ 
 
 	^false
+]
+
+{ #category : 'accessing' }
+FASTCFGNullBlock >> nextBlock: aBlock [
+
 ]
 
 { #category : 'accessing' }

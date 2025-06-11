@@ -82,6 +82,14 @@ FASTCFGAbstractBasicBlock >> isStart: anObject [
 ]
 
 { #category : 'accessing' }
+FASTCFGAbstractBasicBlock >> label [
+
+	^self firstStatement
+		ifNil: [ nil ]
+		ifNotNil: [ :statement | statement label ]
+]
+
+{ #category : 'accessing' }
 FASTCFGAbstractBasicBlock >> lastStatement [
 
 	^self statements
