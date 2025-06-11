@@ -58,6 +58,19 @@ FASTCFGTVisitor >> closeCurrentBlock [
 	currentBlock := nil
 ]
 
+{ #category : 'actions' }
+FASTCFGTVisitor >> closePendingActions [
+
+	self linkingActions do: [ :linkingAction |
+		linkingAction isActive
+			ifTrue: [ 
+				linkingAction isGotoAction
+					ifTrue: [ self basicBlocks do: [ :aBlock | linkingAction runWith: aBlock ] ]
+					ifFalse: [ linkingAction runWith: FASTCFGNullBlock new ]
+				 ]
+	]
+]
+
 { #category : 'accessing' }
 FASTCFGTVisitor >> currentBlock [
 
@@ -70,12 +83,24 @@ FASTCFGTVisitor >> currentBlock: anObject [
 	currentBlock := anObject
 ]
 
+{ #category : 'actions' }
+FASTCFGTVisitor >> disableActionsFromBlock: aBlock [
+
+	pendingChainActions do: [ :action |
+		(action predecessorBlock = aBlock)
+			ifTrue: [ action active: false ]
+	]
+]
+
 { #category : 'private' }
 FASTCFGTVisitor >> ensureBranchValuesForAllBranches: aFASTTBranchStatement [
-	"make sure there is an edge value for all possible branches by creating default ones if
-	 #branchValues is not long enough"
+	"ensures #branchValues is a collection from which we can remove elements (eg. not an array)
+	 also make sure there is an edge value for all possible branches by creating default ones if
+	   #branchValues is not long enough"
 
 	| missingValues |
+
+	branchValues :=  OrderedCollection withAll: branchValues.
 
 	missingValues := (branchValues size + 1) to: (aFASTTBranchStatement branches size).
 
@@ -83,12 +108,12 @@ FASTCFGTVisitor >> ensureBranchValuesForAllBranches: aFASTTBranchStatement [
 ]
 
 { #category : 'actions' }
-FASTCFGTVisitor >> labeledAction: label toBlock: successorBlock [
+FASTCFGTVisitor >> gotoAction: label fromBlock: predecessorBlock [
 
 	| action |
-	action := FASTCFGLabeledLinkingAction new
+	action := FASTCFGGotoLinkingAction new
 		label: label ;
-		successor: successorBlock ;
+		predecessorBlock: predecessorBlock ;
 		yourself.
 	self linkingActions add: action.
 	^action
@@ -131,7 +156,7 @@ FASTCFGTVisitor >> nextBranchValue [
 	^branchValues removeFirst 
 ]
 
-{ #category : 'basicBlocks' }
+{ #category : 'actions' }
 FASTCFGTVisitor >> runPendingActionsWithSuccessor: successorBlock [
 
 	self linkingActions do: [ :linkingAction |
@@ -150,15 +175,27 @@ FASTCFGTVisitor >> unconditionalActionFromBlock: predecessorBlock [
 ]
 
 { #category : 'actions' }
+FASTCFGTVisitor >> value: aValue action: decoratedAction [
+
+	| valueAction |
+	self linkingActions remove: decoratedAction.
+
+	valueAction := FASTCFGValuedLinkingAction new
+		value: aValue ;
+		decoratedAction: decoratedAction ;
+		yourself.
+
+	self linkingActions add: valueAction.
+
+	^valueAction
+]
+
+{ #category : 'actions' }
 FASTCFGTVisitor >> valueAction: aValue fromBlock: predecessorBlock [
 
-	| action |
-	action := FASTCFGValuedLinkingAction new
-		value: aValue ;
-		predecessorBlock: predecessorBlock ;
-		yourself.
-	self linkingActions add: action.
-	^action
+	^self
+		value: aValue
+		action: (self unconditionalActionFromBlock: predecessorBlock)
 ]
 
 { #category : 'visiting - statements' }
@@ -167,7 +204,7 @@ FASTCFGTVisitor >> visitFASTTBehaviouralEntity: aFASTTBehaviouralEntity [
 	aFASTTBehaviouralEntity statementBlock accept: self.
 
 	self basicBlocks first isStart: true.
-	self runPendingActionsWithSuccessor: FASTCFGNullBlock new
+	self closePendingActions
 ]
 
 { #category : 'visiting - statements' }
@@ -205,7 +242,7 @@ FASTCFGTVisitor >> visitFASTTBranchStatement: aFASTTBranchStatement [
 FASTCFGTVisitor >> visitFASTTConditionalStatement: aFASTTConditionalStatement [
 
 	| conditionalBlock |
-	branchValues := OrderedCollection withAll: { true . false }.
+	branchValues := { true . false }.
 
 	conditionalBlock := self visitFASTTBranchStatement: aFASTTConditionalStatement.
 
@@ -215,6 +252,17 @@ FASTCFGTVisitor >> visitFASTTConditionalStatement: aFASTTConditionalStatement [
 			fromBlock: conditionalBlock
 	]
 
+]
+
+{ #category : 'visiting - statements' }
+FASTCFGTVisitor >> visitFASTTGotoStatement: aFASTTGotoStatement [
+	"todo:
+	 - end currentBlock (contains this statement)
+	 - nextBlock of currentBlock is a block starting on the referred label (#gotoLabel)"
+
+	self disableActionsFromBlock: currentBlock.
+	self gotoAction: aFASTTGotoStatement gotoLabel fromBlock: currentBlock.
+	self closeCurrentBlock.
 ]
 
 { #category : 'visiting - statements' }
