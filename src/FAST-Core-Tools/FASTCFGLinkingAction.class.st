@@ -36,6 +36,12 @@ FASTCFGLinkingAction >> isActive [
 	^active
 ]
 
+{ #category : 'testing' }
+FASTCFGLinkingAction >> isGotoAction [
+
+	^false
+]
+
 { #category : 'accessing' }
 FASTCFGLinkingAction >> predecessorBlock [
 

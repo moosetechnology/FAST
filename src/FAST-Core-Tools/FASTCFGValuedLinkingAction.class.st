@@ -53,6 +53,12 @@ FASTCFGValuedLinkingAction >> isActive [
 	^decoratedAction isActive 
 ]
 
+{ #category : 'testing' }
+FASTCFGValuedLinkingAction >> isGotoAction [ 
+
+	^decoratedAction isGotoAction 
+]
+
 { #category : 'execute' }
 FASTCFGValuedLinkingAction >> runWith: successorBlock [
 
