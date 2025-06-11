@@ -1,10 +1,19 @@
 "
 I represent a statement that is labeled (can be target of a GOTO)
 
+## Properties
+======================
+
+| Name | Type | Default value | Comment |
+|---|
+| `label` | `String` | nil | |
 
 "
 Trait {
 	#name : 'FASTTLabeledStatement',
+	#instVars : [
+		'#label => FMProperty'
+	],
 	#category : 'FAST-Core-Model-Traits',
 	#package : 'FAST-Core-Model',
 	#tag : 'Traits'
@@ -17,4 +26,18 @@ FASTTLabeledStatement classSide >> annotation [
 	<package: #'FAST-Core-Model'>
 	<generated>
 	^ self
+]
+
+{ #category : 'accessing' }
+FASTTLabeledStatement >> label [
+
+	<FMProperty: #label type: #String>
+	<generated>
+	^ label
+]
+
+{ #category : 'accessing' }
+FASTTLabeledStatement >> label: anObject [
+	<generated>
+	label := anObject
 ]

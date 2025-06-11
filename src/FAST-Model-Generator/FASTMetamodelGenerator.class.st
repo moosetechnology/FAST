@@ -262,6 +262,8 @@ FASTMetamodelGenerator >> defineProperties [
 	(tGotoStatement property: #gotoLabel type: #String)
 		comment: 'The goto destination label. Note: property "label" already used by tLabeledStatement'.
 	
+	tLabeledStatement property: #label type: #String.
+	
 	tNamedEntity property: #name type: #String.
 	
 	((tComment property: #content type: #String) 
