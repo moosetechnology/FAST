@@ -65,7 +65,7 @@ FASTCFGValuedLinkingAction >> runWith: successorBlock [
 	self isActive ifFalse: [ ^self ].
 
 	(decoratedAction runWith: successorBlock)
-		ifTrue: [self predecessorBlock nextBlock: successorBlock onValue: value]
+		ifTrue: [self predecessorBlock nextBlock: successorBlock onValue: value asString ]
 ]
 
 { #category : 'accessing' }
