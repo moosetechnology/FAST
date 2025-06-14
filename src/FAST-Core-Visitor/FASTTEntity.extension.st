@@ -2,5 +2,5 @@ Extension { #name : 'FASTTEntity' }
 
 { #category : '*FAST-Core-Visitor' }
 FASTTEntity >> accept: aVisitor [
-	^ aVisitor visitFASTTEntity: self
+	^ aVisitor visitFASTTStatementBlock: self
 ]
