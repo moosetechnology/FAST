@@ -55,7 +55,7 @@ FASTCFGConditionalBasicBlock >> nextBlock: aBlock onValue: aValue [
 		currentNext isNullBlock ifTrue: [ ^self ]
 	].
 
-	nextBlocks at: aValue put: aBlock
+	nextBlocks at: aValue asString put: aBlock
 ]
 
 { #category : 'accessing' }
