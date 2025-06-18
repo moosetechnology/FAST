@@ -17,9 +17,9 @@ Class {
 }
 
 { #category : 'accessing' }
-FASTCFGLinkingAction >> active: anObject [
+FASTCFGLinkingAction >> active: aBoolean [
 
-	active := anObject
+	active := aBoolean 
 ]
 
 { #category : 'initialization' }
