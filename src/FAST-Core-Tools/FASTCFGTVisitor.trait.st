@@ -21,7 +21,8 @@ Trait {
 		'basicBlocks',
 		'currentBlock',
 		'branchValues',
-		'pendingChainActions'
+		'pendingChainActions',
+		'breakableStatementsStack'
 	],
 	#category : 'FAST-Core-Tools-CFG',
 	#package : 'FAST-Core-Tools',
@@ -45,7 +46,7 @@ FASTCFGTVisitor >> branchFor: aBranch predecessorBlock: predecessorBlock onValue
 	"creates blocks for aBranch.
 	 First of these blocks will be successor of predecessorBlock with the associated branchValue"
 
-	self valueAction: branchValue fromBlock: predecessorBlock.
+	self newValueAction: branchValue fromBlock: predecessorBlock.
 
 	aBranch accept: self.
 
@@ -107,18 +108,6 @@ FASTCFGTVisitor >> ensureBranchValuesForAllBranches: aFASTTBranchStatement [
 	branchValues addAll: (missingValues collect: [ :i | 'branch_' , i asString ])
 ]
 
-{ #category : 'actions' }
-FASTCFGTVisitor >> gotoAction: label fromBlock: predecessorBlock [
-
-	| action |
-	action := FASTCFGGotoLinkingAction new
-		label: label ;
-		predecessorBlock: predecessorBlock ;
-		yourself.
-	self linkingActions add: action.
-	^action
-]
-
 { #category : 'accessing' }
 FASTCFGTVisitor >> linkingActions [
 
@@ -150,32 +139,33 @@ FASTCFGTVisitor >> newConditionalBlock: aFASTFortranStatement [
 	^newBlock
 ]
 
-{ #category : 'private' }
-FASTCFGTVisitor >> nextBranchValue [
-
-	^branchValues removeFirst 
-]
-
 { #category : 'actions' }
-FASTCFGTVisitor >> runPendingActionsWithSuccessor: successorBlock [
-
-	self linkingActions do: [ :linkingAction |
-		linkingAction runWith: successorBlock ]
-]
-
-{ #category : 'actions' }
-FASTCFGTVisitor >> unconditionalActionFromBlock: predecessorBlock [
+FASTCFGTVisitor >> newGotoAction: label fromBlock: predecessorBlock [
 
 	| action |
-	action := FASTCFGUnconditionalLinkingAction new
+	action := FASTCFGGotoLinkingAction new
+		label: label ;
 		predecessorBlock: predecessorBlock ;
 		yourself.
+
 	self linkingActions add: action.
 	^action
 ]
 
 { #category : 'actions' }
-FASTCFGTVisitor >> value: aValue action: decoratedAction [
+FASTCFGTVisitor >> newUnconditionalActionFromBlock: predecessorBlock [
+
+	| action |
+	action := FASTCFGUnconditionalLinkingAction new
+		predecessorBlock: predecessorBlock ;
+		yourself.
+
+	self linkingActions add: action.
+	^action
+]
+
+{ #category : 'actions' }
+FASTCFGTVisitor >> newValue: aValue action: decoratedAction [
 
 	| valueAction |
 	self linkingActions remove: decoratedAction.
@@ -191,11 +181,24 @@ FASTCFGTVisitor >> value: aValue action: decoratedAction [
 ]
 
 { #category : 'actions' }
-FASTCFGTVisitor >> valueAction: aValue fromBlock: predecessorBlock [
+FASTCFGTVisitor >> newValueAction: aValue fromBlock: predecessorBlock [
 
 	^self
-		value: aValue
-		action: (self unconditionalActionFromBlock: predecessorBlock)
+		newValue: aValue
+		action: (self newUnconditionalActionFromBlock: predecessorBlock)
+]
+
+{ #category : 'private' }
+FASTCFGTVisitor >> nextBranchValue [
+
+	^branchValues removeFirst 
+]
+
+{ #category : 'actions' }
+FASTCFGTVisitor >> runPendingActionsWithSuccessor: successorBlock [
+
+	self linkingActions do: [ :linkingAction |
+		linkingAction runWith: successorBlock ]
 ]
 
 { #category : 'visiting - statements' }
@@ -248,7 +251,7 @@ FASTCFGTVisitor >> visitFASTTConditionalStatement: aFASTTConditionalStatement [
 
 	aFASTTConditionalStatement falseBranch ifNil: [
 		self
-			valueAction: false
+			newValueAction: false
 			fromBlock: conditionalBlock
 	]
 
@@ -261,7 +264,7 @@ FASTCFGTVisitor >> visitFASTTGotoStatement: aFASTTGotoStatement [
 	 - nextBlock of currentBlock is a block starting on the referred label (#gotoLabel)"
 
 	self disableActionsFromBlock: currentBlock.
-	self gotoAction: aFASTTGotoStatement gotoLabel fromBlock: currentBlock.
+	self newGotoAction: aFASTTGotoStatement gotoLabel fromBlock: currentBlock.
 	self closeCurrentBlock.
 ]
 
@@ -303,7 +306,7 @@ FASTCFGTVisitor >> visitFASTTStatement: aFASTTStatement [
 
 	self currentBlock ifNil: [
 		self newBasicBlock: FASTCFGBasicBlock.
-		self unconditionalActionFromBlock: currentBlock.
+		self newUnconditionalActionFromBlock: currentBlock.
 	].
 	self currentBlock addStatement: aFASTTStatement
 
