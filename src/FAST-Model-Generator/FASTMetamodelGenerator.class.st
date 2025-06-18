@@ -38,7 +38,9 @@ Class {
 		'tLoopStatement',
 		'tBranchStatement',
 		'tLabeledStatement',
-		'tGotoStatement'
+		'tGotoStatement',
+		'tBreakableStatement',
+		'tBreakStatement'
 	],
 	#category : 'FAST-Model-Generator',
 	#package : 'FAST-Model-Generator'
@@ -71,6 +73,23 @@ FASTMetamodelGenerator class >> commentForTBooleanLiteral [
 ]
 
 { #category : 'comments' }
+FASTMetamodelGenerator class >> commentForTBranchStatement [
+	^ 'I represent any statement that has several branches of execution (eg. swithcStatement, ifStatement)'
+]
+
+{ #category : 'comments' }
+FASTMetamodelGenerator class >> commentForTBreakStatement [
+	^ 'A statement to "interrupt" a breakable statement like a break in Java loop or exit in fortran loop.
+	(this is only a marker, there is no property attached to it)'
+]
+
+{ #category : 'comments' }
+FASTMetamodelGenerator class >> commentForTBreakableStatement [
+	^ 'A statement that can be "interrupted" like a break in Java loop or exit in fortran loop.
+	(this is only a marker, there is no property attached to it)'
+]
+
+{ #category : 'comments' }
 FASTMetamodelGenerator class >> commentForTCharacterLiteral [
 	^ 'A character literal'
 ]
@@ -79,6 +98,11 @@ FASTMetamodelGenerator class >> commentForTCharacterLiteral [
 FASTMetamodelGenerator class >> commentForTComment [
 
 	^ 'FASTComment represents one instance of a comment (in the sense of programming language comments) for any FAST sourced entity. The commented sourced entity is called the container in the FAST model.'
+]
+
+{ #category : 'comments' }
+FASTMetamodelGenerator class >> commentForTConditionalStatement [
+	^ 'I represent any statement that has a boolean condition (eg. ifStatement)'
 ]
 
 { #category : 'comments' }
@@ -99,8 +123,18 @@ FASTMetamodelGenerator class >> commentForTExpressionStatement [
 ]
 
 { #category : 'comments' }
+FASTMetamodelGenerator class >> commentForTGotoStatement [
+	^ 'I represent an unconditional jump statement (ie. a GOTO)'
+]
+
+{ #category : 'comments' }
 FASTMetamodelGenerator class >> commentForTInvocation [
 	^ 'A invocation of a behavioural entity'
+]
+
+{ #category : 'comments' }
+FASTMetamodelGenerator class >> commentForTLabeledStatement [
+	^ 'I represent any loop statement (for, while...)'
 ]
 
 { #category : 'comments' }
@@ -111,6 +145,11 @@ Contains a value for the literal.
 
 FLAG: should refactor some literals to core-model
     e.g.: character, int, float, string, boolean '
+]
+
+{ #category : 'comments' }
+FASTMetamodelGenerator class >> commentForTLoopStatement [
+	^ 'I represent any loop statement (for, while...)'
 ]
 
 { #category : 'comments' }
@@ -356,24 +395,28 @@ FASTMetamodelGenerator >> defineTraits [
 	tBinaryExpression withTesting.
 	tBooleanLiteral := builder newTraitNamed: #TBooleanLiteral comment: FASTMetamodelGenerator commentForTBooleanLiteral.
 	tBooleanLiteral withTesting.
-	tBranchStatement := builder newTraitNamed: #TBranchStatement comment: 'I represent any statement that has several branches of execution (eg. swithcStatement, ifStatement)'.
+	tBreakableStatement := builder newTraitNamed: #TBreakableStatement comment: FASTMetamodelGenerator commentForTBreakableStatement.
+	tBreakableStatement withTesting.
+	tBreakStatement := builder newTraitNamed: #TBreakStatement comment: FASTMetamodelGenerator commentForTBreakStatement.
+	tBreakableStatement withTesting.
+	tBranchStatement := builder newTraitNamed: #TBranchStatement comment: FASTMetamodelGenerator commentForTBranchStatement.
 	tCharacterLiteral := builder newTraitNamed: #TCharacterLiteral comment: FASTMetamodelGenerator commentForTCharacterLiteral.
 	tCharacterLiteral withTesting.
 	tComment := builder newTraitNamed: #TComment.
 	tComment comment: FASTMetamodelGenerator commentForTComment.
-	tConditionalStatement := builder newTraitNamed: #TConditionalStatement comment: 'I represent any statement that has a boolean condition (eg. ifStatement)'.
+	tConditionalStatement := builder newTraitNamed: #TConditionalStatement comment: FASTMetamodelGenerator commentForTConditionalStatement.
 	tEntity := builder newTraitNamed: #TEntity comment: 'any entity'.
 	tExpression := builder newTraitNamed: #TExpression comment: FASTMetamodelGenerator commentForTExpression.
 	tExpression withTesting.
 	tExpressionStatement := builder newTraitNamed: #TExpressionStatement comment: FASTMetamodelGenerator commentForTExpressionStatement.
 	tExpressionStatement withTesting.
-	tGotoStatement := builder newTraitNamed: #TGotoStatement comment: 'I represent an unconditional jump statement (ie. a GOTO)'.
+	tGotoStatement := builder newTraitNamed: #TGotoStatement comment: FASTMetamodelGenerator commentForTGotoStatement.
 	tInvocation := builder newTraitNamed: #TInvocation comment: FASTMetamodelGenerator commentForTInvocation.
 	tInvocation withTesting.
-	tLabeledStatement := builder newTraitNamed: #TLabeledStatement comment: 'I represent a statement that is labeled (can be target of a GOTO)'.
+	tLabeledStatement := builder newTraitNamed: #TLabeledStatement comment: FASTMetamodelGenerator commentForTLabeledStatement.
 	tLiteral := builder newTraitNamed: #TLiteral comment: FASTMetamodelGenerator commentForTLiteral.
 	tLiteral withTesting.
-	tLoopStatement := builder newTraitNamed: #TLoopStatement comment: 'I represent any loop statement (for, while...)'.
+	tLoopStatement := builder newTraitNamed: #TLoopStatement comment: FASTMetamodelGenerator commentForTLoopStatement.
 	tNamedEntity := builder newTraitNamed: #TNamedEntity comment: 'A entity with a name'.
 	tNamedBehaviouralEntity := builder newTraitNamed: #TNamedBehaviouralEntity comment: FASTMetamodelGenerator commentForTNamedBehaviouralEntity.
 	tNullPointerLiteral := builder newTraitNamed: #TNullPointerLiteral comment: FASTMetamodelGenerator commentForTNullPointerLiteral.
