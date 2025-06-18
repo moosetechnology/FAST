@@ -1,5 +1,5 @@
 "
-I represent a statement that is labeled (can be target of a GOTO)
+I represent any loop statement (for, while...)
 
 ## Properties
 ======================
