@@ -53,6 +53,50 @@ FASTCFGTVisitor >> branchFor: aBranch predecessorBlock: predecessorBlock onValue
 	self closeCurrentBlock
 ]
 
+{ #category : 'accessing' }
+FASTCFGTVisitor >> breakableStatementsStack [
+
+	^breakableStatementsStack ifNil: [ breakableStatementsStack := Stack new ]
+]
+
+{ #category : 'private' }
+FASTCFGTVisitor >> checkBreakableStatementEnd: aFASTStatement [
+	"BreakableAction might have been deactivated so we re-activate it"
+
+	aFASTStatement isBreakableStatement
+		ifTrue: [ self popBreakableAction
+			active: true ].
+]
+
+{ #category : 'private' }
+FASTCFGTVisitor >> checkBreakableStatementStart: aFASTStatement fromBlock: predecessorBlock getNextBlock: aPharoBlock [
+
+	aFASTStatement isBreakableStatement
+		ifFalse: [ ^self ].
+
+	self pushBreakableAction: (self newBreakActionFromBlock: predecessorBlock getNextBlock: aPharoBlock)
+
+]
+
+{ #category : 'private' }
+FASTCFGTVisitor >> checkBreakableStatementStart: aFASTStatement getNextBlock: aPharoBlock [
+
+	aFASTStatement isBreakableStatement
+		ifFalse: [ ^self ].
+
+	self pushBreakableAction: (self newBreakActionFromBlock: self currentBlock getNextBlock: aPharoBlock)
+
+]
+
+{ #category : 'actions' }
+FASTCFGTVisitor >> closeActionForBlock: aBlock [
+
+	self linkingActions do: [ :linkingAction |
+		(linkingAction isActive and: [ linkingAction predecessorBlock = aBlock ])
+			ifTrue: [ linkingAction active: false ]
+	]
+]
+
 { #category : 'basicBlocks' }
 FASTCFGTVisitor >> closeCurrentBlock [
 
@@ -129,6 +173,19 @@ FASTCFGTVisitor >> newBasicBlock: aBasicBlockClass [
 	^ newBlock
 ]
 
+{ #category : 'actions' }
+FASTCFGTVisitor >> newBreakActionFromBlock: predecessorBlock getNextBlock: aPharoBlock [
+
+	| action |
+	action := FASTCFGBreakLinkingAction new
+		predecessorBlock: predecessorBlock ;
+		getNextBlock: aPharoBlock ;
+		yourself.
+
+	self linkingActions add: action.
+	^action
+]
+
 { #category : 'basicBlocks' }
 FASTCFGTVisitor >> newConditionalBlock: aFASTFortranStatement [
 
@@ -194,11 +251,35 @@ FASTCFGTVisitor >> nextBranchValue [
 	^branchValues removeFirst 
 ]
 
+{ #category : 'accessing' }
+FASTCFGTVisitor >> popBreakableAction [
+
+	self breakableStatementsStack
+		ifEmpty: [ Error signal: 'BreakStatement outside a BreakableStatement' ].
+
+	^self breakableStatementsStack pop
+]
+
+{ #category : 'accessing' }
+FASTCFGTVisitor >> pushBreakableAction: aFASTStatement [
+
+	self breakableStatementsStack push: aFASTStatement 
+]
+
 { #category : 'actions' }
 FASTCFGTVisitor >> runPendingActionsWithSuccessor: successorBlock [
 
 	self linkingActions do: [ :linkingAction |
 		linkingAction runWith: successorBlock ]
+]
+
+{ #category : 'accessing' }
+FASTCFGTVisitor >> topBreakableAction [
+
+	self breakableStatementsStack
+		ifEmpty: [ Error signal: 'BreakStatement outside a BreakableStatement' ].
+
+	^self breakableStatementsStack top
 ]
 
 { #category : 'visiting - statements' }
@@ -242,6 +323,18 @@ FASTCFGTVisitor >> visitFASTTBranchStatement: aFASTTBranchStatement [
 ]
 
 { #category : 'visiting - statements' }
+FASTCFGTVisitor >> visitFASTTBreakStatement: aFASTTBreakableStatement [
+	"link it to the parent FASTTBreackableStatement and then close the currentblock"
+
+	self visitFASTTStatement: aFASTTBreakableStatement.
+	self closeActionForBlock: currentBlock.
+
+	self topBreakableAction basicBlockToLink: currentBlock.
+
+	self closeCurrentBlock
+]
+
+{ #category : 'visiting - statements' }
 FASTCFGTVisitor >> visitFASTTConditionalStatement: aFASTTConditionalStatement [
 
 	| conditionalBlock |
@@ -271,11 +364,17 @@ FASTCFGTVisitor >> visitFASTTGotoStatement: aFASTTGotoStatement [
 { #category : 'visiting - statements' }
 FASTCFGTVisitor >> visitFASTTLoopStatement: aFASTTLoopStatement [
 	"TLoopStatements are different from TBranchStatements in that the last block of the body
-	 links back to the initial ConditionalStatement instead of to the block after the branchingStatement"
+	 links back to the initial ConditionalStatement instead of to the block after the branchingStatement
+	Note: LoopStatements are typically breakableStatements"
 
 	| conditionalBlock |
 
 	conditionalBlock := self newConditionalBlock: aFASTTLoopStatement.
+
+	self
+		checkBreakableStatementStart: aFASTTLoopStatement
+		fromBlock: conditionalBlock 
+		getNextBlock: [ :predecessorBlock | predecessorBlock nextBlockForValue: false ].
 
 	"loop's body"
 	self
@@ -286,8 +385,9 @@ FASTCFGTVisitor >> visitFASTTLoopStatement: aFASTTLoopStatement [
 
 	"after loop"
 	self
-		valueAction: false
-		fromBlock: conditionalBlock
+		newValueAction: false
+		fromBlock: conditionalBlock.
+	self checkBreakableStatementEnd: aFASTTLoopStatement
 ]
 
 { #category : 'visiting - statements' }
