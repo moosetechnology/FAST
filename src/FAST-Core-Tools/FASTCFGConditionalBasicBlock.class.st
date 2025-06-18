@@ -51,7 +51,7 @@ FASTCFGConditionalBasicBlock >> isFinal [
 FASTCFGConditionalBasicBlock >> nextBlock: aBlock onValue: aValue [
 	"if the receiver's nextBlock for aValue is not a NullBlock, then set it to aBlock, otherwise leave the NullBlock"
 
-	nextBlocks at: aValue ifPresent: [ :currentNext |
+	nextBlocks at: aValue asString ifPresent: [ :currentNext |
 		currentNext isNullBlock ifTrue: [ ^self ]
 	].
 
