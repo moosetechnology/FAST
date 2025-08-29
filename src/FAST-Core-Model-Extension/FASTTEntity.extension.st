@@ -45,10 +45,10 @@ FASTTEntity >> exporterClassName [
 ]
 
 { #category : '*FAST-Core-Model-Extension' }
-FASTTEntity >> inspectionFAST [
+FASTTEntity >> inspectionFAST: aBuilder [
 
 	<inspectorPresentationOrder: 1.1 title: 'FAST'>
-	^ SpTreeTablePresenter new
+	^ aBuilder newTreeTable
 		  addColumn: (SpCompositeTableColumn new
 				   addColumn: ((SpImageTableColumn evaluated: #mooseIcon)
 						    width: 20;
@@ -57,33 +57,37 @@ FASTTEntity >> inspectionFAST [
 				   (SpStringTableColumn evaluated: [ :node | node display ]);
 				   yourself);
 		  children: [ :aClass |
-			  aClass children asArray sorted: [ :a :b |
-				  (a startPos ifNil: [ 0 ]) <= (b startPos ifNil: [ 0 ]) ] ];
+				  aClass children asArray sorted: [ :a :b |
+					  (a startPos ifNil: [ 0 ]) <= (b startPos ifNil: [ 0 ]) ] ];
 		  beMultipleSelection;
 		  roots: { self };
-		  beResizable
+		  beResizable;
+		  yourself
 ]
 
 { #category : '*FAST-Core-Model-Extension' }
-FASTTEntity >> inspectionFASTSourceCode [
+FASTTEntity >> inspectionFASTSourceCode: aBuilder [
 
 	<inspectorPresentationOrder: 1.2 title: 'FASTSourceCode'>
 	| hasSource sourceText |
 	(hasSource := self sourceText isNotEmpty and: [
 		              self startPos isNotNil and: [ self endPos isNotNil ] ])
 		ifFalse: [ "try to export source code"
-			self asSourceCode
-				ifNil: [ ^ SpTextPresenter new text: 'Not available' ]
-				ifNotNil: [ :code | sourceText := Text fromString: code ] ]
+				self asSourceCode
+					ifNil: [
+							^ aBuilder newText
+								  text: 'Not available';
+								  yourself ]
+					ifNotNil: [ :code | sourceText := Text fromString: code ] ]
 		ifTrue: [
-			sourceText := self mooseModel fastHighligther new highlight:
-				              self rootNode ].
-	^ SpMorphPresenter new morph: (RubScrolledTextMorph new
+				sourceText := self mooseModel fastHighligther new highlight:
+					              self rootNode ].
+	^ aBuilder newMorph morph: (RubScrolledTextMorph new
 			   setText: sourceText;
 			   in: [ :this |
-				   this textArea readOnly: true.
-				   hasSource ifTrue: [
-						   this selectionInterval: (self startPos to: self endPos) ] ];
+					   this textArea readOnly: true.
+					   hasSource ifTrue: [
+							   this selectionInterval: (self startPos to: self endPos) ] ];
 			   yourself)
 ]
 
