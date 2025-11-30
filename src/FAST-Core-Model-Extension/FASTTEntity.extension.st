@@ -57,7 +57,7 @@ FASTTEntity >> inspectionFAST: aBuilder [
 				   (SpStringTableColumn evaluated: [ :node | node display ]);
 				   yourself);
 		  children: [ :aClass |
-				  aClass children asArray sorted: [ :a :b |
+				  aClass containedEntities asArray sorted: [ :a :b |
 					  (a startPos ifNil: [ 0 ]) <= (b startPos ifNil: [ 0 ]) ] ];
 		  beMultipleSelection;
 		  roots: { self };
@@ -129,7 +129,7 @@ FASTTEntity >> sourceCode [
 FASTTEntity >> sourceText [
 	"I should be overriden in my users"
 
-	^ (self atScope: FamixTHasImmediateSource)
+	^ (self containersOfType: FamixTHasImmediateSource)
 		  ifNotEmpty: [ :sources | sources anyOne sourceText ]
 		  ifEmpty: [ '' ]
 ]
