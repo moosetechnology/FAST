@@ -53,9 +53,9 @@ FamixModelComparator >> beStrict [
 { #category : 'utilities' }
 FamixModelComparator >> childrenNodes: astNode [
 
-	^OrderedCollection withAll:
-		(astNode children sorted: [:a :b | a startPos <= b startPos])
-
+	^ OrderedCollection withAll:
+		  (astNode containedEntities sorted: [ :a :b |
+			   a startPos <= b startPos ])
 ]
 
 { #category : 'comparison' }

@@ -37,7 +37,8 @@ FASTCoreVisitor >> visitFASTTComment: aFASTComment [
 
 { #category : 'generated' }
 FASTCoreVisitor >> visitFASTTEntity: aFASTTEntity [
-	^ aFASTTEntity children do: [ :child | child accept: self ]
+
+	^ aFASTTEntity containedEntities do: [ :child | child accept: self ]
 ]
 
 { #category : 'generated' }
