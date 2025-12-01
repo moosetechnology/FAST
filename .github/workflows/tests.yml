@@ -1,26 +1,19 @@
 name: CI
 
+on: [push, pull_request, workflow_dispatch]
+
 env:
   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
-# Controls when the action will run. Triggers the workflow on push or pull request
-# events but only for the development branch
-on:
-  pull_request:
-    branches: 
-      - v*
 
 jobs:
   build:
     runs-on: ubuntu-latest
-    env:
-      PROJECT_NAME: ${{ matrix.smalltalk }}-FAST
     strategy:
       matrix:
-        smalltalk: [ Moose64-11 ]
+        smalltalk: [ Moose64-10, Moose64-11 ]
     name: ${{ matrix.smalltalk }}
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
       - uses: hpi-swa/setup-smalltalkCI@v1
         with:
           smalltalk-image: ${{ matrix.smalltalk }}
@@ -28,3 +21,12 @@ jobs:
         shell: bash
         timeout-minutes: 15
 
+  finish-coveralls:
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+    - name: Finish Coveralls
+      uses: coverallsapp/github-action@v2
+      with:
+        github-token: ${{ secrets.github_token }}
+        parallel-finished: true
