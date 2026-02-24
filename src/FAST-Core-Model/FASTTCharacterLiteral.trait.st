@@ -45,11 +45,6 @@ FASTTCharacterLiteral classSide >> annotation [
 	^ self
 ]
 
-{ #category : '*FAST-Core-Visitor' }
-FASTTCharacterLiteral >> accept: aVisitor [
-	^ aVisitor visitCharacterLiteralNode: self
-]
-
 { #category : 'testing' }
 FASTTCharacterLiteral >> isCharacterLiteral [
 

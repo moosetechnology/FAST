@@ -45,11 +45,6 @@ FASTTNumericalLiteral classSide >> annotation [
 	^ self
 ]
 
-{ #category : '*FAST-Core-Visitor' }
-FASTTNumericalLiteral >> accept: aVisitor [
-	^ aVisitor visitFASTTNumericalLiteral: self
-]
-
 { #category : 'testing' }
 FASTTNumericalLiteral >> isNumericalLiteral [
 
