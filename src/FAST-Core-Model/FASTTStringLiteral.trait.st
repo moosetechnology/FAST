@@ -45,11 +45,6 @@ FASTTStringLiteral classSide >> annotation [
 	^ self
 ]
 
-{ #category : '*FAST-Core-Visitor' }
-FASTTStringLiteral >> accept: aVisitor [
-	^ aVisitor visitFASTTStringLiteral: self
-]
-
 { #category : 'testing' }
 FASTTStringLiteral >> isStringLiteral [
 

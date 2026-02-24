@@ -42,11 +42,6 @@ FASTTStatement classSide >> annotation [
 	^ self
 ]
 
-{ #category : '*FAST-Core-Visitor' }
-FASTTStatement >> accept: aVisitor [
-	^ aVisitor visitFASTTStatement: self
-]
-
 { #category : 'testing' }
 FASTTStatement >> isStatement [
 
