@@ -129,7 +129,7 @@ FASTTEntity >> sourceCode [
 FASTTEntity >> sourceText [
 	"I should be overriden in my users"
 
-	^ (self atScope: FamixTHasImmediateSource)
+	^ (self containersOfType: FamixTHasImmediateSource)
 		  ifNotEmpty: [ :sources | sources anyOne sourceText ]
 		  ifEmpty: [ '' ]
 ]
