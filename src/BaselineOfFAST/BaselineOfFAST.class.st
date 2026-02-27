@@ -7,10 +7,11 @@ Class {
 
 { #category : 'baselines' }
 BaselineOfFAST >> baseline: spec [
+
 	<baseline>
-	spec
-		for: #common
-		do: [ 
+	spec for: #common do: [
+			spec postLoadDoIt: #ensureMoose12Compatibility.
+
 			self defineDependencies: spec.
 			self definePackages: spec.
 			self defineGroups: spec ]
@@ -64,4 +65,20 @@ BaselineOfFAST >> definePackages: spec [
 				package: 'FAST-Core-Model' with: [ spec requires: #( 'Famix' ) ];
 				package: 'FAST-Model-Generator' with: [ spec requires: #( 'Famix' ) ];
 				package: 'FAST-Core-Tools-Tests' with: [ spec requires: #( 'FamixTests' ) ] ]
+]
+
+{ #category : 'baselines' }
+BaselineOfFAST >> ensureMoose12Compatibility [
+	"FAST v3 works on Moose 12 and Moose 13. Since we are using some methods of Moose 13, I ensure we have everything needed. Delete me once Moose 12 support will be dropped."
+
+	| class |
+	class := self classNamed: #TEntityMetaLevelDependency.
+
+	(class includesSelector: #containersOfType:) ifFalse: [
+			class
+				compile: 'containersOfType: aType
+	"I am used to return all the first encountered entities at a given famix class scope that are up in the containment tree of the metamodel"
+
+	^ self query containers ofType: aType'
+				classified: '*FAST-Moose12-Compatibility' ]
 ]
