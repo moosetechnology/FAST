@@ -72,7 +72,7 @@ BaselineOfFAST >> ensureMoose12Compatibility [
 	"FAST v3 works on Moose 12 and Moose 13. Since we are using some methods of Moose 13, I ensure we have everything needed. Delete me once Moose 12 support will be dropped."
 
 	| class |
-	class := self classNamed: #TEntityMetaLevelDependency.
+	class := self class environment at: #TEntityMetaLevelDependency.
 
 	(class includesSelector: #containersOfType:) ifFalse: [
 			class
