@@ -35,10 +35,3 @@ FASTEntity class >> metamodel [
 	<generated>
 	^ FASTModel metamodel
 ]
-
-{ #category : 'testing' }
-FASTEntity >> isQueryable [
-
-	<generated>
-	^ false
-]

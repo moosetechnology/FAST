@@ -35,7 +35,8 @@ Class {
 		'tBinaryExpression',
 		'tUnaryExpression',
 		'tConditionalStatement',
-		'tLoopStatement'
+		'tLoopStatement',
+		'tWithStatements'
 	],
 	#category : 'FAST-Model-Generator',
 	#package : 'FAST-Model-Generator'
@@ -221,6 +222,7 @@ FASTMetamodelGenerator >> defineHierarchy [
 	
 	tBehaviouralEntity --|> tScopableEntity.
 	tBehaviouralEntity --|> tWithParameters.
+	tBehaviouralEntity --|> tWithStatements.
 
 	tStatement --|> tEntity.
 	tConditionalStatement --|> tStatement.
@@ -268,38 +270,29 @@ FASTMetamodelGenerator >> defineProperties [
 
 { #category : 'definition' }
 FASTMetamodelGenerator >> defineRelations [
+
 	super defineRelations.
 
 	((tAssignment property: #expression) comment: 'Assigned expression (rhs of assignment)')
-	<>- ((tExpression property: #assignedIn)
-		comment: 'Optional assignment where this expression is used').
+	<>- ((tExpression property: #assignedIn) comment: 'Optional assignment where this expression is used').
 
 	((tAssignment property: #variable) comment: 'An assigned variable (lhs of assignment)')
-	<>- ((tVariableEntity property: #parentAssignmentExpression)
-		comment: 'Optional assignment to the variable').
-
-	(((tBehaviouralEntity property: #statementBlock) comment: 'Statements block of the behavioural entity')
-	<>- ((tStatementBlock property: #fastBehaviouralParent)
-		comment: 'Behavioural entity containing the statement block.')) .
+	<>- ((tVariableEntity property: #parentAssignmentExpression) comment: 'Optional assignment to the variable').
 
 	((tBinaryExpression property: #leftOperand) comment: 'left part of a binary expression')
-	<>- ((tExpression property: #parentExpressionLeft)
-		comment: 'Parent (binary) expression of which I am left side').
+	<>- ((tExpression property: #parentExpressionLeft) comment: 'Parent (binary) expression of which I am left side').
 
 	((tBinaryExpression property: #rightOperand) comment: 'left part of the expression')
-	<>- ((tExpression property: #parentExpressionRight)
-		comment: 'Parent (binary) expression of which I am right side').
+	<>- ((tExpression property: #parentExpressionRight) comment: 'Parent (binary) expression of which I am right side').
 
 	((tComment property: #container) comment: 'Source code entity containing the comment')
-		*-<> ((tWithComments property: #comments)
-			comment: 'list of comments defined in the entity').
+	*-<> ((tWithComments property: #comments) comment: 'list of comments defined in the entity').
 
 	((tConditionalStatement property: #condition) comment: 'The boolean condition tested')
 	<>- ((tExpression property: #parentConditionalStatement) comment: 'Optional condition statement where this expression is used').
 
-	(((tExpressionStatement property: #expression) comment: 'The expression of the statement')
-	<>- ((tExpression property: #expressionStatementOwner)
-		comment: 'The expression statement that own me (if it''s the case')) .
+	((tExpressionStatement property: #expression) comment: 'The expression of the statement')
+	<>- ((tExpression property: #expressionStatementOwner) comment: 'The expression statement that own me (if it''s the case').
 
 	((tInvocation property: #invoked) comment: 'The name of the behavioural invoked')
 	<>- ((tNamedEntity property: #invokedIn) comment: 'Optional invocation where this name is used').
@@ -307,22 +300,21 @@ FASTMetamodelGenerator >> defineRelations [
 	((tLoopStatement property: #body) comment: 'The body of the loop')
 	<>- ((tStatement property: #parentLoopStatement) comment: 'Optional loop of which this statement is the body').
 
-	(((tReturnStatement property: #expression) comment: 'The expression returned')
-	<>- ((tExpression property: #returnOwner)
-		comment: 'The return statement that own the expression (if it''s the case)')) .
+	((tReturnStatement property: #expression) comment: 'The expression returned')
+	<>- ((tExpression property: #returnOwner) comment: 'The return statement that own the expression (if it''s the case)').
 
-	(((tStatement property: #statementContainer) comment: 'Block containing this statement.')
-	*-<> ((tStatementBlock property: #statements) comment: 'Statements enclosed in this block')) .
+	((tStatement property: #statementContainer) comment: 'Block containing this statement.')
+	*-<> ((tStatementBlock property: #statements) comment: 'Statements enclosed in this block').
 
 	((tUnaryExpression property: #expression) comment: '(sub-)expression in the unary expression')
 	<>- ((tExpression property: #parentExpression) comment: 'Parent (unary) expression').
 
-	((tWithParameters property: #parameters) comment: 'My parameters')
-	<>-* ((tVariableEntity property: #parameterOwner) comment: 'parameterOwner') . 
+	((tWithParameters property: #parameters) comment: 'My parameters') <>-* ((tVariableEntity property: #parameterOwner) comment: 'parameterOwner').
 
-	((tWithArguments property: #arguments) comment: 'My arguments')
-	<>-* ((tExpression property: #argumentOwner) comment: 'my owner') .
+	((tWithArguments property: #arguments) comment: 'My arguments') <>-* ((tExpression property: #argumentOwner) comment: 'my owner').
 
+	((tWithStatements property: #statementBlock) comment: 'Statements block of the behavioural entity')
+	<>- ((tStatementBlock property: #fastBehaviouralParent) comment: 'Behavioural entity containing the statement block.')
 ]
 
 { #category : 'definition' }
@@ -378,4 +370,5 @@ FASTMetamodelGenerator >> defineTraits [
 	tWithComments := builder newTraitNamed: #TWithComments.
 	tWithComments comment: self commentForTWithComments.
 	tWithParameters := builder newTraitNamed: #TWithParameters comment: 'I have parameters'.
+	tWithStatements := builder newTraitNamed: #TWithStatements.
 ]
