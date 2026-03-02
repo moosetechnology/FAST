@@ -7,7 +7,7 @@ A block of statements as ones in C-like langs with {}
 ### Parents
 | Relation | Origin | Opposite | Type | Comment |
 |---|
-| `fastBehaviouralParent` | `FASTTStatementBlock` | `statementBlock` | `FASTTBehaviouralEntity` | Behavioural entity containing the statement block.|
+| `fastBehaviouralParent` | `FASTTStatementBlock` | `statementBlock` | `FASTTWithStatements` | Behavioural entity containing the statement block.|
 | `parentLoopStatement` | `FASTTStatement` | `body` | `FASTTLoopStatement` | Optional loop of which this statement is the body|
 | `statementContainer` | `FASTTStatement` | `statements` | `FASTTStatementBlock` | Block containing this statement.|
 
@@ -29,7 +29,7 @@ A block of statements as ones in C-like langs with {}
 Trait {
 	#name : 'FASTTStatementBlock',
 	#instVars : [
-		'#fastBehaviouralParent => FMOne type: #FASTTBehaviouralEntity opposite: #statementBlock',
+		'#fastBehaviouralParent => FMOne type: #FASTTWithStatements opposite: #statementBlock',
 		'#statements => FMMany type: #FASTTStatement opposite: #statementContainer'
 	],
 	#traits : 'FASTTStatement',
@@ -56,7 +56,7 @@ FASTTStatementBlock >> addStatement: anObject [
 
 { #category : 'accessing' }
 FASTTStatementBlock >> fastBehaviouralParent [
-	"Relation named: #fastBehaviouralParent type: #FASTTBehaviouralEntity opposite: #statementBlock"
+	"Relation named: #fastBehaviouralParent type: #FASTTWithStatements opposite: #statementBlock"
 
 	<generated>
 	<FMComment: 'Behavioural entity containing the statement block.'>
