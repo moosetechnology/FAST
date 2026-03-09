@@ -10,7 +10,7 @@ An abstract superclass representing an expression node of a source code.
 | `argumentOwner` | `FASTTExpression` | `arguments` | `FASTTWithArguments` | my owner|
 | `assignedIn` | `FASTTExpression` | `expression` | `FASTTAssignment` | Optional assignment where this expression is used|
 | `expressionStatementOwner` | `FASTTExpression` | `expression` | `FASTTExpressionStatement` | The expression statement that own me (if it's the case|
-| `parentConditionalStatement` | `FASTTExpression` | `condition` | `FASTTConditionalStatement` | Optional condition statement where this expression is used|
+| `parentConditional` | `FASTTExpression` | `condition` | `FASTTWithCondition` | Optional condition statement/expression where this expression is used|
 | `parentExpression` | `FASTTExpression` | `expression` | `FASTTUnaryExpression` | Parent (unary) expression|
 | `parentExpressionLeft` | `FASTTExpression` | `leftOperand` | `FASTTBinaryExpression` | Parent (binary) expression of which I am left side|
 | `parentExpressionRight` | `FASTTExpression` | `rightOperand` | `FASTTBinaryExpression` | Parent (binary) expression of which I am right side|
@@ -29,14 +29,14 @@ An abstract superclass representing an expression node of a source code.
 Trait {
 	#name : 'FASTTExpression',
 	#instVars : [
+		'#argumentOwner => FMOne type: #FASTTWithArguments opposite: #arguments',
 		'#assignedIn => FMOne type: #FASTTAssignment opposite: #expression',
+		'#expressionStatementOwner => FMOne type: #FASTTExpressionStatement opposite: #expression',
+		'#parentConditional => FMOne type: #FASTTWithCondition opposite: #condition',
+		'#parentExpression => FMOne type: #FASTTUnaryExpression opposite: #expression',
 		'#parentExpressionLeft => FMOne type: #FASTTBinaryExpression opposite: #leftOperand',
 		'#parentExpressionRight => FMOne type: #FASTTBinaryExpression opposite: #rightOperand',
-		'#parentConditionalStatement => FMOne type: #FASTTConditionalStatement opposite: #condition',
-		'#expressionStatementOwner => FMOne type: #FASTTExpressionStatement opposite: #expression',
-		'#returnOwner => FMOne type: #FASTTReturnStatement opposite: #expression',
-		'#parentExpression => FMOne type: #FASTTUnaryExpression opposite: #expression',
-		'#argumentOwner => FMOne type: #FASTTWithArguments opposite: #arguments'
+		'#returnOwner => FMOne type: #FASTTReturnStatement opposite: #expression'
 	],
 	#traits : 'FASTTEntity',
 	#classTraits : 'FASTTEntity classTrait',
@@ -136,28 +136,35 @@ FASTTExpression >> isExpression [
 ]
 
 { #category : 'accessing' }
-FASTTExpression >> parentConditionalStatement [
-	"Relation named: #parentConditionalStatement type: #FASTTConditionalStatement opposite: #condition"
+FASTTExpression >> parentConditional [
+	"Relation named: #parentConditional type: #FASTTWithCondition opposite: #condition"
 
 	<generated>
-	<FMComment: 'Optional condition statement where this expression is used'>
+	<FMComment: 'Optional condition statement/expression where this expression is used'>
 	<container>
 	<derived>
-	^ parentConditionalStatement
+	^ parentConditional
 ]
 
 { #category : 'accessing' }
-FASTTExpression >> parentConditionalStatement: anObject [
+FASTTExpression >> parentConditional: anObject [
 
 	<generated>
-	parentConditionalStatement := anObject
+	parentConditional := anObject
 ]
 
 { #category : 'navigation' }
-FASTTExpression >> parentConditionalStatementGroup [
+FASTTExpression >> parentConditionalGroup [
 	<generated>
-	<navigation: 'ParentConditionalStatement'>
-	^ MooseSpecializedGroup with: self parentConditionalStatement
+	<navigation: 'ParentConditional'>
+	^ MooseSpecializedGroup with: self parentConditional
+]
+
+{ #category : 'accessing' }
+FASTTExpression >> parentConditionalStatement [
+
+	self deprecated: 'Use #parentConditional instead.' transformWith: '`@rcv parentConditionalStatement' -> '`@rcv parentConditional'.
+	^ self parentConditional
 ]
 
 { #category : 'accessing' }
