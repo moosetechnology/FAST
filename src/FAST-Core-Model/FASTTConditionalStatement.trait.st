@@ -13,7 +13,7 @@ I represent any statement that has a boolean condition (eg. ifStatement)
 ### Children
 | Relation | Origin | Opposite | Type | Comment |
 |---|
-| `condition` | `FASTTConditionalStatement` | `parentConditionalStatement` | `FASTTExpression` | The boolean condition tested|
+| `condition` | `FASTTWithCondition` | `parentConditional` | `FASTTExpression` | The boolean condition tested|
 
 
 ## Properties
@@ -27,11 +27,8 @@ I represent any statement that has a boolean condition (eg. ifStatement)
 "
 Trait {
 	#name : 'FASTTConditionalStatement',
-	#instVars : [
-		'#condition => FMOne type: #FASTTExpression opposite: #parentConditionalStatement'
-	],
-	#traits : 'FASTTStatement',
-	#classTraits : 'FASTTStatement classTrait',
+	#traits : 'FASTTStatement + FASTTWithCondition',
+	#classTraits : 'FASTTStatement classTrait + FASTTWithCondition classTrait',
 	#category : 'FAST-Core-Model-Traits',
 	#package : 'FAST-Core-Model',
 	#tag : 'Traits'
@@ -44,27 +41,4 @@ FASTTConditionalStatement classSide >> annotation [
 	<package: #'FAST-Core-Model'>
 	<generated>
 	^ self
-]
-
-{ #category : 'accessing' }
-FASTTConditionalStatement >> condition [
-	"Relation named: #condition type: #FASTTExpression opposite: #parentConditionalStatement"
-
-	<generated>
-	<FMComment: 'The boolean condition tested'>
-	^ condition
-]
-
-{ #category : 'accessing' }
-FASTTConditionalStatement >> condition: anObject [
-
-	<generated>
-	condition := anObject
-]
-
-{ #category : 'navigation' }
-FASTTConditionalStatement >> conditionGroup [
-	<generated>
-	<navigation: 'Condition'>
-	^ MooseSpecializedGroup with: self condition
 ]

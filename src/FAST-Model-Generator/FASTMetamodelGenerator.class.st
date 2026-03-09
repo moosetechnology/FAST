@@ -36,7 +36,8 @@ Class {
 		'tUnaryExpression',
 		'tConditionalStatement',
 		'tLoopStatement',
-		'tWithStatements'
+		'tWithStatements',
+		'tWithCondition'
 	],
 	#category : 'FAST-Model-Generator',
 	#package : 'FAST-Model-Generator'
@@ -226,6 +227,7 @@ FASTMetamodelGenerator >> defineHierarchy [
 
 	tStatement --|> tEntity.
 	tConditionalStatement --|> tStatement.
+	tConditionalStatement --|> tWithCondition.
 	tExpressionStatement --|> tStatement.
 	tLoopStatement --|> tStatement.
 	tNamedBehaviouralEntity --|> tBehaviouralEntity.
@@ -288,8 +290,8 @@ FASTMetamodelGenerator >> defineRelations [
 	((tComment property: #container) comment: 'Source code entity containing the comment')
 	*-<> ((tWithComments property: #comments) comment: 'list of comments defined in the entity').
 
-	((tConditionalStatement property: #condition) comment: 'The boolean condition tested')
-	<>- ((tExpression property: #parentConditionalStatement) comment: 'Optional condition statement where this expression is used').
+	((tWithCondition property: #condition) comment: 'The boolean condition tested')
+	<>- ((tExpression property: #parentConditional) comment: 'Optional condition statement/expression where this expression is used').
 
 	((tExpressionStatement property: #expression) comment: 'The expression of the statement')
 	<>- ((tExpression property: #expressionStatementOwner) comment: 'The expression statement that own me (if it''s the case').
@@ -369,6 +371,7 @@ FASTMetamodelGenerator >> defineTraits [
 	tWithArguments := builder newTraitNamed: #TWithArguments comment: 'I have arguments'. 
 	tWithComments := builder newTraitNamed: #TWithComments.
 	tWithComments comment: self commentForTWithComments.
+	tWithCondition := builder newTraitNamed: #TWithCondition.
 	tWithParameters := builder newTraitNamed: #TWithParameters comment: 'I have parameters'.
 	tWithStatements := builder newTraitNamed: #TWithStatements.
 ]
