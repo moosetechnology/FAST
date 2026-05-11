@@ -80,5 +80,12 @@ BaselineOfFAST >> ensureMoose12Compatibility [
 	"I am used to return all the first encountered entities at a given famix class scope that are up in the containment tree of the metamodel"
 
 	^ self query containers ofType: aType'
+				classified: '*FAST-Moose12-Compatibility' ].
+			
+	(class includesSelector: #containedEntities) ifFalse: [
+			class
+				compile: 'containedEntities
+
+	^ self children'
 				classified: '*FAST-Moose12-Compatibility' ]
 ]
