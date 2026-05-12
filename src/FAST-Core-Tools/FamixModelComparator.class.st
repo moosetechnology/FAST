@@ -115,7 +115,7 @@ FamixModelComparator >> compareProperties: node1 to: node2 [
 	"compare the values of the 'properties' (attributes with primitive types) of the two nodes
 	 since the two nodes should be the same class, they have the same properties"
 
-	(node1 class metadescription allPrimitiveProperties)
+	(node1 class mooseDescription allPrimitiveProperties)
 		select: [ :property | self propertyToCompare: property ]
 		thenDo:  [ :property || value1 value2 |
 			value1 := node1 perform: property implementingSelector.
