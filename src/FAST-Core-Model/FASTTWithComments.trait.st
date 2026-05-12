@@ -54,13 +54,6 @@ FASTTWithComments >> comments: anObject [
 	comments value: anObject
 ]
 
-{ #category : 'navigation' }
-FASTTWithComments >> commentsGroup [
-	<generated>
-	<navigation: 'Comments'>
-	^ MooseSpecializedGroup withAll: self comments asSet
-]
-
 { #category : 'adding' }
 FASTTWithComments >> hasComments [
 	<FMProperty: #hasComments type: #Boolean>

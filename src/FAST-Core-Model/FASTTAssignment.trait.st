@@ -70,13 +70,6 @@ FASTTAssignment >> expression: anObject [
 	expression := anObject
 ]
 
-{ #category : 'navigation' }
-FASTTAssignment >> expressionGroup [
-	<generated>
-	<navigation: 'Expression'>
-	^ MooseSpecializedGroup with: self expression
-]
-
 { #category : 'testing' }
 FASTTAssignment >> isAssignment [
 
@@ -98,11 +91,4 @@ FASTTAssignment >> variable: anObject [
 
 	<generated>
 	variable := anObject
-]
-
-{ #category : 'navigation' }
-FASTTAssignment >> variableGroup [
-	<generated>
-	<navigation: 'Variable'>
-	^ MooseSpecializedGroup with: self variable
 ]

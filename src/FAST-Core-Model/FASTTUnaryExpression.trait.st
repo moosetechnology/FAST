@@ -70,13 +70,6 @@ FASTTUnaryExpression >> expression: anObject [
 	expression := anObject
 ]
 
-{ #category : 'navigation' }
-FASTTUnaryExpression >> expressionGroup [
-	<generated>
-	<navigation: 'Expression'>
-	^ MooseSpecializedGroup with: self expression
-]
-
 { #category : 'testing' }
 FASTTUnaryExpression >> isUnaryExpression [
 

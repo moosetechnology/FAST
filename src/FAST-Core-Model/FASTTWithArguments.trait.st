@@ -53,10 +53,3 @@ FASTTWithArguments >> arguments: anObject [
 	<generated>
 	arguments value: anObject
 ]
-
-{ #category : 'navigation' }
-FASTTWithArguments >> argumentsGroup [
-	<generated>
-	<navigation: 'Arguments'>
-	^ MooseSpecializedGroup withAll: self arguments asSet
-]

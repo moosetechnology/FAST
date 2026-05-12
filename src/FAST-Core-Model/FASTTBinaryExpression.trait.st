@@ -79,13 +79,6 @@ FASTTBinaryExpression >> leftOperand: anObject [
 	leftOperand := anObject
 ]
 
-{ #category : 'navigation' }
-FASTTBinaryExpression >> leftOperandGroup [
-	<generated>
-	<navigation: 'LeftOperand'>
-	^ MooseSpecializedGroup with: self leftOperand
-]
-
 { #category : 'accessing' }
 FASTTBinaryExpression >> operator [
 
@@ -115,11 +108,4 @@ FASTTBinaryExpression >> rightOperand: anObject [
 
 	<generated>
 	rightOperand := anObject
-]
-
-{ #category : 'navigation' }
-FASTTBinaryExpression >> rightOperandGroup [
-	<generated>
-	<navigation: 'RightOperand'>
-	^ MooseSpecializedGroup with: self rightOperand
 ]

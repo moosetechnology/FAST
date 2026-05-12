@@ -67,13 +67,6 @@ FASTTStatement >> parentLoopStatement: anObject [
 	parentLoopStatement := anObject
 ]
 
-{ #category : 'navigation' }
-FASTTStatement >> parentLoopStatementGroup [
-	<generated>
-	<navigation: 'ParentLoopStatement'>
-	^ MooseSpecializedGroup with: self parentLoopStatement
-]
-
 { #category : 'accessing' }
 FASTTStatement >> statementContainer [
 	"Relation named: #statementContainer type: #FASTTStatementBlock opposite: #statements"
@@ -89,11 +82,4 @@ FASTTStatement >> statementContainer: anObject [
 
 	<generated>
 	statementContainer := anObject
-]
-
-{ #category : 'navigation' }
-FASTTStatement >> statementContainerGroup [
-	<generated>
-	<navigation: 'StatementContainer'>
-	^ MooseSpecializedGroup with: self statementContainer
 ]

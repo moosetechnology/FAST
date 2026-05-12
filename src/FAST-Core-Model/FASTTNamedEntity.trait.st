@@ -60,13 +60,6 @@ FASTTNamedEntity >> invokedIn: anObject [
 	invokedIn := anObject
 ]
 
-{ #category : 'navigation' }
-FASTTNamedEntity >> invokedInGroup [
-	<generated>
-	<navigation: 'InvokedIn'>
-	^ MooseSpecializedGroup with: self invokedIn
-]
-
 { #category : 'accessing' }
 FASTTNamedEntity >> name [
 
