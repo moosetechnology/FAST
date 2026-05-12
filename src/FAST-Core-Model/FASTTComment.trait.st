@@ -55,13 +55,6 @@ FASTTComment >> container: anObject [
 	container := anObject
 ]
 
-{ #category : 'navigation' }
-FASTTComment >> containerGroup [
-	<generated>
-	<navigation: 'Container'>
-	^ MooseSpecializedGroup with: self container
-]
-
 { #category : 'accessing' }
 FASTTComment >> content [
 

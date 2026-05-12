@@ -71,13 +71,6 @@ FASTTExpression >> argumentOwner: anObject [
 	argumentOwner := anObject
 ]
 
-{ #category : 'navigation' }
-FASTTExpression >> argumentOwnerGroup [
-	<generated>
-	<navigation: 'ArgumentOwner'>
-	^ MooseSpecializedGroup with: self argumentOwner
-]
-
 { #category : 'accessing' }
 FASTTExpression >> assignedIn [
 	"Relation named: #assignedIn type: #FASTTAssignment opposite: #expression"
@@ -96,13 +89,6 @@ FASTTExpression >> assignedIn: anObject [
 	assignedIn := anObject
 ]
 
-{ #category : 'navigation' }
-FASTTExpression >> assignedInGroup [
-	<generated>
-	<navigation: 'AssignedIn'>
-	^ MooseSpecializedGroup with: self assignedIn
-]
-
 { #category : 'accessing' }
 FASTTExpression >> expressionStatementOwner [
 	"Relation named: #expressionStatementOwner type: #FASTTExpressionStatement opposite: #expression"
@@ -119,13 +105,6 @@ FASTTExpression >> expressionStatementOwner: anObject [
 
 	<generated>
 	expressionStatementOwner := anObject
-]
-
-{ #category : 'navigation' }
-FASTTExpression >> expressionStatementOwnerGroup [
-	<generated>
-	<navigation: 'ExpressionStatementOwner'>
-	^ MooseSpecializedGroup with: self expressionStatementOwner
 ]
 
 { #category : 'testing' }
@@ -153,13 +132,6 @@ FASTTExpression >> parentConditional: anObject [
 	parentConditional := anObject
 ]
 
-{ #category : 'navigation' }
-FASTTExpression >> parentConditionalGroup [
-	<generated>
-	<navigation: 'ParentConditional'>
-	^ MooseSpecializedGroup with: self parentConditional
-]
-
 { #category : 'accessing' }
 FASTTExpression >> parentConditionalStatement [
 
@@ -185,13 +157,6 @@ FASTTExpression >> parentExpression: anObject [
 	parentExpression := anObject
 ]
 
-{ #category : 'navigation' }
-FASTTExpression >> parentExpressionGroup [
-	<generated>
-	<navigation: 'ParentExpression'>
-	^ MooseSpecializedGroup with: self parentExpression
-]
-
 { #category : 'accessing' }
 FASTTExpression >> parentExpressionLeft [
 	"Relation named: #parentExpressionLeft type: #FASTTBinaryExpression opposite: #leftOperand"
@@ -208,13 +173,6 @@ FASTTExpression >> parentExpressionLeft: anObject [
 
 	<generated>
 	parentExpressionLeft := anObject
-]
-
-{ #category : 'navigation' }
-FASTTExpression >> parentExpressionLeftGroup [
-	<generated>
-	<navigation: 'ParentExpressionLeft'>
-	^ MooseSpecializedGroup with: self parentExpressionLeft
 ]
 
 { #category : 'accessing' }
@@ -235,13 +193,6 @@ FASTTExpression >> parentExpressionRight: anObject [
 	parentExpressionRight := anObject
 ]
 
-{ #category : 'navigation' }
-FASTTExpression >> parentExpressionRightGroup [
-	<generated>
-	<navigation: 'ParentExpressionRight'>
-	^ MooseSpecializedGroup with: self parentExpressionRight
-]
-
 { #category : 'accessing' }
 FASTTExpression >> returnOwner [
 	"Relation named: #returnOwner type: #FASTTReturnStatement opposite: #expression"
@@ -258,11 +209,4 @@ FASTTExpression >> returnOwner: anObject [
 
 	<generated>
 	returnOwner := anObject
-]
-
-{ #category : 'navigation' }
-FASTTExpression >> returnOwnerGroup [
-	<generated>
-	<navigation: 'ReturnOwner'>
-	^ MooseSpecializedGroup with: self returnOwner
 ]

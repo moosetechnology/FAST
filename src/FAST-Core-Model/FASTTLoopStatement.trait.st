@@ -61,10 +61,3 @@ FASTTLoopStatement >> body: anObject [
 	<generated>
 	body := anObject
 ]
-
-{ #category : 'navigation' }
-FASTTLoopStatement >> bodyGroup [
-	<generated>
-	<navigation: 'Body'>
-	^ MooseSpecializedGroup with: self body
-]

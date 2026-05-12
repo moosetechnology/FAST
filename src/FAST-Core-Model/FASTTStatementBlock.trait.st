@@ -72,13 +72,6 @@ FASTTStatementBlock >> fastBehaviouralParent: anObject [
 	fastBehaviouralParent := anObject
 ]
 
-{ #category : 'navigation' }
-FASTTStatementBlock >> fastBehaviouralParentGroup [
-	<generated>
-	<navigation: 'FastBehaviouralParent'>
-	^ MooseSpecializedGroup with: self fastBehaviouralParent
-]
-
 { #category : 'testing' }
 FASTTStatementBlock >> isStatementBlock [
 
@@ -101,11 +94,4 @@ FASTTStatementBlock >> statements: anObject [
 
 	<generated>
 	statements value: anObject
-]
-
-{ #category : 'navigation' }
-FASTTStatementBlock >> statementsGroup [
-	<generated>
-	<navigation: 'Statements'>
-	^ MooseSpecializedGroup withAll: self statements asSet
 ]

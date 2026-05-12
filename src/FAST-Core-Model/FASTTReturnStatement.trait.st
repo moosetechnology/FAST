@@ -62,13 +62,6 @@ FASTTReturnStatement >> expression: anObject [
 	expression := anObject
 ]
 
-{ #category : 'navigation' }
-FASTTReturnStatement >> expressionGroup [
-	<generated>
-	<navigation: 'Expression'>
-	^ MooseSpecializedGroup with: self expression
-]
-
 { #category : 'testing' }
 FASTTReturnStatement >> isReturnStatement [
 

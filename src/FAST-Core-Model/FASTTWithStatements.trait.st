@@ -44,10 +44,3 @@ FASTTWithStatements >> statementBlock: anObject [
 	<generated>
 	statementBlock := anObject
 ]
-
-{ #category : 'navigation' }
-FASTTWithStatements >> statementBlockGroup [
-	<generated>
-	<navigation: 'StatementBlock'>
-	^ MooseSpecializedGroup with: self statementBlock
-]

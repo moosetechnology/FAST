@@ -62,13 +62,6 @@ FASTTExpressionStatement >> expression: anObject [
 	expression := anObject
 ]
 
-{ #category : 'navigation' }
-FASTTExpressionStatement >> expressionGroup [
-	<generated>
-	<navigation: 'Expression'>
-	^ MooseSpecializedGroup with: self expression
-]
-
 { #category : 'testing' }
 FASTTExpressionStatement >> isExpressionStatement [
 

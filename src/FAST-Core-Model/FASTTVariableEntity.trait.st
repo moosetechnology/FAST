@@ -68,13 +68,6 @@ FASTTVariableEntity >> parameterOwner: anObject [
 	parameterOwner := anObject
 ]
 
-{ #category : 'navigation' }
-FASTTVariableEntity >> parameterOwnerGroup [
-	<generated>
-	<navigation: 'ParameterOwner'>
-	^ MooseSpecializedGroup with: self parameterOwner
-]
-
 { #category : 'accessing' }
 FASTTVariableEntity >> parentAssignmentExpression [
 	"Relation named: #parentAssignmentExpression type: #FASTTAssignment opposite: #variable"
@@ -91,11 +84,4 @@ FASTTVariableEntity >> parentAssignmentExpression: anObject [
 
 	<generated>
 	parentAssignmentExpression := anObject
-]
-
-{ #category : 'navigation' }
-FASTTVariableEntity >> parentAssignmentExpressionGroup [
-	<generated>
-	<navigation: 'ParentAssignmentExpression'>
-	^ MooseSpecializedGroup with: self parentAssignmentExpression
 ]

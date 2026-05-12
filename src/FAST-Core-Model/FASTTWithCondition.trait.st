@@ -44,10 +44,3 @@ FASTTWithCondition >> condition: anObject [
 	<generated>
 	condition := anObject
 ]
-
-{ #category : 'navigation' }
-FASTTWithCondition >> conditionGroup [
-	<generated>
-	<navigation: 'Condition'>
-	^ MooseSpecializedGroup with: self condition
-]

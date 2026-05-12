@@ -69,13 +69,6 @@ FASTTInvocation >> invoked: anObject [
 	invoked := anObject
 ]
 
-{ #category : 'navigation' }
-FASTTInvocation >> invokedGroup [
-	<generated>
-	<navigation: 'Invoked'>
-	^ MooseSpecializedGroup with: self invoked
-]
-
 { #category : 'testing' }
 FASTTInvocation >> isInvocation [
 
