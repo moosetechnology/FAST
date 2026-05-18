@@ -74,7 +74,7 @@ FASTTVisitor >> visitFASTTCharacterLiteral: aFASTTCharacterLiteral [
 FASTTVisitor >> visitFASTTComment: aFASTTComment [
 
 	<generated>
-	self visitEntity: aFASTTComment container
+
 ]
 
 { #category : 'visiting' }
@@ -98,14 +98,7 @@ FASTTVisitor >> visitFASTTExpression: aFASTTExpression [
 	<generated>
 	self visitFASTTEntity: aFASTTExpression.
 
-	self visitEntity: aFASTTExpression assignedIn.
-	self visitEntity: aFASTTExpression parentExpressionLeft.
-	self visitEntity: aFASTTExpression parentExpressionRight.
-	self visitEntity: aFASTTExpression parentConditional.
-	self visitEntity: aFASTTExpression expressionStatementOwner.
-	self visitEntity: aFASTTExpression returnOwner.
-	self visitEntity: aFASTTExpression parentExpression.
-	self visitEntity: aFASTTExpression argumentOwner
+
 ]
 
 { #category : 'visiting' }
@@ -157,7 +150,7 @@ FASTTVisitor >> visitFASTTNamedEntity: aFASTTNamedEntity [
 	<generated>
 	self visitFASTTEntity: aFASTTNamedEntity.
 
-	self visitEntity: aFASTTNamedEntity invokedIn
+
 ]
 
 { #category : 'visiting' }
@@ -196,8 +189,7 @@ FASTTVisitor >> visitFASTTStatement: aFASTTStatement [
 	<generated>
 	self visitFASTTEntity: aFASTTStatement.
 
-	self visitEntity: aFASTTStatement parentLoopStatement.
-	self visitEntity: aFASTTStatement statementContainer
+
 ]
 
 { #category : 'visiting' }
@@ -206,8 +198,7 @@ FASTTVisitor >> visitFASTTStatementBlock: aFASTTStatementBlock [
 	<generated>
 	self visitFASTTStatement: aFASTTStatementBlock.
 
-	self visitCollection: aFASTTStatementBlock statements.
-	self visitEntity: aFASTTStatementBlock fastBehaviouralParent
+	self visitCollection: aFASTTStatementBlock statements
 ]
 
 { #category : 'visiting' }
@@ -232,8 +223,7 @@ FASTTVisitor >> visitFASTTVariableEntity: aFASTTVariableEntity [
 	<generated>
 	self visitFASTTNamedEntity: aFASTTVariableEntity.
 
-	self visitEntity: aFASTTVariableEntity parentAssignmentExpression.
-	self visitEntity: aFASTTVariableEntity parameterOwner
+
 ]
 
 { #category : 'visiting' }
