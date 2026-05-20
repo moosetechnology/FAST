@@ -32,6 +32,18 @@ FASTTEntity classSide >> annotation [
 	^ self
 ]
 
+{ #category : 'printing' }
+FASTTEntity >> displayFullStringOn: aStream [
+
+	self printOn: aStream
+]
+
+{ #category : 'printing' }
+FASTTEntity >> displayStringOn: aStream [
+
+	self printOn: aStream
+]
+
 { #category : 'accessing' }
 FASTTEntity >> endPos [
 
@@ -50,6 +62,18 @@ FASTTEntity >> endPos: anObject [
 FASTTEntity >> isNonLocalDeclaration [
 
 	^false
+]
+
+{ #category : 'printing' }
+FASTTEntity >> printOn: aStream [
+
+	aStream
+		nextPutAll: (self class name withoutPrefix: 'FAST');
+		nextPut: $(;
+		print: (self startPos ifNil: [ Float nan ]);
+		nextPutAll: ' - ';
+		print: (self endPos ifNil: [ Float nan ]);
+		nextPut: $)
 ]
 
 { #category : 'accessing' }
