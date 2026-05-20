@@ -72,21 +72,22 @@ BaselineOfFAST >> ensureMoose12Compatibility [
 	"FAST v3 works on Moose 12 and Moose 13. Since we are using some methods of Moose 13, I ensure we have everything needed. Delete me once Moose 12 support will be dropped."
 
 	| class |
-	'Ensuring compatibility methods' traceCr.
 	class := self class environment at: #TEntityMetaLevelDependency.
 
 	(class includesSelector: #containersOfType:) ifFalse: [
-			class
-				compile: 'containersOfType: aType
+			'Ensuring compatibility methods' traceCr.
+			{ 'containersOfType: aType
 	"I am used to return all the first encountered entities at a given famix class scope that are up in the containment tree of the metamodel"
 
-	^ self query containers ofType: aType'
-				classified: '*FAST-Moose12-Compatibility' ].
+	^ self query containers ofType: aType'. 
+	
+	
+	'containedEntities
 
-	(class includesSelector: #containedEntities) ifFalse: [
-			class
-				compile: 'containedEntities
+	^ self children'. 
+	
+	
+	'allContainedEntities
 
-	^ self children'
-				classified: '*FAST-Moose12-Compatibility' ]
+	^ self allChildren' } do: [ :method | class compile: method classified: '*FAST-Moose12-Compatibility' ] ]
 ]

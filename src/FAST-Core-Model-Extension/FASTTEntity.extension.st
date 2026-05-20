@@ -53,13 +53,11 @@ FASTTEntity >> inspectionFAST: aBuilder [
 				   addColumn: ((SpImageTableColumn evaluated: #mooseIcon)
 						    width: 20;
 						    yourself);
-				   addColumn:
-				   (SpStringTableColumn evaluated: [ :node | node display ]);
+				   addColumn: (SpStringTableColumn evaluated: [ :node | node display ]);
 				   yourself);
-		  children: [ :aClass |
-				  aClass children asArray sorted: [ :a :b |
-					  (a startPos ifNil: [ 0 ]) <= (b startPos ifNil: [ 0 ]) ] ];
+		  children: [ :aClass | aClass containedEntities asArray sorted: [ :a :b | (a startPos ifNil: [ 0 ]) <= (b startPos ifNil: [ 0 ]) ] ];
 		  beMultipleSelection;
+		  expandAll;
 		  roots: { self };
 		  beResizable;
 		  yourself

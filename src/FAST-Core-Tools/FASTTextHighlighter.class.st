@@ -40,12 +40,12 @@ FASTTextHighlighter >> color: anElementString with: aColor [
 
 { #category : 'public' }
 FASTTextHighlighter >> highlight: anFASTEntity [
+
 	| text |
 	text := anFASTEntity sourceText asText.
-	anFASTEntity allChildren
-		do: [ :child | 
-			(child startPos isNotNil and: child endPos isNotNil)
-				ifTrue: [ attributeMapper at: child class ifPresent: [ :attributes | attributes do: [ :each | text addAttribute: each from: child startPos to: child endPos ] ] ] ].
+	anFASTEntity allContainedEntities do: [ :child |
+			(child startPos isNotNil and: [ child endPos isNotNil ]) ifTrue: [
+				attributeMapper at: child class ifPresent: [ :attributes | attributes do: [ :each | text addAttribute: each from: child startPos to: child endPos ] ] ] ].
 	^ text
 ]
 
