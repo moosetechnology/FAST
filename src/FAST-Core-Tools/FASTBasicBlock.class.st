@@ -42,18 +42,3 @@ FASTBasicBlock >> nextBlocks [
 		ifNil: [ #() ]
 		ifNotNil: [ { nextBlock } ]
 ]
-
-{ #category : 'printing' }
-FASTBasicBlock >> sourceCode [
-
-	| exporter |
-	exporter := self firstStatement exporterForCFG.
-	^ String streamContents: [ :s | 
-		  self statements do: [ :stmt |
-			  s nextPutAll: (exporter export: stmt) ] ]
-	
-	"^ self firstStatement exporterForCFG export:
-	  (self firstStatement newStatementBlockForCFG
-		   statements: self statements;
-		   yourself)"
-]

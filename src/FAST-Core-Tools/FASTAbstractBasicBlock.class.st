@@ -59,8 +59,7 @@ FASTAbstractBasicBlock >> isEmpty [
 FASTAbstractBasicBlock >> isFinal [
 	"The block last statement is also the last executed one in the CFG"
 
-	^(self nextBlocks isEmpty) or:
-	[ self nextBlocks anySatisfy: [ :block | block isNil or: [ block isNullBlock]] ]
+	^ self nextBlocks isEmpty or: [ self nextBlocks anySatisfy: [ :block | block isNil or: [ block isNullBlock ] ] ]
 ]
 
 { #category : 'testing' }
@@ -96,7 +95,9 @@ FASTAbstractBasicBlock >> nextBlocks [
 { #category : 'printing' }
 FASTAbstractBasicBlock >> sourceCode [
 
-	self subclassResponsibility 
+	self statements ifEmpty: [ ^ '' ].
+
+	^ self firstStatement sourceText copyFrom: self firstStatement startPos to: self lastStatement endPos
 ]
 
 { #category : 'accessing' }

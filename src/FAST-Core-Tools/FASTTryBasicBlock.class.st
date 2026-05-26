@@ -11,13 +11,3 @@ FASTTryBasicBlock >> addStatement: aFASTStatement [
 
 	self statements add: aFASTStatement
 ]
-
-{ #category : 'printing' }
-FASTTryBasicBlock >> sourceCode [
-
-	| exporter |
-	exporter := self firstStatement exporterForCFG.
-	^ String streamContents: [ :s |
-		  self statements do: [ :stmt |
-			  s nextPutAll: (exporter export: stmt) ] ]
-]
