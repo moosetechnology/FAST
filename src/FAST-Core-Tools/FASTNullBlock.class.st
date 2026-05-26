@@ -34,9 +34,3 @@ FASTNullBlock >> nextBlocks [
 
 	^#()
 ]
-
-{ #category : 'testing' }
-FASTNullBlock >> sourceCode [
-
-	^''
-]

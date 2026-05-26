@@ -79,12 +79,6 @@ FASTConditionalBasicBlock >> nextBlocks [
 ]
 
 { #category : 'printing' }
-FASTConditionalBasicBlock >> sourceCode [
-
-	^self firstStatement exportForCFG
-]
-
-{ #category : 'printing' }
 FASTConditionalBasicBlock >> statement: aFASTFortranStatement [
 
 	self addStatement: aFASTFortranStatement 
