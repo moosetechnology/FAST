@@ -29,7 +29,6 @@ FASTTEntity classSide >> annotation [
 	<FMClass: #TEntity super: #Object>
 	<package: #'FAST-Core-Model'>
 	<generated>
-	^ self
 ]
 
 { #category : 'printing' }

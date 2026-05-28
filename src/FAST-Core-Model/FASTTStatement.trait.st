@@ -39,7 +39,6 @@ FASTTStatement classSide >> annotation [
 	<FMClass: #TStatement super: #Object>
 	<package: #'FAST-Core-Model'>
 	<generated>
-	^ self
 ]
 
 { #category : 'testing' }

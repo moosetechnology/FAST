@@ -51,7 +51,6 @@ FASTTAssignment classSide >> annotation [
 	<FMClass: #TAssignment super: #Object>
 	<package: #'FAST-Core-Model'>
 	<generated>
-	^ self
 ]
 
 { #category : 'accessing' }

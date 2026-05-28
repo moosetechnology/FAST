@@ -50,7 +50,6 @@ FASTTLiteral classSide >> annotation [
 	<FMClass: #TLiteral super: #Object>
 	<package: #'FAST-Core-Model'>
 	<generated>
-	^ self
 ]
 
 { #category : 'testing' }

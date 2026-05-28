@@ -51,7 +51,6 @@ FASTTUnaryExpression classSide >> annotation [
 	<FMClass: #TUnaryExpression super: #Object>
 	<package: #'FAST-Core-Model'>
 	<generated>
-	^ self
 ]
 
 { #category : 'accessing' }

@@ -26,7 +26,6 @@ FASTTWithCondition classSide >> annotation [
 	<FMClass: #TWithCondition super: #Object>
 	<package: #'FAST-Core-Model'>
 	<generated>
-	^ self
 ]
 
 { #category : 'accessing' }

@@ -43,7 +43,6 @@ FASTTReturnStatement classSide >> annotation [
 	<FMClass: #TReturnStatement super: #Object>
 	<package: #'FAST-Core-Model'>
 	<generated>
-	^ self
 ]
 
 { #category : 'accessing' }

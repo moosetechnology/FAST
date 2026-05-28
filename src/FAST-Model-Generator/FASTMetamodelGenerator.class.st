@@ -44,21 +44,9 @@ Class {
 }
 
 { #category : 'accessing' }
-FASTMetamodelGenerator class >> metamodelToolGenerators [
-
-	^ { FamixVisitorGenerator }
-]
-
-{ #category : 'accessing' }
 FASTMetamodelGenerator class >> packageName [
 
 	^ #'FAST-Core-Model'
-]
-
-{ #category : 'accessing' }
-FASTMetamodelGenerator class >> packageNameForVisitor [
-
-	^ #'FAST-Core-Visitor'
 ]
 
 { #category : 'accessing' }

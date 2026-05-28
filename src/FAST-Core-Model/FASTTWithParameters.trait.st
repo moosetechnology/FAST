@@ -28,7 +28,6 @@ FASTTWithParameters classSide >> annotation [
 	<FMClass: #TWithParameters super: #Object>
 	<package: #'FAST-Core-Model'>
 	<generated>
-	^ self
 ]
 
 { #category : 'adding' }
