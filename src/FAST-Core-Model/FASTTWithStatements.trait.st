@@ -26,7 +26,6 @@ FASTTWithStatements classSide >> annotation [
 	<FMClass: #TWithStatements super: #Object>
 	<package: #'FAST-Core-Model'>
 	<generated>
-	^ self
 ]
 
 { #category : 'accessing' }

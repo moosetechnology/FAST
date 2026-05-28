@@ -43,7 +43,6 @@ FASTTLoopStatement classSide >> annotation [
 	<FMClass: #TLoopStatement super: #Object>
 	<package: #'FAST-Core-Model'>
 	<generated>
-	^ self
 ]
 
 { #category : 'accessing' }

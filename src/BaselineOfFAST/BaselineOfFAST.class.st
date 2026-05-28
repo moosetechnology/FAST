@@ -79,15 +79,15 @@ BaselineOfFAST >> ensureMoose12Compatibility [
 			{ 'containersOfType: aType
 	"I am used to return all the first encountered entities at a given famix class scope that are up in the containment tree of the metamodel"
 
-	^ self query containers ofType: aType'. 
-	
-	
-	'containedEntities
+	^ self query containers ofType: aType'. 'containedEntities
 
-	^ self children'. 
-	
-	
-	'allContainedEntities
+	^ self children'. 'allContainedEntities
 
-	^ self allChildren' } do: [ :method | class compile: method classified: '*FAST-Moose12-Compatibility' ] ]
+	^ self allChildren' } do: [ :method | class compile: method classified: '*FAST-Moose12-Compatibility' ].
+
+			MooseObject
+				compile: 'accept: aVisitor
+
+	^ aVisitor perform: (''visit'' , self class name , '':'') asSymbol with: self'
+				classified: '*FAST-Moose12-Compatibility' ]
 ]

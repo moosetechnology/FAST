@@ -41,7 +41,6 @@ FASTTBehaviouralEntity classSide >> annotation [
 	<FMClass: #TBehaviouralEntity super: #Object>
 	<package: #'FAST-Core-Model'>
 	<generated>
-	^ self
 ]
 
 { #category : 'testing' }

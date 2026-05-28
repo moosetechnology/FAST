@@ -40,5 +40,4 @@ FASTTConditionalStatement classSide >> annotation [
 	<FMClass: #TConditionalStatement super: #Object>
 	<package: #'FAST-Core-Model'>
 	<generated>
-	^ self
 ]

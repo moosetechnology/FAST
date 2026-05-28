@@ -53,7 +53,6 @@ FASTTBinaryExpression classSide >> annotation [
 	<FMClass: #TBinaryExpression super: #Object>
 	<package: #'FAST-Core-Model'>
 	<generated>
-	^ self
 ]
 
 { #category : 'testing' }

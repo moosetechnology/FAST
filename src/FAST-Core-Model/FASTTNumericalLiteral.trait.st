@@ -42,7 +42,6 @@ FASTTNumericalLiteral classSide >> annotation [
 	<FMClass: #TNumericalLiteral super: #Object>
 	<package: #'FAST-Core-Model'>
 	<generated>
-	^ self
 ]
 
 { #category : 'testing' }
