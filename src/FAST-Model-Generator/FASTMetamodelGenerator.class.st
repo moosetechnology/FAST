@@ -37,7 +37,8 @@ Class {
 		'tConditionalStatement',
 		'tLoopStatement',
 		'tWithStatements',
-		'tWithCondition'
+		'tWithCondition',
+		'tBreakStatement'
 	],
 	#category : 'FAST-Model-Generator',
 	#package : 'FAST-Model-Generator'
@@ -83,6 +84,12 @@ FASTMetamodelGenerator >> commentForTBinaryExpression [
 { #category : 'comments' }
 FASTMetamodelGenerator >> commentForTBooleanLiteral [
 	^ 'A boolean literal'
+]
+
+{ #category : 'comments' }
+FASTMetamodelGenerator >> commentForTBreakStatement [
+
+	^ 'I represent a break statement happening in loops. Break statement allows to cut the loop even if the condition is still valid. '
 ]
 
 { #category : 'comments' }
@@ -230,6 +237,7 @@ FASTMetamodelGenerator >> defineHierarchy [
 	tConditionalStatement --|> tWithCondition.
 	tExpressionStatement --|> tStatement.
 	tLoopStatement --|> tStatement.
+	tBreakStatement --|> tStatement.
 	tNamedBehaviouralEntity --|> tBehaviouralEntity.
 	tReturnStatement --|> tStatement.
 	tStatementBlock --|> tStatement.
@@ -331,6 +339,8 @@ FASTMetamodelGenerator >> defineTraits [
 	tBinaryExpression withTesting.
 	tBooleanLiteral := builder newTraitNamed: #TBooleanLiteral comment: self commentForTBooleanLiteral.
 	tBooleanLiteral withTesting.
+	tBreakStatement := builder newTraitNamed: #TBreakStatement comment: self commentForTBreakStatement.
+	tBreakStatement withTesting.
 	tCharacterLiteral := builder newTraitNamed: #TCharacterLiteral comment: self commentForTCharacterLiteral.
 	tCharacterLiteral withTesting.
 	tComment := builder newTraitNamed: #TComment.
