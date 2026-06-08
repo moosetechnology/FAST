@@ -38,7 +38,8 @@ Class {
 		'tLoopStatement',
 		'tWithStatements',
 		'tWithCondition',
-		'tBreakStatement'
+		'tBreakStatement',
+		'tContinueStatement'
 	],
 	#category : 'FAST-Model-Generator',
 	#package : 'FAST-Model-Generator'
@@ -101,6 +102,12 @@ FASTMetamodelGenerator >> commentForTCharacterLiteral [
 FASTMetamodelGenerator >> commentForTComment [
 
 	^ 'FASTComment represents one instance of a comment (in the sense of programming language comments) for any FAST sourced entity. The commented sourced entity is called the container in the FAST model.'
+]
+
+{ #category : 'comments' }
+FASTMetamodelGenerator >> commentForTContinueStatement [
+
+	^ 'I represent a continue statement happening in loops. Continue allows to cut the loop even if the condition is still valid, but on the contrary of a break, is still execute the next loops. '
 ]
 
 { #category : 'comments' }
@@ -346,6 +353,8 @@ FASTMetamodelGenerator >> defineTraits [
 	tComment := builder newTraitNamed: #TComment.
 	tComment comment: self commentForTComment.
 	tConditionalStatement := builder newTraitNamed: #TConditionalStatement comment: 'I represent any statement that has a boolean condition (eg. ifStatement)'.
+	tContinueStatement := builder newTraitNamed: #TContinueStatement comment: self commentForTContinueStatement.
+	tContinueStatement withTesting.
 	tEntity := builder newTraitNamed: #TEntity comment: 'any entity'.
 	tExpression := builder newTraitNamed: #TExpression comment: self commentForTExpression.
 	tExpression withTesting.
