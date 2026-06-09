@@ -20,6 +20,11 @@ FASTNonLocalDeclaration >> isNonLocalDeclaration [
 	^true
 ]
 
+{ #category : 'as yet unclassified' }
+FASTNonLocalDeclaration >> localDeclarationName [
+	^ self localUses anyOne localDeclarationName
+]
+
 { #category : 'accessing' }
 FASTNonLocalDeclaration >> name [
 
