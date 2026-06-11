@@ -12,9 +12,8 @@ Class {
 	#instVars : [
 		'nextBlocks'
 	],
-	#category : 'FAST-Core-Tools-CFG',
-	#package : 'FAST-Core-Tools',
-	#tag : 'CFG'
+	#category : 'FAST-Core-Deprecated',
+	#package : 'FAST-Core-Deprecated'
 }
 
 { #category : 'adding' }

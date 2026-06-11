@@ -15,10 +15,16 @@ Class {
 		'isStart',
 		'statements'
 	],
-	#category : 'FAST-Core-Tools-CFG',
-	#package : 'FAST-Core-Tools',
-	#tag : 'CFG'
+	#category : 'FAST-Core-Deprecated',
+	#package : 'FAST-Core-Deprecated'
 }
+
+{ #category : 'testing' }
+FASTAbstractBasicBlock class >> isDeprecated [
+	"A new implementation of CFG is available in FAST an will replace this one."
+
+	^ true
+]
 
 { #category : 'adding' }
 FASTAbstractBasicBlock >> addStatement: aFASTStatement [

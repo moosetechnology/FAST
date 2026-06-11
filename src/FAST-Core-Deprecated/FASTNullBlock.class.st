@@ -6,9 +6,8 @@ NullBlock are not added in the list of blocks of the CFG, they appear only as #n
 Class {
 	#name : 'FASTNullBlock',
 	#superclass : 'FASTAbstractBasicBlock',
-	#category : 'FAST-Core-Tools-CFG',
-	#package : 'FAST-Core-Tools',
-	#tag : 'CFG'
+	#category : 'FAST-Core-Deprecated',
+	#package : 'FAST-Core-Deprecated'
 }
 
 { #category : 'testing' }
