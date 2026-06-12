@@ -30,3 +30,9 @@ FASTCFGTryBlock >> isTry [
 
 	^ true
 ]
+
+{ #category : 'mermaid' }
+FASTCFGTryBlock >> mermaidDelimiters [
+
+	^ '[/' -> '\]'
+]

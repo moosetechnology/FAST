@@ -44,6 +44,12 @@ FASTCFGNullBlock >> isNullBlock [
 	^ true
 ]
 
+{ #category : 'mermaid' }
+FASTCFGNullBlock >> mermaidDelimiters [
+
+	^ '(((' -> ')))'
+]
+
 { #category : 'accessing' }
 FASTCFGNullBlock >> nextBlockForValues [
 

@@ -52,3 +52,9 @@ FASTCFGSwitchBlock >> isSwitch [
 
 	^ true
 ]
+
+{ #category : 'mermaid' }
+FASTCFGSwitchBlock >> mermaidDelimiters [
+
+	^ '{{' -> '}}'
+]

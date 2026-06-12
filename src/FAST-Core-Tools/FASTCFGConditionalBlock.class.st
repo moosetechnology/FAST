@@ -53,6 +53,14 @@ FASTCFGConditionalBlock >> isLoop: anObject [
 	isLoop := anObject
 ]
 
+{ #category : 'mermaid' }
+FASTCFGConditionalBlock >> mermaidDelimiters [
+
+	^ self isLoop
+		  ifTrue: [ '((' -> '))' ]
+		  ifFalse: [ '{' -> '}' ]
+]
+
 { #category : 'accessing' }
 FASTCFGConditionalBlock >> nextBlockForValues [
 

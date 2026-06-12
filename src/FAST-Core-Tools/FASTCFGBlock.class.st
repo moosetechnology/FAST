@@ -40,6 +40,12 @@ FASTCFGBlock >> isFull [
 	^ self nextBlock isNotNil
 ]
 
+{ #category : 'mermaid' }
+FASTCFGBlock >> mermaidDelimiters [
+
+	^ '(' -> ')'
+]
+
 { #category : 'accessing' }
 FASTCFGBlock >> nextBlock [
 	^ nextBlock
