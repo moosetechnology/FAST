@@ -55,6 +55,54 @@ FASTCFGAbstractBlock >> allFollowingBlocks [
 	^ self deep: #nextBlocks collect: #yourself
 ]
 
+{ #category : 'mermaid' }
+FASTCFGAbstractBlock >> asMermaidScript [
+	"I genrerate a mermaid script to display the flowchart"
+
+	self isStart ifFalse: [ self error: 'We should start by the start node' ].
+	^ String streamContents: [ :aStream |
+			  | nodesIDs treatedBlocks |
+			  nodesIDs := Dictionary new.
+			  aStream
+				  nextPutAll: 'flowchart TD';
+				  lf;
+				  tab;
+				  nextPutAll: 'subgraph Entry';
+				  lf;
+				  tab;
+				  tab;
+				  nextPutAll: 'direction TB';
+				  lf;
+				  tab;
+				  tab;
+				  nextPutAll: (nodesIDs at: self ifAbsentPut: [ self hash asString ]);
+				  lf;
+				  tab;
+				  tab;
+				  nextPutAll: 'end';
+				  lf;
+				  cr;
+				  cr;
+				  nextPutAll: 'subgraph Exit';
+				  lf;
+				  tab;
+				  tab;
+				  nextPutAll: 'direction TB';
+				  lf;
+				  tab;
+				  tab;
+				  nextPutAll: (nodesIDs at: (self allFollowingBlocks detect: #isFinal) ifAbsentPut: [ (self allFollowingBlocks detect: #isFinal) hash asString ]);
+				  lf;
+				  tab;
+				  tab;
+				  nextPutAll: 'end';
+				  lf;
+				  cr;
+				  cr.
+			  treatedBlocks := Set new.
+			  self printMermaidOn: aStream ids: nodesIDs treatedBlocks: treatedBlocks ]
+]
+
 { #category : 'private' }
 FASTCFGAbstractBlock >> endsWithBreakStatement [
 
@@ -168,6 +216,52 @@ FASTCFGAbstractBlock >> nextBlocks [
 { #category : 'accessing' }
 FASTCFGAbstractBlock >> previousBlocks [
 	^ previousBlocks
+]
+
+{ #category : 'mermaid' }
+FASTCFGAbstractBlock >> printMermaidOn: aStream ids: nodesIDs treatedBlocks: treatedBlocks [
+
+	| id |
+	(treatedBlocks includes: self) ifTrue: [ ^ self ].
+	id := nodesIDs at: self ifAbsentPut: [ self hash asString ].
+	treatedBlocks add: self.
+
+	aStream
+		nextPutAll: id;
+		nextPutAll: (self isStart
+				 ifTrue: [ '{' ]
+				 ifFalse: [
+						 self isFinal
+							 ifTrue: [ '(((' ]
+							 ifFalse: [ '(' ] ]);
+		nextPut: $";
+		nextPutAll: ('<br/>' join: self sourceCode lines);
+		nextPutAll: ' "';
+		nextPutAll: (self isStart
+				 ifTrue: [ '}' ]
+				 ifFalse: [
+						 self isFinal
+							 ifTrue: [ ')))' ]
+							 ifFalse: [ ')' ] ]);
+		lf;
+		tab.
+
+	self nextBlockForValues do: [ :asso |
+			aStream
+				nextPutAll: id;
+				nextPutAll: ' --'.
+			asso key asString ifNotEmpty: [
+					aStream
+						space;
+						nextPutAll: asso key asString capitalized;
+						space ].
+			aStream
+				nextPutAll: '--> ';
+				nextPutAll: (nodesIDs at: asso value ifAbsentPut: [ asso value hash asString ]);
+				lf;
+				tab ].
+
+	self nextBlocks do: [ :block | block printMermaidOn: aStream ids: nodesIDs treatedBlocks: treatedBlocks ]
 ]
 
 { #category : 'private' }

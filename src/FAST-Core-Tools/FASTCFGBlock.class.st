@@ -53,7 +53,9 @@ FASTCFGBlock >> nextBlock: anObject [
 { #category : 'accessing' }
 FASTCFGBlock >> nextBlockForValues [
 
-	^{ #next -> self nextBlock }
+	^ self nextBlock
+		  ifNil: [ Array empty ]
+		  ifNotNil: [ { ('' -> self nextBlock) } ]
 ]
 
 { #category : 'accessing' }
