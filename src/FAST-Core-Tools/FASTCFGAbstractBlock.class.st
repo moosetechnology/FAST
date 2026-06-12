@@ -78,7 +78,6 @@ FASTCFGAbstractBlock >> asMermaidScript [
 				  nextPutAll: (nodesIDs at: self ifAbsentPut: [ self hash asString ]);
 				  lf;
 				  tab;
-				  tab;
 				  nextPutAll: 'end';
 				  lf;
 				  cr;
@@ -91,9 +90,8 @@ FASTCFGAbstractBlock >> asMermaidScript [
 				  lf;
 				  tab;
 				  tab;
-				  nextPutAll: (nodesIDs at: (self allFollowingBlocks detect: #isFinal) ifAbsentPut: [ (self allFollowingBlocks detect: #isFinal) hash asString ]);
+				  nextPutAll: (nodesIDs at: (self withAllFollowingBlocks detect: #isFinal) ifAbsentPut: [ (self allFollowingBlocks detect: #isFinal) hash asString ]);
 				  lf;
-				  tab;
 				  tab;
 				  nextPutAll: 'end';
 				  lf;
@@ -235,7 +233,7 @@ FASTCFGAbstractBlock >> printMermaidOn: aStream ids: nodesIDs treatedBlocks: tre
 							 ifTrue: [ '(((' ]
 							 ifFalse: [ '(' ] ]);
 		nextPut: $";
-		nextPutAll: ('<br/>' join: self sourceCode lines);
+		nextPutAll: ('<br/>' join: (self sourceCode copyReplaceAll: '"' with: '&quot;') lines);
 		nextPutAll: ' "';
 		nextPutAll: (self isStart
 				 ifTrue: [ '}' ]
