@@ -1,1 +1,1 @@
-Package { #name : #'FAST-Core-Deprecated' }
+Package { #name : 'FAST-Core-Deprecated' }
