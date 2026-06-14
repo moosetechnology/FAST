@@ -32,6 +32,16 @@ FASTTEntity >> inspectionFASTDump: aBuilder [
 ]
 
 { #category : '*FAST-Core-Tools' }
+FASTTEntity >> isSameAsCFGCasePattern: aPattern [
+
+	aPattern ifNil: [ ^ false ].
+
+	aPattern isCollection ifTrue: [ ^ false ].
+
+	^ self sourceCode = aPattern sourceCode
+]
+
+{ #category : '*FAST-Core-Tools' }
 FASTTEntity >> localDeclaration [
 	^self
 		attributeAt: #localDeclaration
