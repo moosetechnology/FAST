@@ -10,12 +10,13 @@ Another requirement is that the FAST model should use some FAST traits:
 - `FASTTStatement`: Used to know what statements to save in the blocks
 - `FASTTBreakStatement` and `FASTTContinueStatement`: If the language supports break and continu in loops, they should use those traits
 - `FASTTConditionalStatement`: This one is used to declare that a condition should be added to the statements to build a block 
+- `FASTTReturnStatement`: This one is used to break the statement block containing it in case the language allows to have code after a return
 
 Those are the most common and generic traits of FAST. But it is not possible with the current FAST to produce a generic CFG build. The user will need to use my API to implement the visit of nodes such as if statement, loops, swtich, try/catch, conditional expressions.
 
-## How to use
+## Documentation
 
-This documentation will be done in the documentation of the repository. Check the resource folder in the git repository for the detailed documentation. An entry in the moose wiki is also available.
+You can find the documentation on how the project works and how to implement your own CFG visitor here: [https://modularmoose.org/developers/fast-cfg/](https://modularmoose.org/developers/fast-cfg/)
 
 ## Tests
 
