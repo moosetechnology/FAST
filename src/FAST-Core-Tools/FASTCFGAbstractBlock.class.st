@@ -119,14 +119,14 @@ FASTCFGAbstractBlock >> asMermaidScript [
 					  block nextBlockForValues do: [ :asso |
 							  aStream
 								  nextPutAll: (nodesIDs at: block);
-								  nextPutAll: ' --'.
+								  nextPutAll: ' -'.
 							  asso key asString ifNotEmpty: [
 									  aStream
-										  space;
+										  nextPutAll: '- ';
 										  nextPutAll: asso key asString capitalized;
-										  space ].
+										  nextPutAll: ' -' ].
 							  aStream
-								  nextPutAll: '--> ';
+								  nextPutAll: '-> ';
 								  nextPutAll: (nodesIDs at: asso value);
 								  lf;
 								  tab ] ] ]
