@@ -52,17 +52,36 @@ FASTTCFGUtility >> buildAndPushBlockOfType: aClass [
 	
 	Ideally I should only be used by FASTTCFGUtility>>#buildAndUse:during: so that the context get poped when needed. But in some cases it get useful for me to be used alone. For example, when implementing the CFG of an elif since the false branch of the elif is the next elif or else of the parent if, and not a child of the elif."
 
+	^ self buildAndPushBlockOfType: aClass usingContextClass: FASTCFGContextEntry
+]
+
+{ #category : 'running' }
+FASTTCFGUtility >> buildAndPushBlockOfType: aClass usingContextClass: aContextClass [
+	"I create a new block provided in parameter. It should be a conditional node.
+	I also need a context class to appropriately chain the blocks that will be generated as I process this conditional FAST node.
+	
+	Ideally I should only be used by FASTTCFGUtility>>#buildAndUse:during: so that the context get poped when needed. But in some cases it get useful for me to be used alone. For example, when implementing the CFG of an elif since the false branch of the elif is the next elif or else of the parent if, and not a child of the elif."
+
 	| block |
 	block := self buildBlockOfType: aClass.
-	context push: (FASTCFGContextEntry conditional: block).
+	context push: (aContextClass conditional: block).
 	^ block
 ]
 
 { #category : 'running' }
 FASTTCFGUtility >> buildAndUse: aClass during: aBlock [
 
+	^ self
+		  buildAndUse: aClass
+		  usingContextClass: FASTCFGContextEntry
+		  during: aBlock
+]
+
+{ #category : 'running' }
+FASTTCFGUtility >> buildAndUse: aClass usingContextClass: aContextClass during: aBlock [
+
 	| conditional |
-	conditional := self buildAndPushBlockOfType: aClass.
+	conditional := self buildAndPushBlockOfType: aClass usingContextClass: aContextClass.
 
 	aBlock cull: conditional.
 	
@@ -82,6 +101,16 @@ FASTTCFGUtility >> buildAndUseConditionalDuring: aBlock [
 ]
 
 { #category : 'running' }
+FASTTCFGUtility >> buildAndUseFallThroughSwitchDuring: aBlock [
+
+	^ self
+		  buildAndUse: FASTCFGSwitchBlock
+		  usingContextClass: FASTCFGFallThroughSwitchContextEntry
+		  during: [ :switch |
+				  aBlock cull: switch ]
+]
+
+{ #category : 'running' }
 FASTTCFGUtility >> buildAndUseLoopDuring: aBlock [
 	"For loops, we do an extra step compared to conditionals in order to build the loops if needed."
 
@@ -96,8 +125,7 @@ FASTTCFGUtility >> buildAndUseLoopDuring: aBlock [
 FASTTCFGUtility >> buildAndUseSwitchDuring: aBlock [
 
 	^ self buildAndUse: FASTCFGSwitchBlock during: [ :switch |
-			  aBlock cull: switch.
-			  switch isFull: true ]
+			  aBlock cull: switch ]
 ]
 
 { #category : 'running' }
