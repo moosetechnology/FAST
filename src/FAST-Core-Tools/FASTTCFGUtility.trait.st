@@ -101,6 +101,16 @@ FASTTCFGUtility >> buildAndUseConditionalDuring: aBlock [
 ]
 
 { #category : 'running' }
+FASTTCFGUtility >> buildAndUseFallThroughSwitchDuring: aBlock [
+
+	^ self
+		  buildAndUse: FASTCFGSwitchBlock
+		  usingContextClass: FASTCFGFallThroughSwitchContextEntry
+		  during: [ :switch |
+				  aBlock cull: switch ]
+]
+
+{ #category : 'running' }
 FASTTCFGUtility >> buildAndUseLoopDuring: aBlock [
 	"For loops, we do an extra step compared to conditionals in order to build the loops if needed."
 
@@ -115,8 +125,7 @@ FASTTCFGUtility >> buildAndUseLoopDuring: aBlock [
 FASTTCFGUtility >> buildAndUseSwitchDuring: aBlock [
 
 	^ self buildAndUse: FASTCFGSwitchBlock during: [ :switch |
-			  aBlock cull: switch.
-			  switch isFull: true ]
+			  aBlock cull: switch ]
 ]
 
 { #category : 'running' }
