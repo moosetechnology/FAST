@@ -52,6 +52,16 @@ FASTCFGAbstractMultipleConditionBlock >> initialize [
 	blocksMap := OrderedDictionary new
 ]
 
+{ #category : 'testing' }
+FASTCFGAbstractMultipleConditionBlock >> isFull [
+	"I am full when I have a branch pointing at what happens if no specific condition (exception or case) is met and this branch has a nil pattern."
+
+	^ blocksMap
+		  at: nil
+		  ifPresent: [ :value | value isNotNil ]
+		  ifAbsent: [ false ]
+]
+
 { #category : 'accessing' }
 FASTCFGAbstractMultipleConditionBlock >> nextBlockForValues [
 

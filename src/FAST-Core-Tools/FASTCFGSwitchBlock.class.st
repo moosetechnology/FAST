@@ -8,13 +8,23 @@ Then I associate the statement defining the case to the block executed if we sel
 Class {
 	#name : 'FASTCFGSwitchBlock',
 	#superclass : 'FASTCFGAbstractMultipleConditionBlock',
-	#instVars : [
-		'isFull'
-	],
 	#category : 'FAST-Core-Tools-CFG',
 	#package : 'FAST-Core-Tools',
 	#tag : 'CFG'
 }
+
+{ #category : 'adding' }
+FASTCFGSwitchBlock >> addNextBlock: aBlock [
+	"I either have the normal addNextBlock behaviour or I add the path where no case was validated during execution, and there is no default case."
+
+	| lastAssociation |
+	lastAssociation := blocksMap associations last.
+	lastAssociation value ifNil: [ ^ super addNextBlock: aBlock ].
+
+	self assert: (blocksMap includesKey: nil) not description: 'I should have no default case.'.
+
+	^ blocksMap at: nil put: aBlock
+]
 
 { #category : 'accessing' }
 FASTCFGSwitchBlock >> defaultCase [
@@ -26,25 +36,6 @@ FASTCFGSwitchBlock >> defaultCase [
 FASTCFGSwitchBlock >> includesPattern: aPattern [
 
 	^ self patterns anySatisfy: [ :pattern | pattern isSameAsCFGCasePattern: aPattern ]
-]
-
-{ #category : 'initialization' }
-FASTCFGSwitchBlock >> initialize [
-
-	super initialize.
-	isFull := false
-]
-
-{ #category : 'accessing' }
-FASTCFGSwitchBlock >> isFull [
-	"In the case of a switch, we cannot know with just the node so the algo will tell us when it is full at the closing of the switch.."
-
-	^ isFull
-]
-
-{ #category : 'accessing' }
-FASTCFGSwitchBlock >> isFull: anObject [
-	isFull := anObject
 ]
 
 { #category : 'testing' }
