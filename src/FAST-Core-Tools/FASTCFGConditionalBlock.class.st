@@ -19,6 +19,12 @@ Class {
 	#tag : 'CFG'
 }
 
+{ #category : 'visiting' }
+FASTCFGConditionalBlock >> accept: aVisitor [
+
+	^ aVisitor visitCFGConditionalBlock: self
+]
+
 { #category : 'adding' }
 FASTCFGConditionalBlock >> addNextBlock: aBlock [
 

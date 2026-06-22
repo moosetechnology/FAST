@@ -15,6 +15,12 @@ Class {
 	#tag : 'CFG'
 }
 
+{ #category : 'visiting' }
+FASTCFGTryBlock >> accept: aVisitor [
+
+	^ aVisitor visitCFGTryBlock: self
+]
+
 { #category : 'testing' }
 FASTCFGTryBlock >> isFull [
 	"I am full when I have a branch pointing what happens if there is no exception caught and this branch has a nil pattern."

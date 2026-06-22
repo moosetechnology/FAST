@@ -11,6 +11,12 @@ Class {
 	#tag : 'CFG'
 }
 
+{ #category : 'visiting' }
+FASTCFGNullBlock >> accept: aVisitor [
+
+	^ aVisitor visitCFGNullBlock: self
+]
+
 { #category : 'adding' }
 FASTCFGNullBlock >> addNextBlock: aBlock [
 

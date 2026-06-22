@@ -25,6 +25,12 @@ Class {
 	#tag : 'CFG'
 }
 
+{ #category : 'visiting' }
+FASTCFGAbstractBlock >> accept: aVisitor [
+
+	^ self subclassResponsibility
+]
+
 { #category : 'adding' }
 FASTCFGAbstractBlock >> addNextBlock: aBlock [
 
