@@ -3,10 +3,15 @@ Trait {
 	#instVars : [
 		'#cfgBuilder => FMProperty'
 	],
-	#category : 'FAST-Core-Model-Traits',
-	#package : 'FAST-Core-Model',
-	#tag : 'Traits'
+	#category : 'FAST-Core-Deprecated',
+	#package : 'FAST-Core-Deprecated'
 }
+
+{ #category : 'testing' }
+FASTTCFGVisitor classSide >> isDeprecated [
+
+	^ true
+]
 
 { #category : 'accessing' }
 FASTTCFGVisitor >> cfgBuilder [

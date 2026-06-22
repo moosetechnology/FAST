@@ -16,6 +16,12 @@ Class {
 	#tag : 'CFG'
 }
 
+{ #category : 'visiting' }
+FASTCFGSwitchBlock >> accept: aVisitor [
+
+	^ aVisitor visitCFGSwitchBlock: self
+]
+
 { #category : 'accessing' }
 FASTCFGSwitchBlock >> defaultCase [
 
