@@ -4,9 +4,8 @@ Class {
 	#instVars : [
 		'validator'
 	],
-	#category : 'FAST-Core-Tools-Validator',
-	#package : 'FAST-Core-Tools',
-	#tag : 'Validator'
+	#category : 'FAST-Core-Tools-Tests',
+	#package : 'FAST-Core-Tools-Tests'
 }
 
 { #category : 'running' }
