@@ -64,3 +64,22 @@ FASTTEntity >> localUses [
 FASTTEntity >> localUses: aCollection [
 	self attributeAt: #localUses put: aCollection 
 ]
+
+{ #category : '*FAST-Core-Tools' }
+FASTTEntity >> ssaName [
+
+	^ self ssaVersion name
+]
+
+{ #category : '*FAST-Core-Tools' }
+FASTTEntity >> ssaVersion [
+	"If I represent a variable and we resolved the SSA of my FAST model, I'll return the SSA version I'm linked to."
+
+	^ self attributeAt: #ssaVersion ifAbsent: [ nil ]
+]
+
+{ #category : '*FAST-Core-Tools' }
+FASTTEntity >> ssaVersion: aSSAVersion [
+
+	self attributeAt: #ssaVersion put: aSSAVersion
+]
