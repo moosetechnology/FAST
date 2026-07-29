@@ -11,6 +11,12 @@ Trait {
 }
 
 { #category : 'visiting' }
+FASTCFGTVisitor >> visit: aCFGBlockOrFASTEntity [
+
+	^ aCFGBlockOrFASTEntity ifNotNil: [ aCFGBlockOrFASTEntity accept: self ]
+]
+
+{ #category : 'visiting' }
 FASTCFGTVisitor >> visitCFGAbstractBlock: aBlock [
 	"Any block visit their statements."
 

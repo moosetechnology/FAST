@@ -14,6 +14,13 @@ Class {
 	#tag : 'Resolver'
 }
 
+{ #category : 'accessing' }
+FASTNonLocalDeclaration >> activeVersion [
+	"Used for LocalResolver"
+
+	^ self localUses first activeVersion
+]
+
 { #category : 'testing' }
 FASTNonLocalDeclaration >> isNonLocalDeclaration [
 
