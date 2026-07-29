@@ -1,15 +1,30 @@
 Extension { #name : 'FASTTEntity' }
 
 { #category : '*FAST-Core-Tools' }
+FASTTEntity >> activeVersion [
+	"Used for SSA"
+
+	^ self attributeAt: #activeVersion ifAbsent: [ nil ]
+]
+
+{ #category : '*FAST-Core-Tools' }
+FASTTEntity >> activeVersion: aSSAVersion [
+	"Used for SSA"
+
+	^ self attributeAt: #activeVersion put: aSSAVersion
+]
+
+{ #category : '*FAST-Core-Tools' }
 FASTTEntity >> addLocalUse: aFASTNode [
-	(self
-		attributeAt: #localUses
-		ifAbsent: [ Error signal: 'missing #localUses attribute in ' , self asString ])
-		add: aFASTNode
+	"Used for LocalResolver"
+
+	(self attributeAt: #localUses ifAbsent: [ Error signal: 'missing #localUses attribute in ' , self asString ]) add: aFASTNode
 ]
 
 { #category : '*FAST-Core-Tools' }
 FASTTEntity >> clearLocalUses [
+	"Used for LocalResolver"
+
 	self attributeAt: #localUses put: OrderedCollection new
 ]
 
@@ -19,6 +34,15 @@ FASTTEntity >> dump [
 	"Generate an expression that recreates the receiver"
 
 	^ FASTDumpVisitor visit: self
+]
+
+{ #category : '*FAST-Core-Tools' }
+FASTTEntity >> hasLocalDeclaration [
+	"Used for LocalResolver"
+
+	self attributeAt: #localDeclaration ifAbsent: [ ^ false ].
+
+	^ true
 ]
 
 { #category : '*FAST-Core-Tools' }
@@ -43,30 +67,44 @@ FASTTEntity >> isSameAsCFGCasePattern: aPattern [
 
 { #category : '*FAST-Core-Tools' }
 FASTTEntity >> localDeclaration [
-	^self
-		attributeAt: #localDeclaration
-		ifAbsent: [ Error signal: 'missing #localDeclaration attribute in ' , self asString ]
+	"Used for LocalResolver"
+
+	^ self attributeAt: #localDeclaration ifAbsent: [ Error signal: 'missing #localDeclaration attribute in ' , self asString ]
 ]
 
 { #category : '*FAST-Core-Tools' }
 FASTTEntity >> localDeclaration: aDeclarationNode [
+	"Used for LocalResolver"
+
 	self attributeAt: #localDeclaration put: aDeclarationNode
 ]
 
 { #category : '*FAST-Core-Tools' }
 FASTTEntity >> localUses [
-	^self
-		attributeAt: #localUses
-		ifAbsent: [ Error signal: 'missing #localUses attribute in ' , self asString ]
+	"Used for LocalResolver"
+
+	^ self attributeAt: #localUses ifAbsent: [ Error signal: 'missing #localUses attribute in ' , self asString ]
 ]
 
 { #category : '*FAST-Core-Tools' }
 FASTTEntity >> localUses: aCollection [
-	self attributeAt: #localUses put: aCollection 
+	"Used for LocalResolver"
+
+	self attributeAt: #localUses put: aCollection
+]
+
+{ #category : '*FAST-Core-Tools' }
+FASTTEntity >> newVersionNumber [
+	"Used for SSA"
+
+	^ self activeVersion
+		  ifNil: [ 0 ]
+		  ifNotNil: [ :active | active version + 1 ]
 ]
 
 { #category : '*FAST-Core-Tools' }
 FASTTEntity >> ssaName [
+	"Used for SSA"
 
 	^ self ssaVersion name
 ]
@@ -80,6 +118,7 @@ FASTTEntity >> ssaVersion [
 
 { #category : '*FAST-Core-Tools' }
 FASTTEntity >> ssaVersion: aSSAVersion [
+	"Used for SSA"
 
 	self attributeAt: #ssaVersion put: aSSAVersion
 ]
