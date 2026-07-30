@@ -2,9 +2,14 @@
 I am a trait to introduce the capability to visit a Control Flow Graph. 
 
 The visitor using me also need to use a visitor for the language of the CFG. For example, for Python, the visitor will need to use me and FASTTPythonVisitor. 
+
+In case of loops, I'll visit the next blocks only once.
 "
 Trait {
 	#name : 'FASTCFGTVisitor',
+	#instVars : [
+		'visitedBlocks'
+	],
 	#category : 'FAST-Core-Tools-CFG',
 	#package : 'FAST-Core-Tools',
 	#tag : 'CFG'
@@ -18,10 +23,12 @@ FASTCFGTVisitor >> visit: aCFGBlockOrFASTEntity [
 
 { #category : 'visiting' }
 FASTCFGTVisitor >> visitCFGAbstractBlock: aBlock [
-	"Any block visit their statements."
+	"Any block visit their statements and next block if this was not done already (this can happen with loop blocks)."
+
+	self visitedBlocks add: aBlock.
 
 	aBlock statements do: [ :statement | statement accept: self ].
-	aBlock nextBlocks do: [ :bloc | bloc accept: self ]
+	aBlock nextBlocks do: [ :block | (self visitedBlocks includes: block) ifFalse: [ block accept: self ] ]
 ]
 
 { #category : 'visiting' }
@@ -69,4 +76,10 @@ FASTCFGTVisitor >> visitCFGSwitchBlock: aBlock [
 FASTCFGTVisitor >> visitCFGTryBlock: aBlock [
 
 	self visitCFGAbstractMultipleConditionalBlock: aBlock
+]
+
+{ #category : 'accessing' }
+FASTCFGTVisitor >> visitedBlocks [
+
+	^ visitedBlocks ifNil: [ visitedBlocks := IdentitySet new ]
 ]
