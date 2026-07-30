@@ -68,8 +68,7 @@ FASTTEntity >> inspectionFASTSourceCode: aBuilder [
 
 	<inspectorPresentationOrder: 1.2 title: 'FASTSourceCode'>
 	| hasSource sourceText |
-	(hasSource := self sourceText isNotEmpty and: [
-		              self startPos isNotNil and: [ self endPos isNotNil ] ])
+	(hasSource := self sourceText isNotEmpty and: [ self startPos isNotNil and: [ self endPos isNotNil ] ])
 		ifFalse: [ "try to export source code"
 				self asSourceCode
 					ifNil: [
@@ -77,16 +76,21 @@ FASTTEntity >> inspectionFASTSourceCode: aBuilder [
 								  text: 'Not available';
 								  yourself ]
 					ifNotNil: [ :code | sourceText := Text fromString: code ] ]
-		ifTrue: [
-				sourceText := self mooseModel fastHighligther new highlight:
-					              self rootNode ].
-	^ aBuilder newMorph morph: (RubScrolledTextMorph new
-			   setText: sourceText;
-			   in: [ :this |
-					   this textArea readOnly: true.
-					   hasSource ifTrue: [
-							   this selectionInterval: (self startPos to: self endPos) ] ];
-			   yourself)
+		ifTrue: [ sourceText := self mooseModel fastHighligther new highlight: self rootNode ].
+
+	^ aBuilder newCode
+		  withoutSyntaxHighlight;
+		  withLineNumbers;
+		  text: sourceText;
+		  beNotEditable;
+		  in: [ :this |
+				  hasSource ifTrue: [
+							  this
+								  addTextSegmentDecoration: (SpTextPresenterDecorator forHighlight
+										   interval: (self startPos to: self endPos + 1);
+										   yourself);
+								  selectionInterval: (self startPos to: self endPos + 1) ] ];
+		  yourself
 ]
 
 { #category : '*FAST-Core-Model-Extension' }
