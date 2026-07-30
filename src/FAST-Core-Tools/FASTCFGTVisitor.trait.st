@@ -25,7 +25,7 @@ FASTCFGTVisitor >> visit: aCFGBlockOrFASTEntity [
 FASTCFGTVisitor >> visitCFGAbstractBlock: aBlock [
 	"Any block visit their statements and next block if this was not done already (this can happen with loop blocks)."
 
-	self visitedBlocks add: self.
+	self visitedBlocks add: aBlock.
 
 	aBlock statements do: [ :statement | statement accept: self ].
 	aBlock nextBlocks do: [ :block | (self visitedBlocks includes: block) ifFalse: [ block accept: self ] ]
