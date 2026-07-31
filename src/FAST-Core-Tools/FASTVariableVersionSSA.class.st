@@ -1,22 +1,13 @@
 Class {
 	#name : 'FASTVariableVersionSSA',
-	#superclass : 'Object',
+	#superclass : 'FASTAbstractVariableVersionSSA',
 	#instVars : [
-		'version',
-		'localDeclaration'
+		'version'
 	],
 	#category : 'FAST-Core-Tools-SSA',
 	#package : 'FAST-Core-Tools',
 	#tag : 'SSA'
 }
-
-{ #category : 'instance creation' }
-FASTVariableVersionSSA class >> for: aFASTFortranVariable [
-
-	^self new
-		for: aFASTFortranVariable ;
-		yourself
-]
 
 { #category : 'adding' }
 FASTVariableVersionSSA >> addChoiceToPhi: aPhiVersion [
@@ -25,9 +16,15 @@ FASTVariableVersionSSA >> addChoiceToPhi: aPhiVersion [
 ]
 
 { #category : 'instance creation' }
-FASTVariableVersionSSA >> for: aFASTFortranVariable [
+FASTVariableVersionSSA >> for: aFASTNode [
 
-	localDeclaration := aFASTFortranVariable localDeclaration.
+	localDeclaration := aFASTNode localDeclaration.
+]
+
+{ #category : 'testing' }
+FASTVariableVersionSSA >> includes: aSSAVersion [
+
+	^ self = aSSAVersion
 ]
 
 { #category : 'initialization' }
@@ -39,31 +36,30 @@ FASTVariableVersionSSA >> initialize [
 ]
 
 { #category : 'accessing' }
-FASTVariableVersionSSA >> localDeclaration [
-
-	^localDeclaration
-]
-
-{ #category : 'accessing' }
-FASTVariableVersionSSA >> localDeclaration: anObject [
-
-	localDeclaration := anObject
-]
-
-{ #category : 'accessing' }
 FASTVariableVersionSSA >> name [
 
 	^ String streamContents: [ :s |
-			s
-				nextPutAll: localDeclaration localDeclarationName;
-				nextPut: $_;
-				nextPutAll: version asString ]
+			  s
+				  nextPutAll: self localDeclarationName;
+				  nextPut: $_;
+				  nextPutAll: version asString ]
 ]
 
 { #category : 'instance creation' }
 FASTVariableVersionSSA >> newVersionNumber [
 
-	^version := version + 1
+	^ version := version + 1
+]
+
+{ #category : 'printing' }
+FASTVariableVersionSSA >> printOn: aStream [
+	"Generate a string representation of the receiver based on its instance variables."
+
+	super printOn: aStream.
+	aStream
+		nextPutAll: ' [';
+		print: self name;
+		nextPut: $]
 ]
 
 { #category : 'testing' }
