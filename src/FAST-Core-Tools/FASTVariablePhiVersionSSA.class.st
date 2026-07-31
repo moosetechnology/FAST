@@ -1,6 +1,6 @@
 Class {
 	#name : 'FASTVariablePhiVersionSSA',
-	#superclass : 'FASTVariableVersionSSA',
+	#superclass : 'FASTAbstractVariableVersionSSA',
 	#instVars : [
 		'choices'
 	],
@@ -25,29 +25,27 @@ FASTVariablePhiVersionSSA >> choices [
 FASTVariablePhiVersionSSA >> for: aCollection [
 
 	localDeclaration := aCollection anyOne localDeclaration.
-	version := nil.
 
 	choices := OrderedCollection new.
 	aCollection do: [ :v | v addChoiceToPhi: self ]
+]
 
+{ #category : 'testing' }
+FASTVariablePhiVersionSSA >> includes: aSSAVersion [
+
+	^ self choices includes: aSSAVersion
 ]
 
 { #category : 'accessing' }
 FASTVariablePhiVersionSSA >> name [
 
-	^'phi(' ,
-	($, join: (choices collect: #name)) ,
-	')'
+	^ 'phi(' , ($, join: (choices collect: #name)) , ')'
 ]
 
 { #category : 'accessing' }
 FASTVariablePhiVersionSSA >> version [
 
-	^(choices collect: #version) max
-]
-
-{ #category : 'accessing' }
-FASTVariablePhiVersionSSA >> version: anObject [
-
-	self shouldNotImplement
+	self deprecated:
+		'It does not really makes sense to have a version for a Phi version. I propose to remove it once Fortran and Java SSA will not use this anymore.'.
+	^ (choices collect: #version) max
 ]
