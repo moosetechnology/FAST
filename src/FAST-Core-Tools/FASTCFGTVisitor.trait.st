@@ -18,6 +18,7 @@ Trait {
 { #category : 'visiting' }
 FASTCFGTVisitor >> visit: aCFGBlockOrFASTEntity [
 
+	(self visitedBlocks includes: aCFGBlockOrFASTEntity) ifTrue: [ ^ self ]. "Breaking the visit if it was already visited"
 	^ aCFGBlockOrFASTEntity ifNotNil: [ aCFGBlockOrFASTEntity accept: self ]
 ]
 
@@ -26,15 +27,16 @@ FASTCFGTVisitor >> visitCFGAbstractBlock: aBlock [
 	"Any block visit their statements and next block if this was not done already (this can happen with loop blocks)."
 
 	self visitedBlocks add: aBlock.
-
-	aBlock statements do: [ :statement | statement accept: self ].
-	aBlock nextBlocks do: [ :block | (self visitedBlocks includes: block) ifFalse: [ block accept: self ] ]
+	aBlock statements do: [ :statement | statement accept: self ]
 ]
 
 { #category : 'visiting' }
 FASTCFGTVisitor >> visitCFGAbstractConditionalBlock: aBlock [
 
-	self visitCFGAbstractBlock: aBlock
+	self visitCFGAbstractBlock: aBlock.
+
+	self flag: #todo. "We should change the order of the visit to visit all the blocks of the conditional before the ones after the conditional."
+	aBlock nextBlocks do: [ :block | self visit: block ]
 ]
 
 { #category : 'visiting' }
@@ -51,7 +53,9 @@ FASTCFGTVisitor >> visitCFGAbstractMultipleConditionalBlock: aBlock [
 { #category : 'visiting' }
 FASTCFGTVisitor >> visitCFGBlock: aBlock [
 
-	self visitCFGAbstractBlock: aBlock
+	self visitCFGAbstractBlock: aBlock.
+
+	self visit: aBlock nextBlock
 ]
 
 { #category : 'visiting' }
