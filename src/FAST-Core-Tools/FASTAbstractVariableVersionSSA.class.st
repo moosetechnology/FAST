@@ -31,7 +31,13 @@ FASTAbstractVariableVersionSSA >> for: aCollection [
 { #category : 'testing' }
 FASTAbstractVariableVersionSSA >> includes: aSSAVersion [
 
-	^ self subclassResponsibility
+	^ self ssaVariables includes: aSSAVersion
+]
+
+{ #category : 'testing' }
+FASTAbstractVariableVersionSSA >> isPhi [
+
+	^ false
 ]
 
 { #category : 'accessing' }
@@ -60,5 +66,22 @@ FASTAbstractVariableVersionSSA >> localUses [
 
 { #category : 'accessing' }
 FASTAbstractVariableVersionSSA >> name [
+	^ self subclassResponsibility
+]
+
+{ #category : 'printing' }
+FASTAbstractVariableVersionSSA >> printOn: aStream [
+	"Generate a string representation of the receiver based on its instance variables."
+
+	super printOn: aStream.
+	aStream nextPutAll: ' ['.
+
+	self ssaVariables do: [ :variable | aStream print: variable name ] separatedBy: [ aStream nextPutAll: ', ' ].
+
+	aStream nextPut: $]
+]
+
+{ #category : 'accessing' }
+FASTAbstractVariableVersionSSA >> ssaVariables [
 	^ self subclassResponsibility
 ]

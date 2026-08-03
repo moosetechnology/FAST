@@ -31,15 +31,27 @@ FASTVariablePhiVersionSSA >> for: aCollection [
 ]
 
 { #category : 'testing' }
-FASTVariablePhiVersionSSA >> includes: aSSAVersion [
+FASTVariablePhiVersionSSA >> isPhi [
 
-	^ self choices includes: aSSAVersion
+	^ true
 ]
 
 { #category : 'accessing' }
 FASTVariablePhiVersionSSA >> name [
 
 	^ 'phi(' , ($, join: (choices collect: #name)) , ')'
+]
+
+{ #category : 'accessing' }
+FASTVariablePhiVersionSSA >> numberOfPossibleVariables [
+
+	^ choices size
+]
+
+{ #category : 'accessing' }
+FASTVariablePhiVersionSSA >> ssaVariables [
+
+	^ choices
 ]
 
 { #category : 'accessing' }
