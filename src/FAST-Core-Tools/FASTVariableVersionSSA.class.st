@@ -21,12 +21,6 @@ FASTVariableVersionSSA >> for: aFASTNode [
 	localDeclaration := aFASTNode localDeclaration.
 ]
 
-{ #category : 'testing' }
-FASTVariableVersionSSA >> includes: aSSAVersion [
-
-	^ self = aSSAVersion
-]
-
 { #category : 'initialization' }
 FASTVariableVersionSSA >> initialize [
 
@@ -51,21 +45,16 @@ FASTVariableVersionSSA >> newVersionNumber [
 	^ version := version + 1
 ]
 
-{ #category : 'printing' }
-FASTVariableVersionSSA >> printOn: aStream [
-	"Generate a string representation of the receiver based on its instance variables."
-
-	super printOn: aStream.
-	aStream
-		nextPutAll: ' [';
-		print: self name;
-		nextPut: $]
-]
-
 { #category : 'testing' }
 FASTVariableVersionSSA >> sameVariableAs: otherFASTFortranVariable [
 
 	^self localDeclaration = otherFASTFortranVariable localDeclaration 
+]
+
+{ #category : 'accessing' }
+FASTVariableVersionSSA >> ssaVariables [
+
+	^ { self }
 ]
 
 { #category : 'accessing' }
