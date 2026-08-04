@@ -35,6 +35,7 @@ FASTCFGAbstractMultipleConditionBlock >> addNextBlock: aBlock [
 	lastAssociation := blocksMap associations last.
 	self assert: lastAssociation value isNil description: 'My last pattern should be associated to nil since it should not have a value yet.'.
 
+	aBlock addPreviousBlock: self.
 	^ blocksMap at: lastAssociation key put: aBlock
 ]
 
