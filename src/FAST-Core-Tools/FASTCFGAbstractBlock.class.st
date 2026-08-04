@@ -61,6 +61,12 @@ FASTCFGAbstractBlock >> allFollowingBlocks [
 	^ self deep: #nextBlocks collect: #yourself
 ]
 
+{ #category : 'accessing' }
+FASTCFGAbstractBlock >> allPreviousBlocks [
+
+	^ self deep: #previousBlocks collect: #yourself
+]
+
 { #category : 'mermaid' }
 FASTCFGAbstractBlock >> asMermaidScript [
 	"I genrerate a mermaid script to display the flowchart"
