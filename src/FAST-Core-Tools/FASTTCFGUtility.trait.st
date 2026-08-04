@@ -27,7 +27,8 @@ Trait {
 	#instVars : [
 		'startBlock',
 		'currentStatements',
-		'context'
+		'context',
+		'conditionalsToMerge'
 	],
 	#category : 'FAST-Core-Tools-CFG',
 	#package : 'FAST-Core-Tools',
@@ -65,13 +66,14 @@ FASTTCFGUtility >> buildAndUse: aClass during: aBlock [
 	conditional := self buildAndPushBlockOfType: aClass.
 
 	aBlock cull: conditional.
-	
+
 	"Sometimes it is possible that we will need to pop multiple conditionals. 
 	For example, in the case of elif. Usually the elif contains the `then` block but not the `else`. The else will be either the next elif, or next else or next block after the if.
 	In that case, #buildNewConditional allows to push conditional blocks that I will clause with the containing conditional here. "
 	[ conditional == self currentConditional ] whileFalse: [ context pop ].
 
 	context pop.
+	conditionalsToMerge add: conditional. "We mark this conditional block as ready to get its merge block when we will create the next block."
 	^ conditional
 ]
 
@@ -185,11 +187,22 @@ FASTTCFGUtility >> finializeLoop [
 		thenDo: [ :block | block addNextBlock: self currentConditional ]
 ]
 
+{ #category : 'running' }
+FASTTCFGUtility >> handlePossibleMergPointsTo: newBlock [
+	"If we have conditional blocks that do not have their merge block yet and that are present in the previous blocks of the new block, we set the new block is the merge block of the conditional."
+
+	conditionalsToMerge reverseDo: [ :conditional |
+			(newBlock allPreviousBlocks includes: conditional) ifTrue: [
+					conditional mergeBlock: newBlock.
+					conditionalsToMerge remove: conditional ] ]
+]
+
 { #category : 'initialization' }
 FASTTCFGUtility >> initializeCFG [
 
 	context := Stack new.
-	currentStatements := OrderedCollection new
+	currentStatements := OrderedCollection new.
+	conditionalsToMerge := OrderedCollection new
 ]
 
 { #category : 'running' }
@@ -201,10 +214,12 @@ FASTTCFGUtility >> managePreviousBlocksOf: newBlock [
 			newBlock isStart: true.
 			^ self ].
 
-	context top currentBlocks ifEmpty: [  context top addNextBlock: newBlock ] ifNotEmpty: [ :blocksAtScope |
+	context top currentBlocks ifEmpty: [ context top addNextBlock: newBlock ] ifNotEmpty: [ :blocksAtScope |
 			(blocksAtScope flatCollectAsSet: #withAllFollowingBlocks)
 				reject: [ :block | block isFull or: [ block shouldBreakOrContinueInContext: context ] ]
-				thenDo: [ :block | block addNextBlock: newBlock ] ]
+				thenDo: [ :block |
+						block addNextBlock: newBlock.
+						self handlePossibleMergPointsTo: newBlock ] ]
 ]
 
 { #category : 'asserting' }
