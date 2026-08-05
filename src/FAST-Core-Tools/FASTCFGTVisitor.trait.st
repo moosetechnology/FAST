@@ -8,17 +8,53 @@ In case of loops, I'll visit the next blocks only once.
 Trait {
 	#name : 'FASTCFGTVisitor',
 	#instVars : [
-		'visitedBlocks'
+		'visitedBlocks',
+		'stoppingBlocks'
 	],
 	#category : 'FAST-Core-Tools-CFG',
 	#package : 'FAST-Core-Tools',
 	#tag : 'CFG'
 }
 
+{ #category : 'hooks' }
+FASTCFGTVisitor >> postConditonalsBranchVisitOf: firstBranchBlock conditional: aConditionalBlock [
+	"No-op - hook"
+
+	
+]
+
+{ #category : 'hooks' }
+FASTCFGTVisitor >> postConditonalsBranchesVisitOf: aConditionalBlock [
+	"No-op - hook"
+
+	
+]
+
+{ #category : 'hooks' }
+FASTCFGTVisitor >> preConditonalsBranchVisitOf: firstBranchBlock conditional: aConditionalBlock [
+	"No-op - hook"
+
+	
+]
+
+{ #category : 'hooks' }
+FASTCFGTVisitor >> preConditonalsBranchesVisitOf: aConditionalBlock [
+	"No-op - hook"
+
+	
+]
+
+{ #category : 'accessing' }
+FASTCFGTVisitor >> stoppingBlocks [
+
+	^ stoppingBlocks ifNil: [ stoppingBlocks := OrderedCollection new ]
+]
+
 { #category : 'visiting' }
 FASTCFGTVisitor >> visit: aCFGBlockOrFASTEntity [
 
 	(self visitedBlocks includes: aCFGBlockOrFASTEntity) ifTrue: [ ^ self ]. "Breaking the visit if it was already visited"
+	(self stoppingBlocks includes: aCFGBlockOrFASTEntity) ifTrue: [ ^ self ]. "When visiting conditionals, we want to visit all the blocks of the conditional before visiting the following blocks. I am here to skip the visit of the following blocks while the conditional is not done. Then the conditional will start again the visit from its merge block."
 	^ aCFGBlockOrFASTEntity ifNotNil: [ aCFGBlockOrFASTEntity accept: self ]
 ]
 
@@ -33,10 +69,20 @@ FASTCFGTVisitor >> visitCFGAbstractBlock: aBlock [
 { #category : 'visiting' }
 FASTCFGTVisitor >> visitCFGAbstractConditionalBlock: aBlock [
 
+	| mergeBlock |
 	self visitCFGAbstractBlock: aBlock.
 
-	self flag: #todo. "We should change the order of the visit to visit all the blocks of the conditional before the ones after the conditional."
-	aBlock nextBlocks do: [ :block | self visit: block ]
+	self preConditonalsBranchesVisitOf: aBlock.
+	self stoppingBlocks add: (mergeBlock := aBlock mergeBlock).
+
+	aBlock nextBlocks do: [ :block |
+			self preConditonalsBranchVisitOf: block conditional: aBlock.
+			self visit: block.
+			self postConditonalsBranchVisitOf: block conditional: aBlock ].
+
+	self stoppingBlocks remove: mergeBlock.
+	self postConditonalsBranchesVisitOf: aBlock.
+	self visit: mergeBlock
 ]
 
 { #category : 'visiting' }
