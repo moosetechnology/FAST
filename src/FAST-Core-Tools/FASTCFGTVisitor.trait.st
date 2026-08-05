@@ -91,7 +91,9 @@ FASTCFGTVisitor >> visitCFGAbstractMultipleConditionalBlock: aBlock [
 	aBlock patterns do: [ :pattern |
 			pattern isCollection
 				ifTrue: [ pattern do: [ :statement | statement accept: self ] ]
-				ifFalse: [ pattern accept: self ] ].
+				ifFalse: [ 
+				"We do a nil check because if we have a default case, the pattern will be nil"
+				pattern ifNotNil: [ self visit: pattern ] ] ].
 
 	self visitCFGAbstractConditionalBlock: aBlock
 ]
