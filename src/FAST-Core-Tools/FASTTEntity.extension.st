@@ -66,6 +66,13 @@ FASTTEntity >> isSameAsCFGCasePattern: aPattern [
 ]
 
 { #category : '*FAST-Core-Tools' }
+FASTTEntity >> isVariableWriteAccess [
+	"I should be implemented in order to have the SSA working well. I should return false for most nodes, and return true if I represent a node that is a write access for a variable."
+
+	^ self explicitRequirement
+]
+
+{ #category : '*FAST-Core-Tools' }
 FASTTEntity >> localDeclaration [
 	"Used for LocalResolver"
 
@@ -103,6 +110,15 @@ FASTTEntity >> newVersionNumber [
 ]
 
 { #category : '*FAST-Core-Tools' }
+FASTTEntity >> readAccesses [
+
+	| uses |
+	uses := self attributeAt: #localUses ifAbsent: [ Error signal: 'No local resolution done.' ].
+
+	^ uses reject: #isVariableWriteAccess
+]
+
+{ #category : '*FAST-Core-Tools' }
 FASTTEntity >> ssaName [
 	"Used for SSA"
 
@@ -121,4 +137,13 @@ FASTTEntity >> ssaVersion: aSSAVersion [
 	"Used for SSA"
 
 	self attributeAt: #ssaVersion put: aSSAVersion
+]
+
+{ #category : '*FAST-Core-Tools' }
+FASTTEntity >> writeAccesses [
+
+	| uses |
+	uses := self attributeAt: #localUses ifAbsent: [ Error signal: 'No local resolution done.' ].
+
+	^ uses select: #isVariableWriteAccess
 ]

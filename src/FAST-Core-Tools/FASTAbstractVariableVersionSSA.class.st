@@ -35,6 +35,12 @@ FASTAbstractVariableVersionSSA >> includes: aSSAVersion [
 ]
 
 { #category : 'testing' }
+FASTAbstractVariableVersionSSA >> includesVersionOrPhi: aSSAVersionOrPhi [
+
+	^ aSSAVersionOrPhi ssaVariables anySatisfy: [ :variable | self includes: variable ]
+]
+
+{ #category : 'testing' }
 FASTAbstractVariableVersionSSA >> isPhi [
 
 	^ false
@@ -61,7 +67,7 @@ FASTAbstractVariableVersionSSA >> localDeclarationName [
 { #category : 'accessing' }
 FASTAbstractVariableVersionSSA >> localUses [
 
-	^ self localDeclaration localUses select: [ :access | access ssaVersion includes: self ]
+	^ self localDeclaration localUses select: [ :access | access ssaVersion includesVersionOrPhi: self ]
 ]
 
 { #category : 'accessing' }
@@ -82,6 +88,18 @@ FASTAbstractVariableVersionSSA >> printOn: aStream [
 ]
 
 { #category : 'accessing' }
+FASTAbstractVariableVersionSSA >> readAccesses [
+
+	^ self localUses reject: [ :access | access isVariableWriteAccess ]
+]
+
+{ #category : 'accessing' }
 FASTAbstractVariableVersionSSA >> ssaVariables [
 	^ self subclassResponsibility
+]
+
+{ #category : 'accessing' }
+FASTAbstractVariableVersionSSA >> writeAccesses [
+
+	^ self localUses select: [ :access | access isVariableWriteAccess ]
 ]
