@@ -22,6 +22,50 @@ FASTTEntity >> addLocalUse: aFASTNode [
 ]
 
 { #category : '*FAST-Core-Tools' }
+FASTTEntity >> allAccesses [
+	"For a specific variable, I return all the read and write accesses to the variable.
+	
+	Note that the receiver should be a node representing a variable for it to work."
+
+	^ self localDeclaration localUses
+]
+
+{ #category : '*FAST-Core-Tools' }
+FASTTEntity >> allReadAccesses [
+	"For a specific variable, I return all the read accesses to the variable.
+	
+	Note that the receiver should be a node representing a variable for it to work."
+
+	^ self localDeclaration localUses reject: [ :access | access isVariableWriteAccess ]
+]
+
+{ #category : '*FAST-Core-Tools' }
+FASTTEntity >> allWriteAccesses [
+	"For a specific variable, I return all the write accesses to the variable.
+	
+	Note that the receiver should be a node representing a variable for it to work."
+
+	^ self localDeclaration localUses select: [ :access | access isVariableWriteAccess ]
+]
+
+{ #category : '*FAST-Core-Tools' }
+FASTTEntity >> assignedExpressions [
+	"If I am a node representing an assignment (can be a for each for example), return the expressions used for the assignment. Else return an empty collection"
+
+	^ self explicitRequirement
+]
+
+{ #category : '*FAST-Core-Tools' }
+FASTTEntity >> assignedExpressionsMap [
+
+	| result |
+	result := Dictionary new.
+
+	self versionWriteAccesses do: [ :access | result at: access put: access variableDeclarator assignedExpressions ].
+	^ result
+]
+
+{ #category : '*FAST-Core-Tools' }
 FASTTEntity >> clearLocalUses [
 	"Used for LocalResolver"
 
@@ -40,9 +84,7 @@ FASTTEntity >> dump [
 FASTTEntity >> hasLocalDeclaration [
 	"Used for LocalResolver"
 
-	self attributeAt: #localDeclaration ifAbsent: [ ^ false ].
-
-	^ true
+	^ self localDeclarationifPresent: [ true ] ifAbsent: [ false ]
 ]
 
 { #category : '*FAST-Core-Tools' }
@@ -76,7 +118,11 @@ FASTTEntity >> isVariableWriteAccess [
 FASTTEntity >> localDeclaration [
 	"Used for LocalResolver"
 
-	^ self attributeAt: #localDeclaration ifAbsent: [ Error signal: 'missing #localDeclaration attribute in ' , self asString ]
+	^ self localDeclarationIfAbsent: [
+			  self error: 'Missing #localDeclaration attribute in ' , self asString , '. It  can have multiple sources:
+- The local resolution was not done (launch the local resolver visitor or the SSA visitor on your top module)
+- The entity is not an entity with a definition
+- There is a bug in the local resolver' ]
 ]
 
 { #category : '*FAST-Core-Tools' }
@@ -84,6 +130,20 @@ FASTTEntity >> localDeclaration: aDeclarationNode [
 	"Used for LocalResolver"
 
 	self attributeAt: #localDeclaration put: aDeclarationNode
+]
+
+{ #category : '*FAST-Core-Tools' }
+FASTTEntity >> localDeclarationIfAbsent: aBlock [
+	"Used for LocalResolver"
+
+	^ self attributeAt: #localDeclaration ifAbsent: aBlock
+]
+
+{ #category : '*FAST-Core-Tools' }
+FASTTEntity >> localDeclarationifPresent: aBlock ifAbsent: anotherBlock [
+	"Used for LocalResolver"
+
+	^ aBlock cull: (self attributeAt: #localDeclaration ifAbsent: anotherBlock)
 ]
 
 { #category : '*FAST-Core-Tools' }
@@ -110,15 +170,6 @@ FASTTEntity >> newVersionNumber [
 ]
 
 { #category : '*FAST-Core-Tools' }
-FASTTEntity >> readAccesses [
-
-	| uses |
-	uses := self attributeAt: #localUses ifAbsent: [ Error signal: 'No local resolution done.' ].
-
-	^ uses reject: #isVariableWriteAccess
-]
-
-{ #category : '*FAST-Core-Tools' }
 FASTTEntity >> ssaName [
 	"Used for SSA"
 
@@ -140,10 +191,47 @@ FASTTEntity >> ssaVersion: aSSAVersion [
 ]
 
 { #category : '*FAST-Core-Tools' }
-FASTTEntity >> writeAccesses [
+FASTTEntity >> variableDeclarator [
+	"If I am a node representing a write access, I should return the node assigning me. Else I return nil."
 
-	| uses |
-	uses := self attributeAt: #localUses ifAbsent: [ Error signal: 'No local resolution done.' ].
+	^ self explicitRequirement
+]
 
-	^ uses select: #isVariableWriteAccess
+{ #category : '*FAST-Core-Tools' }
+FASTTEntity >> versionAccesses [
+	"For a specific variable, I return all the read and write accesses to the current version of the variable.
+	
+	The current version match the current SSA version of the variable. It means that it ill ignore all read and write accesses that cannot impact the currently assigned variable (in case of assignemnts in a conditional, takes all possible versions).
+	
+	Note that the receiver should be a node representing a variable for it to work."
+
+	^ self ssaVersion
+		  ifNil: [
+				  self error: 'No SSA version available. Possible sources:
+	- You did not run the SSA resolver
+	- Your node is not representing a variable
+	- There is a bug in the SSA or Local resolver' ]
+		  ifNotNil: [ :version | version localUses ]
+]
+
+{ #category : '*FAST-Core-Tools' }
+FASTTEntity >> versionReadAccesses [
+	"For a specific variable, I return all the read accesses to the current version of the variable.
+	
+	The current version match the current SSA version of the variable. It means that it ill ignore all read and write accesses that cannot impact the currently assigned variable (in case of assignemnts in a conditional, takes all possible versions).
+	
+	Note that the receiver should be a node representing a variable for it to work."
+
+	^ self versionAccesses reject: #isVariableWriteAccess
+]
+
+{ #category : '*FAST-Core-Tools' }
+FASTTEntity >> versionWriteAccesses [
+	"For a specific variable, I return all the write accesses to the current version of the variable.
+	
+	The current version match the current SSA version of the variable. It means that it ill ignore all read and write accesses that cannot impact the currently assigned variable (in case of assignemnts in a conditional, takes all possible versions).
+	
+	Note that the receiver should be a node representing a variable for it to work."
+
+	^ self versionAccesses select: #isVariableWriteAccess
 ]
