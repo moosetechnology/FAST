@@ -87,9 +87,9 @@ FASTTEntity >> inspectionFASTSourceCode: aBuilder [
 				  hasSource ifTrue: [
 							  this
 								  addTextSegmentDecoration: (SpTextPresenterDecorator forHighlight
-										   interval: (self startPos to: self endPos + 1);
+										   interval: (self startPos to: self endPos);
 										   yourself);
-								  selectionInterval: (self startPos to: self endPos + 1) ] ];
+								  selectionInterval: (self startPos to: self endPos) ] ];
 		  yourself
 ]
 

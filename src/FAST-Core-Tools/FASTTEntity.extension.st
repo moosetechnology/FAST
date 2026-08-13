@@ -49,6 +49,23 @@ FASTTEntity >> allWriteAccesses [
 ]
 
 { #category : '*FAST-Core-Tools' }
+FASTTEntity >> assignedExpressions [
+	"If I am a node representing an assignment (can be a for each for example), return the expressions used for the assignment. Else return an empty collection"
+
+	^ self explicitRequirement
+]
+
+{ #category : '*FAST-Core-Tools' }
+FASTTEntity >> assignedExpressionsMap [
+
+	| result |
+	result := Dictionary new.
+
+	self versionWriteAccesses do: [ :access | result at: access put: access variableDeclarator assignedExpressions ].
+	^ result
+]
+
+{ #category : '*FAST-Core-Tools' }
 FASTTEntity >> clearLocalUses [
 	"Used for LocalResolver"
 
@@ -171,6 +188,13 @@ FASTTEntity >> ssaVersion: aSSAVersion [
 	"Used for SSA"
 
 	self attributeAt: #ssaVersion put: aSSAVersion
+]
+
+{ #category : '*FAST-Core-Tools' }
+FASTTEntity >> variableDeclarator [
+	"If I am a node representing a write access, I should return the node assigning me. Else I return nil."
+
+	^ self explicitRequirement
 ]
 
 { #category : '*FAST-Core-Tools' }
