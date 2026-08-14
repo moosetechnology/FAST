@@ -31,6 +31,16 @@ FASTTEntity >> allAccesses [
 ]
 
 { #category : '*FAST-Core-Tools' }
+FASTTEntity >> allAssignedExpressionsMap [
+
+	| result |
+	result := Dictionary new.
+
+	self allWriteAccesses do: [ :access | result at: access put: access variableDeclarator assignedExpressions ].
+	^ result
+]
+
+{ #category : '*FAST-Core-Tools' }
 FASTTEntity >> allReadAccesses [
 	"For a specific variable, I return all the read accesses to the variable.
 	
