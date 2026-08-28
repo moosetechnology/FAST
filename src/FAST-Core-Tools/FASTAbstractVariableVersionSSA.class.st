@@ -67,7 +67,7 @@ FASTAbstractVariableVersionSSA >> localDeclarationName [
 { #category : 'accessing' }
 FASTAbstractVariableVersionSSA >> localUses [
 
-	^ self localDeclaration localUses select: [ :access | access ssaVersion includesVersionOrPhi: self ]
+	^ self localDeclaration localUses select: [ :access | access ssaVersion isNotNil and: [ access ssaVersion includesVersionOrPhi: self ] ]
 ]
 
 { #category : 'accessing' }
