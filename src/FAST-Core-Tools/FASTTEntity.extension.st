@@ -31,16 +31,6 @@ FASTTEntity >> allAccesses [
 ]
 
 { #category : '*FAST-Core-Tools' }
-FASTTEntity >> allAssignedExpressionsMap [
-
-	| result |
-	result := Dictionary new.
-
-	self allWriteAccesses do: [ :access | result at: access put: access variableDeclarator assignedExpressions ].
-	^ result
-]
-
-{ #category : '*FAST-Core-Tools' }
 FASTTEntity >> allReadAccesses [
 	"For a specific variable, I return all the read accesses to the variable.
 	
@@ -118,10 +108,16 @@ FASTTEntity >> isSameAsCFGCasePattern: aPattern [
 ]
 
 { #category : '*FAST-Core-Tools' }
-FASTTEntity >> isVariableWriteAccess [
-	"I should be implemented in order to have the SSA working well. I should return false for most nodes, and return true if I represent a node that is a write access for a variable."
+FASTTEntity >> isVariableDeclaration [
 
-	^ self explicitRequirement
+	^ self isVariableWriteAccess
+]
+
+{ #category : '*FAST-Core-Tools' }
+FASTTEntity >> isVariableWriteAccess [
+	"I am used in the LR and SSA builder to know if I represent the assignment of a variable."
+
+	^ self variableDeclarator isNotNil
 ]
 
 { #category : '*FAST-Core-Tools' }
