@@ -17,28 +17,28 @@ Trait {
 }
 
 { #category : 'hooks' }
-FASTCFGTVisitor >> postConditonalsBranchVisitOf: firstBranchBlock conditional: aConditionalBlock [
+FASTCFGTVisitor >> postConditionalsBranchVisitOf: firstBranchBlock conditional: aConditionalBlock [
 	"No-op - hook"
 
 	
 ]
 
 { #category : 'hooks' }
-FASTCFGTVisitor >> postConditonalsBranchesVisitOf: aConditionalBlock [
+FASTCFGTVisitor >> postConditionalsBranchesVisitOf: aConditionalBlock [
 	"No-op - hook"
 
 	
 ]
 
 { #category : 'hooks' }
-FASTCFGTVisitor >> preConditonalsBranchVisitOf: firstBranchBlock conditional: aConditionalBlock [
+FASTCFGTVisitor >> preConditionalsBranchVisitOf: firstBranchBlock conditional: aConditionalBlock [
 	"No-op - hook"
 
 	
 ]
 
 { #category : 'hooks' }
-FASTCFGTVisitor >> preConditonalsBranchesVisitOf: aConditionalBlock [
+FASTCFGTVisitor >> preConditionalsBranchesVisitOf: aConditionalBlock [
 	"No-op - hook"
 
 	
@@ -72,16 +72,16 @@ FASTCFGTVisitor >> visitCFGAbstractConditionalBlock: aBlock [
 	| mergeBlock |
 	self visitCFGAbstractBlock: aBlock.
 
-	self preConditonalsBranchesVisitOf: aBlock.
+	self preConditionalsBranchesVisitOf: aBlock.
 	self stoppingBlocks add: (mergeBlock := aBlock mergeBlock).
 
 	aBlock nextBlocks do: [ :block |
-			self preConditonalsBranchVisitOf: block conditional: aBlock.
+			self preConditionalsBranchVisitOf: block conditional: aBlock.
 			self visit: block.
-			self postConditonalsBranchVisitOf: block conditional: aBlock ].
+			self postConditionalsBranchVisitOf: block conditional: aBlock ].
 
 	self stoppingBlocks remove: mergeBlock.
-	self postConditonalsBranchesVisitOf: aBlock.
+	self postConditionalsBranchesVisitOf: aBlock.
 	self visit: mergeBlock
 ]
 
