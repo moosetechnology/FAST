@@ -10,11 +10,6 @@ FASTTEntity >> asSourceCode [
 ]
 
 { #category : '*FAST-Core-Model-Extension' }
-FASTTEntity >> containers [
-	^ ((self class allDeclaredPropertiesIn: self metamodel) select: #isContainer thenCollect: [:childrenProperty | self perform: (childrenProperty implementingSelector)]) reject: #isNil
-]
-
-{ #category : '*FAST-Core-Model-Extension' }
 FASTTEntity >> currentParentSelector [
 	self parentSelectors do: [ :accessor | (self perform: accessor) ifNotNil: [ :r | ^ accessor ] ].
 	^ nil
@@ -100,7 +95,10 @@ FASTTEntity >> orderedChildren [
 
 { #category : '*FAST-Core-Model-Extension' }
 FASTTEntity >> parentNode [
-	^ self containers at: 1 ifAbsent: [ nil ] 
+
+	self containersDo: [ :container | ^ container ].
+
+	^ nil
 ]
 
 { #category : '*FAST-Core-Model-Extension' }

@@ -76,14 +76,29 @@ BaselineOfFAST >> ensureMoose12Compatibility [
 
 	(class includesSelector: #containersOfType:) ifFalse: [
 			'Ensuring compatibility methods' traceCr.
-			{ 'containersOfType: aType
+			
+			{
+
+'containersOfType: aType
 	"I am used to return all the first encountered entities at a given famix class scope that are up in the containment tree of the metamodel"
 
-	^ self query ancestors ofType: aType'. 'containedEntities
+	^ self query ancestors ofType: aType'.
+	
+'containedEntities
 
-	^ self children'. 'allContainedEntities
+	^ self children'.
+	
+'allContainedEntities
 
-	^ self allChildren' } do: [ :method | class compile: method classified: '*FAST-Moose12-Compatibility' ].
+	^ self allChildren'.
+	
+'containers
+
+	self parents'.
+	
+'containersDo: aBlock
+
+	self parentsDo: aBlock' } do: [ :method | class compile: method classified: '*FAST-Moose12-Compatibility' ].
 
 			MooseObject
 				compile: 'accept: aVisitor
