@@ -31,6 +31,14 @@ FASTTEntity >> display [
 ]
 
 { #category : '*FAST-Core-Model-Extension' }
+FASTTEntity >> endLine [
+
+	<FMProperty: #endLine type: #Number>
+	<FMComment: 'Number of the end line of this entity in the complete source'>
+	^ self cacheAt: #endLine ifAbsentPut: [ self sourceText lineNumberCorrespondingToIndex: self endPos ]
+]
+
+{ #category : '*FAST-Core-Model-Extension' }
 FASTTEntity >> exporterClassName [
 	"Should be redefined in concrete superclass (e.g. FASTJavaEntity) to answer the name of an exporter."
 
@@ -132,4 +140,12 @@ FASTTEntity >> sourceText [
 	^ (self containersOfType: FamixTHasImmediateSource)
 		  ifNotEmpty: [ :sources | sources anyOne sourceText ]
 		  ifEmpty: [ '' ]
+]
+
+{ #category : '*FAST-Core-Model-Extension' }
+FASTTEntity >> startLine [
+
+	<FMProperty: #startLine type: #Number>
+	<FMComment: 'Number of the start line of this entity in the complete source'>
+	^ self cacheAt: #startLine ifAbsentPut: [ self sourceText lineNumberCorrespondingToIndex: self startPos ]
 ]
