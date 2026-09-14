@@ -50,6 +50,7 @@ Trait {
 { #category : 'meta' }
 FASTTBinaryExpression classSide >> annotation [
 
+	<ignoreForCoverage>
 	<FMClass: #TBinaryExpression super: #Object>
 	<package: #'FAST-Core-Model'>
 	<generated>
@@ -58,6 +59,7 @@ FASTTBinaryExpression classSide >> annotation [
 { #category : 'testing' }
 FASTTBinaryExpression >> isBinaryExpression [
 
+	<ignoreForCoverage>
 	<generated>
 	^ true
 ]
@@ -66,6 +68,7 @@ FASTTBinaryExpression >> isBinaryExpression [
 FASTTBinaryExpression >> leftOperand [
 	"Relation named: #leftOperand type: #FASTTExpression opposite: #parentExpressionLeft"
 
+	<ignoreForCoverage>
 	<generated>
 	<FMComment: 'left part of a binary expression'>
 	^ leftOperand
@@ -74,6 +77,7 @@ FASTTBinaryExpression >> leftOperand [
 { #category : 'accessing' }
 FASTTBinaryExpression >> leftOperand: anObject [
 
+	<ignoreForCoverage>
 	<generated>
 	leftOperand := anObject
 ]
@@ -82,6 +86,7 @@ FASTTBinaryExpression >> leftOperand: anObject [
 FASTTBinaryExpression >> operator [
 
 	<FMProperty: #operator type: #String>
+	<ignoreForCoverage>
 	<generated>
 	<FMComment: 'Binary expression operator'>
 	^ operator
@@ -89,6 +94,7 @@ FASTTBinaryExpression >> operator [
 
 { #category : 'accessing' }
 FASTTBinaryExpression >> operator: anObject [
+	<ignoreForCoverage>
 	<generated>
 	operator := anObject
 ]
@@ -97,6 +103,7 @@ FASTTBinaryExpression >> operator: anObject [
 FASTTBinaryExpression >> rightOperand [
 	"Relation named: #rightOperand type: #FASTTExpression opposite: #parentExpressionRight"
 
+	<ignoreForCoverage>
 	<generated>
 	<FMComment: 'left part of the expression'>
 	^ rightOperand
@@ -105,6 +112,7 @@ FASTTBinaryExpression >> rightOperand [
 { #category : 'accessing' }
 FASTTBinaryExpression >> rightOperand: anObject [
 
+	<ignoreForCoverage>
 	<generated>
 	rightOperand := anObject
 ]

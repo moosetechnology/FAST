@@ -38,6 +38,7 @@ Trait {
 { #category : 'meta' }
 FASTTBehaviouralEntity classSide >> annotation [
 
+	<ignoreForCoverage>
 	<FMClass: #TBehaviouralEntity super: #Object>
 	<package: #'FAST-Core-Model'>
 	<generated>
@@ -46,6 +47,7 @@ FASTTBehaviouralEntity classSide >> annotation [
 { #category : 'testing' }
 FASTTBehaviouralEntity >> isBehaviouralEntity [
 
+	<ignoreForCoverage>
 	<generated>
 	^ true
 ]

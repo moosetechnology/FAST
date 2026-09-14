@@ -36,6 +36,7 @@ Trait {
 { #category : 'meta' }
 FASTTStatement classSide >> annotation [
 
+	<ignoreForCoverage>
 	<FMClass: #TStatement super: #Object>
 	<package: #'FAST-Core-Model'>
 	<generated>
@@ -44,6 +45,7 @@ FASTTStatement classSide >> annotation [
 { #category : 'testing' }
 FASTTStatement >> isStatement [
 
+	<ignoreForCoverage>
 	<generated>
 	^ true
 ]
@@ -52,6 +54,7 @@ FASTTStatement >> isStatement [
 FASTTStatement >> parentLoopStatement [
 	"Relation named: #parentLoopStatement type: #FASTTLoopStatement opposite: #body"
 
+	<ignoreForCoverage>
 	<generated>
 	<FMComment: 'Optional loop of which this statement is the body'>
 	<container>
@@ -62,6 +65,7 @@ FASTTStatement >> parentLoopStatement [
 { #category : 'accessing' }
 FASTTStatement >> parentLoopStatement: anObject [
 
+	<ignoreForCoverage>
 	<generated>
 	parentLoopStatement := anObject
 ]
@@ -70,6 +74,7 @@ FASTTStatement >> parentLoopStatement: anObject [
 FASTTStatement >> statementContainer [
 	"Relation named: #statementContainer type: #FASTTStatementBlock opposite: #statements"
 
+	<ignoreForCoverage>
 	<generated>
 	<FMComment: 'Block containing this statement.'>
 	<container>
@@ -79,6 +84,7 @@ FASTTStatement >> statementContainer [
 { #category : 'accessing' }
 FASTTStatement >> statementContainer: anObject [
 
+	<ignoreForCoverage>
 	<generated>
 	statementContainer := anObject
 ]

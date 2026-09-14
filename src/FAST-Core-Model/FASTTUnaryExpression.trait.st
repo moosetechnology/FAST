@@ -48,6 +48,7 @@ Trait {
 { #category : 'meta' }
 FASTTUnaryExpression classSide >> annotation [
 
+	<ignoreForCoverage>
 	<FMClass: #TUnaryExpression super: #Object>
 	<package: #'FAST-Core-Model'>
 	<generated>
@@ -57,6 +58,7 @@ FASTTUnaryExpression classSide >> annotation [
 FASTTUnaryExpression >> expression [
 	"Relation named: #expression type: #FASTTExpression opposite: #parentExpression"
 
+	<ignoreForCoverage>
 	<generated>
 	<FMComment: '(sub-)expression in the unary expression'>
 	^ expression
@@ -65,6 +67,7 @@ FASTTUnaryExpression >> expression [
 { #category : 'accessing' }
 FASTTUnaryExpression >> expression: anObject [
 
+	<ignoreForCoverage>
 	<generated>
 	expression := anObject
 ]
@@ -72,6 +75,7 @@ FASTTUnaryExpression >> expression: anObject [
 { #category : 'testing' }
 FASTTUnaryExpression >> isUnaryExpression [
 
+	<ignoreForCoverage>
 	<generated>
 	^ true
 ]
@@ -80,6 +84,7 @@ FASTTUnaryExpression >> isUnaryExpression [
 FASTTUnaryExpression >> operator [
 
 	<FMProperty: #operator type: #String>
+	<ignoreForCoverage>
 	<generated>
 	<FMComment: 'Unary expression operator'>
 	^ operator
@@ -87,6 +92,7 @@ FASTTUnaryExpression >> operator [
 
 { #category : 'accessing' }
 FASTTUnaryExpression >> operator: anObject [
+	<ignoreForCoverage>
 	<generated>
 	operator := anObject
 ]

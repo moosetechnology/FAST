@@ -43,6 +43,7 @@ Trait {
 { #category : 'meta' }
 FASTTNamedBehaviouralEntity classSide >> annotation [
 
+	<ignoreForCoverage>
 	<FMClass: #TNamedBehaviouralEntity super: #Object>
 	<package: #'FAST-Core-Model'>
 	<generated>

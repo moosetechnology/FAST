@@ -37,6 +37,7 @@ Trait {
 { #category : 'meta' }
 FASTTConditionalStatement classSide >> annotation [
 
+	<ignoreForCoverage>
 	<FMClass: #TConditionalStatement super: #Object>
 	<package: #'FAST-Core-Model'>
 	<generated>

@@ -26,6 +26,7 @@ Trait {
 { #category : 'meta' }
 FASTTEntity classSide >> annotation [
 
+	<ignoreForCoverage>
 	<FMClass: #TEntity super: #Object>
 	<package: #'FAST-Core-Model'>
 	<generated>
@@ -47,12 +48,14 @@ FASTTEntity >> displayStringOn: aStream [
 FASTTEntity >> endPos [
 
 	<FMProperty: #endPos type: #Number>
+	<ignoreForCoverage>
 	<generated>
 	^ endPos
 ]
 
 { #category : 'accessing' }
 FASTTEntity >> endPos: anObject [
+	<ignoreForCoverage>
 	<generated>
 	endPos := anObject
 ]
@@ -79,12 +82,14 @@ FASTTEntity >> printOn: aStream [
 FASTTEntity >> startPos [
 
 	<FMProperty: #startPos type: #Number>
+	<ignoreForCoverage>
 	<generated>
 	^ startPos
 ]
 
 { #category : 'accessing' }
 FASTTEntity >> startPos: anObject [
+	<ignoreForCoverage>
 	<generated>
 	startPos := anObject
 ]

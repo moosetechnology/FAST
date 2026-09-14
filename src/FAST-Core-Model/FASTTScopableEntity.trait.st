@@ -24,6 +24,7 @@ Trait {
 { #category : 'meta' }
 FASTTScopableEntity classSide >> annotation [
 
+	<ignoreForCoverage>
 	<FMClass: #TScopableEntity super: #Object>
 	<package: #'FAST-Core-Model'>
 	<generated>
@@ -32,6 +33,7 @@ FASTTScopableEntity classSide >> annotation [
 { #category : 'testing' }
 FASTTScopableEntity >> isScopableEntity [
 
+	<ignoreForCoverage>
 	<generated>
 	^ true
 ]

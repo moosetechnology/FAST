@@ -47,6 +47,7 @@ Trait {
 { #category : 'meta' }
 FASTTLiteral classSide >> annotation [
 
+	<ignoreForCoverage>
 	<FMClass: #TLiteral super: #Object>
 	<package: #'FAST-Core-Model'>
 	<generated>
@@ -55,6 +56,7 @@ FASTTLiteral classSide >> annotation [
 { #category : 'testing' }
 FASTTLiteral >> isLiteral [
 
+	<ignoreForCoverage>
 	<generated>
 	^ true
 ]
@@ -63,6 +65,7 @@ FASTTLiteral >> isLiteral [
 FASTTLiteral >> primitiveValue [
 
 	<FMProperty: #primitiveValue type: #String>
+	<ignoreForCoverage>
 	<generated>
 	<FMComment: 'The literal itself as found in the source code. We use primitiveValue in order to override value from Object'>
 	^ primitiveValue
@@ -70,6 +73,7 @@ FASTTLiteral >> primitiveValue [
 
 { #category : 'accessing' }
 FASTTLiteral >> primitiveValue: anObject [
+	<ignoreForCoverage>
 	<generated>
 	primitiveValue := anObject
 ]

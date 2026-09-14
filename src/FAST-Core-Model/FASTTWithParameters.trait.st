@@ -25,6 +25,7 @@ Trait {
 { #category : 'meta' }
 FASTTWithParameters classSide >> annotation [
 
+	<ignoreForCoverage>
 	<FMClass: #TWithParameters super: #Object>
 	<package: #'FAST-Core-Model'>
 	<generated>
@@ -32,6 +33,8 @@ FASTTWithParameters classSide >> annotation [
 
 { #category : 'adding' }
 FASTTWithParameters >> addParameter: anObject [
+
+	<ignoreForCoverage>
 	<generated>
 	^ self parameters add: anObject
 ]
@@ -40,6 +43,7 @@ FASTTWithParameters >> addParameter: anObject [
 FASTTWithParameters >> parameters [
 	"Relation named: #parameters type: #FASTTVariableEntity opposite: #parameterOwner"
 
+	<ignoreForCoverage>
 	<generated>
 	<FMComment: 'My parameters'>
 	<derived>
@@ -49,6 +53,7 @@ FASTTWithParameters >> parameters [
 { #category : 'accessing' }
 FASTTWithParameters >> parameters: anObject [
 
+	<ignoreForCoverage>
 	<generated>
 	parameters value: anObject
 ]

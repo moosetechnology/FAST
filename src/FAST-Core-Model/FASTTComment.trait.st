@@ -32,6 +32,7 @@ Trait {
 { #category : 'meta' }
 FASTTComment classSide >> annotation [
 
+	<ignoreForCoverage>
 	<FMClass: #TComment super: #Object>
 	<package: #'FAST-Core-Model'>
 	<generated>
@@ -41,6 +42,7 @@ FASTTComment classSide >> annotation [
 FASTTComment >> container [
 	"Relation named: #container type: #FASTTWithComments opposite: #comments"
 
+	<ignoreForCoverage>
 	<generated>
 	<FMComment: 'Source code entity containing the comment'>
 	<container>
@@ -50,6 +52,7 @@ FASTTComment >> container [
 { #category : 'accessing' }
 FASTTComment >> container: anObject [
 
+	<ignoreForCoverage>
 	<generated>
 	container := anObject
 ]
@@ -58,6 +61,7 @@ FASTTComment >> container: anObject [
 FASTTComment >> content [
 
 	<FMProperty: #content type: #String>
+	<ignoreForCoverage>
 	<generated>
 	<FMComment: 'Content of the comment as a String'>
 	^ content
@@ -65,6 +69,7 @@ FASTTComment >> content [
 
 { #category : 'accessing' }
 FASTTComment >> content: anObject [
+	<ignoreForCoverage>
 	<generated>
 	content := anObject
 ]

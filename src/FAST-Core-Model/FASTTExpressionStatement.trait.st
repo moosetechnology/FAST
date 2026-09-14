@@ -40,6 +40,7 @@ Trait {
 { #category : 'meta' }
 FASTTExpressionStatement classSide >> annotation [
 
+	<ignoreForCoverage>
 	<FMClass: #TExpressionStatement super: #Object>
 	<package: #'FAST-Core-Model'>
 	<generated>
@@ -49,6 +50,7 @@ FASTTExpressionStatement classSide >> annotation [
 FASTTExpressionStatement >> expression [
 	"Relation named: #expression type: #FASTTExpression opposite: #expressionStatementOwner"
 
+	<ignoreForCoverage>
 	<generated>
 	<FMComment: 'The expression of the statement'>
 	^ expression
@@ -57,6 +59,7 @@ FASTTExpressionStatement >> expression [
 { #category : 'accessing' }
 FASTTExpressionStatement >> expression: anObject [
 
+	<ignoreForCoverage>
 	<generated>
 	expression := anObject
 ]
@@ -64,6 +67,7 @@ FASTTExpressionStatement >> expression: anObject [
 { #category : 'testing' }
 FASTTExpressionStatement >> isExpressionStatement [
 
+	<ignoreForCoverage>
 	<generated>
 	^ true
 ]

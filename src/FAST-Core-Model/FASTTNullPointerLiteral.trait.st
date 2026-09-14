@@ -39,6 +39,7 @@ Trait {
 { #category : 'meta' }
 FASTTNullPointerLiteral classSide >> annotation [
 
+	<ignoreForCoverage>
 	<FMClass: #TNullPointerLiteral super: #Object>
 	<package: #'FAST-Core-Model'>
 	<generated>
@@ -47,6 +48,7 @@ FASTTNullPointerLiteral classSide >> annotation [
 { #category : 'testing' }
 FASTTNullPointerLiteral >> isNullPointerLiteral [
 
+	<ignoreForCoverage>
 	<generated>
 	^ true
 ]

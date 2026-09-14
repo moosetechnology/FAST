@@ -25,6 +25,7 @@ Trait {
 { #category : 'meta' }
 FASTTWithComments classSide >> annotation [
 
+	<ignoreForCoverage>
 	<FMClass: #TWithComments super: #Object>
 	<package: #'FAST-Core-Model'>
 	<generated>
@@ -32,6 +33,8 @@ FASTTWithComments classSide >> annotation [
 
 { #category : 'adding' }
 FASTTWithComments >> addComment: anObject [
+
+	<ignoreForCoverage>
 	<generated>
 	^ self comments add: anObject
 ]
@@ -40,6 +43,7 @@ FASTTWithComments >> addComment: anObject [
 FASTTWithComments >> comments [
 	"Relation named: #comments type: #FASTTComment opposite: #container"
 
+	<ignoreForCoverage>
 	<generated>
 	<FMComment: 'list of comments defined in the entity'>
 	<derived>
@@ -49,6 +53,7 @@ FASTTWithComments >> comments [
 { #category : 'accessing' }
 FASTTWithComments >> comments: anObject [
 
+	<ignoreForCoverage>
 	<generated>
 	comments value: anObject
 ]

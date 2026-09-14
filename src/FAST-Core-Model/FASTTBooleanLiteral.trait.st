@@ -39,6 +39,7 @@ Trait {
 { #category : 'meta' }
 FASTTBooleanLiteral classSide >> annotation [
 
+	<ignoreForCoverage>
 	<FMClass: #TBooleanLiteral super: #Object>
 	<package: #'FAST-Core-Model'>
 	<generated>
@@ -47,6 +48,7 @@ FASTTBooleanLiteral classSide >> annotation [
 { #category : 'testing' }
 FASTTBooleanLiteral >> isBooleanLiteral [
 
+	<ignoreForCoverage>
 	<generated>
 	^ true
 ]

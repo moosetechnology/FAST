@@ -25,6 +25,7 @@ Trait {
 { #category : 'meta' }
 FASTTWithArguments classSide >> annotation [
 
+	<ignoreForCoverage>
 	<FMClass: #TWithArguments super: #Object>
 	<package: #'FAST-Core-Model'>
 	<generated>
@@ -32,6 +33,8 @@ FASTTWithArguments classSide >> annotation [
 
 { #category : 'adding' }
 FASTTWithArguments >> addArgument: anObject [
+
+	<ignoreForCoverage>
 	<generated>
 	^ self arguments add: anObject
 ]
@@ -40,6 +43,7 @@ FASTTWithArguments >> addArgument: anObject [
 FASTTWithArguments >> arguments [
 	"Relation named: #arguments type: #FASTTExpression opposite: #argumentOwner"
 
+	<ignoreForCoverage>
 	<generated>
 	<FMComment: 'My arguments'>
 	<derived>
@@ -49,6 +53,7 @@ FASTTWithArguments >> arguments [
 { #category : 'accessing' }
 FASTTWithArguments >> arguments: anObject [
 
+	<ignoreForCoverage>
 	<generated>
 	arguments value: anObject
 ]

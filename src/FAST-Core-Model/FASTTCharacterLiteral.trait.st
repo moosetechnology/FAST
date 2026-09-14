@@ -39,6 +39,7 @@ Trait {
 { #category : 'meta' }
 FASTTCharacterLiteral classSide >> annotation [
 
+	<ignoreForCoverage>
 	<FMClass: #TCharacterLiteral super: #Object>
 	<package: #'FAST-Core-Model'>
 	<generated>
@@ -47,6 +48,7 @@ FASTTCharacterLiteral classSide >> annotation [
 { #category : 'testing' }
 FASTTCharacterLiteral >> isCharacterLiteral [
 
+	<ignoreForCoverage>
 	<generated>
 	^ true
 ]

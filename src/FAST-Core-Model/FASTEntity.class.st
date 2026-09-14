@@ -23,6 +23,7 @@ Class {
 { #category : 'meta' }
 FASTEntity class >> annotation [
 
+	<ignoreForCoverage>
 	<FMClass: #Entity super: #MooseEntity>
 	<package: #'FAST-Core-Model'>
 	<generated>
@@ -31,6 +32,7 @@ FASTEntity class >> annotation [
 { #category : 'meta' }
 FASTEntity class >> metamodel [
 
+	<ignoreForCoverage>
 	<generated>
 	^ FASTModel metamodel
 ]

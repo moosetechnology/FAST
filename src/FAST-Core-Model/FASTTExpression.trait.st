@@ -48,6 +48,7 @@ Trait {
 { #category : 'meta' }
 FASTTExpression classSide >> annotation [
 
+	<ignoreForCoverage>
 	<FMClass: #TExpression super: #Object>
 	<package: #'FAST-Core-Model'>
 	<generated>
@@ -57,6 +58,7 @@ FASTTExpression classSide >> annotation [
 FASTTExpression >> argumentOwner [
 	"Relation named: #argumentOwner type: #FASTTWithArguments opposite: #arguments"
 
+	<ignoreForCoverage>
 	<generated>
 	<FMComment: 'my owner'>
 	<container>
@@ -66,6 +68,7 @@ FASTTExpression >> argumentOwner [
 { #category : 'accessing' }
 FASTTExpression >> argumentOwner: anObject [
 
+	<ignoreForCoverage>
 	<generated>
 	argumentOwner := anObject
 ]
@@ -74,6 +77,7 @@ FASTTExpression >> argumentOwner: anObject [
 FASTTExpression >> assignedIn [
 	"Relation named: #assignedIn type: #FASTTAssignment opposite: #expression"
 
+	<ignoreForCoverage>
 	<generated>
 	<FMComment: 'Optional assignment where this expression is used'>
 	<container>
@@ -84,6 +88,7 @@ FASTTExpression >> assignedIn [
 { #category : 'accessing' }
 FASTTExpression >> assignedIn: anObject [
 
+	<ignoreForCoverage>
 	<generated>
 	assignedIn := anObject
 ]
@@ -92,6 +97,7 @@ FASTTExpression >> assignedIn: anObject [
 FASTTExpression >> expressionStatementOwner [
 	"Relation named: #expressionStatementOwner type: #FASTTExpressionStatement opposite: #expression"
 
+	<ignoreForCoverage>
 	<generated>
 	<FMComment: 'The expression statement that own me (if it''s the case'>
 	<container>
@@ -102,6 +108,7 @@ FASTTExpression >> expressionStatementOwner [
 { #category : 'accessing' }
 FASTTExpression >> expressionStatementOwner: anObject [
 
+	<ignoreForCoverage>
 	<generated>
 	expressionStatementOwner := anObject
 ]
@@ -109,6 +116,7 @@ FASTTExpression >> expressionStatementOwner: anObject [
 { #category : 'testing' }
 FASTTExpression >> isExpression [
 
+	<ignoreForCoverage>
 	<generated>
 	^ true
 ]
@@ -117,6 +125,7 @@ FASTTExpression >> isExpression [
 FASTTExpression >> parentConditional [
 	"Relation named: #parentConditional type: #FASTTWithCondition opposite: #condition"
 
+	<ignoreForCoverage>
 	<generated>
 	<FMComment: 'Optional condition statement/expression where this expression is used'>
 	<container>
@@ -127,6 +136,7 @@ FASTTExpression >> parentConditional [
 { #category : 'accessing' }
 FASTTExpression >> parentConditional: anObject [
 
+	<ignoreForCoverage>
 	<generated>
 	parentConditional := anObject
 ]
@@ -142,6 +152,7 @@ FASTTExpression >> parentConditionalStatement [
 FASTTExpression >> parentExpression [
 	"Relation named: #parentExpression type: #FASTTUnaryExpression opposite: #expression"
 
+	<ignoreForCoverage>
 	<generated>
 	<FMComment: 'Parent (unary) expression'>
 	<container>
@@ -152,6 +163,7 @@ FASTTExpression >> parentExpression [
 { #category : 'accessing' }
 FASTTExpression >> parentExpression: anObject [
 
+	<ignoreForCoverage>
 	<generated>
 	parentExpression := anObject
 ]
@@ -160,6 +172,7 @@ FASTTExpression >> parentExpression: anObject [
 FASTTExpression >> parentExpressionLeft [
 	"Relation named: #parentExpressionLeft type: #FASTTBinaryExpression opposite: #leftOperand"
 
+	<ignoreForCoverage>
 	<generated>
 	<FMComment: 'Parent (binary) expression of which I am left side'>
 	<container>
@@ -170,6 +183,7 @@ FASTTExpression >> parentExpressionLeft [
 { #category : 'accessing' }
 FASTTExpression >> parentExpressionLeft: anObject [
 
+	<ignoreForCoverage>
 	<generated>
 	parentExpressionLeft := anObject
 ]
@@ -178,6 +192,7 @@ FASTTExpression >> parentExpressionLeft: anObject [
 FASTTExpression >> parentExpressionRight [
 	"Relation named: #parentExpressionRight type: #FASTTBinaryExpression opposite: #rightOperand"
 
+	<ignoreForCoverage>
 	<generated>
 	<FMComment: 'Parent (binary) expression of which I am right side'>
 	<container>
@@ -188,6 +203,7 @@ FASTTExpression >> parentExpressionRight [
 { #category : 'accessing' }
 FASTTExpression >> parentExpressionRight: anObject [
 
+	<ignoreForCoverage>
 	<generated>
 	parentExpressionRight := anObject
 ]
@@ -196,6 +212,7 @@ FASTTExpression >> parentExpressionRight: anObject [
 FASTTExpression >> returnOwner [
 	"Relation named: #returnOwner type: #FASTTReturnStatement opposite: #expression"
 
+	<ignoreForCoverage>
 	<generated>
 	<FMComment: 'The return statement that own the expression (if it''s the case)'>
 	<container>
@@ -206,6 +223,7 @@ FASTTExpression >> returnOwner [
 { #category : 'accessing' }
 FASTTExpression >> returnOwner: anObject [
 
+	<ignoreForCoverage>
 	<generated>
 	returnOwner := anObject
 ]

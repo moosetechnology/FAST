@@ -40,6 +40,7 @@ Trait {
 { #category : 'meta' }
 FASTTLoopStatement classSide >> annotation [
 
+	<ignoreForCoverage>
 	<FMClass: #TLoopStatement super: #Object>
 	<package: #'FAST-Core-Model'>
 	<generated>
@@ -49,6 +50,7 @@ FASTTLoopStatement classSide >> annotation [
 FASTTLoopStatement >> body [
 	"Relation named: #body type: #FASTTStatement opposite: #parentLoopStatement"
 
+	<ignoreForCoverage>
 	<generated>
 	<FMComment: 'The body of the loop'>
 	^ body
@@ -57,6 +59,7 @@ FASTTLoopStatement >> body [
 { #category : 'accessing' }
 FASTTLoopStatement >> body: anObject [
 
+	<ignoreForCoverage>
 	<generated>
 	body := anObject
 ]

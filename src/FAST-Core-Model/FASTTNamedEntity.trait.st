@@ -36,6 +36,7 @@ Trait {
 { #category : 'meta' }
 FASTTNamedEntity classSide >> annotation [
 
+	<ignoreForCoverage>
 	<FMClass: #TNamedEntity super: #Object>
 	<package: #'FAST-Core-Model'>
 	<generated>
@@ -45,6 +46,7 @@ FASTTNamedEntity classSide >> annotation [
 FASTTNamedEntity >> invokedIn [
 	"Relation named: #invokedIn type: #FASTTInvocation opposite: #invoked"
 
+	<ignoreForCoverage>
 	<generated>
 	<FMComment: 'Optional invocation where this name is used'>
 	<container>
@@ -55,6 +57,7 @@ FASTTNamedEntity >> invokedIn [
 { #category : 'accessing' }
 FASTTNamedEntity >> invokedIn: anObject [
 
+	<ignoreForCoverage>
 	<generated>
 	invokedIn := anObject
 ]
@@ -63,12 +66,14 @@ FASTTNamedEntity >> invokedIn: anObject [
 FASTTNamedEntity >> name [
 
 	<FMProperty: #name type: #String>
+	<ignoreForCoverage>
 	<generated>
 	^ name
 ]
 
 { #category : 'accessing' }
 FASTTNamedEntity >> name: anObject [
+	<ignoreForCoverage>
 	<generated>
 	name := anObject
 ]
