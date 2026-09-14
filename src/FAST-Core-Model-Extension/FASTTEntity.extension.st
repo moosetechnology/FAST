@@ -92,7 +92,9 @@ FASTTEntity >> inspectionFASTSourceCode: aBuilder [
 								  addTextSegmentDecoration: (SpTextPresenterDecorator forHighlight
 										   interval: (self startPos to: self endPos);
 										   yourself);
-								  selectionInterval: (self startPos to: self endPos) ] ];
+								  selectionInterval: (self startPos to: self endPos).
+							  "I don't know why I need the double defer:... But it does not work without it. Also, this is bad because this is Morphic dependant. But I don't see how to do that with Spec for now."
+							  this withAdapterPerformOrDefer: [ :anAdapter | this defer: [ this defer: [ anAdapter widget scrollPane scrollSelectionIntoView ] ] ] ] ];
 		  yourself
 ]
 
