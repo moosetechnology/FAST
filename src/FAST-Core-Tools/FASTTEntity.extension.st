@@ -61,7 +61,7 @@ FASTTEntity >> assignedExpressionsMap [
 	| result |
 	result := Dictionary new.
 
-	self versionWriteAccesses do: [ :access | result at: access put: access variableDeclarator assignedExpressions ].
+	self versionWriteAccesses do: [ :access | result at: access put: access variableDeclaration assignedExpressions ].
 	^ result
 ]
 
@@ -117,7 +117,7 @@ FASTTEntity >> isVariableDeclaration [
 FASTTEntity >> isVariableWriteAccess [
 	"I am used in the LR and SSA builder to know if I represent the assignment of a variable."
 
-	^ self variableDeclarator isNotNil
+	^ self variableDeclaration isNotNil
 ]
 
 { #category : '*FAST-Core-Tools' }
@@ -197,7 +197,7 @@ FASTTEntity >> ssaVersion: aSSAVersion [
 ]
 
 { #category : '*FAST-Core-Tools' }
-FASTTEntity >> variableDeclarator [
+FASTTEntity >> variableDeclaration [
 	"If I am a node representing a write access, I should return the node assigning me. Else I return nil."
 
 	^ self explicitRequirement
