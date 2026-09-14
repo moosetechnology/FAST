@@ -32,6 +32,7 @@ Trait {
 { #category : 'meta' }
 FASTTBreakStatement classSide >> annotation [
 
+	<ignoreForCoverage>
 	<FMClass: #TBreakStatement super: #Object>
 	<package: #'FAST-Core-Model'>
 	<generated>
@@ -40,6 +41,7 @@ FASTTBreakStatement classSide >> annotation [
 { #category : 'testing' }
 FASTTBreakStatement >> isBreakStatement [
 
+	<ignoreForCoverage>
 	<generated>
 	^ true
 ]

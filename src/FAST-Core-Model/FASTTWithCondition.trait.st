@@ -23,6 +23,7 @@ Trait {
 { #category : 'meta' }
 FASTTWithCondition classSide >> annotation [
 
+	<ignoreForCoverage>
 	<FMClass: #TWithCondition super: #Object>
 	<package: #'FAST-Core-Model'>
 	<generated>
@@ -32,6 +33,7 @@ FASTTWithCondition classSide >> annotation [
 FASTTWithCondition >> condition [
 	"Relation named: #condition type: #FASTTExpression opposite: #parentConditional"
 
+	<ignoreForCoverage>
 	<generated>
 	<FMComment: 'The boolean condition tested'>
 	^ condition
@@ -40,6 +42,7 @@ FASTTWithCondition >> condition [
 { #category : 'accessing' }
 FASTTWithCondition >> condition: anObject [
 
+	<ignoreForCoverage>
 	<generated>
 	condition := anObject
 ]

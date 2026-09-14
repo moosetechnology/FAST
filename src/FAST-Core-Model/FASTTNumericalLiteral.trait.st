@@ -39,6 +39,7 @@ Trait {
 { #category : 'meta' }
 FASTTNumericalLiteral classSide >> annotation [
 
+	<ignoreForCoverage>
 	<FMClass: #TNumericalLiteral super: #Object>
 	<package: #'FAST-Core-Model'>
 	<generated>
@@ -47,6 +48,7 @@ FASTTNumericalLiteral classSide >> annotation [
 { #category : 'testing' }
 FASTTNumericalLiteral >> isNumericalLiteral [
 
+	<ignoreForCoverage>
 	<generated>
 	^ true
 ]

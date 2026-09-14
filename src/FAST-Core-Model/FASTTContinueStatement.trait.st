@@ -13,6 +13,7 @@ Trait {
 { #category : 'meta' }
 FASTTContinueStatement classSide >> annotation [
 
+	<ignoreForCoverage>
 	<FMClass: #TContinueStatement super: #Object>
 	<package: #'FAST-Core-Model'>
 	<generated>
@@ -21,6 +22,7 @@ FASTTContinueStatement classSide >> annotation [
 { #category : 'testing' }
 FASTTContinueStatement >> isContinueStatement [
 
+	<ignoreForCoverage>
 	<generated>
 	^ true
 ]

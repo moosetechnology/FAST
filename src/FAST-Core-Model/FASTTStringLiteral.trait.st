@@ -39,6 +39,7 @@ Trait {
 { #category : 'meta' }
 FASTTStringLiteral classSide >> annotation [
 
+	<ignoreForCoverage>
 	<FMClass: #TStringLiteral super: #Object>
 	<package: #'FAST-Core-Model'>
 	<generated>
@@ -47,6 +48,7 @@ FASTTStringLiteral classSide >> annotation [
 { #category : 'testing' }
 FASTTStringLiteral >> isStringLiteral [
 
+	<ignoreForCoverage>
 	<generated>
 	^ true
 ]

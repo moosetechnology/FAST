@@ -14,6 +14,7 @@ Trait {
 { #category : 'meta' }
 FASTTEntityCreator classSide >> annotation [
 
+	<ignoreForCoverage>
 	<FMClass: #TEntityCreator super: #Object>
 	<package: #'FAST-Core-Model'>
 	<generated>
@@ -22,6 +23,7 @@ FASTTEntityCreator classSide >> annotation [
 { #category : 'entity creation' }
 FASTTEntityCreator >> newEntity [
 
+	<ignoreForCoverage>
 	<generated>
 	^ self add: FASTEntity new
 ]

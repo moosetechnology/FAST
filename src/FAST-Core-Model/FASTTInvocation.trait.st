@@ -47,6 +47,7 @@ Trait {
 { #category : 'meta' }
 FASTTInvocation classSide >> annotation [
 
+	<ignoreForCoverage>
 	<FMClass: #TInvocation super: #Object>
 	<package: #'FAST-Core-Model'>
 	<generated>
@@ -56,6 +57,7 @@ FASTTInvocation classSide >> annotation [
 FASTTInvocation >> invoked [
 	"Relation named: #invoked type: #FASTTNamedEntity opposite: #invokedIn"
 
+	<ignoreForCoverage>
 	<generated>
 	<FMComment: 'The name of the behavioural invoked'>
 	^ invoked
@@ -64,6 +66,7 @@ FASTTInvocation >> invoked [
 { #category : 'accessing' }
 FASTTInvocation >> invoked: anObject [
 
+	<ignoreForCoverage>
 	<generated>
 	invoked := anObject
 ]
@@ -71,6 +74,7 @@ FASTTInvocation >> invoked: anObject [
 { #category : 'testing' }
 FASTTInvocation >> isInvocation [
 
+	<ignoreForCoverage>
 	<generated>
 	^ true
 ]

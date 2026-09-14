@@ -48,6 +48,7 @@ Trait {
 { #category : 'meta' }
 FASTTAssignment classSide >> annotation [
 
+	<ignoreForCoverage>
 	<FMClass: #TAssignment super: #Object>
 	<package: #'FAST-Core-Model'>
 	<generated>
@@ -57,6 +58,7 @@ FASTTAssignment classSide >> annotation [
 FASTTAssignment >> expression [
 	"Relation named: #expression type: #FASTTExpression opposite: #assignedIn"
 
+	<ignoreForCoverage>
 	<generated>
 	<FMComment: 'Assigned expression (rhs of assignment)'>
 	^ expression
@@ -65,6 +67,7 @@ FASTTAssignment >> expression [
 { #category : 'accessing' }
 FASTTAssignment >> expression: anObject [
 
+	<ignoreForCoverage>
 	<generated>
 	expression := anObject
 ]
@@ -72,6 +75,7 @@ FASTTAssignment >> expression: anObject [
 { #category : 'testing' }
 FASTTAssignment >> isAssignment [
 
+	<ignoreForCoverage>
 	<generated>
 	^ true
 ]
@@ -80,6 +84,7 @@ FASTTAssignment >> isAssignment [
 FASTTAssignment >> variable [
 	"Relation named: #variable type: #FASTTVariableEntity opposite: #parentAssignmentExpression"
 
+	<ignoreForCoverage>
 	<generated>
 	<FMComment: 'An assigned variable (lhs of assignment)'>
 	^ variable
@@ -88,6 +93,7 @@ FASTTAssignment >> variable [
 { #category : 'accessing' }
 FASTTAssignment >> variable: anObject [
 
+	<ignoreForCoverage>
 	<generated>
 	variable := anObject
 ]

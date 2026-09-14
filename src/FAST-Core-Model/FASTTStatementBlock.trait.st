@@ -42,6 +42,7 @@ Trait {
 { #category : 'meta' }
 FASTTStatementBlock classSide >> annotation [
 
+	<ignoreForCoverage>
 	<FMClass: #TStatementBlock super: #Object>
 	<package: #'FAST-Core-Model'>
 	<generated>
@@ -49,6 +50,8 @@ FASTTStatementBlock classSide >> annotation [
 
 { #category : 'adding' }
 FASTTStatementBlock >> addStatement: anObject [
+
+	<ignoreForCoverage>
 	<generated>
 	^ self statements add: anObject
 ]
@@ -57,6 +60,7 @@ FASTTStatementBlock >> addStatement: anObject [
 FASTTStatementBlock >> fastBehaviouralParent [
 	"Relation named: #fastBehaviouralParent type: #FASTTWithStatements opposite: #statementBlock"
 
+	<ignoreForCoverage>
 	<generated>
 	<FMComment: 'Behavioural entity containing the statement block.'>
 	<container>
@@ -67,6 +71,7 @@ FASTTStatementBlock >> fastBehaviouralParent [
 { #category : 'accessing' }
 FASTTStatementBlock >> fastBehaviouralParent: anObject [
 
+	<ignoreForCoverage>
 	<generated>
 	fastBehaviouralParent := anObject
 ]
@@ -74,6 +79,7 @@ FASTTStatementBlock >> fastBehaviouralParent: anObject [
 { #category : 'testing' }
 FASTTStatementBlock >> isStatementBlock [
 
+	<ignoreForCoverage>
 	<generated>
 	^ true
 ]
@@ -82,6 +88,7 @@ FASTTStatementBlock >> isStatementBlock [
 FASTTStatementBlock >> statements [
 	"Relation named: #statements type: #FASTTStatement opposite: #statementContainer"
 
+	<ignoreForCoverage>
 	<generated>
 	<FMComment: 'Statements enclosed in this block'>
 	<derived>
@@ -91,6 +98,7 @@ FASTTStatementBlock >> statements [
 { #category : 'accessing' }
 FASTTStatementBlock >> statements: anObject [
 
+	<ignoreForCoverage>
 	<generated>
 	statements value: anObject
 ]

@@ -23,6 +23,7 @@ Trait {
 { #category : 'meta' }
 FASTTWithStatements classSide >> annotation [
 
+	<ignoreForCoverage>
 	<FMClass: #TWithStatements super: #Object>
 	<package: #'FAST-Core-Model'>
 	<generated>
@@ -32,6 +33,7 @@ FASTTWithStatements classSide >> annotation [
 FASTTWithStatements >> statementBlock [
 	"Relation named: #statementBlock type: #FASTTStatementBlock opposite: #fastBehaviouralParent"
 
+	<ignoreForCoverage>
 	<generated>
 	<FMComment: 'Statements block of the behavioural entity'>
 	^ statementBlock
@@ -40,6 +42,7 @@ FASTTWithStatements >> statementBlock [
 { #category : 'accessing' }
 FASTTWithStatements >> statementBlock: anObject [
 
+	<ignoreForCoverage>
 	<generated>
 	statementBlock := anObject
 ]

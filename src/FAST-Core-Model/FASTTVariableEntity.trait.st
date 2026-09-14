@@ -38,6 +38,7 @@ Trait {
 { #category : 'meta' }
 FASTTVariableEntity classSide >> annotation [
 
+	<ignoreForCoverage>
 	<FMClass: #TVariableEntity super: #Object>
 	<package: #'FAST-Core-Model'>
 	<generated>
@@ -46,6 +47,7 @@ FASTTVariableEntity classSide >> annotation [
 { #category : 'testing' }
 FASTTVariableEntity >> isVariableEntity [
 
+	<ignoreForCoverage>
 	<generated>
 	^ true
 ]
@@ -54,6 +56,7 @@ FASTTVariableEntity >> isVariableEntity [
 FASTTVariableEntity >> parameterOwner [
 	"Relation named: #parameterOwner type: #FASTTWithParameters opposite: #parameters"
 
+	<ignoreForCoverage>
 	<generated>
 	<FMComment: 'parameterOwner'>
 	<container>
@@ -63,6 +66,7 @@ FASTTVariableEntity >> parameterOwner [
 { #category : 'accessing' }
 FASTTVariableEntity >> parameterOwner: anObject [
 
+	<ignoreForCoverage>
 	<generated>
 	parameterOwner := anObject
 ]
@@ -71,6 +75,7 @@ FASTTVariableEntity >> parameterOwner: anObject [
 FASTTVariableEntity >> parentAssignmentExpression [
 	"Relation named: #parentAssignmentExpression type: #FASTTAssignment opposite: #variable"
 
+	<ignoreForCoverage>
 	<generated>
 	<FMComment: 'Optional assignment to the variable'>
 	<container>
@@ -81,6 +86,7 @@ FASTTVariableEntity >> parentAssignmentExpression [
 { #category : 'accessing' }
 FASTTVariableEntity >> parentAssignmentExpression: anObject [
 
+	<ignoreForCoverage>
 	<generated>
 	parentAssignmentExpression := anObject
 ]

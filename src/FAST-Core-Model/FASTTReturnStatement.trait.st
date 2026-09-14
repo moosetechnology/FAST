@@ -40,6 +40,7 @@ Trait {
 { #category : 'meta' }
 FASTTReturnStatement classSide >> annotation [
 
+	<ignoreForCoverage>
 	<FMClass: #TReturnStatement super: #Object>
 	<package: #'FAST-Core-Model'>
 	<generated>
@@ -49,6 +50,7 @@ FASTTReturnStatement classSide >> annotation [
 FASTTReturnStatement >> expression [
 	"Relation named: #expression type: #FASTTExpression opposite: #returnOwner"
 
+	<ignoreForCoverage>
 	<generated>
 	<FMComment: 'The expression returned'>
 	^ expression
@@ -57,6 +59,7 @@ FASTTReturnStatement >> expression [
 { #category : 'accessing' }
 FASTTReturnStatement >> expression: anObject [
 
+	<ignoreForCoverage>
 	<generated>
 	expression := anObject
 ]
@@ -64,6 +67,7 @@ FASTTReturnStatement >> expression: anObject [
 { #category : 'testing' }
 FASTTReturnStatement >> isReturnStatement [
 
+	<ignoreForCoverage>
 	<generated>
 	^ true
 ]

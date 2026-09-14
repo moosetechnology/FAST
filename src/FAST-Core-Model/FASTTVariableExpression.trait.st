@@ -40,6 +40,7 @@ Trait {
 { #category : 'meta' }
 FASTTVariableExpression classSide >> annotation [
 
+	<ignoreForCoverage>
 	<FMClass: #TVariableExpression super: #Object>
 	<package: #'FAST-Core-Model'>
 	<generated>
@@ -48,6 +49,7 @@ FASTTVariableExpression classSide >> annotation [
 { #category : 'testing' }
 FASTTVariableExpression >> isVariableExpression [
 
+	<ignoreForCoverage>
 	<generated>
 	^ true
 ]
