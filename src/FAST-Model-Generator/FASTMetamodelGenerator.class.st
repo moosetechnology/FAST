@@ -39,7 +39,8 @@ Class {
 		'tWithStatements',
 		'tWithCondition',
 		'tBreakStatement',
-		'tContinueStatement'
+		'tContinueStatement',
+		'tCanBeVariable'
 	],
 	#category : 'FAST-Model-Generator',
 	#package : 'FAST-Model-Generator'
@@ -348,6 +349,8 @@ FASTMetamodelGenerator >> defineTraits [
 	tBooleanLiteral withTesting.
 	tBreakStatement := builder newTraitNamed: #TBreakStatement comment: self commentForTBreakStatement.
 	tBreakStatement withTesting.
+	tCanBeVariable := (builder newTraitNamed: #TCanBeVariable) comment: 'Represent everything that can be a variable. Useful for the LocalResolver and the SSA builder.'.
+	tCanBeVariable testingSelector: #canBeVariable.
 	tCharacterLiteral := builder newTraitNamed: #TCharacterLiteral comment: self commentForTCharacterLiteral.
 	tCharacterLiteral withTesting.
 	tComment := builder newTraitNamed: #TComment.
