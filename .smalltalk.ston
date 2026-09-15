@@ -1,7 +1,7 @@
 SmalltalkCISpec {
    #testing : {
     #coverage : {
-      #packages : [ 'FAST-Core.*' ],
+      #packages : [ 'FAST-Core-Model', 'FAST-Core-Model-Extension', 'FAST-Core-Tools', 'FAST-Core-Visitor' ],
       #format : #lcov
     }
   },
