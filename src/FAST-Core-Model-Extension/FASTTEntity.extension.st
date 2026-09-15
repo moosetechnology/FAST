@@ -1,6 +1,15 @@
 Extension { #name : 'FASTTEntity' }
 
 { #category : '*FAST-Core-Model-Extension' }
+FASTTEntity >> addNodesIncludedBetween: startLine and: endLine into: result [
+	"If an entity is in the lines, we add it to the result. If it is partialy in the lines, we check if they have a child inside."
+
+	self containedEntities do: [ :entity |
+			(entity isBetweenLine: startLine and: endLine) ifTrue: [ result add: entity ].
+			(entity isPartiallyBetweenLine: startLine and: endLine) ifTrue: [ entity addNodesIncludedBetween: startLine and: endLine into: result ] ]
+]
+
+{ #category : '*FAST-Core-Model-Extension' }
 FASTTEntity >> asSourceCode [
 	"Export AST as code using an exporter if available."
 
@@ -96,6 +105,38 @@ FASTTEntity >> inspectionFASTSourceCode: aBuilder [
 							  "I don't know why I need the double defer:... But it does not work without it. Also, this is bad because this is Morphic dependant. But I don't see how to do that with Spec for now."
 							  this withAdapterPerformOrDefer: [ :anAdapter | this defer: [ this defer: [ anAdapter widget scrollPane scrollSelectionIntoView ] ] ] ] ];
 		  yourself
+]
+
+{ #category : '*FAST-Core-Model-Extension' }
+FASTTEntity >> isBetweenLine: startLine and: endLine [
+	"I return true if I am fully included in the lines as parameter."
+
+	^ self startLine >= startLine and: [ self endLine <= endLine ]
+]
+
+{ #category : '*FAST-Core-Model-Extension' }
+FASTTEntity >> isPartiallyBetweenLine: startLine and: endLine [
+	"I return true if I am partially included in the lines as parameter. If I am fully inside the bound, I return false."
+
+	(self isBetweenLine: startLine and: endLine) ifTrue: [ ^ false ].
+
+	self endLine < startLine ifTrue: [ ^ false ].
+
+	self startLine > endLine ifTrue: [ ^ false ].
+
+	^ true
+]
+
+{ #category : '*FAST-Core-Model-Extension' }
+FASTTEntity >> nodesIncludedBetween: startLine and: endLine [
+	"I return the nodes that are inside the given bounds, bounds included. 
+	Nodes that are not entirely in the bounds are not considered.
+	We take the most high level node matching this. It means that if an assignment node for `x = 1` matches, we add only this one and not the identifier `x` and literal `1` since they are subnodes of the assignment."
+
+	| result |
+	result := OrderedCollection new.
+	self addNodesIncludedBetween: startLine and: endLine into: result.
+	^ result
 ]
 
 { #category : '*FAST-Core-Model-Extension' }
