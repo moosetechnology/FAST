@@ -135,6 +135,41 @@ FASTTCanBeLocalDeclaration >> newVersionNumber [
 ]
 
 { #category : '*FAST-Core-Tools' }
+FASTTCanBeLocalDeclaration >> rawLocalDeclaration [
+	"I am here to meta describe the local declaration without raising an error if the local resolution did not happen"
+
+	<FMProperty: #localDeclaration type: #FASTTEntity>
+	<FMComment:
+	'Return the local declaration for this node. The local declaration is the declaration of a named entity I represent. In languages without declarations, return the first occurence of the entity. This requires the local resolution to work.'>
+	^ self attributeAt: #localDeclaration ifAbsent: [ nil ]
+]
+
+{ #category : '*FAST-Core-Tools' }
+FASTTCanBeLocalDeclaration >> rawLocalDeclaration: aDeclarationNode [
+	"Used for import/export"
+
+	self localDeclaration: aDeclarationNode
+]
+
+{ #category : '*FAST-Core-Tools' }
+FASTTCanBeLocalDeclaration >> rawLocalUses [ 
+	"I am here to meta describe the local declaration without raising an error if the local resolution did not happen"
+
+	<FMProperty: #localUses type: #FASTTEntity>
+	<multivalued>
+	<FMComment:
+	'If I represent the local declaration of an entity, return all nodes representing the usage of the entity I represent. This requires the local resolution to work'>
+	^ self attributeAt: #localUses ifAbsent: [ nil ]
+]
+
+{ #category : '*FAST-Core-Tools' }
+FASTTCanBeLocalDeclaration >> rawLocalUses: aCollection [ 
+	"Used for import/export"
+
+	self localUses: aCollection
+]
+
+{ #category : '*FAST-Core-Tools' }
 FASTTCanBeLocalDeclaration >> ssaName [
 	"Used for SSA"
 

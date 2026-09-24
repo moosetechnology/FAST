@@ -3,7 +3,7 @@ A ""null-object"" signaling the declaration of a 'name' was not found
 "
 Class {
 	#name : 'FASTNonLocalDeclaration',
-	#superclass : 'FASTEntity',
+	#superclass : 'MooseEntity',
 	#traits : 'FASTTCanBeLocalDeclaration',
 	#classTraits : 'FASTTCanBeLocalDeclaration classTrait',
 	#instVars : [
@@ -13,6 +13,14 @@ Class {
 	#package : 'FAST-Core-Tools',
 	#tag : 'Resolver'
 }
+
+{ #category : 'meta' }
+FASTNonLocalDeclaration class >> annotation [
+
+	<FMClass: #NonLocalDeclaration super: #MooseEntity>
+	<package: #'FAST-Core-Tools'>
+	
+]
 
 { #category : 'accessing' }
 FASTNonLocalDeclaration >> activeVersion [
