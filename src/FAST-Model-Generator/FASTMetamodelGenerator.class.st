@@ -40,7 +40,8 @@ Class {
 		'tWithCondition',
 		'tBreakStatement',
 		'tContinueStatement',
-		'tCanBeVariable'
+		'tCanBeVariable',
+		'tCanBeLocalDeclaration'
 	],
 	#category : 'FAST-Model-Generator',
 	#package : 'FAST-Model-Generator'
@@ -221,6 +222,7 @@ FASTMetamodelGenerator >> defineClasses [
 FASTMetamodelGenerator >> defineHierarchy [
 	super defineHierarchy.
 	tEntity --|> #TEntityMetaLevelDependency.
+	tEntity --|> tCanBeLocalDeclaration.
 	tExpression --|> tEntity.
 	entity --|> tEntity.
 	
@@ -351,6 +353,7 @@ FASTMetamodelGenerator >> defineTraits [
 	tBreakStatement withTesting.
 	tCanBeVariable := (builder newTraitNamed: #TCanBeVariable) comment: 'Represent everything that can be a variable. Useful for the LocalResolver and the SSA builder.'.
 	tCanBeVariable testingSelector: #canBeVariable.
+	tCanBeLocalDeclaration := (builder newTraitNamed: #TCanBeLocalDeclaration) comment: 'This trait is here to add API used for the local resolution.'.
 	tCharacterLiteral := builder newTraitNamed: #TCharacterLiteral comment: self commentForTCharacterLiteral.
 	tCharacterLiteral withTesting.
 	tComment := builder newTraitNamed: #TComment.

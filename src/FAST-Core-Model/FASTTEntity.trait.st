@@ -13,11 +13,11 @@ any entity
 Trait {
 	#name : 'FASTTEntity',
 	#instVars : [
-		'#startPos => FMProperty',
-		'#endPos => FMProperty'
+		'#endPos => FMProperty',
+		'#startPos => FMProperty'
 	],
-	#traits : 'TEntityMetaLevelDependency',
-	#classTraits : 'TEntityMetaLevelDependency classTrait',
+	#traits : 'FASTTCanBeLocalDeclaration + TEntityMetaLevelDependency',
+	#classTraits : 'FASTTCanBeLocalDeclaration classTrait + TEntityMetaLevelDependency classTrait',
 	#category : 'FAST-Core-Model-Traits',
 	#package : 'FAST-Core-Model',
 	#tag : 'Traits'

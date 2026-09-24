@@ -4,8 +4,8 @@ A ""null-object"" signaling the declaration of a 'name' was not found
 Class {
 	#name : 'FASTNonLocalDeclaration',
 	#superclass : 'FASTEntity',
-	#traits : 'FASTTEntity',
-	#classTraits : 'FASTTEntity classTrait',
+	#traits : 'FASTTCanBeLocalDeclaration',
+	#classTraits : 'FASTTCanBeLocalDeclaration classTrait',
 	#instVars : [
 		'name'
 	],
