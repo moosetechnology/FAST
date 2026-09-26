@@ -4,11 +4,8 @@ A ""null-object"" signaling the declaration of a 'name' was not found
 Class {
 	#name : 'FASTNonLocalDeclaration',
 	#superclass : 'MooseEntity',
-	#traits : 'FASTTCanBeLocalDeclaration',
-	#classTraits : 'FASTTCanBeLocalDeclaration classTrait',
-	#instVars : [
-		'name'
-	],
+	#traits : 'FASTTCanBeLocalDeclaration + FamixTNamedEntity',
+	#classTraits : 'FASTTCanBeLocalDeclaration classTrait + FamixTNamedEntity classTrait',
 	#category : 'FAST-Core-Tools-Resolver',
 	#package : 'FAST-Core-Tools',
 	#tag : 'Resolver'
@@ -38,16 +35,4 @@ FASTNonLocalDeclaration >> isNonLocalDeclaration [
 { #category : 'as yet unclassified' }
 FASTNonLocalDeclaration >> localDeclarationName [
 	^ self localUses anyOne localDeclarationName
-]
-
-{ #category : 'accessing' }
-FASTNonLocalDeclaration >> name [
-
-	^ name
-]
-
-{ #category : 'accessing' }
-FASTNonLocalDeclaration >> name: anObject [
-
-	name := anObject
 ]
