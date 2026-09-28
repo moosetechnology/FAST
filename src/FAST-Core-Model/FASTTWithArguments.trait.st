@@ -46,6 +46,7 @@ FASTTWithArguments >> arguments [
 	<ignoreForCoverage>
 	<generated>
 	<FMComment: 'My arguments'>
+	<derived>
 	^ arguments
 ]
 

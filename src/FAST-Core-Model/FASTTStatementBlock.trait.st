@@ -64,6 +64,7 @@ FASTTStatementBlock >> fastBehaviouralParent [
 	<generated>
 	<FMComment: 'Behavioural entity containing the statement block.'>
 	<container>
+	<derived>
 	^ fastBehaviouralParent
 ]
 
@@ -90,6 +91,7 @@ FASTTStatementBlock >> statements [
 	<ignoreForCoverage>
 	<generated>
 	<FMComment: 'Statements enclosed in this block'>
+	<derived>
 	^ statements
 ]
 

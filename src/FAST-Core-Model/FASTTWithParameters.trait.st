@@ -46,6 +46,7 @@ FASTTWithParameters >> parameters [
 	<ignoreForCoverage>
 	<generated>
 	<FMComment: 'My parameters'>
+	<derived>
 	^ parameters
 ]
 
