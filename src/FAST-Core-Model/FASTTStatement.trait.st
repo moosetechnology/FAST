@@ -58,7 +58,6 @@ FASTTStatement >> parentLoopStatement [
 	<generated>
 	<FMComment: 'Optional loop of which this statement is the body'>
 	<container>
-	<derived>
 	^ parentLoopStatement
 ]
 

@@ -79,7 +79,6 @@ FASTTVariableEntity >> parentAssignmentExpression [
 	<generated>
 	<FMComment: 'Optional assignment to the variable'>
 	<container>
-	<derived>
 	^ parentAssignmentExpression
 ]
 

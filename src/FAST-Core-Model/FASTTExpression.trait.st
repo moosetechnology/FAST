@@ -81,7 +81,6 @@ FASTTExpression >> assignedIn [
 	<generated>
 	<FMComment: 'Optional assignment where this expression is used'>
 	<container>
-	<derived>
 	^ assignedIn
 ]
 
@@ -101,7 +100,6 @@ FASTTExpression >> expressionStatementOwner [
 	<generated>
 	<FMComment: 'The expression statement that own me (if it''s the case'>
 	<container>
-	<derived>
 	^ expressionStatementOwner
 ]
 
@@ -129,7 +127,6 @@ FASTTExpression >> parentConditional [
 	<generated>
 	<FMComment: 'Optional condition statement/expression where this expression is used'>
 	<container>
-	<derived>
 	^ parentConditional
 ]
 
@@ -156,7 +153,6 @@ FASTTExpression >> parentExpression [
 	<generated>
 	<FMComment: 'Parent (unary) expression'>
 	<container>
-	<derived>
 	^ parentExpression
 ]
 
@@ -176,7 +172,6 @@ FASTTExpression >> parentExpressionLeft [
 	<generated>
 	<FMComment: 'Parent (binary) expression of which I am left side'>
 	<container>
-	<derived>
 	^ parentExpressionLeft
 ]
 
@@ -196,7 +191,6 @@ FASTTExpression >> parentExpressionRight [
 	<generated>
 	<FMComment: 'Parent (binary) expression of which I am right side'>
 	<container>
-	<derived>
 	^ parentExpressionRight
 ]
 
@@ -216,7 +210,6 @@ FASTTExpression >> returnOwner [
 	<generated>
 	<FMComment: 'The return statement that own the expression (if it''s the case)'>
 	<container>
-	<derived>
 	^ returnOwner
 ]
 

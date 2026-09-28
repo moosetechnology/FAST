@@ -50,7 +50,6 @@ FASTTNamedEntity >> invokedIn [
 	<generated>
 	<FMComment: 'Optional invocation where this name is used'>
 	<container>
-	<derived>
 	^ invokedIn
 ]
 
