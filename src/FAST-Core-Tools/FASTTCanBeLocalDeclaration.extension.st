@@ -178,8 +178,9 @@ FASTTCanBeLocalDeclaration >> ssaName [
 
 { #category : '*FAST-Core-Tools' }
 FASTTCanBeLocalDeclaration >> ssaVersion [
-	"If I represent a variable and we resolved the SSA of my FAST model, I'll return the SSA version I'm linked to."
 
+	<FMProperty: #ssaVersion type: #FASTAbstractVariableVersionSSA>
+	<FMComment: 'If I represent a variable and we resolved the SSA of my FAST model, I''ll return the SSA version I''m linked to.'>
 	^ self attributeAt: #ssaVersion ifAbsent: [ nil ]
 ]
 

@@ -1,3 +1,19 @@
+"
+I am the abstract representation of a version of a variable in Static Single Assignment form (SSA). A version represents a value assigned exactly once to a variable: each assignment to a variable during the SSA resolution creates a new version.
+
+I store the local declaration (`localDeclaration`) of the variable this version belongs to, and I provide the common behavior shared by the concrete versions:
+
+- `localUses` returns the accesses (reads and writes) linked to this version.
+- `readAccesses` and `writeAccesses` split those accesses.
+- `ssaVariables` returns the plain variable versions I represent: only myself for a `FASTVariableVersionSSA`, all my choices for a `FASTVariablePhiVersionSSA`.
+- `name` returns a readable SSA name.
+
+I have two concrete subclasses:
+- `FASTVariableVersionSSA` is a plain version with a version number.
+- `FASTVariablePhiVersionSSA` merges several versions at a control-flow join point.
+
+I require the SSA resolution to have been run on the model before being used.
+"
 Class {
 	#name : 'FASTAbstractVariableVersionSSA',
 	#superclass : 'MooseEntity',
@@ -58,7 +74,9 @@ FASTAbstractVariableVersionSSA >> isPhi [
 { #category : 'accessing' }
 FASTAbstractVariableVersionSSA >> localDeclaration [
 
-	^localDeclaration
+	<FMProperty: #localDeclaration type: #FASTTEntity>
+	<FMComment: 'Return the local declaration of the variable I represent.'>
+	^ localDeclaration
 ]
 
 { #category : 'accessing' }

@@ -1,3 +1,12 @@
+"
+I am a phi version of a variable, created at a control-flow join point (for example at the end of an if statement or a loop) to merge the versions coming from the different branches.
+
+I hold the versions I merge (`choices`) and the local declaration (`localDeclaration`) of the variable.
+
+My name is built from the names of my choices, for example `phi(x_1, x_2)`.
+
+I require the SSA resolution to have been run on the model before being used.
+"
 Class {
 	#name : 'FASTVariablePhiVersionSSA',
 	#superclass : 'FASTAbstractVariableVersionSSA',
@@ -12,7 +21,7 @@ Class {
 { #category : 'meta' }
 FASTVariablePhiVersionSSA class >> annotation [
 
-	<FMClass: #VariablePhiVersionSSA super: #AbstVariableVersionSSA>
+	<FMClass: #VariablePhiVersionSSA super: #FASTAbstractVariableVersionSSA>
 	<package: #'FAST-Core-Tools'>
 	
 ]
