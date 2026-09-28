@@ -9,6 +9,14 @@ Class {
 	#tag : 'SSA'
 }
 
+{ #category : 'meta' }
+FASTVariableVersionSSA class >> annotation [
+
+	<FMClass: #VariableVersionSSA super: #AbstVariableVersionSSA>
+	<package: #'FAST-Core-Tools'>
+	
+]
+
 { #category : 'adding' }
 FASTVariableVersionSSA >> addChoiceToPhi: aPhiVersion [
 
@@ -60,6 +68,8 @@ FASTVariableVersionSSA >> ssaVariables [
 { #category : 'accessing' }
 FASTVariableVersionSSA >> version [
 
+	<FMProperty: #version type: #Number>
+	<FMComment: 'The version number of this specific variable version'>
 	^ version
 ]
 

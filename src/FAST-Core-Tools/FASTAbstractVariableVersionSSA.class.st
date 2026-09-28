@@ -1,6 +1,6 @@
 Class {
 	#name : 'FASTAbstractVariableVersionSSA',
-	#superclass : 'Object',
+	#superclass : 'MooseEntity',
 	#instVars : [
 		'localDeclaration'
 	],
@@ -8,6 +8,15 @@ Class {
 	#package : 'FAST-Core-Tools',
 	#tag : 'SSA'
 }
+
+{ #category : 'meta' }
+FASTAbstractVariableVersionSSA class >> annotation [
+
+	<FMClass: #AbstractVariableVersionSSA super: #MooseEntity>
+	<package: #'FAST-Core-Tools'>
+	<abstract>
+	
+]
 
 { #category : 'instance creation' }
 FASTAbstractVariableVersionSSA class >> for: aFASTFortranVariable [

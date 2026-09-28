@@ -9,6 +9,14 @@ Class {
 	#tag : 'SSA'
 }
 
+{ #category : 'meta' }
+FASTVariablePhiVersionSSA class >> annotation [
+
+	<FMClass: #VariablePhiVersionSSA super: #AbstVariableVersionSSA>
+	<package: #'FAST-Core-Tools'>
+	
+]
+
 { #category : 'adding' }
 FASTVariablePhiVersionSSA >> addChoiceToPhi: aPhiVersion [
 
