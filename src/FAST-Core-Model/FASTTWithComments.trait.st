@@ -46,6 +46,7 @@ FASTTWithComments >> comments [
 	<ignoreForCoverage>
 	<generated>
 	<FMComment: 'list of comments defined in the entity'>
+	<derived>
 	^ comments
 ]
 
