@@ -35,7 +35,15 @@ FASTVariablePhiVersionSSA >> addChoiceToPhi: aPhiVersion [
 { #category : 'accessing' }
 FASTVariablePhiVersionSSA >> choices [
 
-	^choices
+	<FMProperty: #choices type: #FASTVariableVersionSSA>
+	<multivalued>
+	<FMComment: 'List of the SSA variables I could represent.'>
+	^ choices
+]
+
+{ #category : 'accessing' }
+FASTVariablePhiVersionSSA >> choices: anObject [
+	choices := anObject
 ]
 
 { #category : 'instance creation' }
