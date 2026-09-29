@@ -102,6 +102,22 @@ FASTAbstractVariableVersionSSA >> name [
 	^ self subclassResponsibility
 ]
 
+{ #category : 'accessing' }
+FASTAbstractVariableVersionSSA >> nodes [
+	"Used for LocalResolver"
+
+	<FMProperty: #nodes type: #FASTTCanBeLocalDeclaration opposite: #ssaVersion>
+	<multivalued>
+	<FMComment: 'Return all entities concerned with this SSA version.'>
+	^ self attributeAt: #nodes ifAbsentPut: [ FMMultivalueLink on: self opposite: #ssaVersion: ]
+]
+
+{ #category : 'accessing' }
+FASTAbstractVariableVersionSSA >> nodes: aCollectionOfFASTNodes [
+
+	self nodes value: aCollectionOfFASTNodes
+]
+
 { #category : 'printing' }
 FASTAbstractVariableVersionSSA >> printOn: aStream [
 	"Generate a string representation of the receiver based on its instance variables."

@@ -9,7 +9,8 @@ Class {
 	#name : 'FASTVariableVersionSSA',
 	#superclass : 'FASTAbstractVariableVersionSSA',
 	#instVars : [
-		'version'
+		'#version',
+		'#phiVersionContainers => FMMany type: #FASTVariablePhiVersionSSA opposite: #choices'
 	],
 	#category : 'FAST-Core-Tools-SSA',
 	#package : 'FAST-Core-Tools',
@@ -58,6 +59,19 @@ FASTVariableVersionSSA >> name [
 FASTVariableVersionSSA >> newVersionNumber [
 
 	^ version := version + 1
+]
+
+{ #category : 'accessing' }
+FASTVariableVersionSSA >> phiVersionContainers [
+
+	<FMComment: 'I return all the Phi versions having me in their choices.'>
+	^ phiVersionContainers
+]
+
+{ #category : 'accessing' }
+FASTVariableVersionSSA >> phiVersionContainers: aCollection [
+
+	phiVersionContainers value: aCollection
 ]
 
 { #category : 'testing' }

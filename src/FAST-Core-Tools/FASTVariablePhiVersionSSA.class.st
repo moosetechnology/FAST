@@ -11,7 +11,7 @@ Class {
 	#name : 'FASTVariablePhiVersionSSA',
 	#superclass : 'FASTAbstractVariableVersionSSA',
 	#instVars : [
-		'choices'
+		'#choices => FMMany type: #FASTVariableVersionSSA opposite: #phiVersionContainers'
 	],
 	#category : 'FAST-Core-Tools-SSA',
 	#package : 'FAST-Core-Tools',
@@ -35,15 +35,14 @@ FASTVariablePhiVersionSSA >> addChoiceToPhi: aPhiVersion [
 { #category : 'accessing' }
 FASTVariablePhiVersionSSA >> choices [
 
-	<FMProperty: #choices type: #FASTVariableVersionSSA>
-	<multivalued>
 	<FMComment: 'List of the SSA variables I could represent.'>
 	^ choices
 ]
 
 { #category : 'accessing' }
 FASTVariablePhiVersionSSA >> choices: anObject [
-	choices := anObject
+
+	choices value: anObject
 ]
 
 { #category : 'instance creation' }
@@ -51,7 +50,6 @@ FASTVariablePhiVersionSSA >> for: aCollection [
 
 	localDeclaration := aCollection anyOne localDeclaration.
 
-	choices := OrderedCollection new.
 	aCollection do: [ :v | v addChoiceToPhi: self ]
 ]
 
