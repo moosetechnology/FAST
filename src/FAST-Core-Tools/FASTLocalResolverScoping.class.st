@@ -19,8 +19,7 @@ Class {
 { #category : 'api' }
 FASTLocalResolverScoping >> addUse: referingNode toLocalDeclaration: declarationNode [
 
-	referingNode localDeclaration: declarationNode.
-	declarationNode addLocalUse: referingNode
+	referingNode localDeclaration: declarationNode
 ]
 
 { #category : 'api' }

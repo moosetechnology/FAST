@@ -18,7 +18,7 @@ FASTTCanBeLocalDeclaration >> activeVersion: aSSAVersion [
 FASTTCanBeLocalDeclaration >> addLocalUse: aFASTNode [
 	"Used for LocalResolver"
 
-	(self attributeAt: #localUses ifAbsent: [ Error signal: 'missing #localUses attribute in ' , self asString ]) add: aFASTNode
+	self localUses add: aFASTNode
 ]
 
 { #category : '*FAST-Core-Tools' }
@@ -69,7 +69,7 @@ FASTTCanBeLocalDeclaration >> assignedExpressionsMap [
 FASTTCanBeLocalDeclaration >> clearLocalUses [
 	"Used for LocalResolver"
 
-	self attributeAt: #localUses put: OrderedCollection new
+	self localUses removeAll
 ]
 
 { #category : '*FAST-Core-Tools' }
@@ -83,18 +83,21 @@ FASTTCanBeLocalDeclaration >> hasLocalDeclaration [
 FASTTCanBeLocalDeclaration >> localDeclaration [
 	"Used for LocalResolver"
 
-	^ self localDeclarationIfAbsent: [
-			  self error: 'Missing #localDeclaration attribute in ' , self asString , '. It  can have multiple sources:
-- The local resolution was not done (launch the local resolver visitor or the SSA visitor on your top module)
-- The entity is not an entity with a definition
-- There is a bug in the local resolver' ]
+	<FMProperty: #localDeclaration type: #FASTTCanBeLocalDeclaration opposite: #localUses>
+	<FMComment:
+	'Return the local declaration for this node. The local declaration is the declaration of a named entity I represent. In languages without declarations, return the first occurence of the entity. This requires the local resolution to work.'>
+	^ self attributeAt: #localDeclaration ifAbsent: [ nil ]
 ]
 
 { #category : '*FAST-Core-Tools' }
 FASTTCanBeLocalDeclaration >> localDeclaration: aDeclarationNode [
 	"Used for LocalResolver"
 
-	self attributeAt: #localDeclaration put: aDeclarationNode
+	self attributeAt: #localDeclaration put: (FMMultivalueLink
+			 on: self
+			 update: #localUses
+			 from: (self localDeclarationIfAbsent: [ nil ])
+			 to: aDeclarationNode)
 ]
 
 { #category : '*FAST-Core-Tools' }
@@ -115,14 +118,18 @@ FASTTCanBeLocalDeclaration >> localDeclarationifPresent: aBlock ifAbsent: anothe
 FASTTCanBeLocalDeclaration >> localUses [
 	"Used for LocalResolver"
 
-	^ self attributeAt: #localUses ifAbsent: [ Error signal: 'missing #localUses attribute in ' , self asString ]
+	<FMProperty: #localUses type: #FASTTCanBeLocalDeclaration opposite: #localDeclaration>
+	<multivalued>
+	<FMComment:
+	'If I represent the local declaration of an entity, return all nodes representing the usage of the entity I represent. This requires the local resolution to work'>
+	^ self attributeAt: #localUses ifAbsentPut: [ FMMultivalueLink on: self opposite: #localDeclaration: ]
 ]
 
 { #category : '*FAST-Core-Tools' }
 FASTTCanBeLocalDeclaration >> localUses: aCollection [
 	"Used for LocalResolver"
 
-	self attributeAt: #localUses put: aCollection
+	self localUses value: aCollection
 ]
 
 { #category : '*FAST-Core-Tools' }
@@ -143,8 +150,9 @@ FASTTCanBeLocalDeclaration >> ssaName [
 
 { #category : '*FAST-Core-Tools' }
 FASTTCanBeLocalDeclaration >> ssaVersion [
-	"If I represent a variable and we resolved the SSA of my FAST model, I'll return the SSA version I'm linked to."
 
+	<FMProperty: #ssaVersion type: #FASTAbstractVariableVersionSSA opposite: #nodes>
+	<FMComment: 'If I represent a variable and we resolved the SSA of my FAST model, I''ll return the SSA version I''m linked to.'>
 	^ self attributeAt: #ssaVersion ifAbsent: [ nil ]
 ]
 
@@ -152,7 +160,11 @@ FASTTCanBeLocalDeclaration >> ssaVersion [
 FASTTCanBeLocalDeclaration >> ssaVersion: aSSAVersion [
 	"Used for SSA"
 
-	self attributeAt: #ssaVersion put: aSSAVersion
+	self attributeAt: #ssaVersion put: (FMMultivalueLink
+			 on: self
+			 update: #nodes
+			 from: self ssaVersion
+			 to: aSSAVersion)
 ]
 
 { #category : '*FAST-Core-Tools' }
