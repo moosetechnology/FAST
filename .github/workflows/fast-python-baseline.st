@@ -3,4 +3,5 @@
 Metacello new
     baseline: 'FASTPython';
     repository: 'github://moosetechnology/FAST-Python:main/src';
+    onConflictUseLoaded;
     load: #( 'default' 'Tests' )
