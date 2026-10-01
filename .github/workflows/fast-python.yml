@@ -1,0 +1,33 @@
+# FAST-Python is a heavy consumer of FAST: its test suite exercises a large part
+# of the FAST utilities -- the CFG builder (FASTTCFGUtility), the local resolver,
+# the SSA transform (FASTCFGTVisitor) and the visitors -- through a real language
+# front-end. Running its tests here catches FAST regressions that FAST's own unit
+# tests do not cover.
+#
+# This mirrors what moosetechnology/Famix does for its FamixCpp and Fortran
+# baselines: load the project under test from the checkout, then load the
+# dependent baseline from GitHub and run only its tests.
+name: CI FAST-Python
+
+on: [push, pull_request, workflow_dispatch]
+
+env:
+  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        smalltalk: [ Moose64-13 ]
+    name: FAST-Python - ${{ matrix.smalltalk }}
+    steps:
+      - uses: actions/checkout@v6
+      - uses: hpi-swa/setup-smalltalkCI@v1
+        id: smalltalkci
+        with:
+          smalltalk-image: ${{ matrix.smalltalk }}
+      - run: smalltalkci -s ${{ steps.smalltalkci.outputs.smalltalk-image }} .github/workflows/fast-python-config.ston
+        shell: bash
+        timeout-minutes: 45

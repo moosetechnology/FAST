@@ -1,0 +1,13 @@
+SmalltalkCISpec {
+  #loading : [
+    SCIMetacelloLoadSpec {
+      #baseline : 'FAST',
+      #directory : '../../src',
+      #load : [ 'core', 'tools' ],
+    }
+  ],
+  #postLoading : 'fast-python-baseline.st',
+  #testing : {
+    #categories : [ 'FAST-Python-Tools-Tests' ]
+  }
+}
