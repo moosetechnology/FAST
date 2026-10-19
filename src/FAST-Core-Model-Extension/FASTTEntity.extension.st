@@ -174,6 +174,9 @@ FASTTEntity >> rootNode [
 FASTTEntity >> sourceCode [
 	"I should be overriden in my users"
 
+	<FMProperty: #sourceCode type: #String>
+	<FMComment: 'Source code of the entity'>
+	<derived>
 	^ self sourceText copyFrom: self startPos to: self endPos
 ]
 
