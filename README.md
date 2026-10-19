@@ -1,6 +1,6 @@
 # FAST
 
-[![Moose 11 and 12 CI](https://github.com/moosetechnology/FAST/actions/workflows/tests.yml/badge.svg)](https://github.com/moosetechnology/FAST/actions/workflows/testAndBuild-moose10.yml)
+[![FAST CI](https://github.com/moosetechnology/FAST/actions/workflows/tests.yml/badge.svg)](https://github.com/moosetechnology/FAST/actions/workflows/tests.yml) [![FAST-Python CI](https://github.com/moosetechnology/FAST/actions/workflows/fast-python.yml/badge.svg)](https://github.com/moosetechnology/FAST/actions/workflows/fast-python.yml)
 
 Supported Moose Versions: [![Moose version](https://img.shields.io/badge/Moose-11-%23aac9ff.svg)](https://github.com/moosetechnology/Moose) [![Moose version](https://img.shields.io/badge/Moose-12-%23aac9ff.svg)](https://github.com/moosetechnology/Moose)
 
