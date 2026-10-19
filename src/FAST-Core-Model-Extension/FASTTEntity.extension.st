@@ -44,6 +44,7 @@ FASTTEntity >> endLine [
 
 	<FMProperty: #endLine type: #Number>
 	<FMComment: 'Number of the end line of this entity in the complete source'>
+	<derived>
 	^ self cacheAt: #endLine ifAbsentPut: [ self sourceText lineNumberCorrespondingToIndex: self endPos ]
 ]
 
@@ -190,5 +191,6 @@ FASTTEntity >> startLine [
 
 	<FMProperty: #startLine type: #Number>
 	<FMComment: 'Number of the start line of this entity in the complete source'>
+	<derived>
 	^ self cacheAt: #startLine ifAbsentPut: [ self sourceText lineNumberCorrespondingToIndex: self startPos ]
 ]
