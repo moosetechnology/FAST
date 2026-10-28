@@ -60,6 +60,14 @@ FASTImporterDescription class >> isProjectLoaded [
 ]
 
 { #category : 'actions' }
+FASTImporterDescription class >> loadAll [
+	"This is mostly for development if we wish to have an image with all FAST projects loaded."
+
+	<script>
+	self withAllSuperclassesDo: #loadProject
+]
+
+{ #category : 'actions' }
 FASTImporterDescription class >> loadProject [
 
 	Metacello new
