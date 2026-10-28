@@ -64,7 +64,7 @@ FASTImporterDescription class >> loadAll [
 	"This is mostly for development if we wish to have an image with all FAST projects loaded."
 
 	<script>
-	self withAllSuperclassesDo: #loadProject
+	self allSubclassesDo: #loadProject
 ]
 
 { #category : 'actions' }
