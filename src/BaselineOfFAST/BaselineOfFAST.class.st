@@ -43,8 +43,8 @@ BaselineOfFAST >> defineGroups: spec [
 
 	spec
 		group: 'core' with: #( 'FAST-Core-Model' 'FAST-Core-Model-Extension' 'FAST-Model-Generator' 'FAST-Core-Visitor' );
-		group: 'All' with: #( 'core' 'FAST-Core-Tools' 'FAST-Core-Tools-Tests' 'FAST-Importer' 'FAST-Importer-Tests' 'FAST-Core-Deprecated' );
-		group: 'tools' with: #( 'All' )
+		group: 'tools' with: #( 'FAST-Core-Tools' 'FAST-Core-Tools-Tests' 'FAST-Importer' 'FAST-Importer-Tests' );
+		group: 'All' with: #( 'core' 'tools' 'FAST-Core-Deprecated' )
 ]
 
 { #category : 'baselines' }
