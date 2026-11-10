@@ -1,7 +1,8 @@
 "
-I define the API of a FAST importer. I am used on the class side of an importer, for example `FASTPythonImporter class` uses `FASTTImporter classTrait`.
-An importer must implement #extensions, answering the file extensions it handles without the dot, and #parse:into:, answering the FAST model after importing the source in the model given as argument. A nil model means that the importer creates a new one.
+I define the API of a FAST importer. I must be used on the instance side and on the class side of an importer (`MyImporter uses: FASTTImporter` and `MyImporter class uses: FASTTImporter classTrait`).
+An importer must implement #parse:into: on its instance side, answering the FAST model after importing the source in the model given as argument, and #extensions on its class side, answering the file extensions it handles without the dot. A nil model means that the importer creates a new one.
 Giving an existing model allows one to import many files in the same model.
+The class side only creates an importer and delegates to the instance side, except for #handlesFile: that checks the extension of the file.
 "
 Trait {
 	#name : 'FASTTImporter',
@@ -25,27 +26,69 @@ FASTTImporter classSide >> handlesFile: aFileReference [
 
 { #category : 'importing' }
 FASTTImporter classSide >> parse: aString [
+	"Import the source in a new FAST model with a new importer and answer it"
+
+	^ self new parse: aString
+]
+
+{ #category : 'importing' }
+FASTTImporter classSide >> parse: aString into: aModel [
+	"Import the source in the FAST model, or in a new one if the model is nil, with a new importer and answer the model"
+
+	^ self new parse: aString into: aModel
+]
+
+{ #category : 'importing' }
+FASTTImporter classSide >> parseFile: aFileReference [
+	"Import the file in a new FAST model with a new importer and answer it"
+
+	^ self new parseFile: aFileReference
+]
+
+{ #category : 'importing' }
+FASTTImporter classSide >> parseFile: aFileReference into: aModel [
+	"Import the file in the FAST model, or in a new one if the model is nil, with a new importer and answer the model"
+
+	^ self new parseFile: aFileReference into: aModel
+]
+
+{ #category : 'accessing' }
+FASTTImporter >> extensions [
+	"File extensions without the dot that the importer handles"
+
+	^ self class extensions
+]
+
+{ #category : 'testing' }
+FASTTImporter >> handlesFile: aFileReference [
+	"Answers whether the importer handles the file, according to its extension"
+
+	^ self class handlesFile: aFileReference
+]
+
+{ #category : 'importing' }
+FASTTImporter >> parse: aString [
 	"Import the source in a new FAST model and answer it"
 
 	^ self parse: aString into: nil
 ]
 
 { #category : 'importing' }
-FASTTImporter classSide >> parse: aString into: aModel [
+FASTTImporter >> parse: aString into: aModel [
 	"Import the source in the FAST model, or in a new one if the model is nil, and answer the model"
 
 	^ self explicitRequirement
 ]
 
 { #category : 'importing' }
-FASTTImporter classSide >> parseFile: aFileReference [
+FASTTImporter >> parseFile: aFileReference [
 	"Import the file in a new FAST model and answer it"
 
 	^ self parseFile: aFileReference into: nil
 ]
 
 { #category : 'importing' }
-FASTTImporter classSide >> parseFile: aFileReference into: aModel [
+FASTTImporter >> parseFile: aFileReference into: aModel [
 	"Import the file in the FAST model, or in a new one if the model is nil, and answer the model. Files are expected to be encoded in UTF-8"
 
 	^ self parse: aFileReference asFileReference contents into: aModel

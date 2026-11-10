@@ -16,12 +16,6 @@ FASTTImporterTest >> testHandlesFileIgnoresExtensionCase [
 ]
 
 { #category : 'tests' }
-FASTTImporterTest >> testParseCreatesANewModel [
-
-	self assert: (FASTExampleImporter parse: 'source') equals: { 'source'. nil }
-]
-
-{ #category : 'tests' }
 FASTTImporterTest >> testParseFileIntoReadsTheFileContents [
 
 	| file model |

@@ -4,6 +4,7 @@ I am a minimal importer used to test the importer API trait. My parse:into: answ
 Class {
 	#name : 'FASTExampleImporter',
 	#superclass : 'Object',
+	#traits : 'FASTTImporter',
 	#classTraits : 'FASTTImporter classTrait',
 	#category : 'FAST-Importer-Tests',
 	#package : 'FAST-Importer-Tests'
@@ -16,7 +17,7 @@ FASTExampleImporter class >> extensions [
 ]
 
 { #category : 'importing' }
-FASTExampleImporter class >> parse: aString into: aModel [
+FASTExampleImporter >> parse: aString into: aModel [
 
 	^ {
 		  aString.
