@@ -21,6 +21,12 @@ FASTFortranImporterDescription class >> extensions [
 	^ #( 'f' )
 ]
 
+{ #category : 'testing' }
+FASTFortranImporterDescription class >> isWorking [
+
+	^ false
+]
+
 { #category : 'accessing' }
 FASTFortranImporterDescription class >> projectName [
 
