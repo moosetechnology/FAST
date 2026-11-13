@@ -59,12 +59,19 @@ FASTImporterDescription class >> isProjectLoaded [
 	^ self class environment includesKey: self baselineName asSymbol
 ]
 
+{ #category : 'testing' }
+FASTImporterDescription class >> isWorking [
+	"Answers whether the importer of this description works with the current FAST version. A description that does not work is still listed, but it is not loaded by loadAll."
+
+	^ true
+]
+
 { #category : 'actions' }
 FASTImporterDescription class >> loadAll [
-	"This is mostly for development if we wish to have an image with all FAST projects loaded."
+	"This is mostly for development if we wish to have an image with all FAST projects loaded. Descriptions that do not work are skipped."
 
 	<script>
-	self allSubclassesDo: #loadProject
+	self allSubclassesDo: [ :description | description isWorking ifTrue: [ description loadProject ] ]
 ]
 
 { #category : 'actions' }

@@ -27,6 +27,13 @@ FASTPharoImporterDescription class >> group [
 	^ 'importer'
 ]
 
+{ #category : 'testing' }
+FASTPharoImporterDescription class >> isWorking [
+	"FAST-Pharo does not work since Moose 8. Kept in the list until it is fixed."
+
+	^ false
+]
+
 { #category : 'accessing' }
 FASTPharoImporterDescription class >> projectName [
 
