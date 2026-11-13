@@ -1,6 +1,6 @@
 "
 I define the API of a FAST importer. I must be used on the instance side and on the class side of an importer (`MyImporter uses: FASTTImporter` and `MyImporter class uses: FASTTImporter classTrait`).
-An importer must implement #parse:into: on its instance side, answering the FAST model after importing the source in the model given as argument, and #extensions on its class side, answering the file extensions it handles without the dot. A nil model means that the importer creates a new one.
+An importer must implement #parse:into: on its instance side, answering the FAST model after importing the source in the model given as argument, and may override #extensions on its class side, answering the file extensions it handles without the dot (none by default). A nil model means that the importer creates a new one.
 Giving an existing model allows one to import many files in the same model.
 The class side only creates an importer and delegates to the instance side, except for #handlesFile: that checks the extension of the file.
 "
@@ -12,9 +12,9 @@ Trait {
 
 { #category : 'accessing' }
 FASTTImporter classSide >> extensions [
-	"File extensions without the dot that the importer handles"
+	"File extensions without the dot that the importer handles. An importer that does not declare any handles no file."
 
-	^ self explicitRequirement
+	^ #(  )
 ]
 
 { #category : 'testing' }
@@ -22,6 +22,13 @@ FASTTImporter classSide >> handlesFile: aFileReference [
 	"Answers whether the importer handles the file, according to its extension"
 
 	^ self extensions anySatisfy: [ :extension | extension sameAs: aFileReference extension ]
+]
+
+{ #category : 'testing' }
+FASTTImporter classSide >> isAbstract [
+	"Answers whether the importer is abstract, so that FASTAgnosticImporter does not use it. Concrete importers keep the default."
+
+	^ false
 ]
 
 { #category : 'importing' }

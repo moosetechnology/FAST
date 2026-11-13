@@ -12,6 +12,7 @@ Class {
 
 { #category : 'accessing' }
 FASTExampleImporter class >> extensions [
+	"File extensions without the dot that the importer handles"
 
 	^ #( 'ex' )
 ]
