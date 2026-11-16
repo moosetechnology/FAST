@@ -26,23 +26,22 @@ FASTAgnosticImporterBatchTest >> testNeverLoadLeavesTheMissingImporterUnloaded [
 { #category : 'tests' }
 FASTAgnosticImporterBatchTest >> testParseFilesBuildsOneModelPerLanguage [
 
-	| fileSystem result javaModel |
+	| fileSystem result loneModel |
 	fileSystem := FileSystem memory.
-	fileSystem / 'A.java' writeStreamDo: [ :stream | stream nextPutAll: 'public class A { }' ].
-	fileSystem / 'B.java' writeStreamDo: [ :stream | stream nextPutAll: 'public class B { }' ].
-	fileSystem / 'style.css' writeStreamDo: [ :stream | stream nextPutAll: 'a { color: red }' ].
+	fileSystem / 'A.lone' writeStreamDo: [ :stream | stream nextPutAll: 'first' ].
+	fileSystem / 'B.lone' writeStreamDo: [ :stream | stream nextPutAll: 'second' ].
 	fileSystem / 'notes.txt' writeStreamDo: [ :stream | stream nextPutAll: 'not code' ].
 	result := FASTAgnosticImporter new parseFiles: {
-			          (fileSystem / 'A.java').
-			          (fileSystem / 'B.java').
-			          (fileSystem / 'style.css').
+			          (fileSystem / 'A.lone').
+			          (fileSystem / 'B.lone').
 			          (fileSystem / 'notes.txt') }.
-	self assert: result size equals: 3.
+	self assert: result size equals: 2.
 	self assert: (result at: nil) equals: (OrderedCollection with: fileSystem / 'notes.txt').
-	javaModel := result keys detect: [ :model | model isNotNil and: [ (model allWithType: FASTJavaClassDeclaration) size = 2 ] ].
-	self assert: (result at: javaModel) asArray equals: {
-			(fileSystem / 'A.java').
-			(fileSystem / 'B.java') }
+	loneModel := result keys detect: [ :model | model isNotNil ].
+	self assert: loneModel asArray equals: { 'first'. 'second' }.
+	self assert: (result at: loneModel) asArray equals: {
+			(fileSystem / 'A.lone').
+			(fileSystem / 'B.lone') }
 ]
 
 { #category : 'tests' }
@@ -51,9 +50,9 @@ FASTAgnosticImporterBatchTest >> testParseFolderImportsTheFilesOfTheFolder [
 	| fileSystem result |
 	fileSystem := FileSystem memory.
 	(fileSystem / 'src') ensureCreateDirectory.
-	fileSystem / 'src' / 'A.java' writeStreamDo: [ :stream | stream nextPutAll: 'public class A { }' ].
-	fileSystem / 'src' / 'B.java' writeStreamDo: [ :stream | stream nextPutAll: 'public class B { }' ].
+	fileSystem / 'src' / 'A.lone' writeStreamDo: [ :stream | stream nextPutAll: 'first' ].
+	fileSystem / 'src' / 'B.lone' writeStreamDo: [ :stream | stream nextPutAll: 'second' ].
 	result := FASTAgnosticImporter parseFolder: fileSystem / 'src'.
 	self assert: result size equals: 1.
-	self assert: (result keys anyOne allWithType: FASTJavaClassDeclaration) size equals: 2
+	self assert: result keys anyOne size equals: 2
 ]

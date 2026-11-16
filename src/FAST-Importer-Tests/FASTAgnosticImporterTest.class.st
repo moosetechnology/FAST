@@ -16,15 +16,9 @@ FASTAgnosticImporterTest >> testDoesNotLoadAProjectForAnUnknownExtension [
 ]
 
 { #category : 'tests' }
-FASTAgnosticImporterTest >> testFindsAnImporterLoadedInTheImageByItsExtension [
-
-	self assert: (FASTAgnosticImporter importerFor: 'style.css' asFileReference) identicalTo: FASTCSSImporter
-]
-
-{ #category : 'tests' }
 FASTAgnosticImporterTest >> testFindsTheImporterOfAFileByItsExtension [
 
-	self assert: (FASTAgnosticImporter importerFor: 'Main.java' asFileReference) identicalTo: FASTJavaSmaCCImporter
+	self assert: (FASTAgnosticImporter importerFor: 'Main.lone' asFileReference) identicalTo: FASTExampleLoneImporter
 ]
 
 { #category : 'tests' }

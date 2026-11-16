@@ -12,6 +12,6 @@ Class {
 { #category : 'tests' }
 FASTImporterDescriptionTest >> testIsProjectLoadedChecksTheImportersOfTheExtensions [
 
-	self assert: FASTJavaImporterDescription isProjectLoaded.
+	self assert: FASTLoneImporterDescription isProjectLoaded.
 	self deny: FASTMissingImporterDescription isProjectLoaded
 ]
