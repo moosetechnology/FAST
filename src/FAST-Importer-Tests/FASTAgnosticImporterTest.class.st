@@ -4,8 +4,9 @@ I test that FASTAgnosticImporter chooses the importer of a file by its extension
 Class {
 	#name : 'FASTAgnosticImporterTest',
 	#superclass : 'TestCase',
-	#category : 'FAST-Importer-Tests',
-	#package : 'FAST-Importer-Tests'
+	#category : 'FAST-Importer-Tests-Tests',
+	#package : 'FAST-Importer-Tests',
+	#tag : 'Tests'
 }
 
 { #category : 'tests' }

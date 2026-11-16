@@ -4,8 +4,9 @@ I test the default behavior of the importer API trait using FASTExampleImporter.
 Class {
 	#name : 'FASTTImporterTest',
 	#superclass : 'TestCase',
-	#category : 'FAST-Importer-Tests',
-	#package : 'FAST-Importer-Tests'
+	#category : 'FAST-Importer-Tests-Tests',
+	#package : 'FAST-Importer-Tests',
+	#tag : 'Tests'
 }
 
 { #category : 'tests' }

@@ -7,8 +7,9 @@ Class {
 	#instVars : [
 		'candidates'
 	],
-	#category : 'FAST-Importer',
-	#package : 'FAST-Importer'
+	#category : 'FAST-Importer-Errors',
+	#package : 'FAST-Importer',
+	#tag : 'Errors'
 }
 
 { #category : 'accessing' }

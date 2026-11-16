@@ -6,8 +6,9 @@ Class {
 	#superclass : 'Object',
 	#traits : 'FASTTImporter',
 	#classTraits : 'FASTTImporter classTrait',
-	#category : 'FAST-Importer-Tests',
-	#package : 'FAST-Importer-Tests'
+	#category : 'FAST-Importer-Tests-Stubs',
+	#package : 'FAST-Importer-Tests',
+	#tag : 'Stubs'
 }
 
 { #category : 'accessing' }

@@ -4,6 +4,7 @@ I am a second importer handling the same extension as FASTExampleImporter, to te
 Class {
 	#name : 'FASTExampleOtherImporter',
 	#superclass : 'FASTExampleImporter',
-	#category : 'FAST-Importer-Tests',
-	#package : 'FAST-Importer-Tests'
+	#category : 'FAST-Importer-Tests-Stubs',
+	#package : 'FAST-Importer-Tests',
+	#tag : 'Stubs'
 }

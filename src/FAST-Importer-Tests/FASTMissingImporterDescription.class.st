@@ -4,8 +4,9 @@ I describe a project whose importer is never present, to test that FASTImporterD
 Class {
 	#name : 'FASTMissingImporterDescription',
 	#superclass : 'FASTImporterDescription',
-	#category : 'FAST-Importer-Tests',
-	#package : 'FAST-Importer-Tests'
+	#category : 'FAST-Importer-Tests-Stubs',
+	#package : 'FAST-Importer-Tests',
+	#tag : 'Stubs'
 }
 
 { #category : 'accessing' }

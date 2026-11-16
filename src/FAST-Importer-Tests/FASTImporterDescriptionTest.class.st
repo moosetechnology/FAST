@@ -4,8 +4,9 @@ I test that a description tells whether its project is loaded from the presence 
 Class {
 	#name : 'FASTImporterDescriptionTest',
 	#superclass : 'TestCase',
-	#category : 'FAST-Importer-Tests',
-	#package : 'FAST-Importer-Tests'
+	#category : 'FAST-Importer-Tests-Tests',
+	#package : 'FAST-Importer-Tests',
+	#tag : 'Tests'
 }
 
 { #category : 'tests' }
