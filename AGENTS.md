@@ -11,7 +11,7 @@ FAST is the generic Famix AST metamodel shared by language-specific FAST project
     repository: 'github://moosetechnology/FAST:v3/src';
     load: 'core'   "or 'All' / 'tools'"
   ```
-- Groups are defined in `src/BaselineOfFAST/BaselineOfFAST.class.st`: `core` = model, model extensions, generator, visitor; `All` adds tools, tool tests and deprecated code; `tools` = `All`. Loading with no group loads all packages (there is no `default` group).
+- Groups are defined in `src/BaselineOfFAST/BaselineOfFAST.class.st`: `core` = model, model extensions, generator, visitor; `tools` = tools, tool tests, `FAST-Importer` and its tests; `All` = `core` + `tools` + deprecated code. Loading with no group loads all packages (there is no `default` group).
 - CI runs `smalltalkci -s Moose64-12` and `-s Moose64-13` using `.smalltalk.ston`; that config loads `core` + `tools` and runs tests with lcov coverage. The README's Moose 11/12 badge is stale.
 - Single test in an image: `FASTTEntityTest buildSuite run`, or `(FASTTEntityTest selector: #testBoundaryLinesAreInclusive) run`.
 - The baseline loads Famix from `development` only when the image lacks `BaselineOfFamix`, and postLoad-patches Moose 12 via `ensureMoose12Compatibility`; keep that patch while Moose 12 remains in CI.
@@ -24,12 +24,22 @@ FAST is the generic Famix AST metamodel shared by language-specific FAST project
 - Hand-written model behavior belongs in `FAST-Core-Model-Extension` or in package extensions such as `FAST-Core-Tools/FASTTEntity.extension.st`.
 - `FASTTestMetamodelGenerator class>>initialize` generates `FAST-Core-Test-Model` when its package loads; that package is intentionally not committed. Tests such as `FASTTEntityTest` use `FASTTestClass`/`FASTTestMethod`, so load `FAST-Core-Tests-Generator` before running them.
 
+## Importers
+
+- `FASTTImporter` is a trait used on the instance side and on the class side of each importer (`MyImporter uses: FASTTImporter` and `MyImporter class uses: FASTTImporter classTrait`). Its class side creates an importer and delegates to the instance side, so a caller can use `MyImporter parseFile: file` or `MyImporter new parseFile: file`.
+- A language importer implements `parse:into:` on its instance side, answering the FAST model after importing the source into the model given (a `nil` model means a new one), and may override `extensions` on its class side (the file extensions without the dot, none by default).
+- `FASTAgnosticImporter` imports a file without knowing its importer. Its behaviour is on the instance side, and its class side has the helpers `importerFor:`, `parseFile:` and `parseFile:into:`. The importers are the classes that use `FASTTImporter classTrait` and their concrete subclasses (`isAbstract` answers false by default). The importer of a file is the one whose `extensions` include the file's extension. Several importers for the same extension raise `FASTAmbiguousImporterError`; no importer for the extension raises an error.
+- When no loaded importer handles a file, `loadMissingImporterFor:` loads the project of a working description (`isWorking`) that handles the extension and is not loaded yet. Interactively, it first asks the user with `SpConfirmDialog`; otherwise it loads the project. `loadMissingImporterFor:interactive:` takes the decision as a parameter.
+- `FASTImporterDescription` is the hierarchy of the projects that provide importers: repository, branch, baseline, group and extensions, with `loadProject` (network-heavy) and `loadAll`. A description is loaded (`isProjectLoaded`) when an importer for one of its extensions is present. A description with `isWorking` false (FAST-Pharo and FAST-Fortran, which do not work with the current FAST version) is listed but not loaded by `loadAll`.
+- The importers of the trait are found by their users: there is no pragma to add. A new importer only has to use the trait on both sides.
+- Language-specific importers and their ASTs live in separate repositories (FAST-JAVA, FAST-Python, ...), and depend on FAST and on Pharo-Tree-Sitter for the tree-sitter ones. The trait is in `FAST-Importer` on the `importer` branch until it is merged into `v3`.
+
 ## Layout and boundaries
 
 - `FAST-Core-Model`: generic `FASTT*` traits and `FAST*Entity` classes, plus `FASTModel`.
 - `FAST-Core-Tools`: handwritten CFG, SSA, local resolver, validators/comparators and visitor code generators.
 - `FAST-Core-Deprecated`: legacy code, excluded from `core`.
-- `FAST-Importer`: the `FASTTImporter` class-side trait (common `extensions`, `parse:`/`parseFile:` API with model reuse), the `FASTImporterDescription` hierarchy (repository, branch, baseline, group and extensions for the not-yet-loaded fallback) and `FASTAgnosticImporter` (loaded-importer detection through the `<fastImporter>` pragma, conflict signaling and file resolution by extension); it contains no parsers. Language importers must use `FASTTImporter` on their class side and implement `extensions`; a class-side `<fastImporter>` pragma on the importer or one of its superclasses registers it, and `FASTAgnosticImporter` expands non-abstract subclasses. `FASTImporterDescription loadProject` loads one described project and `loadAll` loads all of them; both are network-heavy.
+- `FAST-Importer` (in the `tools` group): the importer API, the importer descriptions and the agnostic importer. It contains no parsers. Details are in the Importers section below.
 - Language-specific ASTs and importers live in separate repositories (FAST-JAVA, FAST-Pharo, FAST-Python, ...). Add only generic nodes/relations here.
 - Keep Tonel format (`src/.properties` is `#format : #tonel`); do not convert the repository to filetree.
 - Tests are `TestCase` subclasses named `*Test`.
