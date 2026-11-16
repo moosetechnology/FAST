@@ -1,3 +1,6 @@
+"
+I simulate a user who declines to load a project, to test the interactive path of FASTAgnosticImporter.
+"
 Class {
 	#name : 'FASTDecliningAgnosticImporter',
 	#superclass : 'FASTAgnosticImporter',

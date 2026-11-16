@@ -1,3 +1,6 @@
+"
+I describe a project whose importer is never present, to test that FASTImporterDescription detects a project that is not loaded.
+"
 Class {
 	#name : 'FASTMissingImporterDescription',
 	#superclass : 'FASTImporterDescription',

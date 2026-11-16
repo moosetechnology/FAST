@@ -1,3 +1,6 @@
+"
+I describe a project that is loaded by counting its loads, to test FASTAgnosticImporter without network access.
+"
 Class {
 	#name : 'FASTLoadableStubDescription',
 	#superclass : 'FASTImporterDescription',
