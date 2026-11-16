@@ -53,6 +53,16 @@ FASTAgnosticImporter class >> parseFile: aFileReference into: aModel [
 	^ self new parseFile: aFileReference into: aModel
 ]
 
+{ #category : 'importing' }
+FASTAgnosticImporter >> confirmLoading: aDescription for: aFileReference [
+	"Ask the user whether the project of the description can be loaded to import the file"
+
+	^ SpConfirmDialog new
+		  title: 'Load a project';
+		  message: 'Load ' , aDescription baselineName , ' to import ' , aFileReference basename , '?';
+		  openModal
+]
+
 { #category : 'accessing' }
 FASTAgnosticImporter >> importerClasses [
 	"The concrete importers: the classes that use the FASTTImporter class trait, and their concrete subclasses"
@@ -82,17 +92,20 @@ FASTAgnosticImporter >> importerFor: aFileReference [
 FASTAgnosticImporter >> loadMissingImporterFor: aFileReference [
 	"Load the project of a working description that handles the extension of the file, when its importer is not loaded. Interactively, the user is asked first. Answer whether a project was loaded."
 
-	| descriptions description |
-	descriptions := FASTImporterDescription allSubclasses select: [ :each | each isWorking and: [ (each extensions includes: aFileReference extension) and: [ each isProjectLoaded not ] ] ].
-	descriptions ifEmpty: [ ^ false ].
-	description := descriptions first.
-	(Smalltalk isInteractive and: [
-			 (SpConfirmDialog new
-				  title: 'Load a project';
-				  message: 'Load ' , description baselineName , ' to import ' , aFileReference basename , '?';
-				  openModal) not ]) ifTrue: [ ^ false ].
-	description loadProject.
-	^ true
+	^ self loadMissingImporterFor: aFileReference interactive: Smalltalk isInteractive
+]
+
+{ #category : 'importing' }
+FASTAgnosticImporter >> loadMissingImporterFor: aFileReference interactive: aBoolean [
+	"Load the project of a working description that handles the extension of the file, when its importer is not loaded. When interactive, the user is asked first. Answer whether a project was loaded."
+
+	^ FASTImporterDescription allSubclasses
+		  detect: [ :each | each isWorking and: [ (each extensions includes: aFileReference extension) and: [ each isProjectLoaded not ] ] ]
+		  ifFound: [ :description |
+				  (aBoolean and: [ (self confirmLoading: description for: aFileReference) not ]) ifTrue: [ ^ false ].
+				  description loadProject.
+				  true ]
+		  ifNone: [ false ]
 ]
 
 { #category : 'importing' }
