@@ -53,10 +53,9 @@ FASTImporterDescription class >> isAbstract [
 
 { #category : 'testing' }
 FASTImporterDescription class >> isProjectLoaded [
-	"Answers whether the project class is present in the image"
+	"Answers whether an importer handling one of my extensions is present in the image, so that the project is loaded"
 
-	self flag: #todo. "Check if this is enough. We should probably check the importer instead since we could load a group without the importer or load the baseline only."
-	^ self class environment includesKey: self baselineName asSymbol
+	^ FASTAgnosticImporter new importerClasses anySatisfy: [ :importer | self extensions anySatisfy: [ :extension | importer extensions includes: extension ] ]
 ]
 
 { #category : 'testing' }
