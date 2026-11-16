@@ -43,9 +43,8 @@ BaselineOfFAST >> defineGroups: spec [
 
 	spec
 		group: 'core' with: #( 'FAST-Core-Model' 'FAST-Core-Model-Extension' 'FAST-Model-Generator' 'FAST-Core-Visitor' );
-		group: 'All' with: #( 'core' 'FAST-Core-Tools' 'FAST-Core-Tools-Tests'  'FAST-Core-Deprecated');
-		group: 'tools' with: #( 'All' );
-		group: 'default' with: #( 'core' )
+		group: 'tools' with: #( 'FAST-Core-Tools' 'FAST-Core-Tools-Tests' 'FAST-Importer' 'FAST-Importer-Tests' );
+		group: 'All' with: #( 'core' 'tools' 'FAST-Core-Deprecated' )
 ]
 
 { #category : 'baselines' }
@@ -59,6 +58,8 @@ BaselineOfFAST >> definePackages: spec [
 		package: 'FAST-Core-Tests-Generator' with: [ spec requires: #( 'FAST-Core-Model' ) ];
 		package: 'FAST-Core-Tools' with: [ spec requires: #( 'FAST-Core-Visitor' ) ];
 		package: 'FAST-Core-Tools-Tests' with: [ spec requires: #( 'FAST-Core-Tools' 'FAST-Core-Tests-Generator' ) ];
+		package: 'FAST-Importer';
+		package: 'FAST-Importer-Tests' with: [ spec requires: #( 'FAST-Importer' ) ];
 		package: 'FAST-Core-Deprecated'.
 
 	spec for: #NeedsMoose do: [
